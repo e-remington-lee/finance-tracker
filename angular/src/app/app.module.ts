@@ -1,18 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { NavComponent } from './nav/nav.component';
+import { BuySellComponent } from './buy-sell/buy-sell.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { AccountComponent } from './account/account.component';
+import { LoginComponent } from './login/login.component';
+import { BuyAndSellComponent } from './buy-and-sell/buy-and-sell.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    NavComponent,
+    BuySellComponent,
+    PortfolioComponent,
+    AccountComponent,
+    LoginComponent,
+    BuyAndSellComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
