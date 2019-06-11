@@ -24,7 +24,8 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon_money.ico",
-              "src/assets"
+              "src/assets",
+              "src/landingImage.jpg"
             ],
             "styles": [
               "src/styles.scss"
