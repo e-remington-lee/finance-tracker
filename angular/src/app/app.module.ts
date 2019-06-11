@@ -10,7 +10,6 @@ import { BuySellComponent } from './buy-sell/buy-sell.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login.component';
-import { BuyAndSellComponent } from './buy-and-sell/buy-and-sell.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { BuyAndSellComponent } from './buy-and-sell/buy-and-sell.component';
     PortfolioComponent,
     AccountComponent,
     LoginComponent,
-    BuyAndSellComponent
   ],
   imports: [
     BrowserModule,

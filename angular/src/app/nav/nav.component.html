@@ -1,8 +1,30 @@
 <body>
-<nav class='navbar' id='top-nav'>
-  <a routerlink ="/" class='navbar-brand'>Bob</a>
-  <ul class ='navbar-nav'>
-    <li class='navbar-item'></li>
-  </ul>
+<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>
+  <a routerlink ="/" class='navbar-brand'>Finance App</a>
+    <button class='navbar-toggler' data-toggle='collapse' data-target="#containerLinks">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class='collapse navbar-collapse' id='containerLinks'>
+    <ul class ='navbar-nav ml-auto'>
+      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Buy & Sell</a></li>
+      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>
+      <li class='navbar-item'><a class='nav-link' routerLink='/account'>Account</a></li>
+    </ul>
+  </div>
 </nav>
-  </body>
+</body>
+<!-- <body>
+  <nav class='navbar navbar-light bg-info navbar-expand-lg fixed-top' id="coloring">
+    <a routerLink ="/" class='navbar-brand'>{{header}}</a>
+    <button class='navbar-toggler' data-toggle='collapse' data-target="#containerLinks">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class='collapse navbar-collapse' id='containerLinks'>
+    <ul class='navbar-nav ml-auto'>
+        <li class='navbar-item'><a class='nav-link' routerLink="/">Home</a></li>
+        <li class='navbar-item'><a class='nav-link' routerLink ="/TwitterSearch">Twitter Search</a></li>
+        <li class='navbar-item'><a class='nav-link' routerLink ="/RandomTweet">Tweet Finder</a></li>
+    </ul>
+    </div>
+  </nav>
+  </body> -->
