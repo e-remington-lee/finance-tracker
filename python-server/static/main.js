@@ -309,7 +309,7 @@ var BuySellComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header id='showcase'>\n  <div class='container'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n      <p class=\"lead\">\n        <a href=\"#\" class=\"btn btn-lg btn-secondary\">Login</a> <a href=\"#\" class=\"btn btn-lg btn-secondary\">Create Account</a>\n      </p>\n    </div>\n</header>\n<div>\n    <h3>GitHub Repository</h3>\n    <p>Link to it</p>\n</div>"
+module.exports = "<header id='showcase'>\n  <div class='container'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n      <p class=\"lead\">\n        <a routerLink='/login' class=\"btn btn-lg btn-secondary\">Login</a> <a routerLink='/login' class=\"btn btn-lg btn-secondary\">Create Account</a>\n      </p>\n    </div>\n</header>\n<div>\n    <h3>GitHub Repository</h3>\n    <p>Link to it</p>\n</div>"
 
 /***/ }),
 
@@ -477,7 +477,7 @@ var NavComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  portfolio works!\n</p>\n"
+module.exports = "<body class='container' id='container'>\n    <div class='card' id='graph'>\n        <div class='card-body'>\n            <p>\n               Big graph showing the historical stock prices in your portfolio over the past 12 months\n            </p>\n        </div>\n      </div>\n  <div id='portfolio'>\n    <div class='card' id='card'>\n      <div class='card-body'>\n          <p>\n            ngfor* each stock Tesla: TSLA  Bought price  current price   BUY SELL buttons\n          </p>\n      </div>\n    </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n              ngfor* each stock Tesla: TSLA  Bought price  current price   BUY SELL buttons\n            </p>\n        </div>\n      </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n              ngfor* each stock Tesla: TSLA  Bought price  current price   BUY SELL buttons\n            </p>\n        </div>\n      </div>  \n  </div>\n</body>\n"
 
 /***/ }),
 
@@ -488,7 +488,7 @@ module.exports = "<p>\n  portfolio works!\n</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BvcnRmb2xpby9wb3J0Zm9saW8uY29tcG9uZW50LnNjc3MifQ== */"
+module.exports = "#portfolio {\n  margin: 10px 0 10px 0; }\n\n#graph {\n  margin: 10px 0 0 0;\n  height: 350px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvL0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxwb3J0Zm9saW9cXHBvcnRmb2xpby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLHFCQUFxQixFQUFBOztBQUd6QjtFQUNJLGtCQUFrQjtFQUNsQixhQUFhLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9wb3J0Zm9saW8vcG9ydGZvbGlvLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3BvcnRmb2xpbyB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAxMHB4IDA7XHJcbn1cclxuXHJcbiNncmFwaCB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAwIDA7XHJcbiAgICBoZWlnaHQ6IDM1MHB4O1xyXG59Il19 */"
 
 /***/ }),
 
