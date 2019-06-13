@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuySellComponent implements OnInit {
 
+  stockName='Tesla';
+  stockID='TSLA';
+
   constructor() { }
 
   ngOnInit() {
