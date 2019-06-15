@@ -12,8 +12,8 @@ def home_page(path):
 def stock_info():
     if requests.methods == 'GET':
         PT = api_tokens.public_token()
-        payload = { 'token': PT}
-        # r=requests.get('https://cloud.iexapis.com/v1/stock/TSLA/quote', params=payload)
+        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+        r=requests.get('https://cloud.iexapis.com/v1/stock/TSLA/quote', params=payload)
         r = requests.get('https://httpbin.org/get')
         print(r.json())
         # print(r.status_code)
