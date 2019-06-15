@@ -14,7 +14,5 @@ export class PortfolioComponent implements OnInit {
     this.stocks.returnStocks().subscribe(data => {
       console.log(data)}
       );
-
   }
-
 }
