@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 import requests
-from api_tokens import public_token
+import api_tokens
 app = Flask(__name__)
 
 @app.route('/', defaults={'path': ''})
@@ -11,17 +11,15 @@ def home_page(path):
 @app.route('/stocks', methods=['GET', 'POST'])
 def stock_info():
     if requests.methods == 'GET':
-        PT = public_token()
-        print(PT)
+        PT = api_tokens.public_token()
         payload = { 'token': PT}
-        r=requests.get('https://cloud.iexapis.com/v1/stock/TSLA/quote', params=payload)
-        print(r.status_code)
+        # r=requests.get('https://cloud.iexapis.com/v1/stock/TSLA/quote', params=payload)
+        r = requests.get('https://httpbin.org/get')
         print(r.json())
-        return None
+        # print(r.status_code)
+        # print(r.json())
+        return r.json()
     return None
-
-
-
 
 if __name__ =='__main__':
     app.run(debug=True, port=7000)

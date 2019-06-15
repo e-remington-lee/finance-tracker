@@ -479,7 +479,7 @@ var NavComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container' id='container'>\n    <div class='card' id='graph'>\n        <div class='card-body'>\n            <p>\n               Big graph showing the historical stock prices in your portfolio over the past 12 months\n            </p>\n        </div>\n      </div>\n  <div id='portfolio'>\n    <div class='card' id='card'>\n      <div class='card-body'>\n          <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n          </p>\n          <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Buy</a>\n          <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n      </div>\n    </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n            </p>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Buy</a>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n        </div>\n      </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n            </p>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Buy</a>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n        </div>\n      </div>  \n  </div>\n</body>\n"
+module.exports = "<body class='container' id='container'>\n    <div class='card' id='graph'>\n        <div class='card-body'>\n            <p>\n               Big graph showing the historical stock prices in your portfolio over the past 12 months\n            </p>\n        </div>\n      </div>\n  <div id='portfolio'>\n    <div class='card' id='card'>\n      <div class='card-body'>\n          <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n          </p>\n          <a class=\"btn btn-lg btn-secondary\" (click)='buyStock()'>Get HTTP request result</a>\n          <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n      </div>\n    </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n            </p>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Buy</a>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n        </div>\n      </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n            </p>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Buy</a>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n        </div>\n      </div>  \n  </div>\n</body>\n"
 
 /***/ }),
 
@@ -515,6 +515,8 @@ var PortfolioComponent = /** @class */ (function () {
         this.stocks = stocks;
     }
     PortfolioComponent.prototype.ngOnInit = function () {
+    };
+    PortfolioComponent.prototype.buyStock = function () {
         this.stocks.returnStocks().subscribe(function (data) {
             console.log(data);
         });
