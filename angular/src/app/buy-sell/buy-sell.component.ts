@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../stocks.service';
+import { type } from 'os';
 
 @Component({
   selector: 'app-buy-sell',
@@ -34,16 +35,16 @@ export class BuySellComponent implements OnInit {
     });
   }
 
-  buyStockButton(symbol) {
-    this.stocks.buyStock(symbol, this.username).subscribe(data => {
-      console.log(data);
-    });
-  }
-
   buyStockButton2(symbol) {
-    this.stocks.buyStock2(symbol, this.username, this.shares).subscribe(data => {
-      console.log(data);
+    if (Number.isInteger(this.shares) != true || this.shares == 0) {
+      alert('Must be a whole number');
+      return false
+    } else {
+      this.stocks.buyStock2(symbol, this.username, this.shares).subscribe(data => {
+        console.log(data);
+        this.shares = 0
     });
-    
   }
+}
+
 }

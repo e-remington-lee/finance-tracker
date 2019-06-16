@@ -51,6 +51,11 @@
   </div>
 </body>
 
+
+
+
+
+
 <div class="modal fade" id="buyTSLA" tabindex='-1'>
   <div class="modal-dialog" role="document">    
     <div class="modal-content">
@@ -63,8 +68,8 @@
       <div class="modal-body">
           <form>
               <div class="form-group">
-                <label for="email" class="col-form-label">Number of shares</label>
-                <input id='buyFBForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
+                <label for="email" class="col-form-label" *ngFor='let stocks of TSLA'>Number of shares at: ${{stocks.price}}</label>
+                <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' min='1' required>
               </div>
             </form>
       </div>
@@ -90,7 +95,7 @@
             <form>
                 <div class="form-group">
                   <label for="email" class="col-form-label">Number of shares</label>
-                  <input id='buyFBForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
+                  <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' min='0' required>
                 </div>
               </form>
         </div>
@@ -101,7 +106,6 @@
       </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="buyFB" tabindex='-1'>
   <div class="modal-dialog" role="document">    
@@ -116,7 +120,7 @@
           <form>
               <div class="form-group">
                 <label for="email" class="col-form-label">Number of shares</label>
-                <input id='buyFBForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
+                <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' min='0' required>
               </div>
             </form>
       </div>
