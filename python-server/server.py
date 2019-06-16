@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import requests
 import api_tokens
+import database
 app = Flask(__name__)
 
 @app.route('/', defaults={'path': ''})
@@ -28,6 +29,7 @@ def stock_info():
 def latest_price():
     if request.method == 'GET':
         symbol = request.args.get('symbol')
+        database.buy_stock(symbol)
         payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
         r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote', params=payload)
         latest_price = [{

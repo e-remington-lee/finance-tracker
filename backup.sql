@@ -5,7 +5,7 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 11.3
 
--- Started on 2019-06-15 22:18:33
+-- Started on 2019-06-16 02:54:25
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 2809 (class 1262 OID 16463)
+-- TOC entry 2813 (class 1262 OID 16463)
 -- Name: Stock_tracking_app; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -46,19 +46,31 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 196 (class 1259 OID 16473)
--- Name: test; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 196 (class 1259 OID 16476)
+-- Name: bank; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.test (
-    company character varying(255),
-    price integer
+CREATE TABLE public.bank (
+    currency integer
 );
 
 
-ALTER TABLE public.test OWNER TO postgres;
+ALTER TABLE public.bank OWNER TO postgres;
 
--- Completed on 2019-06-15 22:18:33
+--
+-- TOC entry 197 (class 1259 OID 16479)
+-- Name: stocks; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.stocks (
+    company character varying(255),
+    shares integer
+);
+
+
+ALTER TABLE public.stocks OWNER TO postgres;
+
+-- Completed on 2019-06-16 02:54:25
 
 --
 -- PostgreSQL database dump complete
