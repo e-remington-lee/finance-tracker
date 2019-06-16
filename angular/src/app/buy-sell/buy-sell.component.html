@@ -11,7 +11,7 @@
                 <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
             </div>
             <div class='col-2'>
-                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStock("TSLA")'>Buy</button>
+                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStockButton("TSLA")'>Buy</button>
                 <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>
             </div>
           </div>
@@ -27,7 +27,7 @@
                 <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
             </div>
             <div class='col-2'>
-                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStock("AMZN")'>Buy</button>
+                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStockButton("AMZN")'>Buy</button>
                 <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>
             </div>
           </div>
@@ -43,12 +43,35 @@
                 <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
             </div>
             <div class='col-2'>
-                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStock("FB")'>Buy</button>
+                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyFB'>Buy</button>
                 <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>
             </div>
           </div>
         </div>
- 
+   
   </div>
-
 </body>
+<div class="modal fade" id="buyFB" tabindex='-1'>
+  <div class="modal-dialog" role="document">    
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" *ngFor='let stock of FB'>Buy {{stock.company}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form>
+              <div class="form-group">
+                <label for="email" class="col-form-label">Number of shares</label>
+                <input type="integer" class="form-control" required>
+              </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)='buyStockButton()'>Buy</button>
+      </div>
+    </div>
+  </div>
+</div>

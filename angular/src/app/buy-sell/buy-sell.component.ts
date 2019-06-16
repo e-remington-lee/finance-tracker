@@ -11,6 +11,7 @@ export class BuySellComponent implements OnInit {
   TSLA: Object;
   AMZN: any[] =[];
   FB: any[] =[];
+  username = 'Remington';
 
   constructor(private stocks: StocksService) { }
 
@@ -31,8 +32,8 @@ export class BuySellComponent implements OnInit {
     });
   }
 
-  buyStock(symbol) {
-    this.stocks.returnLatestPrice(symbol).subscribe(data => {
+  buyStockButton(symbol) {
+    this.stocks.buyStock(symbol, this.username).subscribe(data => {
       console.log(data);
     });
   }
