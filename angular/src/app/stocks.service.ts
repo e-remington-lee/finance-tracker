@@ -18,6 +18,11 @@ export class StocksService {
     return this.http.get('http://localhost:7000/api/latestPrice', params);
   }
 
+  buyStock2(symbol, username, shares) {
+    const params = { params: new HttpParams().set('symbol', symbol).set( 'username', username).set('shares', shares) };
+    return this.http.get('http://localhost:7000/api/latestPrice', params);
+  }
+
   // retrieveStockList(symbol) {
   //   const params = { params: new HttpParams().set('symbol', symbol) };
   //   return this.http.get('http://localhost:7000/api/stockList', params);

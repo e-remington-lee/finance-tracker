@@ -195,15 +195,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _nav_nav_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./nav/nav.component */ "./src/app/nav/nav.component.ts");
-/* harmony import */ var _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./buy-sell/buy-sell.component */ "./src/app/buy-sell/buy-sell.component.ts");
-/* harmony import */ var _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./portfolio/portfolio.component */ "./src/app/portfolio/portfolio.component.ts");
-/* harmony import */ var _account_account_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./account/account.component */ "./src/app/account/account.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _nav_nav_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./nav/nav.component */ "./src/app/nav/nav.component.ts");
+/* harmony import */ var _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./buy-sell/buy-sell.component */ "./src/app/buy-sell/buy-sell.component.ts");
+/* harmony import */ var _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./portfolio/portfolio.component */ "./src/app/portfolio/portfolio.component.ts");
+/* harmony import */ var _account_account_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./account/account.component */ "./src/app/account/account.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+
 
 
 
@@ -222,21 +224,22 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
-                _home_home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"],
-                _nav_nav_component__WEBPACK_IMPORTED_MODULE_7__["NavComponent"],
-                _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_8__["BuySellComponent"],
-                _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_9__["PortfolioComponent"],
-                _account_account_component__WEBPACK_IMPORTED_MODULE_10__["AccountComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_11__["LoginComponent"],
+                _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
+                _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"],
+                _nav_nav_component__WEBPACK_IMPORTED_MODULE_8__["NavComponent"],
+                _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_9__["BuySellComponent"],
+                _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_10__["PortfolioComponent"],
+                _account_account_component__WEBPACK_IMPORTED_MODULE_11__["AccountComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_12__["LoginComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"]
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -253,7 +256,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container'>\n  <div class='row' id='stocks'>\n      <div class='card' >\n          <div class='card-body'>\n            <div class='col-3' *ngFor='let stock of TSLA'>\n                <b>{{stock.company}} : {{stock.symbol}}</b>\n            </div>\n            <div class='col-7' *ngFor='let stock of TSLA'>\n                <p><b>Current Price:</b> ${{stock.price}}</p>\n                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStockButton(\"TSLA\")'>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n        <div class='card' >\n          <div class='card-body'>\n            <div class='col-3' *ngFor='let stock of AMZN'>\n                <b>{{stock.company}} : {{stock.symbol}}</b>\n            </div>\n            <div class='col-7' *ngFor='let stock of AMZN'>\n                <p><b>Current Price:</b> ${{stock.price}}</p>\n                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStockButton(\"AMZN\")'>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n        <div class='card' >\n          <div class='card-body'>\n            <div class='col-3' *ngFor='let stock of FB'>\n                <b>{{stock.company}} : {{stock.symbol}}</b>\n            </div>\n            <div class='col-7' *ngFor='let stock of FB'>\n                <p><b>Current Price:</b> ${{stock.price}}</p>\n                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyFB'>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n   \n  </div>\n</body>\n<div class=\"modal fade\" id=\"buyFB\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\" *ngFor='let stock of FB'>Buy {{stock.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\">Number of shares</label>\n                <input type=\"integer\" class=\"form-control\" required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton()'>Buy</button>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<body class='container'>\n  <div class='row' id='stocks'>\n      <div class='card' >\n          <div class='card-body'>\n            <div class='col-3' *ngFor='let stock of TSLA'>\n                <b>{{stock.company}} : {{stock.symbol}}</b>\n            </div>\n            <div class='col-7' *ngFor='let stock of TSLA'>\n                <p><b>Current Price:</b> ${{stock.price}}</p>\n                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStockButton(\"TSLA\")'>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n        <div class='card' >\n          <div class='card-body'>\n            <div class='col-3' *ngFor='let stock of AMZN'>\n                <b>{{stock.company}} : {{stock.symbol}}</b>\n            </div>\n            <div class='col-7' *ngFor='let stock of AMZN'>\n                <p><b>Current Price:</b> ${{stock.price}}</p>\n                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStockButton(\"AMZN\")'>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n        <div class='card' >\n          <div class='card-body'>\n            <div class='col-3' *ngFor='let stock of FB'>\n                <b>{{stock.company}} : {{stock.symbol}}</b>\n            </div>\n            <div class='col-7' *ngFor='let stock of FB'>\n                <p><b>Current Price:</b> ${{stock.price}}</p>\n                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyFB'>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n\n  </div>\n</body>\n<div class=\"modal fade\" id=\"buyFB\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of FB'>\n        <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\">Number of shares</label>\n                <input id='buyFBForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"FB\")'>Buy</button>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -287,6 +290,7 @@ __webpack_require__.r(__webpack_exports__);
 var BuySellComponent = /** @class */ (function () {
     function BuySellComponent(stocks) {
         this.stocks = stocks;
+        this.TSLA = [];
         this.AMZN = [];
         this.FB = [];
         this.username = 'Remington';
@@ -308,6 +312,11 @@ var BuySellComponent = /** @class */ (function () {
     };
     BuySellComponent.prototype.buyStockButton = function (symbol) {
         this.stocks.buyStock(symbol, this.username).subscribe(function (data) {
+            console.log(data);
+        });
+    };
+    BuySellComponent.prototype.buyStockButton2 = function (symbol) {
+        this.stocks.buyStock2(symbol, this.username, this.shares).subscribe(function (data) {
             console.log(data);
         });
     };
@@ -591,6 +600,10 @@ var StocksService = /** @class */ (function () {
     ;
     StocksService.prototype.buyStock = function (symbol, username) {
         var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('username', username) };
+        return this.http.get('http://localhost:7000/api/latestPrice', params);
+    };
+    StocksService.prototype.buyStock2 = function (symbol, username, shares) {
+        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('username', username).set('shares', shares) };
         return this.http.get('http://localhost:7000/api/latestPrice', params);
     };
     StocksService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

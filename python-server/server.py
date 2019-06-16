@@ -30,7 +30,8 @@ def latest_price():
     if request.method == 'GET':
         symbol = request.args.get('symbol')
         username = request.args.get('username')
-        database.buy_stock(symbol, username)
+        shares = request.args.get('shares')
+        database.buy_stock(symbol, shares, username)
         payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
         r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote', params=payload)
         latest_price = [{

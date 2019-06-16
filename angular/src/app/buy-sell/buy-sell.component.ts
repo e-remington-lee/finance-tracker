@@ -8,10 +8,12 @@ import { StocksService } from '../stocks.service';
 })
 export class BuySellComponent implements OnInit {
 
-  TSLA: Object;
+  TSLA: any[] =[];
   AMZN: any[] =[];
   FB: any[] =[];
   username = 'Remington';
+  shares: number;
+
 
   constructor(private stocks: StocksService) { }
 
@@ -36,5 +38,12 @@ export class BuySellComponent implements OnInit {
     this.stocks.buyStock(symbol, this.username).subscribe(data => {
       console.log(data);
     });
+  }
+
+  buyStockButton2(symbol) {
+    this.stocks.buyStock2(symbol, this.username, this.shares).subscribe(data => {
+      console.log(data);
+    });
+    
   }
 }

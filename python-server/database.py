@@ -9,11 +9,11 @@ def create_connection():
             user = os.environ['Local_DB_username'],
             password = os.environ['Local_DB_PW'])
 
-def buy_stock(symbol, username):
+def buy_stock(symbol, shares, username):
     connection = create_connection()
     cur = connection.cursor()
 
-    cur.execute("INSERT INTO stocks (company, shares, username) VALUES (%(symbol)s, 1, %(username)s)", {'symbol': symbol, 'username': username})
+    cur.execute("INSERT INTO stocks (company, shares, username) VALUES (%(symbol)s, %(shares)s, %(username)s)", {'symbol': symbol, 'shares': shares, 'username': username})
 
     connection.commit()
 
