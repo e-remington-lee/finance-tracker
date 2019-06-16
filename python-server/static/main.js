@@ -253,7 +253,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container'>\n  <div class='row' id='stocks'>\n      <div class='card'>\n          <div class='card-body'>\n            <div class='col-3'>\n                <b>{{stockName}}: {{stockID}}</b>\n            </div>\n            <div class='col-7'>\n                <p><b>Current Price:</b> $$$$$</p>\n                <p><b>Percent Change:</b> %%%%%</p>\n                <p><b>Daily Gain/Loss:</b> $$$$$</p>\n                <p><b>Total Gain/Loss:</b> $$$$$</p>\n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n        <div class='card'>\n            <div class='card-body'>\n              <div class='col-3'>\n                  <b>{{stockName}}: {{stockID}}</b>\n              </div>\n              <div class='col-7'>\n                  <p><b>Current Price:</b> $$$$$</p>\n                  <p><b>Percent Change:</b> %%%%%</p>\n                  <p><b>Daily Gain/Loss:</b> $$$$$</p>\n                  <p><b>Total Gain/Loss:</b> $$$$$</p>\n              </div>\n              <div class='col-2'>\n                  <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>\n                  <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n              </div>\n            </div>\n          </div>\n          <div class='card'>\n              <div class='card-body'>\n                <div class='col-3'>\n                    <b>{{stockName}}: {{stockID}}</b>\n                </div>\n                <div class='col-7'>\n                    <p><b>Current Price:</b> $$$$$</p>\n                    <p><b>Percent Change:</b> %%%%%</p>\n                    <p><b>Daily Gain/Loss:</b> $$$$$</p>\n                    <p><b>Total Gain/Loss:</b> $$$$$</p>\n                </div>\n                <div class='col-2'>\n                    <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>\n                    <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n                </div>\n              </div>\n            </div>\n  </div>\n\n</body>\n"
+module.exports = "<body class='container'>\n  <div class='row' id='stocks'>\n      <div class='card' >\n          <div class='card-body'>\n            <div class='col-3' *ngFor='let stock of TSLA'>\n                <b>{{stock.company}} : {{stock.symbol}}</b>\n            </div>\n            <div class='col-7' *ngFor='let stock of TSLA'>\n                <p><b>Current Price:</b> ${{stock.price}}</p>\n                <p><b>Percent Change:</b> %{{stock.changePercent}} </p>\n                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n        <div class='card'>\n            <div class='card-body'>\n              <div class='col-3'>\n                  <b>{{stockName}}: {{stockID}}</b>\n              </div>\n              <div class='col-7'>\n                  <p><b>Current Price:</b> $$$$$</p>\n                  <p><b>Percent Change:</b> %%%%%</p>\n                  <p><b>Daily Gain/Loss:</b> $$$$$</p>\n                  \n              </div>\n              <div class='col-2'>\n                  <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>\n                  <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n              </div>\n            </div>\n          </div>\n          <div class='card'>\n              <div class='card-body'>\n                <div class='col-3'>\n                    <b>{{stockName}}: {{stockID}}</b>\n                </div>\n                <div class='col-7'>\n                    <p><b>Current Price:</b> $$$$$</p>\n                    <p><b>Percent Change:</b> %%%%%</p>\n                    <p><b>Daily Gain/Loss:</b> $$$$$</p>\n                  \n                </div>\n                <div class='col-2'>\n                    <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>\n                    <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n                </div>\n              </div>\n            </div>\n  </div>\n\n</body>\n"
 
 /***/ }),
 
@@ -280,14 +280,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BuySellComponent", function() { return BuySellComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
+
 
 
 var BuySellComponent = /** @class */ (function () {
-    function BuySellComponent() {
-        this.stockName = 'Tesla';
-        this.stockID = 'TSLA';
+    function BuySellComponent(stocks) {
+        this.stocks = stocks;
+        this.AMZN = [];
+        this.FB = [];
     }
     BuySellComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.stocks.returnStocks('TSLA').subscribe(function (data) {
+            _this.TSLA = data;
+            console.log(data);
+        });
+        this.stocks.returnStocks('AMZN').subscribe(function (data) {
+            _this.AMZN = data;
+            console.log(data);
+        });
+        this.stocks.returnStocks('FB').subscribe(function (data) {
+            _this.FB = data;
+            console.log(data);
+        });
     };
     BuySellComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -295,7 +311,7 @@ var BuySellComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./buy-sell.component.html */ "./src/app/buy-sell/buy-sell.component.html"),
             styles: [__webpack_require__(/*! ./buy-sell.component.scss */ "./src/app/buy-sell/buy-sell.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"]])
     ], BuySellComponent);
     return BuySellComponent;
 }());
@@ -513,11 +529,17 @@ __webpack_require__.r(__webpack_exports__);
 var PortfolioComponent = /** @class */ (function () {
     function PortfolioComponent(stocks) {
         this.stocks = stocks;
+        this.stockSearch = 'TSLA';
     }
     PortfolioComponent.prototype.ngOnInit = function () {
     };
+    PortfolioComponent.prototype.searchStock = function () {
+        this.stocks.retrieveStockList(this.stockSearch).subscribe(function (data) {
+            console.log(data);
+        });
+    };
     PortfolioComponent.prototype.buyStock = function () {
-        this.stocks.returnStocks().subscribe(function (data) {
+        this.stocks.returnStocks(this.stockSearch).subscribe(function (data) {
             console.log(data);
         });
     };
@@ -556,8 +578,17 @@ var StocksService = /** @class */ (function () {
     function StocksService(http) {
         this.http = http;
     }
-    StocksService.prototype.returnStocks = function () {
-        return this.http.get('https://localhost:7000/stocks');
+    StocksService.prototype.returnStocks = function (symbol) {
+        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
+        return this.http.get('http://localhost:7000/api/stocks', params);
+    };
+    ;
+    StocksService.prototype.getTesla = function () {
+        return this.http.get('http://localhost:7000/api/tesla');
+    };
+    StocksService.prototype.retrieveStockList = function (symbol) {
+        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
+        return this.http.get('http://localhost:7000/api/stockList', params);
     };
     StocksService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

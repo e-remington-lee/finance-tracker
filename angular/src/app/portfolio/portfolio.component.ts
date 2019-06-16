@@ -8,14 +8,22 @@ import { StocksService } from '../stocks.service';
 })
 export class PortfolioComponent implements OnInit {
 
+  stockSearch ='TSLA';
+
   constructor(private stocks: StocksService) { }
 
   ngOnInit() {
 
   }
 
+  searchStock() {
+    this.stocks.retrieveStockList(this.stockSearch).subscribe(data => {
+      console.log(data)
+    });
+  }
+
   buyStock() {
-    this.stocks.returnStocks().subscribe(data => {
+    this.stocks.returnStocks(this.stockSearch).subscribe(data => {
       console.log(data)}
       );
   }

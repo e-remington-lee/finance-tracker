@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 import requests
 import api_tokens
 app = Flask(__name__)
@@ -8,17 +8,20 @@ app = Flask(__name__)
 def home_page(path):
     return render_template('index.html')
 
-@app.route('/stocks', methods=['GET', 'POST'])
+@app.route('/api/stocks', methods=['GET', 'POST'])
 def stock_info():
-    if requests.methods == 'GET':
-        PT = api_tokens.public_token()
+    if request.method == 'GET':
         payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-        r=requests.get('https://cloud.iexapis.com/v1/stock/TSLA/quote', params=payload)
-        r = requests.get('https://httpbin.org/get')
-        print(r.json())
-        # print(r.status_code)
-        # print(r.json())
-        return r.json()
+        symbol = request.args.get('symbol')
+        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote', params=payload)
+        stock_data = [{
+                        'price': r.json()['latestPrice'],
+                        'company': r.json()['companyName'],
+                        'symbol': r.json()['symbol'],
+                        'changePercent': r.json()['changePercent'],
+                        'change': r.json()['change']
+                        }]
+        return jsonify(stock_data)
     return None
 
 if __name__ =='__main__':

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StocksService } from '../stocks.service';
 
 @Component({
   selector: 'app-buy-sell',
@@ -7,12 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuySellComponent implements OnInit {
 
-  stockName='Tesla';
-  stockID='TSLA';
+  TSLA: Object;
+  AMZN: any[] =[];
+  FB: any[] =[];
 
-  constructor() { }
+  constructor(private stocks: StocksService) { }
 
   ngOnInit() {
-  }
+    this.stocks.returnStocks('TSLA').subscribe((data: any[]) => {
+      this.TSLA = data;
+      console.log(data);
+    });
 
+    this.stocks.returnStocks('AMZN').subscribe((data: any[]) => {
+      this.AMZN = data;
+      console.log(data);
+    });
+
+    this.stocks.returnStocks('FB').subscribe((data: any[]) => {
+      this.FB =  data;
+      console.log(data);
+    });
+  }
 }
