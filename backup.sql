@@ -5,7 +5,7 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 11.3
 
--- Started on 2019-06-16 02:54:25
+-- Started on 2019-06-16 17:56:00
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -63,14 +63,15 @@ ALTER TABLE public.bank OWNER TO postgres;
 --
 
 CREATE TABLE public.stocks (
-    company character varying(255),
-    shares integer
+    company character varying(255) NOT NULL,
+    shares integer,
+    username character varying(25) NOT NULL
 );
 
 
 ALTER TABLE public.stocks OWNER TO postgres;
 
--- Completed on 2019-06-16 02:54:25
+-- Completed on 2019-06-16 17:56:00
 
 --
 -- PostgreSQL database dump complete
