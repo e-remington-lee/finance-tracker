@@ -7,49 +7,48 @@
             </div>
             <div class='col-7' *ngFor='let stock of TSLA'>
                 <p><b>Current Price:</b> ${{stock.price}}</p>
-                <p><b>Percent Change:</b> %{{stock.changePercent}} </p>
+                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>
                 <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
             </div>
             <div class='col-2'>
-                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>
+                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStock("TSLA")'>Buy</button>
                 <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>
             </div>
           </div>
         </div>
-        <div class='card'>
-            <div class='card-body'>
-              <div class='col-3'>
-                  <b>{{stockName}}: {{stockID}}</b>
-              </div>
-              <div class='col-7'>
-                  <p><b>Current Price:</b> $$$$$</p>
-                  <p><b>Percent Change:</b> %%%%%</p>
-                  <p><b>Daily Gain/Loss:</b> $$$$$</p>
-                  
-              </div>
-              <div class='col-2'>
-                  <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>
-                  <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>
-              </div>
+        <div class='card' >
+          <div class='card-body'>
+            <div class='col-3' *ngFor='let stock of AMZN'>
+                <b>{{stock.company}} : {{stock.symbol}}</b>
+            </div>
+            <div class='col-7' *ngFor='let stock of AMZN'>
+                <p><b>Current Price:</b> ${{stock.price}}</p>
+                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>
+                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
+            </div>
+            <div class='col-2'>
+                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStock("AMZN")'>Buy</button>
+                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>
             </div>
           </div>
-          <div class='card'>
-              <div class='card-body'>
-                <div class='col-3'>
-                    <b>{{stockName}}: {{stockID}}</b>
-                </div>
-                <div class='col-7'>
-                    <p><b>Current Price:</b> $$$$$</p>
-                    <p><b>Percent Change:</b> %%%%%</p>
-                    <p><b>Daily Gain/Loss:</b> $$$$$</p>
-                  
-                </div>
-                <div class='col-2'>
-                    <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>
-                    <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>
-                </div>
-              </div>
+        </div>
+        <div class='card' >
+          <div class='card-body'>
+            <div class='col-3' *ngFor='let stock of FB'>
+                <b>{{stock.company}} : {{stock.symbol}}</b>
             </div>
+            <div class='col-7' *ngFor='let stock of FB'>
+                <p><b>Current Price:</b> ${{stock.price}}</p>
+                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>
+                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
+            </div>
+            <div class='col-2'>
+                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStock("FB")'>Buy</button>
+                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>
+            </div>
+          </div>
+        </div>
+ 
   </div>
 
 </body>

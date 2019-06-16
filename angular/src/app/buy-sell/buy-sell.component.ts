@@ -30,4 +30,10 @@ export class BuySellComponent implements OnInit {
       console.log(data);
     });
   }
+
+  buyStock(symbol) {
+    this.stocks.returnLatestPrice(symbol).subscribe(data => {
+      console.log(data);
+    });
+  }
 }

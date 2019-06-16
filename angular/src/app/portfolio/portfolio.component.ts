@@ -16,11 +16,11 @@ export class PortfolioComponent implements OnInit {
 
   }
 
-  searchStock() {
-    this.stocks.retrieveStockList(this.stockSearch).subscribe(data => {
-      console.log(data)
-    });
-  }
+  // searchStock() {
+  //   this.stocks.retrieveStockList(this.stockSearch).subscribe(data => {
+  //     console.log(data)
+  //   });
+  // }
 
   buyStock() {
     this.stocks.returnStocks(this.stockSearch).subscribe(data => {

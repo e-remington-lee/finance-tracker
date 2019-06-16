@@ -253,7 +253,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container'>\n  <div class='row' id='stocks'>\n      <div class='card' >\n          <div class='card-body'>\n            <div class='col-3' *ngFor='let stock of TSLA'>\n                <b>{{stock.company}} : {{stock.symbol}}</b>\n            </div>\n            <div class='col-7' *ngFor='let stock of TSLA'>\n                <p><b>Current Price:</b> ${{stock.price}}</p>\n                <p><b>Percent Change:</b> %{{stock.changePercent}} </p>\n                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n        <div class='card'>\n            <div class='card-body'>\n              <div class='col-3'>\n                  <b>{{stockName}}: {{stockID}}</b>\n              </div>\n              <div class='col-7'>\n                  <p><b>Current Price:</b> $$$$$</p>\n                  <p><b>Percent Change:</b> %%%%%</p>\n                  <p><b>Daily Gain/Loss:</b> $$$$$</p>\n                  \n              </div>\n              <div class='col-2'>\n                  <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>\n                  <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n              </div>\n            </div>\n          </div>\n          <div class='card'>\n              <div class='card-body'>\n                <div class='col-3'>\n                    <b>{{stockName}}: {{stockID}}</b>\n                </div>\n                <div class='col-7'>\n                    <p><b>Current Price:</b> $$$$$</p>\n                    <p><b>Percent Change:</b> %%%%%</p>\n                    <p><b>Daily Gain/Loss:</b> $$$$$</p>\n                  \n                </div>\n                <div class='col-2'>\n                    <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Buy</button>\n                    <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n                </div>\n              </div>\n            </div>\n  </div>\n\n</body>\n"
+module.exports = "<body class='container'>\n  <div class='row' id='stocks'>\n      <div class='card' >\n          <div class='card-body'>\n            <div class='col-3' *ngFor='let stock of TSLA'>\n                <b>{{stock.company}} : {{stock.symbol}}</b>\n            </div>\n            <div class='col-7' *ngFor='let stock of TSLA'>\n                <p><b>Current Price:</b> ${{stock.price}}</p>\n                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStock(\"TSLA\")'>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n        <div class='card' >\n          <div class='card-body'>\n            <div class='col-3' *ngFor='let stock of AMZN'>\n                <b>{{stock.company}} : {{stock.symbol}}</b>\n            </div>\n            <div class='col-7' *ngFor='let stock of AMZN'>\n                <p><b>Current Price:</b> ${{stock.price}}</p>\n                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStock(\"AMZN\")'>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n        <div class='card' >\n          <div class='card-body'>\n            <div class='col-3' *ngFor='let stock of FB'>\n                <b>{{stock.company}} : {{stock.symbol}}</b>\n            </div>\n            <div class='col-7' *ngFor='let stock of FB'>\n                <p><b>Current Price:</b> ${{stock.price}}</p>\n                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n            </div>\n            <div class='col-2'>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target='' (click)='buyStock(\"FB\")'>Buy</button>\n                <button type='button' class='btn btn-primary' data-toggle='' data-target=''>Sell</button>\n            </div>\n          </div>\n        </div>\n \n  </div>\n\n</body>\n"
 
 /***/ }),
 
@@ -264,7 +264,7 @@ module.exports = "<body class='container'>\n  <div class='row' id='stocks'>\n   
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#stocks {\n  margin: 10px 0 0 0; }\n\nbody div {\n  display: flex; }\n\nbody div p {\n  margin: 0 20px 0 0; }\n\nbutton {\n  margin: 0 5px 0 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYnV5LXNlbGwvRDpcXE1hc3Rlcm1pbmRcXEZpbmFuY2UtdHJhY2tpbmdcXGFuZ3VsYXIvc3JjXFxhcHBcXGJ1eS1zZWxsXFxidXktc2VsbC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFrQixFQUFBOztBQUd0QjtFQUNJLGFBQWEsRUFBQTs7QUFHakI7RUFDSSxrQkFBa0IsRUFBQTs7QUFJdEI7RUFDSSxpQkFBaUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2J1eS1zZWxsL2J1eS1zZWxsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3N0b2Nrc3tcclxuICAgIG1hcmdpbjogMTBweCAwIDAgMDtcclxufVxyXG5cclxuYm9keSBkaXZ7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG59XHJcblxyXG5ib2R5IGRpdiBwIHtcclxuICAgIG1hcmdpbjogMCAyMHB4IDAgMDtcclxuXHJcbn1cclxuXHJcbmJ1dHRvbiB7XHJcbiAgICBtYXJnaW46IDAgNXB4IDAgMDtcclxufSJdfQ== */"
+module.exports = "#stocks {\n  margin: 10px 0 0 0; }\n\nbody div {\n  display: flex;\n  width: 100%; }\n\nbody div p {\n  margin: 0 20px 0 0; }\n\nbutton {\n  margin: 0 5px 0 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYnV5LXNlbGwvRDpcXE1hc3Rlcm1pbmRcXEZpbmFuY2UtdHJhY2tpbmdcXGFuZ3VsYXIvc3JjXFxhcHBcXGJ1eS1zZWxsXFxidXktc2VsbC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFrQixFQUFBOztBQUd0QjtFQUNJLGFBQWE7RUFDYixXQUFXLEVBQUE7O0FBR2Y7RUFDSSxrQkFBa0IsRUFBQTs7QUFJdEI7RUFDSSxpQkFBaUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2J1eS1zZWxsL2J1eS1zZWxsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3N0b2Nrc3tcclxuICAgIG1hcmdpbjogMTBweCAwIDAgMDtcclxufVxyXG5cclxuYm9keSBkaXZ7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbmJvZHkgZGl2IHAge1xyXG4gICAgbWFyZ2luOiAwIDIwcHggMCAwO1xyXG5cclxufVxyXG5cclxuYnV0dG9uIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG59Il19 */"
 
 /***/ }),
 
@@ -302,6 +302,11 @@ var BuySellComponent = /** @class */ (function () {
         });
         this.stocks.returnStocks('FB').subscribe(function (data) {
             _this.FB = data;
+            console.log(data);
+        });
+    };
+    BuySellComponent.prototype.buyStock = function (symbol) {
+        this.stocks.returnLatestPrice(symbol).subscribe(function (data) {
             console.log(data);
         });
     };
@@ -533,11 +538,11 @@ var PortfolioComponent = /** @class */ (function () {
     }
     PortfolioComponent.prototype.ngOnInit = function () {
     };
-    PortfolioComponent.prototype.searchStock = function () {
-        this.stocks.retrieveStockList(this.stockSearch).subscribe(function (data) {
-            console.log(data);
-        });
-    };
+    // searchStock() {
+    //   this.stocks.retrieveStockList(this.stockSearch).subscribe(data => {
+    //     console.log(data)
+    //   });
+    // }
     PortfolioComponent.prototype.buyStock = function () {
         this.stocks.returnStocks(this.stockSearch).subscribe(function (data) {
             console.log(data);
@@ -580,15 +585,12 @@ var StocksService = /** @class */ (function () {
     }
     StocksService.prototype.returnStocks = function (symbol) {
         var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
-        return this.http.get('http://localhost:7000/api/stocks', params);
+        return this.http.get('http://localhost:7000/api/stockData', params);
     };
     ;
-    StocksService.prototype.getTesla = function () {
-        return this.http.get('http://localhost:7000/api/tesla');
-    };
-    StocksService.prototype.retrieveStockList = function (symbol) {
+    StocksService.prototype.returnLatestPrice = function (symbol) {
         var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
-        return this.http.get('http://localhost:7000/api/stockList', params);
+        return this.http.get('http://localhost:7000/api/latestPrice', params);
     };
     StocksService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
