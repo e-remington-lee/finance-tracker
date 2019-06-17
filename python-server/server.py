@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 import requests
 import api_tokens
-import database
+from database import buy_stock, update_balance
+from stock_calculator import calculate_price
+
 app = Flask(__name__)
 
 @app.route('/', defaults={'path': ''})
@@ -25,13 +27,29 @@ def stock_info():
         return jsonify(stock_data)
     return None
 
+@app.route('/api/balance', methods=['GET', 'POST'])
+def balance_info():
+    if request.method =='GET':
+        symbol = request.args.get('symbol')
+        username = request.args.get('username')
+        shares = request.args.get('shares')
+        
+        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
+        
+        latest_price = r.text
+        balance_change = calculate_price(float(latest_price), int(shares))
+        update_balance(balance_change, username)
+        print(balance_change)
+        return jsonify(balance_change)
+
 @app.route('/api/latestPrice', methods=['GET', 'POST'])
 def latest_price():
     if request.method == 'GET':
         symbol = request.args.get('symbol')
         username = request.args.get('username')
         shares = request.args.get('shares')
-        database.buy_stock(symbol, shares, username)
+        buy_stock(symbol, shares, username)
         payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
         r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote', params=payload)
         latest_price = [{

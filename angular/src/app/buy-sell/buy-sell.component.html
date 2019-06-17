@@ -69,7 +69,7 @@
           <form>
               <div class="form-group">
                 <label for="email" class="col-form-label" *ngFor='let stocks of TSLA'>Number of shares at: ${{stocks.price}}</label>
-                <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' min='1' required>
+                <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
               </div>
             </form>
       </div>
@@ -95,7 +95,7 @@
             <form>
                 <div class="form-group">
                   <label for="email" class="col-form-label">Number of shares</label>
-                  <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' min='0' required>
+                  <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
                 </div>
               </form>
         </div>
@@ -120,7 +120,7 @@
           <form>
               <div class="form-group">
                 <label for="email" class="col-form-label">Number of shares</label>
-                <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' min='0' required>
+                <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
               </div>
             </form>
       </div>

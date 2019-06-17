@@ -21,3 +21,15 @@ def buy_stock(symbol, shares, username):
     connection.close()
     return None
 
+def update_balance(balance, username):
+    connection = create_connection()
+    cur = connection.cursor()
+
+    # cur.execute("UPDATE stocks SET balance = balance - %(balance)s WHERE username = %(username)s", {'balance': balance, 'username': username})
+
+    connection.commit()
+
+    cur.close()
+    connection.close()
+    return None
+
