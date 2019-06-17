@@ -23,3 +23,4 @@ export class StocksService {
     return this.http.get('http://localhost:7000/api/balance', params);
   }
 }
+

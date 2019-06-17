@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../stocks.service';
-import { type } from 'os';
 
 @Component({
   selector: 'app-buy-sell',
@@ -46,6 +45,7 @@ export class BuySellComponent implements OnInit {
       });
       this.stocks.updateBalance(symbol, this.username, this.shares).subscribe(data => {
       });
+      this.shares=0
     
   }
 }

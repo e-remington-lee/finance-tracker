@@ -25,7 +25,7 @@ def update_balance(balance, username):
     connection = create_connection()
     cur = connection.cursor()
 
-    # cur.execute("UPDATE stocks SET balance = balance - %(balance)s WHERE username = %(username)s", {'balance': balance, 'username': username})
+    # cur.execute("UPDATE bank SET balance = balance - %(balance)s WHERE username = %(username)s", {'balance': balance, 'username': username})
 
     connection.commit()
 
