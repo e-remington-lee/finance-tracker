@@ -94,7 +94,7 @@
         <div class="modal-body">
             <form>
                 <div class="form-group">
-                  <label for="email" class="col-form-label">Number of shares</label>
+                  <label for="email" class="col-form-label" *ngFor='let stocks of AMZN'>Number of shares at: ${{stocks.price}}</label>
                   <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
                 </div>
               </form>
@@ -119,7 +119,7 @@
       <div class="modal-body">
           <form>
               <div class="form-group">
-                <label for="email" class="col-form-label">Number of shares</label>
+                <label for="email" class="col-form-label" *ngFor='let stocks of FB'>Number of shares at: ${{stocks.price}}</label>
                 <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
               </div>
             </form>

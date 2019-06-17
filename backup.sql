@@ -5,7 +5,7 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 11.3
 
--- Started on 2019-06-16 17:56:00
+-- Started on 2019-06-16 23:48:58
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -51,7 +51,8 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE public.bank (
-    currency integer
+    balance money,
+    username character varying(25) NOT NULL
 );
 
 
@@ -71,7 +72,7 @@ CREATE TABLE public.stocks (
 
 ALTER TABLE public.stocks OWNER TO postgres;
 
--- Completed on 2019-06-16 17:56:00
+-- Completed on 2019-06-16 23:48:59
 
 --
 -- PostgreSQL database dump complete
