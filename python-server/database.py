@@ -4,10 +4,10 @@ import sqlalchemy
 
 def create_connection():
     return psycopg2.connect(
-            host = os.environ['Local_DB_host'],
-            database = os.environ['Local_DB_database_stocks'],
-            user = os.environ['Local_DB_username'],
-            password = os.environ['Local_DB_PW'])
+            host = os.environ['db_host'],
+            database = os.environ['stocks_database'],
+            user = os.environ['db_username'],
+            password = os.environ['db_password'])
 
 def buy_stock(symbol, shares, username):
     connection = create_connection()
@@ -25,7 +25,7 @@ def update_balance(balance, username):
     connection = create_connection()
     cur = connection.cursor()
 
-    # cur.execute("UPDATE bank SET balance = balance - %(balance)s WHERE username = %(username)s", {'balance': balance, 'username': username})
+    cur.execute("UPDATE bank SET balance = balance - %(balance)s::money WHERE username = %(username)s", {'balance': balance, 'username': username})
 
     connection.commit()
 
