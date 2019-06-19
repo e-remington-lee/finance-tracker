@@ -320,10 +320,10 @@ var BuySellComponent = /** @class */ (function () {
         }
         else {
             this.type = 'buy';
-            this.stocks.buyStock2(symbol, this.username, this.shares).subscribe(function (data) {
+            this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe(function (data) {
                 console.log(data);
             });
-            this.stocks.updateBalance(symbol, this.username, this.shares).subscribe(function (data) {
+            this.stocks.updateBalance(symbol, this.accountId, this.shares).subscribe(function (data) {
             });
             this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe();
             this.shares = 0;
@@ -607,9 +607,9 @@ var StocksService = /** @class */ (function () {
         return this.http.get('http://localhost:7000/api/stockData', params);
     };
     ;
-    StocksService.prototype.buyStock2 = function (symbol, username, shares) {
-        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('username', username).set('shares', shares) };
-        return this.http.get('http://localhost:7000/api/latestPrice', params);
+    StocksService.prototype.buyStock2 = function (symbol, accountId, shares) {
+        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
+        return this.http.get('http://localhost:7000/api/buyStock', params);
     };
     StocksService.prototype.updateBalance = function (symbol, username, shares) {
         var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('username', username).set('shares', shares) };

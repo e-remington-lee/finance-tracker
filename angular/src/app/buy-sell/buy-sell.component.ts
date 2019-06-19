@@ -45,10 +45,10 @@ export class BuySellComponent implements OnInit {
       return false
     } else {
       this.type = 'buy';
-      this.stocks.buyStock2(symbol, this.username, this.shares).subscribe(data => {
+      this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe(data => {
         console.log(data);
       });
-      this.stocks.updateBalance(symbol, this.username, this.shares).subscribe(data => {
+      this.stocks.updateBalance(symbol, this.accountId, this.shares).subscribe(data => {
       });
       this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe()
       this.shares=0

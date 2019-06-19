@@ -9,11 +9,11 @@ def create_connection():
             user = os.environ['db_username'],
             password = os.environ['db_password'])
 
-def buy_stock(symbol, shares, username):
+def buy_stock(symbol, shares, account_id):
     connection = create_connection()
     cur = connection.cursor()
 
-    cur.execute("INSERT INTO stocks (company, shares, username) VALUES (%(symbol)s, %(shares)s, %(username)s)", {'symbol': symbol, 'shares': shares, 'username': username})
+    cur.execute("INSERT INTO stocks (company, shares, account_id) VALUES (%(symbol)s, %(shares)s, %(account_id)s)", {'symbol': symbol, 'shares': shares, 'account_id': account_id})
 
     connection.commit()
 
@@ -33,3 +33,16 @@ def update_balance(balance, username):
     connection.close()
     return None
 
+def transaction_list(account_id, symbol, transaction_type, stock_price, shares):
+    connection = create_connection()
+    cur = connection.cursor()
+
+    cur.execute("INSERT INTO transactions (account_id, symbol, type, stock_price, shares) values (%(account_id)s, %(symbol)s, %(type)s, %(stock_price)s, %(shares)s)",
+     {'account_id': account_id, 'symbol': symbol, 'type': transaction_type, 'stock_price': stock_price, 'shares': shares})
+
+
+    connection.commit()
+
+    cur.close()
+    connection.close()
+    return None
