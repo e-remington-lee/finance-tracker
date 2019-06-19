@@ -17,11 +17,13 @@ def stock_info():
         symbol = request.args.get('symbol')
         payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
         r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote', params=payload)
+
+        change_percent = round(float(r.json()['changePercent'])*100,3)
         stock_data = [{
                         'price': r.json()['latestPrice'],
                         'company': r.json()['companyName'],
                         'symbol': r.json()['symbol'],
-                        'changePercent': r.json()['changePercent'],
+                        'changePercent': change_percent,
                         'change': r.json()['change']
                         }]
         return jsonify(stock_data)
