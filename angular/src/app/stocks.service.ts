@@ -22,5 +22,11 @@ export class StocksService {
     const params = { params: new HttpParams().set('symbol', symbol).set( 'username', username).set('shares', shares) };
     return this.http.get('http://localhost:7000/api/balance', params);
   }
+
+  transactions(accountId, symbol, type, shares) {
+    const params = { params: new HttpParams().set('accountId', accountId).set('symbol', symbol).set('type', type).set('shares', shares) }  
+    return this.http.get('http://localhost:7000/api/transactions', params);
+
+  }
 }
 

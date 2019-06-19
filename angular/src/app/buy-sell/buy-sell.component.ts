@@ -12,8 +12,11 @@ export class BuySellComponent implements OnInit {
   AMZN: any[] =[];
   FB: any[] =[];
   username = 'Remington';
+  userId = 1;
+  accountId = 1;
   shares: number;
   stockPrice = 200.92;
+  type: string;
 
 
   constructor(private stocks: StocksService) { }
@@ -36,15 +39,18 @@ export class BuySellComponent implements OnInit {
   }
 
   buyStockButton2(symbol) {
+
     if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
       alert('Must be a positive whole number');
       return false
     } else {
+      this.type = 'buy';
       this.stocks.buyStock2(symbol, this.username, this.shares).subscribe(data => {
         console.log(data);
       });
       this.stocks.updateBalance(symbol, this.username, this.shares).subscribe(data => {
       });
+      this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe()
       this.shares=0
     
   }

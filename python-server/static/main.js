@@ -294,6 +294,8 @@ var BuySellComponent = /** @class */ (function () {
         this.AMZN = [];
         this.FB = [];
         this.username = 'Remington';
+        this.userId = 1;
+        this.accountId = 1;
         this.stockPrice = 200.92;
     }
     BuySellComponent.prototype.ngOnInit = function () {
@@ -317,11 +319,13 @@ var BuySellComponent = /** @class */ (function () {
             return false;
         }
         else {
+            this.type = 'buy';
             this.stocks.buyStock2(symbol, this.username, this.shares).subscribe(function (data) {
                 console.log(data);
             });
             this.stocks.updateBalance(symbol, this.username, this.shares).subscribe(function (data) {
             });
+            this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe();
             this.shares = 0;
         }
     };
@@ -610,6 +614,10 @@ var StocksService = /** @class */ (function () {
     StocksService.prototype.updateBalance = function (symbol, username, shares) {
         var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('username', username).set('shares', shares) };
         return this.http.get('http://localhost:7000/api/balance', params);
+    };
+    StocksService.prototype.transactions = function (accountId, symbol, type, shares) {
+        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('accountId', accountId).set('symbol', symbol).set('type', type).set('shares', shares) };
+        return this.http.get('http://localhost:7000/api/transactions', params);
     };
     StocksService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

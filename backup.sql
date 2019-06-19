@@ -5,7 +5,7 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 11.3
 
--- Started on 2019-06-17 21:22:12
+-- Started on 2019-06-19 17:13:03
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -179,7 +179,8 @@ CREATE TABLE public.transactions (
     symbol character varying(10) NOT NULL,
     type character varying(10) NOT NULL,
     stock_price money NOT NULL,
-    transaction_date timestamp without time zone DEFAULT now()
+    transaction_date timestamp without time zone DEFAULT now(),
+    shares integer
 );
 
 
@@ -363,7 +364,7 @@ ALTER TABLE ONLY public.holdings
     ADD CONSTRAINT holdings_account_id_fkey FOREIGN KEY (account_id) REFERENCES public.account_balance(account_id);
 
 
--- Completed on 2019-06-17 21:22:12
+-- Completed on 2019-06-19 17:13:04
 
 --
 -- PostgreSQL database dump complete
