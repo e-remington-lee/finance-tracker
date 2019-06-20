@@ -10,16 +10,16 @@ def create_connection():
             password = os.environ['db_password'])
 
 def buy_stock(symbol, shares, account_id):
-    connection = create_connection()
-    cur = connection.cursor()
+     connection = create_connection()
+     cur = connection.cursor()
 
-    cur.execute("INSERT INTO holdings (account_id, symbol, shares) VALUES (%(account_id)s, %(symbol)s, %(shares)s)", {'symbol': symbol, 'shares': shares, 'account_id': account_id})
+#     cur.execute("INSERT INTO holdings (account_id, symbol, shares) VALUES (%(account_id)s, %(symbol)s, %(shares)s)", {'symbol': symbol, 'shares': shares, 'account_id': account_id})
+     cur.execute("UPDATE holdings SET shares = shares + %(shares)s WHERE account_id = %(account_id)s AND symbol = %(symbol)s", {'symbol': symbol, 'shares': shares, 'account_id': account_id})
+     connection.commit()
 
-    connection.commit()
-
-    cur.close()
-    connection.close()
-    return None
+     cur.close()
+     connection.close()
+     return None
 
 def update_balance(account_id, balance_change):
     connection = create_connection()
