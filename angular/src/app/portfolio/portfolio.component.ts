@@ -16,7 +16,7 @@ export class PortfolioComponent implements OnInit {
   ngOnInit() {
     // var ctx = document.getElementById('myChart').getContext('2d');
     var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
+    new Chart(ctx, {
       type: 'bar',
       data: {
           labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],

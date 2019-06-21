@@ -848,7 +848,7 @@ var PortfolioComponent = /** @class */ (function () {
     PortfolioComponent.prototype.ngOnInit = function () {
         // var ctx = document.getElementById('myChart').getContext('2d');
         var ctx = document.getElementById('myChart');
-        var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_3__["Chart"](ctx, {
+        new chart_js__WEBPACK_IMPORTED_MODULE_3__["Chart"](ctx, {
             type: 'bar',
             data: {
                 labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
