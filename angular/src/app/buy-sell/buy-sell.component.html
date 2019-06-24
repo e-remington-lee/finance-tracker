@@ -1,4 +1,32 @@
 <body class='container'>
+
+      <div class='form-group' id='searchBar'>
+          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' 
+          placeholder="Search for your own stocks (symbol required)" (keyup.enter)='searchStocks()'>
+    </div>  
+    <div class='row' id='stocks'>
+        <div class='card' >
+            <div class='card-body'>
+              <div class='col-3' *ngFor='let stock of TSLA'>
+                  <b>{{stock.company}} : {{stock.symbol}}</b>
+              </div>
+              <div class='col-7' *ngFor='let stock of TSLA'>
+                  <p><b>Current Price:</b> ${{stock.price}}</p>
+                  <p><b>Percent Change:</b> {{stock.changePercent}}% </p>
+                  <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
+              </div>
+              <div class='col-2'>
+                  <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyTSLA'>Buy</button>
+                  <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellTSLA'>Sell</button>
+              </div>
+            </div>
+          </div>
+    </div>
+
+
+
+
+
   <div class='row' id='stocks'>
       <div class='card' >
           <div class='card-body'>

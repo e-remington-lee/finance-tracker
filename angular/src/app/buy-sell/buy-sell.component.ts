@@ -11,12 +11,14 @@ export class BuySellComponent implements OnInit {
   TSLA: any[] =[];
   AMZN: any[] =[];
   FB: any[] =[];
+  searchStockData: any[] =[];
   username = 'Remington';
   userId = 1;
   accountId = 1;
   shares: number;
   stockPrice = 200.92;
   type: string;
+  searchStockSymbol: string;
 
 
   constructor(private stocks: StocksService) { }
@@ -35,6 +37,14 @@ export class BuySellComponent implements OnInit {
     this.stocks.returnStocks('FB').subscribe((data: any[]) => {
       this.FB =  data;
       console.log(data);
+    });
+  }
+
+  searchStocks() {
+    this.stocks.returnStocks(this.searchStockSymbol).subscribe((data: any[]) => {
+      this.searchStockData = data;
+      console.log(this.searchStockSymbol);
+      this.searchStockSymbol = '';
     });
   }
 
@@ -57,9 +67,7 @@ export class BuySellComponent implements OnInit {
       return false
     } else {
       this.type = 'sell';
-      this.stocks.sellStock(symbol, this.accountId, this.shares).subscribe(data => {
-        console.log(data);
-      });
+      this.stocks.sellStock(symbol, this.accountId, this.shares).subscribe();
       this.stocks.updateBalanceSell(symbol, this.accountId, this.shares).subscribe(data => {
       });
       this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => {});
