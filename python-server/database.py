@@ -13,19 +13,41 @@ def buy_stock(symbol, shares, account_id):
      connection = create_connection()
      cur = connection.cursor()
 
-#     cur.execute("INSERT INTO holdings (account_id, symbol, shares) VALUES (%(account_id)s, %(symbol)s, %(shares)s)", {'symbol': symbol, 'shares': shares, 'account_id': account_id})
-     cur.execute("UPDATE holdings SET shares = shares + %(shares)s WHERE account_id = %(account_id)s AND symbol = %(symbol)s", {'symbol': symbol, 'shares': shares, 'account_id': account_id})
+     cur.execute("INSERT INTO holdings (account_id, symbol, shares) VALUES (%(account_id)s, %(symbol)s, %(shares)s) ON CONFLICT (account_id, symbol) DO UPDATE SET shares = holdings.shares + %(shares)s WHERE holdings.account_id = %(account_id)s AND holdings.symbol = %(symbol)s", {'symbol': symbol, 'shares': shares, 'account_id': account_id})
      connection.commit()
 
      cur.close()
      connection.close()
      return None
 
-def update_balance(account_id, balance_change):
+def sell_stock(symbol, shares, account_id):
+     connection = create_connection()
+     cur = connection.cursor()
+
+     cur.execute("UPDATE holdings SET shares = holdings.shares - %(shares)s WHERE account_id = %(account_id)s AND symbol = %(symbol)s", {'symbol': symbol, 'shares': shares, 'account_id': account_id})
+     connection.commit()
+
+     cur.close()
+     connection.close()
+     return None
+
+def update_balance_buy(account_id, balance_change):
     connection = create_connection()
     cur = connection.cursor()
 
     cur.execute("UPDATE account_balance SET account_balance = account_balance - %(balance_change)s::money WHERE account_id = %(account_id)s", {'balance_change': balance_change, 'account_id': account_id})
+
+    connection.commit()
+
+    cur.close()
+    connection.close()
+    return None
+
+def update_balance_sell(account_id, balance_change):
+    connection = create_connection()
+    cur = connection.cursor()
+
+    cur.execute("UPDATE account_balance SET account_balance = account_balance + %(balance_change)s::money WHERE account_id = %(account_id)s", {'balance_change': balance_change, 'account_id': account_id})
 
     connection.commit()
 

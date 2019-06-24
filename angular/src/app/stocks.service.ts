@@ -18,9 +18,19 @@ export class StocksService {
     return this.http.get('http://localhost:7000/api/buyStock', params);
   }
 
-  updateBalance(symbol, accountId, shares) {
+  sellStock(symbol, accountId, shares) {
     const params = { params: new HttpParams().set('symbol', symbol).set( 'accountId', accountId).set('shares', shares) };
-    return this.http.get('http://localhost:7000/api/balance', params);
+    return this.http.get('http://localhost:7000/api/sellStock', params);
+  }
+
+  updateBalanceBuy(symbol, accountId, shares) {
+    const params = { params: new HttpParams().set('symbol', symbol).set( 'accountId', accountId).set('shares', shares) };
+    return this.http.get('http://localhost:7000/api/updateBalanceBuy', params);
+  }
+
+  updateBalanceSell(symbol, accountId, shares) {
+    const params = { params: new HttpParams().set('symbol', symbol).set( 'accountId', accountId).set('shares', shares) };
+    return this.http.get('http://localhost:7000/api/updateBalanceSell', params);
   }
 
   transactions(accountId, symbol, type, shares) {
