@@ -4,7 +4,7 @@
           <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' 
           placeholder="Search for your own stocks (symbol required)" (keyup.enter)='searchStocks()'>
     </div>  
-    <div class='row' id='stocks'>
+    <div class='row' id='searchStock'>
         <div class='card' >
             <div class='card-body'>
               <div class='col-3' *ngFor='let stock of searchStockData'>

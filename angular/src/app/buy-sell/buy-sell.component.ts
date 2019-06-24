@@ -19,11 +19,16 @@ export class BuySellComponent implements OnInit {
   stockPrice = 200.92;
   type: string;
   searchStockSymbol: string;
+ 
 
 
   constructor(private stocks: StocksService) { }
 
   ngOnInit() {
+    var x = document.getElementById('searchStock');
+    x.style.display = "none";
+
+
     this.stocks.returnStocks('TSLA').subscribe((data: any[]) => {
       this.TSLA = data;
       console.log(data);
@@ -41,6 +46,11 @@ export class BuySellComponent implements OnInit {
   }
 
   searchStocks() {
+    var x = document.getElementById('searchStock');
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    }
+
     this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
     this.stocks.returnStocks(this.searchStockSymbol).subscribe((data: any[]) => {
       this.searchStockData = data;
