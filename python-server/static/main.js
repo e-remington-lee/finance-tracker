@@ -607,9 +607,7 @@ var BuySellComponent = /** @class */ (function () {
         }
         else {
             this.type = 'buy';
-            this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe(function (data) {
-                console.log(data);
-            });
+            this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe();
             this.stocks.updateBalanceBuy(symbol, this.accountId, this.shares).subscribe(function (data) {
             });
             this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(function (data) { });
