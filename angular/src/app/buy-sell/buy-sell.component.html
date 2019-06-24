@@ -7,25 +7,21 @@
     <div class='row' id='stocks'>
         <div class='card' >
             <div class='card-body'>
-              <div class='col-3' *ngFor='let stock of TSLA'>
+              <div class='col-3' *ngFor='let stock of searchStockData'>
                   <b>{{stock.company}} : {{stock.symbol}}</b>
               </div>
-              <div class='col-7' *ngFor='let stock of TSLA'>
+              <div class='col-7' *ngFor='let stock of searchStockData'>
                   <p><b>Current Price:</b> ${{stock.price}}</p>
                   <p><b>Percent Change:</b> {{stock.changePercent}}% </p>
                   <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
               </div>
               <div class='col-2'>
-                  <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyTSLA'>Buy</button>
-                  <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellTSLA'>Sell</button>
+                  <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buySearchStock'>Buy</button>
+                  <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellSearchStock'>Sell</button>
               </div>
             </div>
           </div>
     </div>
-
-
-
-
 
   <div class='row' id='stocks'>
       <div class='card' >
@@ -80,7 +76,55 @@
 </body>
 
 
-
+<div class="modal fade" id="buySearchStock" tabindex='-1'>
+    <div class="modal-dialog" role="document">    
+      <div class="modal-content">
+        <div class="modal-header" *ngFor='let stocks of searchStockData'>
+          <h5 class="modal-title" >Buy {{stocks.company}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                  <label for="email" class="col-form-label" *ngFor='let stocks of searchStockData'>Number of shares at: ${{stocks.price}}</label>
+                  <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)='buyStockButton3()' data-dismiss="modal">Buy</button>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="modal fade" id="sellSearchStock" tabindex='-1'>
+      <div class="modal-dialog" role="document">    
+        <div class="modal-content">
+          <div class="modal-header" *ngFor='let stocks of searchStockData'>
+            <h5 class="modal-title" >Sell {{stocks.company}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <form>
+                  <div class="form-group">
+                    <label for="email" class="col-form-label" *ngFor='let stocks of searchStockData'>Number of shares at: ${{stocks.price}}</label>
+                    <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
+                  </div>
+                </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)='sellStockButton3()' data-dismiss="modal">Sell</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
 
 <div class="modal fade" id="buyTSLA" tabindex='-1'>
   <div class="modal-dialog" role="document">    
@@ -125,11 +169,11 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)='sellStockButton("TSLA")' data-dismiss="modal">Sell</button>
+          <button type="button" class="btn btn-primary" (click)='sellStockButton2("TSLA")' data-dismiss="modal">Sell</button>
         </div>
       </div>
     </div>
-    </div>
+  </div>
 
 
   <div class="modal fade" id="buyAMZN" tabindex='-1'>
@@ -175,7 +219,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)='sellStockButton("AMZN")' data-dismiss="modal">Sell</button>
+        <button type="button" class="btn btn-primary" (click)='sellStockButton2("AMZN")' data-dismiss="modal">Sell</button>
       </div>
     </div>
   </div>
@@ -224,7 +268,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)='sellStockButton("FB")' data-dismiss="modal">Sell</button>
+          <button type="button" class="btn btn-primary" (click)='sellStockButton2("FB")' data-dismiss="modal">Sell</button>
         </div>
       </div>
     </div>

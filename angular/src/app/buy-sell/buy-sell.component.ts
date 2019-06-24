@@ -41,10 +41,10 @@ export class BuySellComponent implements OnInit {
   }
 
   searchStocks() {
+    this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
     this.stocks.returnStocks(this.searchStockSymbol).subscribe((data: any[]) => {
       this.searchStockData = data;
       console.log(this.searchStockSymbol);
-      this.searchStockSymbol = '';
     });
   }
 
@@ -61,7 +61,8 @@ export class BuySellComponent implements OnInit {
       this.shares=0
   }
 }
-  sellStockButton(symbol) {
+
+  sellStockButton2(symbol) {
     if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
       alert('Must be a positive whole number');
       return false
@@ -73,6 +74,35 @@ export class BuySellComponent implements OnInit {
       this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => {});
       this.shares=0
   }
+}
+
+
+buyStockButton3() {
+  if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
+    alert('Must be a positive whole number');
+    return false
+  } else {
+    this.type = 'buy';
+    this.stocks.buyStock2(this.searchStockSymbol, this.accountId, this.shares).subscribe();
+    this.stocks.updateBalanceBuy(this.searchStockSymbol, this.accountId, this.shares).subscribe(data => {
+    });
+    this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(data => {});
+    this.shares=0
+  }
+}
+
+sellStockButton3() {
+  if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
+    alert('Must be a positive whole number');
+    return false
+  } else {
+    this.type = 'sell';
+    this.stocks.sellStock(this.searchStockSymbol, this.accountId, this.shares).subscribe();
+    this.stocks.updateBalanceSell(this.searchStockSymbol, this.accountId, this.shares).subscribe(data => {
+    });
+    this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(data => {});
+    this.shares=0
+}
 }
 
 }
