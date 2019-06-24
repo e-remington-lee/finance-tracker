@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../stocks.service';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-buy-sell',
@@ -25,9 +26,8 @@ export class BuySellComponent implements OnInit {
   constructor(private stocks: StocksService) { }
 
   ngOnInit() {
-    var x = document.getElementById('searchStock');
-    x.style.display = "none";
-
+    var searchStockBox = document.getElementById('searchStock');
+    searchStockBox.style.display = "none";
 
     this.stocks.returnStocks('TSLA').subscribe((data: any[]) => {
       this.TSLA = data;
@@ -46,9 +46,9 @@ export class BuySellComponent implements OnInit {
   }
 
   searchStocks() {
-    var x = document.getElementById('searchStock');
-    if (x.style.display === "none") {
-      x.style.display = "block";
+    var searchStockBox = document.getElementById('searchStock');
+    if (searchStockBox.style.display === "none") {
+      searchStockBox.style.display = "block";
     }
 
     this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
@@ -56,6 +56,44 @@ export class BuySellComponent implements OnInit {
       this.searchStockData = data;
       console.log(this.searchStockSymbol);
     });
+    
+    var ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
+  });
   }
 
   buyStockButton2(symbol) {

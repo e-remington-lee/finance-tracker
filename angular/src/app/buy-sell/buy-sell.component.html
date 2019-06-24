@@ -5,7 +5,7 @@
           placeholder="Search for your own stocks (symbol required)" (keyup.enter)='searchStocks()'>
     </div>  
     <div class='row' id='searchStock'>
-        <div class='card' >
+        <div class='card'>
             <div class='card-body'>
               <div class='col-3' *ngFor='let stock of searchStockData'>
                   <b>{{stock.company}} : {{stock.symbol}}</b>
@@ -21,6 +21,7 @@
               </div>
             </div>
           </div>
+        <canvas id="myChart" ></canvas>
     </div>
 
   <div class='row' id='stocks'>
