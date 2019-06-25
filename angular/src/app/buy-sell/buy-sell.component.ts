@@ -75,27 +75,30 @@ export class BuySellComponent implements OnInit {
       for (let y = 0; y<data.length; y++) {
         this.priceList.push(data[y].closing_price)
       }
-      
-      var ctx = document.getElementById('myChart');
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: this.lableList,
-          datasets: [{ 
-              data: this.priceList,
-              label: "AA",
-              borderColor: "#3e95cd",
-              fill: false
-            }
-          ]
-        },
-        options: {
-          title: {
-            display: true,
-            text: `Previous Month's Stock Prices for ${this.searchStockSymbol}`
+    });
+
+    console.log(this.lableList)
+    console.log(this.priceList)
+
+    var ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: this.lableList,
+        datasets: [{ 
+            data: this.priceList,
+            label: this.searchStockSymbol,
+            borderColor: "#3e95cd",
+            fill: false
           }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: `Previous Month's Stock Prices for ${this.searchStockSymbol}`
         }
-      });
+      }
     });
   }
 

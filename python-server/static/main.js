@@ -632,26 +632,28 @@ var BuySellComponent = /** @class */ (function () {
             for (var y = 0; y < data.length; y++) {
                 _this.priceList.push(data[y].closing_price);
             }
-            var ctx = document.getElementById('myChart');
-            new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"](ctx, {
-                type: 'line',
-                data: {
-                    labels: _this.lableList,
-                    datasets: [{
-                            data: _this.priceList,
-                            label: "AA",
-                            borderColor: "#3e95cd",
-                            fill: false
-                        }
-                    ]
-                },
-                options: {
-                    title: {
-                        display: true,
-                        text: "Previous Month's Stock Prices for " + _this.searchStockSymbol
+        });
+        console.log(this.lableList);
+        console.log(this.priceList);
+        var ctx = document.getElementById('myChart');
+        new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"](ctx, {
+            type: 'line',
+            data: {
+                labels: this.lableList,
+                datasets: [{
+                        data: this.priceList,
+                        label: this.searchStockSymbol,
+                        borderColor: "#3e95cd",
+                        fill: false
                     }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Previous Month's Stock Prices for " + this.searchStockSymbol
                 }
-            });
+            }
         });
     };
     BuySellComponent.prototype.buyStockButton2 = function (symbol) {
