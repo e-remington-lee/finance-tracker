@@ -56,6 +56,9 @@ export class BuySellComponent implements OnInit {
       searchStockBox.style.display = "block";
     }
 
+    this.lableList = [];
+    this.priceList = [];
+
     this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
 
     this.data.returnStocks(this.searchStockSymbol).subscribe((data: any[]) => {

@@ -5,7 +5,7 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 11.3
 
--- Started on 2019-06-19 21:00:15
+-- Started on 2019-06-24 21:34:21
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 2945 (class 1262 OID 16485)
+-- TOC entry 2947 (class 1262 OID 16485)
 -- Name: stock_tracking_app; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -50,7 +50,7 @@ CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
 
 
 --
--- TOC entry 2946 (class 0 OID 0)
+-- TOC entry 2948 (class 0 OID 0)
 -- Dependencies: 2
 -- Name: EXTENSION citext; Type: COMMENT; Schema: -; Owner: 
 --
@@ -112,7 +112,7 @@ CREATE SEQUENCE public.account_balance_account_id_seq
 ALTER TABLE public.account_balance_account_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2947 (class 0 OID 0)
+-- TOC entry 2949 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: account_balance_account_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -137,7 +137,7 @@ CREATE SEQUENCE public.account_balance_user_id_seq
 ALTER TABLE public.account_balance_user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2948 (class 0 OID 0)
+-- TOC entry 2950 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: account_balance_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -178,7 +178,7 @@ CREATE SEQUENCE public.holdings_holding_id_seq
 ALTER TABLE public.holdings_holding_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2949 (class 0 OID 0)
+-- TOC entry 2951 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: holdings_holding_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -221,7 +221,7 @@ CREATE SEQUENCE public.transactions_transaction_id_seq
 ALTER TABLE public.transactions_transaction_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2950 (class 0 OID 0)
+-- TOC entry 2952 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: transactions_transaction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -262,7 +262,7 @@ CREATE SEQUENCE public.user_accounts_user_id_seq
 ALTER TABLE public.user_accounts_user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2951 (class 0 OID 0)
+-- TOC entry 2953 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: user_accounts_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -320,7 +320,16 @@ ALTER TABLE ONLY public.account_balance
 
 
 --
--- TOC entry 2814 (class 2606 OID 16661)
+-- TOC entry 2814 (class 2606 OID 16682)
+-- Name: holdings account_symbol_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.holdings
+    ADD CONSTRAINT account_symbol_unique UNIQUE (account_id, symbol);
+
+
+--
+-- TOC entry 2816 (class 2606 OID 16661)
 -- Name: holdings holdings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -356,7 +365,7 @@ ALTER TABLE ONLY public.user_accounts
 
 
 --
--- TOC entry 2818 (class 2620 OID 16678)
+-- TOC entry 2820 (class 2620 OID 16678)
 -- Name: holdings update_stock_holdings; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -364,7 +373,7 @@ CREATE TRIGGER update_stock_holdings BEFORE UPDATE ON public.holdings FOR EACH R
 
 
 --
--- TOC entry 2816 (class 2606 OID 16672)
+-- TOC entry 2818 (class 2606 OID 16672)
 -- Name: transactions f_key_account_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -373,7 +382,7 @@ ALTER TABLE ONLY public.transactions
 
 
 --
--- TOC entry 2815 (class 2606 OID 16667)
+-- TOC entry 2817 (class 2606 OID 16667)
 -- Name: account_balance f_key_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -382,7 +391,7 @@ ALTER TABLE ONLY public.account_balance
 
 
 --
--- TOC entry 2817 (class 2606 OID 16662)
+-- TOC entry 2819 (class 2606 OID 16662)
 -- Name: holdings holdings_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -390,7 +399,7 @@ ALTER TABLE ONLY public.holdings
     ADD CONSTRAINT holdings_account_id_fkey FOREIGN KEY (account_id) REFERENCES public.account_balance(account_id);
 
 
--- Completed on 2019-06-19 21:00:15
+-- Completed on 2019-06-24 21:34:21
 
 --
 -- PostgreSQL database dump complete

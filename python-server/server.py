@@ -32,6 +32,25 @@ def stock_info():
         return jsonify(stock_data)
     return None
 
+@app.route('/api/historicalData', methods=['GET', 'POST'])
+def historical_info():
+    if request.method == 'GET':
+        symbol = request.args.get('symbol')
+        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/chart/1m', params=payload)
+
+        historical_data = []
+        count = 0
+
+        for x in r.json():
+            x = {'date': r.json()[count]['date'],
+                'closing_price': r.json()[count]['close']}
+            historical_data.append(x)
+            count +=1
+
+        return jsonify(historical_data)
+    return None
+
 @app.route('/api/updateBalanceBuy', methods=['GET', 'POST'])
 def balance_change_buy():
     if request.method =='GET':

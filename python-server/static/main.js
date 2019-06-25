@@ -571,19 +571,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
 
 var BuySellComponent = /** @class */ (function () {
-    function BuySellComponent(stocks) {
+    function BuySellComponent(stocks, data) {
         this.stocks = stocks;
+        this.data = data;
         this.TSLA = [];
         this.AMZN = [];
         this.FB = [];
         this.searchStockData = [];
+        this.chartInfo = [];
+        this.lableList = [];
+        this.priceList = [];
         this.username = 'Remington';
         this.userId = 1;
         this.accountId = 1;
@@ -593,15 +599,15 @@ var BuySellComponent = /** @class */ (function () {
         var _this = this;
         var searchStockBox = document.getElementById('searchStock');
         searchStockBox.style.display = "none";
-        this.stocks.returnStocks('TSLA').subscribe(function (data) {
+        this.data.returnStocks('TSLA').subscribe(function (data) {
             _this.TSLA = data;
             console.log(data);
         });
-        this.stocks.returnStocks('AMZN').subscribe(function (data) {
+        this.data.returnStocks('AMZN').subscribe(function (data) {
             _this.AMZN = data;
             console.log(data);
         });
-        this.stocks.returnStocks('FB').subscribe(function (data) {
+        this.data.returnStocks('FB').subscribe(function (data) {
             _this.FB = data;
             console.log(data);
         });
@@ -612,53 +618,40 @@ var BuySellComponent = /** @class */ (function () {
         if (searchStockBox.style.display === "none") {
             searchStockBox.style.display = "block";
         }
+        this.lableList = [];
+        this.priceList = [];
         this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
-        this.stocks.returnStocks(this.searchStockSymbol).subscribe(function (data) {
+        this.data.returnStocks(this.searchStockSymbol).subscribe(function (data) {
             _this.searchStockData = data;
-            console.log(_this.searchStockSymbol);
         });
-        var ctx = document.getElementById('myChart');
-        new chart_js__WEBPACK_IMPORTED_MODULE_3__["Chart"](ctx, {
-            type: 'line',
-            data: {
-                labels: ['2019-6-22', '2019-6-23', '2019-6-24', '2019-6-25', '2019-6-26',
-                    '2019-6-27', '2019-6-28', '2019-6-29', '2019-6-30', '2019-7-1',
-                    '2019-6-27', '2019-6-28', '2019-6-29', '2019-6-30', '2019-7-1',
-                    '2019-6-22', '2019-6-23', '2019-6-24', '2019-6-25', '2019-6-26', '2019-6-27', '2019-6-28', '2019-6-29', '2019-6-30', '2019-7-1', '2019-6-27', '2019-6-28', '2019-6-29', '2019-6-30', '2019-7-1'],
-                datasets: [{
-                        data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-                        label: "Africa",
-                        borderColor: "#3e95cd",
-                        fill: false
-                    }, {
-                        data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],
-                        label: "Asia",
-                        borderColor: "#8e5ea2",
-                        fill: false
-                    }, {
-                        data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],
-                        label: "Europe",
-                        borderColor: "#3cba9f",
-                        fill: false
-                    }, {
-                        data: [40, 20, 10, 16, 24, 38, 74, 167, 508, 784],
-                        label: "Latin America",
-                        borderColor: "#e8c3b9",
-                        fill: false
-                    }, {
-                        data: [6, 3, 2, 2, 7, 26, 82, 172, 312, 433],
-                        label: "North America",
-                        borderColor: "#c45850",
-                        fill: false
-                    }
-                ]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "Previous Month's Stock Prices for " + this.searchStockSymbol
-                }
+        this.data.chartData(this.searchStockSymbol).subscribe(function (data) {
+            _this.chartInfo = data;
+            for (var i = 0; i < data.length; i++) {
+                _this.lableList.push(data[i].date);
             }
+            for (var y = 0; y < data.length; y++) {
+                _this.priceList.push(data[y].closing_price);
+            }
+            var ctx = document.getElementById('myChart');
+            new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"](ctx, {
+                type: 'line',
+                data: {
+                    labels: _this.lableList,
+                    datasets: [{
+                            data: _this.priceList,
+                            label: "AA",
+                            borderColor: "#3e95cd",
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Previous Month's Stock Prices for " + _this.searchStockSymbol
+                    }
+                }
+            });
         });
     };
     BuySellComponent.prototype.buyStockButton2 = function (symbol) {
@@ -723,9 +716,51 @@ var BuySellComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./buy-sell.component.html */ "./src/app/buy-sell/buy-sell.component.html"),
             styles: [__webpack_require__(/*! ./buy-sell.component.scss */ "./src/app/buy-sell/buy-sell.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
     ], BuySellComponent);
     return BuySellComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/data.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/data.service.ts ***!
+  \*********************************/
+/*! exports provided: DataService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataService", function() { return DataService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+var DataService = /** @class */ (function () {
+    function DataService(http) {
+        this.http = http;
+    }
+    DataService.prototype.returnStocks = function (symbol) {
+        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
+        return this.http.get('http://localhost:7000/api/stockData', params);
+    };
+    ;
+    DataService.prototype.chartData = function (symbol) {
+        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
+        return this.http.get('http://localhost:7000/api/historicalData', params);
+    };
+    DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], DataService);
+    return DataService;
 }());
 
 
@@ -935,15 +970,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
 
 var PortfolioComponent = /** @class */ (function () {
-    function PortfolioComponent(stocks) {
+    function PortfolioComponent(stocks, data) {
         this.stocks = stocks;
+        this.data = data;
         this.stockSearch = 'TSLA';
     }
     PortfolioComponent.prototype.ngOnInit = function () {
@@ -1329,7 +1367,7 @@ var PortfolioComponent = /** @class */ (function () {
             labelList.push(json[i].date);
         }
         var ctx = document.getElementById('myChart');
-        new chart_js__WEBPACK_IMPORTED_MODULE_3__["Chart"](ctx, {
+        new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"](ctx, {
             type: 'line',
             data: {
                 labels: labelList,
@@ -1375,7 +1413,7 @@ var PortfolioComponent = /** @class */ (function () {
     //   });
     // }
     PortfolioComponent.prototype.buyStock = function () {
-        this.stocks.returnStocks(this.stockSearch).subscribe(function (data) {
+        this.data.returnStocks(this.stockSearch).subscribe(function (data) {
             console.log(data);
         });
     };
@@ -1385,7 +1423,7 @@ var PortfolioComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./portfolio.component.html */ "./src/app/portfolio/portfolio.component.html"),
             styles: [__webpack_require__(/*! ./portfolio.component.scss */ "./src/app/portfolio/portfolio.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
     ], PortfolioComponent);
     return PortfolioComponent;
 }());
@@ -1414,11 +1452,6 @@ var StocksService = /** @class */ (function () {
     function StocksService(http) {
         this.http = http;
     }
-    StocksService.prototype.returnStocks = function (symbol) {
-        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
-        return this.http.get('http://localhost:7000/api/stockData', params);
-    };
-    ;
     StocksService.prototype.buyStock2 = function (symbol, accountId, shares) {
         var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
         return this.http.get('http://localhost:7000/api/buyStock', params);
