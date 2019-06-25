@@ -2,7 +2,7 @@
 
       <div class='form-group' id='searchBar'>
           <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' 
-          placeholder="Search for your own stocks (symbol required)" (keyup.enter)='searchStocks()'>
+          placeholder="Search for your own stocks (symbol required)" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>
     </div>  
     <div class='row' id='searchStock'>
         <div class='card'>

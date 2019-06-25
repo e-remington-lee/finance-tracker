@@ -56,8 +56,6 @@ export class BuySellComponent implements OnInit {
       searchStockBox.style.display = "block";
     }
 
-    this.lableList = [];
-    this.priceList = [];
 
     this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
 
@@ -65,8 +63,14 @@ export class BuySellComponent implements OnInit {
       this.searchStockData = data;
     });
 
+  }
+
+  updateChart() {
+
     this.data.chartData(this.searchStockSymbol).subscribe((data: any[]) => {
       this.chartInfo = data;
+      this.lableList = [];
+      this.priceList = [];
     
       for (let i = 0; i<data.length; i++) {
           this.lableList.push(data[i].date); 
@@ -75,31 +79,36 @@ export class BuySellComponent implements OnInit {
       for (let y = 0; y<data.length; y++) {
         this.priceList.push(data[y].closing_price)
       }
-    });
 
-    console.log(this.lableList)
-    console.log(this.priceList)
-
-    var ctx = document.getElementById('myChart');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: this.lableList,
-        datasets: [{ 
-            data: this.priceList,
-            label: this.searchStockSymbol,
-            borderColor: "#3e95cd",
-            fill: false
+      console.log(this.chartInfo)
+      console.log(this.lableList)
+      console.log(this.priceList)
+      
+  
+      var ctx = document.getElementById('myChart');
+      
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: this.lableList,
+          datasets: [{ 
+              data: this.priceList,
+              label: this.searchStockSymbol,
+              borderColor: "#3e95cd",
+              fill: false
+            }
+          ]
+        },
+        options: {
+          title: {
+            display: true,
+            text: `Previous Month's Stock Prices for ${this.searchStockSymbol}`
           }
-        ]
-      },
-      options: {
-        title: {
-          display: true,
-          text: `Previous Month's Stock Prices for ${this.searchStockSymbol}`
         }
-      }
+      });
+     
     });
+    
   }
 
   buyStockButton2(symbol) {
