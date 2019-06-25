@@ -4,6 +4,7 @@ import { DataService } from '../data.service';
 import { Chart } from 'chart.js';
 
 
+
 @Component({
   selector: 'app-buy-sell',
   templateUrl: './buy-sell.component.html',
@@ -25,7 +26,7 @@ export class BuySellComponent implements OnInit {
   stockPrice = 200.92;
   type: string;
   searchStockSymbol: string;
- 
+  chart: Chart;
 
 
   constructor(private stocks: StocksService, private data: DataService) { }
@@ -48,6 +49,27 @@ export class BuySellComponent implements OnInit {
       this.FB =  data;
       console.log(data);
     });
+
+    this.chart = new Chart('myChart', {
+      type: 'line',
+      data: {
+        labels: null,
+        datasets: [{ 
+            data: null,
+            label: 'Stock',
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Stock Data"
+        }
+      }
+    });
+
   }
 
   searchStocks() {
@@ -55,7 +77,6 @@ export class BuySellComponent implements OnInit {
     if (searchStockBox.style.display === "none") {
       searchStockBox.style.display = "block";
     }
-
 
     this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
 
@@ -67,10 +88,12 @@ export class BuySellComponent implements OnInit {
 
   updateChart() {
 
+    
+
     this.data.chartData(this.searchStockSymbol).subscribe((data: any[]) => {
       this.chartInfo = data;
       this.lableList = [];
-      this.priceList = [];
+      this.priceList =[];
     
       for (let i = 0; i<data.length; i++) {
           this.lableList.push(data[i].date); 
@@ -79,34 +102,14 @@ export class BuySellComponent implements OnInit {
       for (let y = 0; y<data.length; y++) {
         this.priceList.push(data[y].closing_price)
       }
+      this.chart.data.datasets[0].label = this.searchStockSymbol;
+      this.chart.data.labels = this.lableList;
+      this.chart.data.datasets[0].data = this.priceList;
+      this.chart.options.title.text = `Previous Month's Stock Prices for ${this.searchStockSymbol}`
 
-      console.log(this.chartInfo)
-      console.log(this.lableList)
       console.log(this.priceList)
-      
-  
-      var ctx = document.getElementById('myChart');
-      
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: this.lableList,
-          datasets: [{ 
-              data: this.priceList,
-              label: this.searchStockSymbol,
-              borderColor: "#3e95cd",
-              fill: false
-            }
-          ]
-        },
-        options: {
-          title: {
-            display: true,
-            text: `Previous Month's Stock Prices for ${this.searchStockSymbol}`
-          }
-        }
-      });
-     
+
+      this.chart.update()
     });
     
   }

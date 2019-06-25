@@ -611,6 +611,25 @@ var BuySellComponent = /** @class */ (function () {
             _this.FB = data;
             console.log(data);
         });
+        this.chart = new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"]('myChart', {
+            type: 'line',
+            data: {
+                labels: null,
+                datasets: [{
+                        data: null,
+                        label: 'Stock',
+                        borderColor: "#3e95cd",
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Stock Data"
+                }
+            }
+        });
     };
     BuySellComponent.prototype.searchStocks = function () {
         var _this = this;
@@ -635,29 +654,12 @@ var BuySellComponent = /** @class */ (function () {
             for (var y = 0; y < data.length; y++) {
                 _this.priceList.push(data[y].closing_price);
             }
-            console.log(_this.chartInfo);
-            console.log(_this.lableList);
+            _this.chart.data.datasets[0].label = _this.searchStockSymbol;
+            _this.chart.data.labels = _this.lableList;
+            _this.chart.data.datasets[0].data = _this.priceList;
+            _this.chart.options.title.text = "Previous Month's Stock Prices for " + _this.searchStockSymbol;
             console.log(_this.priceList);
-            var ctx = document.getElementById('myChart');
-            new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"](ctx, {
-                type: 'line',
-                data: {
-                    labels: _this.lableList,
-                    datasets: [{
-                            data: _this.priceList,
-                            label: _this.searchStockSymbol,
-                            borderColor: "#3e95cd",
-                            fill: false
-                        }
-                    ]
-                },
-                options: {
-                    title: {
-                        display: true,
-                        text: "Previous Month's Stock Prices for " + _this.searchStockSymbol
-                    }
-                }
-            });
+            _this.chart.update();
         });
     };
     BuySellComponent.prototype.buyStockButton2 = function (symbol) {
