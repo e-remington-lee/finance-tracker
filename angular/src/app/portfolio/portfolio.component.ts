@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../stocks.service';
+import { DataService } from '../data.service';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -11,7 +12,7 @@ export class PortfolioComponent implements OnInit {
 
   stockSearch ='TSLA';
 
-  constructor(private stocks: StocksService) { }
+  constructor(private stocks: StocksService, private data: DataService) { }
 
   ngOnInit() {
     // var ctx = document.getElementById('myChart').getContext('2d');
@@ -396,7 +397,7 @@ export class PortfolioComponent implements OnInit {
     for (let i = 0; i<json.length; i++) {
         labelList.push(json[i].date);
     }
-    
+
     var ctx = document.getElementById('myChart');
     new Chart(ctx, {
       type: 'line',
@@ -447,7 +448,7 @@ export class PortfolioComponent implements OnInit {
   // }
 
   buyStock() {
-    this.stocks.returnStocks(this.stockSearch).subscribe(data => {
+    this.data.returnStocks(this.stockSearch).subscribe(data => {
       console.log(data)}
       );
   }

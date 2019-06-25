@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../stocks.service';
+import { DataService } from '../data.service';
 import { Chart } from 'chart.js';
-import { Button } from 'protractor';
+
 
 @Component({
   selector: 'app-buy-sell',
@@ -14,6 +15,9 @@ export class BuySellComponent implements OnInit {
   AMZN: any[] =[];
   FB: any[] =[];
   searchStockData: any[] =[];
+  chartInfo: any[] = [];
+  lableList: any[] =[];
+  priceList: any[] =[];
   username = 'Remington';
   userId = 1;
   accountId = 1;
@@ -24,23 +28,23 @@ export class BuySellComponent implements OnInit {
  
 
 
-  constructor(private stocks: StocksService) { }
+  constructor(private stocks: StocksService, private data: DataService) { }
 
   ngOnInit() {
     var searchStockBox = document.getElementById('searchStock');
     searchStockBox.style.display = "none";
 
-    this.stocks.returnStocks('TSLA').subscribe((data: any[]) => {
+    this.data.returnStocks('TSLA').subscribe((data: any[]) => {
       this.TSLA = data;
       console.log(data);
     });
 
-    this.stocks.returnStocks('AMZN').subscribe((data: any[]) => {
+    this.data.returnStocks('AMZN').subscribe((data: any[]) => {
       this.AMZN = data;
       console.log(data);
     });
 
-    this.stocks.returnStocks('FB').subscribe((data: any[]) => {
+    this.data.returnStocks('FB').subscribe((data: any[]) => {
       this.FB =  data;
       console.log(data);
     });
@@ -53,53 +57,42 @@ export class BuySellComponent implements OnInit {
     }
 
     this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
-    this.stocks.returnStocks(this.searchStockSymbol).subscribe((data: any[]) => {
+
+    this.data.returnStocks(this.searchStockSymbol).subscribe((data: any[]) => {
       this.searchStockData = data;
-      console.log(this.searchStockSymbol);
     });
 
-    var ctx = document.getElementById('myChart');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ['2019-6-22', '2019-6-23', '2019-6-24', '2019-6-25', '2019-6-26',
-         '2019-6-27', '2019-6-28', '2019-6-29', '2019-6-30', '2019-7-1',
-          '2019-6-27', '2019-6-28', '2019-6-29', '2019-6-30', '2019-7-1',
-          '2019-6-22', '2019-6-23', '2019-6-24', '2019-6-25', '2019-6-26', '2019-6-27', '2019-6-28', '2019-6-29', '2019-6-30', '2019-7-1', '2019-6-27', '2019-6-28', '2019-6-29', '2019-6-30', '2019-7-1'],
-        datasets: [{ 
-            data: [86,114,106,106,107,111,133,221,783,2478],
-            label: "Africa",
-            borderColor: "#3e95cd",
-            fill: false
-          }, { 
-            data: [282,350,411,502,635,809,947,1402,3700,5267],
-            label: "Asia",
-            borderColor: "#8e5ea2",
-            fill: false
-          }, { 
-            data: [168,170,178,190,203,276,408,547,675,734],
-            label: "Europe",
-            borderColor: "#3cba9f",
-            fill: false
-          }, { 
-            data: [40,20,10,16,24,38,74,167,508,784],
-            label: "Latin America",
-            borderColor: "#e8c3b9",
-            fill: false
-          }, { 
-            data: [6,3,2,2,7,26,82,172,312,433],
-            label: "North America",
-            borderColor: "#c45850",
-            fill: false
-          }
-        ]
-      },
-      options: {
-        title: {
-          display: true,
-          text: `Previous Month's Stock Prices for ${this.searchStockSymbol}`
-        }
+    this.data.chartData(this.searchStockSymbol).subscribe((data: any[]) => {
+      this.chartInfo = data;
+    
+      for (let i = 0; i<data.length; i++) {
+          this.lableList.push(data[i].date); 
       }
+
+      for (let y = 0; y<data.length; y++) {
+        this.priceList.push(data[y].closing_price)
+      }
+      
+      var ctx = document.getElementById('myChart');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: this.lableList,
+          datasets: [{ 
+              data: this.priceList,
+              label: "AA",
+              borderColor: "#3e95cd",
+              fill: false
+            }
+          ]
+        },
+        options: {
+          title: {
+            display: true,
+            text: `Previous Month's Stock Prices for ${this.searchStockSymbol}`
+          }
+        }
+      });
     });
   }
 
