@@ -12,6 +12,7 @@ import { BuySellComponent } from './buy-sell/buy-sell.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login.component';
+import { StockCardComponent } from './stock-card/stock-card.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { LoginComponent } from './login/login.component';
     PortfolioComponent,
     AccountComponent,
     LoginComponent,
+    StockCardComponent,
   ],
   imports: [
     BrowserModule,

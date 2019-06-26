@@ -5,7 +5,8 @@
           placeholder="Search for your own stocks (symbol required)" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>
     </div>  
     <div class='row' id='searchStock'>
-        <div class='card'>
+        <app-stock-card class='col-12' [symbol]="searchStockData"></app-stock-card>
+        <!-- <div class='card'>
             <div class='card-body'>
               <div class='col-3' *ngFor='let stock of searchStockData'>
                   <b>{{stock.company}} : {{stock.symbol}}</b>
@@ -20,59 +21,14 @@
                   <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellSearchStock'>Sell</button>
               </div>
             </div>
-          </div>
+          </div> -->
         <canvas id="myChart" ></canvas>
     </div>
 
   <div class='row' id='stocks'>
-      <div class='card' >
-          <div class='card-body'>
-            <div class='col-3' *ngFor='let stock of TSLA'>
-                <b>{{stock.company}} : {{stock.symbol}}</b>
-            </div>
-            <div class='col-7' *ngFor='let stock of TSLA'>
-                <p><b>Current Price:</b> ${{stock.price}}</p>
-                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>
-                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
-            </div>
-            <div class='col-2'>
-                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyTSLA'>Buy</button>
-                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellTSLA'>Sell</button>
-            </div>
-          </div>
-        </div>
-        <div class='card' >
-          <div class='card-body'>
-            <div class='col-3' *ngFor='let stock of AMZN'>
-                <b>{{stock.company}} : {{stock.symbol}}</b>
-            </div>
-            <div class='col-7' *ngFor='let stock of AMZN'>
-                <p><b>Current Price:</b> ${{stock.price}}</p>
-                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>
-                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
-            </div>
-            <div class='col-2'>
-                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyAMZN'>Buy</button>
-                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellAMZN'>Sell</button>
-            </div>
-          </div>
-        </div>
-        <div class='card' >
-          <div class='card-body'>
-            <div class='col-3' *ngFor='let stock of FB'>
-                <b>{{stock.company}} : {{stock.symbol}}</b>
-            </div>
-            <div class='col-7' *ngFor='let stock of FB'>
-                <p><b>Current Price:</b> ${{stock.price}}</p>
-                <p><b>Percent Change:</b> {{stock.changePercent}}% </p>
-                <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
-            </div>
-            <div class='col-2'>
-                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyFB'>Buy</button>
-                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellFB'>Sell</button>
-            </div>
-          </div>
-        </div>
+    <app-stock-card class='col-12' [symbol]="TSLA"></app-stock-card>
+    <app-stock-card class='col-12' [symbol]="AMZN"></app-stock-card>
+    <app-stock-card class='col-12' [symbol]="FB"></app-stock-card> 
   </div>
 </body>
 

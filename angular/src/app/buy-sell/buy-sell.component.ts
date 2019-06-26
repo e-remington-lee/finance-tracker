@@ -75,7 +75,7 @@ export class BuySellComponent implements OnInit {
   searchStocks() {
     var searchStockBox = document.getElementById('searchStock');
     if (searchStockBox.style.display === "none") {
-      searchStockBox.style.display = "block";
+      searchStockBox.style.display = "flex";
     }
 
     this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
