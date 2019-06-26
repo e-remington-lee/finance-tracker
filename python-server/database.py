@@ -68,3 +68,17 @@ def transaction_list(account_id, symbol, transaction_type, stock_price, shares):
     cur.close()
     connection.close()
     return None
+
+def check_account_balance(account_id):
+     connection = create_connection()
+     cur = connection.cursor()
+
+     cur.execute("SELECT * FROM account_balance WHERE account_id = %(account_id)s", {'account_id': account_id})
+
+     row = cur.fetchone()
+
+     connection.commit()
+
+     cur.close()
+     connection.close()
+     return {'account_id': row[1], 'account_balance': row[2]}

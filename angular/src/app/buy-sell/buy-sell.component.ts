@@ -87,9 +87,6 @@ export class BuySellComponent implements OnInit {
   }
 
   updateChart() {
-
-    
-
     this.data.chartData(this.searchStockSymbol).subscribe((data: any[]) => {
       this.chartInfo = data;
       this.lableList = [];
@@ -117,14 +114,24 @@ export class BuySellComponent implements OnInit {
   buyStockButton2(symbol) {
     if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
       alert('Must be a positive whole number');
+      this.shares=0;
       return false
     } else {
-      this.type = 'buy';
-      this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe();
-      this.stocks.updateBalanceBuy(symbol, this.accountId, this.shares).subscribe(data => {
+      this.data.checkBalance(symbol, this.accountId, this.shares).subscribe(resp => {
+        if (resp.status == 200) {
+          this.type = 'buy';
+          this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe();
+          this.stocks.updateBalanceBuy(symbol, this.accountId, this.shares).subscribe(data => {
+          });
+          this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => {});
+          this.shares=0
+        }
+      },
+      error => {
+        if (error.status == 404) {
+          alert('Insufficient Funds')
+        }
       });
-      this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => {});
-      this.shares=0
   }
 }
 

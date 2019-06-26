@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 import requests
 import api_tokens
-from database import buy_stock, sell_stock, update_balance_buy, update_balance_sell, transaction_list
+from database import buy_stock, sell_stock, update_balance_buy, update_balance_sell, transaction_list, check_account_balance
 from stock_calculator import calculate_price
+
 
 app = Flask(__name__)
 
@@ -102,6 +103,29 @@ def transactions():
 
         return jsonify(stock_price)
     return None
+
+@app.route('/api/checkBalance', methods=['GET', 'POST'])
+def check_balance():
+        if request.method == 'GET':
+            symbol = request.args.get('symbol')
+            account_id = request.args.get('accountId')
+            shares = request.args.get('shares')
+
+            payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+            r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
+            latest_price = r.text
+
+            balance_change = calculate_price(float(latest_price), int(shares))
+
+            balance = check_account_balance(account_id)
+            float_balance = balance['account_balance']
+            float_balance = float_balance.replace('$', '').replace(',','')
+
+            if float(float_balance) < balance_change:
+                return "", 404
+
+            return "", 200
+        return "", 200
 
 
 @app.route('/api/buyStock', methods=['GET', 'POST'])

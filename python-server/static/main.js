@@ -663,17 +663,27 @@ var BuySellComponent = /** @class */ (function () {
         });
     };
     BuySellComponent.prototype.buyStockButton2 = function (symbol) {
+        var _this = this;
         if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
             alert('Must be a positive whole number');
+            this.shares = 0;
             return false;
         }
         else {
-            this.type = 'buy';
-            this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe();
-            this.stocks.updateBalanceBuy(symbol, this.accountId, this.shares).subscribe(function (data) {
+            this.data.checkBalance(symbol, this.accountId, this.shares).subscribe(function (resp) {
+                if (resp.status == 200) {
+                    _this.type = 'buy';
+                    _this.stocks.buyStock2(symbol, _this.accountId, _this.shares).subscribe();
+                    _this.stocks.updateBalanceBuy(symbol, _this.accountId, _this.shares).subscribe(function (data) {
+                    });
+                    _this.stocks.transactions(_this.accountId, symbol, _this.type, _this.shares).subscribe(function (data) { });
+                    _this.shares = 0;
+                }
+            }, function (error) {
+                if (error.status == 404) {
+                    alert('Insufficient Funds');
+                }
             });
-            this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(function (data) { });
-            this.shares = 0;
         }
     };
     BuySellComponent.prototype.sellStockButton2 = function (symbol) {
@@ -761,6 +771,10 @@ var DataService = /** @class */ (function () {
     DataService.prototype.chartData = function (symbol) {
         var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
         return this.http.get('http://localhost:7000/api/historicalData', params);
+    };
+    DataService.prototype.checkBalance = function (symbol, accountId, shares) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
+        return this.http.get('http://localhost:7000/api/checkBalane', { observe: 'response', params: params });
     };
     DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

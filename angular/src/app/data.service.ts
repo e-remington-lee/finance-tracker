@@ -19,4 +19,8 @@ export class DataService {
     return this.http.get('http://localhost:7000/api/historicalData', params);
   }
 
+  checkBalance(symbol, accountId, shares) {
+    const params = new HttpParams().set('symbol', symbol).set('accountId', accountId).set('shares', shares)
+    return this.http.get('http://localhost:7000/api/checkBalane', {observe: 'response', params});
+  }
 }
