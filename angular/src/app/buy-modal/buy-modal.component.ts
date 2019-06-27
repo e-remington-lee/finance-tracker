@@ -32,6 +32,13 @@ export class BuyModalComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClickFaceBook() {
+    // set this.symbol = something
+  }
+
+  onClickTesla() {
+
+  }
   buyStockButton2(symbol) {
     if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
       alert('Must be a positive whole number');
