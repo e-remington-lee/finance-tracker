@@ -10,9 +10,7 @@
     </div>
 
   <div class='row' id='stocks'>
-    <!-- <app-stock-card class='col-12' [buyTarget]="'#buyTSLA'" [sellTarget]="'#sellTSLA'" [symbol]="TSLA"></app-stock-card> -->
     <app-stock-card class='col-12' [symbol]="TSLA"></app-stock-card>
-
     <app-stock-card class='col-12' [symbol]="AMZN"></app-stock-card>
     <app-stock-card class='col-12' [symbol]="FB"></app-stock-card> 
   </div>
@@ -68,8 +66,8 @@
       </div>
     </div>
   
-
-<div class="modal fade" id="buyTSLA" tabindex='-1'>
+<app-buy-modal [symbol]="TSLA" [symbolString]="'FB'"></app-buy-modal>
+<!-- <div class="modal fade" id="buyTSLA" tabindex='-1'>
   <div class="modal-dialog" role="document">    
     <div class="modal-content">
       <div class="modal-header" *ngFor='let stocks of TSLA'>
@@ -92,7 +90,7 @@
       </div>
     </div>
   </div>
-  </div>
+  </div> -->
   <div class="modal fade" id="sellTSLA" tabindex='-1'>
     <div class="modal-dialog" role="document">    
       <div class="modal-content">

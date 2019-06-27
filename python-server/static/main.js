@@ -493,7 +493,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _account_account_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./account/account.component */ "./src/app/account/account.component.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _stock_card_stock_card_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./stock-card/stock-card.component */ "./src/app/stock-card/stock-card.component.ts");
-/* harmony import */ var _buy_sell_modal_buy_sell_modal_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./buy-sell-modal/buy-sell-modal.component */ "./src/app/buy-sell-modal/buy-sell-modal.component.ts");
+/* harmony import */ var _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./buy-modal/buy-modal.component */ "./src/app/buy-modal/buy-modal.component.ts");
+/* harmony import */ var _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./sell-modal/sell-modal.component */ "./src/app/sell-modal/sell-modal.component.ts");
+
 
 
 
@@ -523,7 +525,8 @@ var AppModule = /** @class */ (function () {
                 _account_account_component__WEBPACK_IMPORTED_MODULE_11__["AccountComponent"],
                 _login_login_component__WEBPACK_IMPORTED_MODULE_12__["LoginComponent"],
                 _stock_card_stock_card_component__WEBPACK_IMPORTED_MODULE_13__["StockCardComponent"],
-                _buy_sell_modal_buy_sell_modal_component__WEBPACK_IMPORTED_MODULE_14__["BuySellModalComponent"],
+                _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_14__["BuyModalComponent"],
+                _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_15__["SellModalComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -542,69 +545,130 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/buy-sell-modal/buy-sell-modal.component.html":
-/*!**************************************************************!*\
-  !*** ./src/app/buy-sell-modal/buy-sell-modal.component.html ***!
-  \**************************************************************/
+/***/ "./src/app/buy-modal/buy-modal.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/buy-modal/buy-modal.component.html ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"buyTSLA\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of TSLA'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of TSLA'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"TSLA\")' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n    </div>"
+module.exports = "<div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of symbol'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"TSLA\")' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n    </div>\n"
 
 /***/ }),
 
-/***/ "./src/app/buy-sell-modal/buy-sell-modal.component.scss":
-/*!**************************************************************!*\
-  !*** ./src/app/buy-sell-modal/buy-sell-modal.component.scss ***!
-  \**************************************************************/
+/***/ "./src/app/buy-modal/buy-modal.component.scss":
+/*!****************************************************!*\
+  !*** ./src/app/buy-modal/buy-modal.component.scss ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2J1eS1zZWxsLW1vZGFsL2J1eS1zZWxsLW1vZGFsLmNvbXBvbmVudC5zY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2J1eS1tb2RhbC9idXktbW9kYWwuY29tcG9uZW50LnNjc3MifQ== */"
 
 /***/ }),
 
-/***/ "./src/app/buy-sell-modal/buy-sell-modal.component.ts":
-/*!************************************************************!*\
-  !*** ./src/app/buy-sell-modal/buy-sell-modal.component.ts ***!
-  \************************************************************/
-/*! exports provided: BuySellModalComponent */
+/***/ "./src/app/buy-modal/buy-modal.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/buy-modal/buy-modal.component.ts ***!
+  \**************************************************/
+/*! exports provided: BuyModalComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BuySellModalComponent", function() { return BuySellModalComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BuyModalComponent", function() { return BuyModalComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 
 
-var BuySellModalComponent = /** @class */ (function () {
-    function BuySellModalComponent() {
-        this.symbol = [];
+
+
+var BuyModalComponent = /** @class */ (function () {
+    function BuyModalComponent(stocks, data) {
+        this.stocks = stocks;
+        this.data = data;
+        this.TSLA = [];
+        this.AMZN = [];
+        this.FB = [];
+        this.searchStockData = [];
+        this.chartInfo = [];
+        this.lableList = [];
+        this.priceList = [];
+        this.username = 'Remington';
+        this.userId = 1;
+        this.accountId = 1;
+        this.stockPrice = 200.92;
     }
-    BuySellModalComponent.prototype.ngOnInit = function () {
+    BuyModalComponent.prototype.ngOnInit = function () {
+    };
+    BuyModalComponent.prototype.buyStockButton2 = function (symbol) {
+        var _this = this;
+        if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
+            alert('Must be a positive whole number');
+            this.shares = 0;
+            return false;
+        }
+        else {
+            this.data.checkBalance(symbol, this.accountId, this.shares).subscribe(function (resp) {
+                if (resp.status == 200) {
+                    _this.type = 'buy';
+                    _this.stocks.buyStock2(symbol, _this.accountId, _this.shares).subscribe();
+                    _this.stocks.updateBalanceBuy(symbol, _this.accountId, _this.shares).subscribe(function (data) {
+                    });
+                    _this.stocks.transactions(_this.accountId, symbol, _this.type, _this.shares).subscribe(function (data) { });
+                    _this.shares = 0;
+                }
+            }, function (error) {
+                if (error.status == 404) {
+                    alert('Purchase Failed: Insufficient Funds');
+                    _this.shares = 0;
+                }
+            });
+        }
+    };
+    BuyModalComponent.prototype.sellStockButton2 = function (symbol) {
+        var _this = this;
+        if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
+            alert('Must be a positive whole number');
+            return false;
+        }
+        else {
+            this.data.checkStock(symbol, this.accountId, this.shares).subscribe(function (resp) {
+                if (resp.status == 200) {
+                    _this.type = 'sell';
+                    _this.stocks.sellStock(symbol, _this.accountId, _this.shares).subscribe();
+                    _this.stocks.updateBalanceSell(symbol, _this.accountId, _this.shares).subscribe(function (data) {
+                    });
+                    _this.stocks.transactions(_this.accountId, symbol, _this.type, _this.shares).subscribe(function (data) { });
+                    _this.shares = 0;
+                }
+            }, function (error) {
+                if (error.status == 404) {
+                    alert('Sell Failed: Insufficient Share Quantity');
+                    _this.shares = 0;
+                }
+            });
+        }
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
-    ], BuySellModalComponent.prototype, "symbol", void 0);
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], BuyModalComponent.prototype, "symbol", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], BuySellModalComponent.prototype, "buyTarget", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], BuySellModalComponent.prototype, "sellTarget", void 0);
-    BuySellModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    ], BuyModalComponent.prototype, "symbolString", void 0);
+    BuyModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-buy-sell-modal',
-            template: __webpack_require__(/*! ./buy-sell-modal.component.html */ "./src/app/buy-sell-modal/buy-sell-modal.component.html"),
-            styles: [__webpack_require__(/*! ./buy-sell-modal.component.scss */ "./src/app/buy-sell-modal/buy-sell-modal.component.scss")]
+            selector: 'app-buy-modal',
+            template: __webpack_require__(/*! ./buy-modal.component.html */ "./src/app/buy-modal/buy-modal.component.html"),
+            styles: [__webpack_require__(/*! ./buy-modal.component.scss */ "./src/app/buy-modal/buy-modal.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], BuySellModalComponent);
-    return BuySellModalComponent;
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
+    ], BuyModalComponent);
+    return BuyModalComponent;
 }());
 
 
@@ -618,7 +682,7 @@ var BuySellModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container'>\n\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n    <!-- <app-stock-card class='col-12' [buyTarget]=\"'#buyTSLA'\" [sellTarget]=\"'#sellTSLA'\" [symbol]=\"TSLA\"></app-stock-card> -->\n    <app-stock-card class='col-12' [symbol]=\"TSLA\"></app-stock-card>\n\n    <app-stock-card class='col-12' [symbol]=\"AMZN\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"FB\"></app-stock-card> \n  </div>\n</body>\n\n\n<div class=\"modal fade\" id=\"buySearchStock\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of searchStockData'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of searchStockData'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton3()' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n    </div>\n    <div class=\"modal fade\" id=\"sellSearchStock\" tabindex='-1'>\n      <div class=\"modal-dialog\" role=\"document\">    \n        <div class=\"modal-content\">\n          <div class=\"modal-header\" *ngFor='let stocks of searchStockData'>\n            <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n              <form>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of searchStockData'>Number of shares at: ${{stocks.price}}</label>\n                    <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                  </div>\n                </form>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n            <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton3()' data-dismiss=\"modal\">Sell</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  \n\n<div class=\"modal fade\" id=\"buyTSLA\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of TSLA'>\n        <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of TSLA'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"TSLA\")' data-dismiss=\"modal\">Buy</button>\n      </div>\n    </div>\n  </div>\n  </div>\n  <div class=\"modal fade\" id=\"sellTSLA\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of TSLA'>\n          <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of TSLA'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"TSLA\")' data-dismiss=\"modal\">Sell</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n  <div class=\"modal fade\" id=\"buyAMZN\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of AMZN'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of AMZN'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"AMZN\")' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n</div>\n<div class=\"modal fade\" id=\"sellAMZN\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of AMZN'>\n        <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of AMZN'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"AMZN\")' data-dismiss=\"modal\">Sell</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"modal fade\" id=\"buyFB\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of FB'>\n        <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of FB'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"FB\")' data-dismiss=\"modal\">Buy</button>\n      </div>\n    </div>\n  </div>\n</div>\n  <div class=\"modal fade\" id=\"sellFB\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of FB'>\n          <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of FB'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"FB\")' data-dismiss=\"modal\">Sell</button>\n        </div>\n      </div>\n    </div>\n    </div>\n\n\n\n  \n\n"
+module.exports = "<body class='container'>\n\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n    <app-stock-card class='col-12' [symbol]=\"TSLA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"AMZN\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"FB\"></app-stock-card> \n  </div>\n</body>\n\n\n<div class=\"modal fade\" id=\"buySearchStock\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of searchStockData'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of searchStockData'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton3()' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n    </div>\n    <div class=\"modal fade\" id=\"sellSearchStock\" tabindex='-1'>\n      <div class=\"modal-dialog\" role=\"document\">    \n        <div class=\"modal-content\">\n          <div class=\"modal-header\" *ngFor='let stocks of searchStockData'>\n            <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n              <form>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of searchStockData'>Number of shares at: ${{stocks.price}}</label>\n                    <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                  </div>\n                </form>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n            <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton3()' data-dismiss=\"modal\">Sell</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  \n<app-buy-modal [symbol]=\"TSLA\" [symbolString]=\"'FB'\"></app-buy-modal>\n<!-- <div class=\"modal fade\" id=\"buyTSLA\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of TSLA'>\n        <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of TSLA'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"TSLA\")' data-dismiss=\"modal\">Buy</button>\n      </div>\n    </div>\n  </div>\n  </div> -->\n  <div class=\"modal fade\" id=\"sellTSLA\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of TSLA'>\n          <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of TSLA'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"TSLA\")' data-dismiss=\"modal\">Sell</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n  <div class=\"modal fade\" id=\"buyAMZN\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of AMZN'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of AMZN'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"AMZN\")' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n</div>\n<div class=\"modal fade\" id=\"sellAMZN\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of AMZN'>\n        <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of AMZN'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"AMZN\")' data-dismiss=\"modal\">Sell</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"modal fade\" id=\"buyFB\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of FB'>\n        <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of FB'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"FB\")' data-dismiss=\"modal\">Buy</button>\n      </div>\n    </div>\n  </div>\n</div>\n  <div class=\"modal fade\" id=\"sellFB\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of FB'>\n          <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of FB'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"FB\")' data-dismiss=\"modal\">Sell</button>\n        </div>\n      </div>\n    </div>\n    </div>\n\n\n\n  \n\n"
 
 /***/ }),
 
@@ -1556,6 +1620,62 @@ var PortfolioComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/sell-modal/sell-modal.component.html":
+/*!******************************************************!*\
+  !*** ./src/app/sell-modal/sell-modal.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  sell-modal works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/sell-modal/sell-modal.component.scss":
+/*!******************************************************!*\
+  !*** ./src/app/sell-modal/sell-modal.component.scss ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NlbGwtbW9kYWwvc2VsbC1tb2RhbC5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/sell-modal/sell-modal.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/sell-modal/sell-modal.component.ts ***!
+  \****************************************************/
+/*! exports provided: SellModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SellModalComponent", function() { return SellModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var SellModalComponent = /** @class */ (function () {
+    function SellModalComponent() {
+    }
+    SellModalComponent.prototype.ngOnInit = function () {
+    };
+    SellModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-sell-modal',
+            template: __webpack_require__(/*! ./sell-modal.component.html */ "./src/app/sell-modal/sell-modal.component.html"),
+            styles: [__webpack_require__(/*! ./sell-modal.component.scss */ "./src/app/sell-modal/sell-modal.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], SellModalComponent);
+    return SellModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/stock-card/stock-card.component.html":
 /*!******************************************************!*\
   !*** ./src/app/stock-card/stock-card.component.html ***!
@@ -1563,7 +1683,7 @@ var PortfolioComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='card'>\n  <div class='card-body'>\n    <div class='col-3' *ngFor='let stock of symbol'>\n        <b>{{stock.company}} : {{stock.symbol}}</b>\n    </div>\n    <div class='col-7' *ngFor='let stock of symbol'>\n        <p><b>Current Price:</b> ${{stock.price}}</p>\n        <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n        <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n    </div>\n    <div class='col-2'>\n        <!-- <button type='button' class='btn btn-primary' data-toggle='modal' data-target='buyTarget'>Buy</button>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='sellTarget'>Sell</button> -->\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyTSLA'>Buy</button>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellTSLA'>Sell</button>\n      </div>\n  </div>\n</div>"
+module.exports = "<div class='card'>\n  <div class='card-body'>\n    <div class='col-3' *ngFor='let stock of symbol'>\n        <b>{{stock.company}} : {{stock.symbol}}</b>\n    </div>\n    <div class='col-7' *ngFor='let stock of symbol'>\n        <p><b>Current Price:</b> ${{stock.price}}</p>\n        <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n        <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n    </div>\n    <div class='col-2'>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'>Buy</button>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellTSLA'>Sell</button>\n      </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1601,14 +1721,6 @@ var StockCardComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], StockCardComponent.prototype, "symbol", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], StockCardComponent.prototype, "buyTarget", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], StockCardComponent.prototype, "sellTarget", void 0);
     StockCardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-stock-card',

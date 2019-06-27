@@ -82,7 +82,7 @@ def balance_change_sell():
         latest_price = r.text
         balance_change = calculate_price(float(latest_price), int(shares))
         update_balance_sell(account_id, balance_change)
-        print(balance_change)
+
         return jsonify(balance_change)
     return None
 
@@ -136,7 +136,7 @@ def check_stock():
 
             holdings = check_stock_holdings(account_id, symbol)
             current_holdings = holdings['shares']
-            
+
             if int(current_holdings) < int(shares):
                 return "", 404
 

@@ -13,7 +13,8 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login.component';
 import { StockCardComponent } from './stock-card/stock-card.component';
-import { BuySellModalComponent } from './buy-sell-modal/buy-sell-modal.component';
+import { BuyModalComponent } from './buy-modal/buy-modal.component';
+import { SellModalComponent } from './sell-modal/sell-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BuySellModalComponent } from './buy-sell-modal/buy-sell-modal.component
     AccountComponent,
     LoginComponent,
     StockCardComponent,
-    BuySellModalComponent,
+    BuyModalComponent,
+    SellModalComponent,
   ],
   imports: [
     BrowserModule,
