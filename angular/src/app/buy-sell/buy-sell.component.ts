@@ -124,12 +124,13 @@ export class BuySellComponent implements OnInit {
           this.stocks.updateBalanceBuy(symbol, this.accountId, this.shares).subscribe(data => {
           });
           this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => {});
-          this.shares=0
+          this.shares=0;
         }
       },
       error => {
         if (error.status == 404) {
-          alert('Insufficient Funds')
+          alert('Purchase Failed: Insufficient Funds')
+          this.shares = 0;
         }
       });
   }
@@ -140,12 +141,22 @@ export class BuySellComponent implements OnInit {
       alert('Must be a positive whole number');
       return false
     } else {
-      this.type = 'sell';
-      this.stocks.sellStock(symbol, this.accountId, this.shares).subscribe();
-      this.stocks.updateBalanceSell(symbol, this.accountId, this.shares).subscribe(data => {
+      this.data.checkStock(symbol, this.accountId, this.shares).subscribe(resp => {
+        if (resp.status == 200) {
+          this.type = 'sell';
+          this.stocks.sellStock(symbol, this.accountId, this.shares).subscribe();
+          this.stocks.updateBalanceSell(symbol, this.accountId, this.shares).subscribe(data => {
+          });
+          this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => {});
+          this.shares=0
+        }
+      },
+      error => {
+        if (error.status == 404) {
+          alert('Sell Failed: Insufficient Share Quantity')
+          this.shares = 0;
+        }
       });
-      this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => {});
-      this.shares=0
   }
 }
 

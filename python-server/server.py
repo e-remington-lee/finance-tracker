@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import requests
 import api_tokens
-from database import buy_stock, sell_stock, update_balance_buy, update_balance_sell, transaction_list, check_account_balance
+from database import buy_stock, sell_stock, update_balance_buy, update_balance_sell, transaction_list, check_account_balance, check_stock_holdings
 from stock_calculator import calculate_price
 
 
@@ -125,7 +125,23 @@ def check_balance():
                 return "", 404
 
             return "", 200
-        return "", 200
+        return None
+
+@app.route('/api/checkStock', methods=['GET', 'POST'])
+def check_stock():
+        if request.method == 'GET':
+            symbol = request.args.get('symbol')
+            account_id = request.args.get('accountId')
+            shares = request.args.get('shares')
+
+            holdings = check_stock_holdings(account_id, symbol)
+            current_holdings = holdings['shares']
+            
+            if int(current_holdings) < int(shares):
+                return "", 404
+
+            return "", 200
+        return None
 
 
 @app.route('/api/buyStock', methods=['GET', 'POST'])

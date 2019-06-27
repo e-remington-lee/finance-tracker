@@ -82,3 +82,18 @@ def check_account_balance(account_id):
      cur.close()
      connection.close()
      return {'account_id': row[1], 'account_balance': row[2]}
+
+def check_stock_holdings(account_id, symbol):
+     connection = create_connection()
+     cur = connection.cursor()
+
+     cur.execute("SELECT * FROM holdings WHERE account_id = %(account_id)s AND symbol = %(symbol)s", {'account_id': account_id, 'symbol': symbol})
+
+     row = cur.fetchone()
+
+     connection.commit()
+
+     cur.close()
+     connection.close()
+     # return {'account_id': row[1], 'symbol': row[2], 'shares': row[3]}
+     return {'shares': row[3]}
