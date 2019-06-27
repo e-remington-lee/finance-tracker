@@ -164,14 +164,25 @@ export class BuySellComponent implements OnInit {
 buyStockButton3() {
   if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
     alert('Must be a positive whole number');
+    this.shares = 0
     return false
   } else {
-    this.type = 'buy';
-    this.stocks.buyStock2(this.searchStockSymbol, this.accountId, this.shares).subscribe();
-    this.stocks.updateBalanceBuy(this.searchStockSymbol, this.accountId, this.shares).subscribe(data => {
+    this.data.checkBalance(this.searchStockSymbol, this.accountId, this.shares).subscribe(resp => {
+      if (resp.status == 200) {
+        this.type = 'buy';
+        this.stocks.buyStock2(this.searchStockSymbol, this.accountId, this.shares).subscribe();
+        this.stocks.updateBalanceBuy(this.searchStockSymbol, this.accountId, this.shares).subscribe(data => {
+        });
+        this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(data => {});
+        this.shares=0;
+      };
+    },
+    error => {
+      if (error.status == 404) {
+        alert('Sell Failed: Insufficient Share Quantity')
+        this.shares = 0;
+      }
     });
-    this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(data => {});
-    this.shares=0
   }
 }
 

@@ -5,12 +5,14 @@
           placeholder="Search for your own stocks (symbol required)" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>
     </div>  
     <div class='row' id='searchStock'>
-        <app-stock-card class='col-12' [symbol]="searchStockData"></app-stock-card>
+        <app-stock-card class='col-12'  [symbol]="searchStockData"></app-stock-card>
         <canvas id="myChart" ></canvas>
     </div>
 
   <div class='row' id='stocks'>
+    <!-- <app-stock-card class='col-12' [buyTarget]="'#buyTSLA'" [sellTarget]="'#sellTSLA'" [symbol]="TSLA"></app-stock-card> -->
     <app-stock-card class='col-12' [symbol]="TSLA"></app-stock-card>
+
     <app-stock-card class='col-12' [symbol]="AMZN"></app-stock-card>
     <app-stock-card class='col-12' [symbol]="FB"></app-stock-card> 
   </div>

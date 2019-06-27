@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class StockCardComponent implements OnInit {
 
   @Input() symbol: any;
+  @Input() buyTarget: string;
+  @Input() sellTarget: string;
 
   constructor() { }
 
