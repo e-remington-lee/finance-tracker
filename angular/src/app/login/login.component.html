@@ -1,3 +1,71 @@
-<p>
-  login works!
-</p>
+<div class="modal fade" id="Login" tabindex='-1'>
+    <div class="modal-dialog" role="document">    
+      <div class="modal-content">
+        <div class="modal-c-tabs">
+            <ul class="nav nav-tabs tabs-2" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#loginTab" role="tab">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#registerTab" role="tab">Register</a>
+                </li>
+              </ul>
+        <div class='tab-content'>
+
+        <div class='tab-pane fad-in show active' id='loginTab' role='tabpanel'>
+          <div class="modal-body">
+              <form>
+                  <div class="form-group">
+                    <label for="email" class="col-form-label">Email</label>
+                    <input type="email" class="form-control" id="emailLogin" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="col-form-label">Password</label>
+                    <input type='password' class="form-control" id="passwordLogin" minlength="8" required>
+                  </div>
+                </form>
+                <div class="text-center mt-2">
+                    <button type="button" class="btn btn-primary">Login</button>
+                  </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+              <div class="options">
+                  <p>Not a member? <a href="#" class="blue-text">Sign Up</a></p>
+                  <p>Forgot <a href="#" class="blue-text">Password?</a></p>
+                </div>
+            <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+
+        <div class='tab-pane fade' id='registerTab' role='tabpanel'>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                      <label for="email" class="col-form-label">Email</label>
+                      <input type="email" class="form-control" id="emailRegister" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="col-form-label">Password</label>
+                      <input type='password' class="form-control" id="passwordRegister" minlength="8" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-form-label">Retype Password</label>
+                        <input type='password' class="form-control" id="passwordRegisterCheck" minlength="8" required>
+                      </div>
+                  </form>
+                  <div class="text-center mt-2">
+                      <button type="button" class="btn btn-primary">Register</button>
+                  </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <div class="options">
+                    <p>Already have an account? <a class="blue-text" data-toggle="tab" href="#loginTab">Log In</a></p>
+                  </div>
+              <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
