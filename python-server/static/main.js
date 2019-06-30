@@ -270,13 +270,12 @@ function webpackContext(req) {
 	return __webpack_require__(id);
 }
 function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) { // check for number or string
+	if(!__webpack_require__.o(map, req)) {
 		var e = new Error("Cannot find module '" + req + "'");
 		e.code = 'MODULE_NOT_FOUND';
 		throw e;
 	}
-	return id;
+	return map[req];
 }
 webpackContext.keys = function webpackContextKeys() {
 	return Object.keys(map);
@@ -284,6 +283,116 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/account/account.component.html":
+/*!**************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/account/account.component.html ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  account works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/app.component.html":
+/*!**************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/app.component.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-nav>\n</app-nav>\n\n\n<section>\n<router-outlet></router-outlet>\n</section>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/buy-modal/buy-modal.component.html":
+/*!******************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/buy-modal/buy-modal.component.html ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of symbol'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(symbolString)' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n  </div>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/buy-sell/buy-sell.component.html":
+/*!****************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/buy-sell/buy-sell.component.html ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<body class='container'>\n\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n    <app-stock-card class='col-12' [symbol]=\"TSLA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"AMZN\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"FB\"></app-stock-card> \n  </div>\n</body>\n\n<app-buy-modal [symbol]=\"FB\" [symbolString]=\"'FB'\"></app-buy-modal>\n<app-buy-modal [symbol]=\"TSLA\" [symbolString]=\"'TSLA'\"></app-buy-modal>\n\n\n<div class=\"modal fade\" id=\"buySearchStock\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of searchStockData'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of searchStockData'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton3()' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n    </div>\n    <div class=\"modal fade\" id=\"sellSearchStock\" tabindex='-1'>\n      <div class=\"modal-dialog\" role=\"document\">    \n        <div class=\"modal-content\">\n          <div class=\"modal-header\" *ngFor='let stocks of searchStockData'>\n            <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n              <form>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of searchStockData'>Number of shares at: ${{stocks.price}}</label>\n                    <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                  </div>\n                </form>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n            <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton3()' data-dismiss=\"modal\">Sell</button>\n          </div>\n        </div>\n      </div>\n    </div>\n\n<!-- <div class=\"modal fade\" id=\"buyTSLA\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of TSLA'>\n        <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of TSLA'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"TSLA\")' data-dismiss=\"modal\">Buy</button>\n      </div>\n    </div>\n  </div>\n  </div> -->\n  <div class=\"modal fade\" id=\"sellTSLA\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of TSLA'>\n          <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of TSLA'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"TSLA\")' data-dismiss=\"modal\">Sell</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n  <div class=\"modal fade\" id=\"buyAMZN\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of AMZN'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of AMZN'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"AMZN\")' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n</div>\n<div class=\"modal fade\" id=\"sellAMZN\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of AMZN'>\n        <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of AMZN'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"AMZN\")' data-dismiss=\"modal\">Sell</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"modal fade\" id=\"buyFB\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of FB'>\n        <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of FB'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"FB\")' data-dismiss=\"modal\">Buy</button>\n      </div>\n    </div>\n  </div>\n</div>\n  <div class=\"modal fade\" id=\"sellFB\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of FB'>\n          <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of FB'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"FB\")' data-dismiss=\"modal\">Sell</button>\n        </div>\n      </div>\n    </div>\n    </div>\n\n\n\n  \n\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/home/home.component.html":
+/*!********************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/home/home.component.html ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Login'>Login/Register</button>\n    </div>\n</header>\n\n<app-login></app-login>\n  \n<div>\n    <h3>GitHub Repository</h3>\n      <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</div>"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/login/login.component.html":
+/*!**********************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/login/login.component.html ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"modal fade\" id=\"Login\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-c-tabs\">\n            <ul class=\"nav nav-tabs tabs-2\" role=\"tablist\">\n                <li class=\"nav-item\">\n                  <a class=\"nav-link active\" data-toggle=\"tab\" href=\"#loginTab\" role=\"tab\">Login</a>\n                </li>\n                <li class=\"nav-item\">\n                  <a class=\"nav-link\" data-toggle=\"tab\" href=\"#registerTab\" role=\"tab\">Register</a>\n                </li>\n              </ul>\n        <div class='tab-content'>\n\n        <div class='tab-pane fad-in show active' id='loginTab' role='tabpanel'>\n          <div class=\"modal-body\">\n              <form>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\">Email</label>\n                    <input type=\"email\" class=\"form-control\" id=\"emailLogin\" required>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"password\" class=\"col-form-label\">Password</label>\n                    <input type='password' class=\"form-control\" id=\"passwordLogin\" minlength=\"8\" required>\n                  </div>\n                </form>\n                <div class=\"text-center mt-2\">\n                    <button type=\"button\" class=\"btn btn-primary\">Login</button>\n                  </div>\n          </div>\n          <div class=\"modal-footer justify-content-center\">\n              <div class=\"options\">\n                  <p>Not a member? <a href=\"#\" class=\"blue-text\">Sign Up</a></p>\n                  <p>Forgot <a href=\"#\" class=\"blue-text\">Password?</a></p>\n                </div>\n            <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n          </div>\n      </div>\n\n        <div class='tab-pane fade' id='registerTab' role='tabpanel'>\n            <div class=\"modal-body\">\n                <form>\n                    <div class=\"form-group\">\n                      <label for=\"email\" class=\"col-form-label\">Email</label>\n                      <input type=\"email\" class=\"form-control\" id=\"emailRegister\" required>\n                    </div>\n                    <div class=\"form-group\">\n                      <label for=\"password\" class=\"col-form-label\">Password</label>\n                      <input type='password' class=\"form-control\" id=\"passwordRegister\" minlength=\"8\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"password\" class=\"col-form-label\">Retype Password</label>\n                        <input type='password' class=\"form-control\" id=\"passwordRegisterCheck\" minlength=\"8\" required>\n                      </div>\n                  </form>\n                  <div class=\"text-center mt-2\">\n                      <button type=\"button\" class=\"btn btn-primary\">Register</button>\n                  </div>\n            </div>\n            <div class=\"modal-footer justify-content-center\">\n                <div class=\"options\">\n                    <p>Already have an account? <a class=\"blue-text\" data-toggle=\"tab\" href=\"#loginTab\">Log In</a></p>\n                  </div>\n              <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      </div>\n      </div>\n    </div>\n    </div>\n  </div>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/nav/nav.component.html":
+/*!******************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/nav/nav.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Finance App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Buy & Sell</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/account'>Account</a></li>\n    </ul>\n  </div>\n</nav>\n</body>\n</html>"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/portfolio/portfolio.component.html":
+/*!******************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/portfolio/portfolio.component.html ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<body class='container' id='container'>\n    <canvas id=\"myChart\" ></canvas>\n  <div id='portfolio'>\n    <div class='card' id='card'>\n      <div class='card-body'>\n          <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n          </p>\n          <a class=\"btn btn-lg btn-secondary\">Buy</a>\n          <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n      </div>\n    </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n            </p>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Buy</a>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n        </div>\n      </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n            </p>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Buy</a>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n        </div>\n      </div>  \n  </div>\n</body>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/sell-modal/sell-modal.component.html":
+/*!********************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/sell-modal/sell-modal.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  sell-modal works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/stock-card/stock-card.component.html":
+/*!********************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/stock-card/stock-card.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class='card'>\n  <div class='card-body'>\n    <div class='col-3' *ngFor='let stock of symbol'>\n        <b>{{stock.company}} : {{stock.symbol}}</b>\n    </div>\n    <div class='col-7' *ngFor='let stock of symbol'>\n        <p><b>Current Price:</b> ${{stock.price}}</p>\n        <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n        <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n    </div>\n    <div class='col-2'>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'>Buy</button>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellTSLA'>Sell</button>\n      </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -310,17 +419,6 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
-/***/ "./src/app/account/account.component.html":
-/*!************************************************!*\
-  !*** ./src/app/account/account.component.html ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  account works!\n</p>\n"
-
-/***/ }),
-
 /***/ "./src/app/account/account.component.scss":
 /*!************************************************!*\
   !*** ./src/app/account/account.component.scss ***!
@@ -343,24 +441,22 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccountComponent", function() { return AccountComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 
 
-var AccountComponent = /** @class */ (function () {
-    function AccountComponent() {
+let AccountComponent = class AccountComponent {
+    constructor() { }
+    ngOnInit() {
     }
-    AccountComponent.prototype.ngOnInit = function () {
-    };
-    AccountComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-account',
-            template: __webpack_require__(/*! ./account.component.html */ "./src/app/account/account.component.html"),
-            styles: [__webpack_require__(/*! ./account.component.scss */ "./src/app/account/account.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], AccountComponent);
-    return AccountComponent;
-}());
+};
+AccountComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-account',
+        template: __webpack_require__(/*! raw-loader!./account.component.html */ "./node_modules/raw-loader/index.js!./src/app/account/account.component.html"),
+        styles: [__webpack_require__(/*! ./account.component.scss */ "./src/app/account/account.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], AccountComponent);
 
 
 
@@ -377,8 +473,8 @@ var AccountComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function() { return AppRoutingModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./buy-sell/buy-sell.component */ "./src/app/buy-sell/buy-sell.component.ts");
 /* harmony import */ var _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./portfolio/portfolio.component */ "./src/app/portfolio/portfolio.component.ts");
@@ -392,37 +488,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var routes = [
+const routes = [
     { path: '', component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
     { path: 'buySell', component: _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_4__["BuySellComponent"] },
     { path: 'portfolio', component: _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_5__["PortfolioComponent"] },
     { path: 'account', component: _account_account_component__WEBPACK_IMPORTED_MODULE_6__["AccountComponent"] },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"] },
 ];
-var AppRoutingModule = /** @class */ (function () {
-    function AppRoutingModule() {
-    }
-    AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)],
-            exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
-        })
-    ], AppRoutingModule);
-    return AppRoutingModule;
-}());
+let AppRoutingModule = class AppRoutingModule {
+};
+AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+    })
+], AppRoutingModule);
 
 
-
-/***/ }),
-
-/***/ "./src/app/app.component.html":
-/*!************************************!*\
-  !*** ./src/app/app.component.html ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<app-nav>\n</app-nav>\n\n\n<section>\n<router-outlet></router-outlet>\n</section>\n"
 
 /***/ }),
 
@@ -448,22 +530,21 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 
 
-var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+let AppComponent = class AppComponent {
+    constructor() {
         this.title = 'angular';
     }
-    AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-root',
-            template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
-            styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
-        })
-    ], AppComponent);
-    return AppComponent;
-}());
+};
+AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-root',
+        template: __webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/index.js!./src/app/app.component.html"),
+        styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
+    })
+], AppComponent);
 
 
 
@@ -480,10 +561,10 @@ var AppComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
@@ -511,48 +592,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var AppModule = /** @class */ (function () {
-    function AppModule() {
-    }
-    AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-            declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
-                _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"],
-                _nav_nav_component__WEBPACK_IMPORTED_MODULE_8__["NavComponent"],
-                _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_9__["BuySellComponent"],
-                _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_10__["PortfolioComponent"],
-                _account_account_component__WEBPACK_IMPORTED_MODULE_11__["AccountComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_12__["LoginComponent"],
-                _stock_card_stock_card_component__WEBPACK_IMPORTED_MODULE_13__["StockCardComponent"],
-                _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_14__["BuyModalComponent"],
-                _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_15__["SellModalComponent"],
-            ],
-            imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]
-            ],
-            providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
-        })
-    ], AppModule);
-    return AppModule;
-}());
+let AppModule = class AppModule {
+};
+AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+        declarations: [
+            _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
+            _home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"],
+            _nav_nav_component__WEBPACK_IMPORTED_MODULE_8__["NavComponent"],
+            _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_9__["BuySellComponent"],
+            _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_10__["PortfolioComponent"],
+            _account_account_component__WEBPACK_IMPORTED_MODULE_11__["AccountComponent"],
+            _login_login_component__WEBPACK_IMPORTED_MODULE_12__["LoginComponent"],
+            _stock_card_stock_card_component__WEBPACK_IMPORTED_MODULE_13__["StockCardComponent"],
+            _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_14__["BuyModalComponent"],
+            _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_15__["SellModalComponent"],
+        ],
+        imports: [
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]
+        ],
+        providers: [],
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
+    })
+], AppModule);
 
 
-
-/***/ }),
-
-/***/ "./src/app/buy-modal/buy-modal.component.html":
-/*!****************************************************!*\
-  !*** ./src/app/buy-modal/buy-modal.component.html ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of symbol'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(symbolString)' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -578,15 +645,15 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BuyModalComponent", function() { return BuyModalComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 
 
 
 
-var BuyModalComponent = /** @class */ (function () {
-    function BuyModalComponent(stocks, data) {
+let BuyModalComponent = class BuyModalComponent {
+    constructor(stocks, data) {
         this.stocks = stocks;
         this.data = data;
         this.TSLA = [];
@@ -601,93 +668,83 @@ var BuyModalComponent = /** @class */ (function () {
         this.accountId = 1;
         this.stockPrice = 200.92;
     }
-    BuyModalComponent.prototype.ngOnInit = function () {
-    };
-    BuyModalComponent.prototype.onClickFaceBook = function () {
+    ngOnInit() {
+    }
+    onClickFaceBook() {
         // set this.symbol = something
-    };
-    BuyModalComponent.prototype.onClickTesla = function () {
-    };
-    BuyModalComponent.prototype.buyStockButton2 = function (symbol) {
-        var _this = this;
+    }
+    onClickTesla() {
+    }
+    buyStockButton2(symbol) {
         if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
             alert('Must be a positive whole number');
             this.shares = 0;
             return false;
         }
         else {
-            this.data.checkBalance(symbol, this.accountId, this.shares).subscribe(function (resp) {
+            this.data.checkBalance(symbol, this.accountId, this.shares).subscribe(resp => {
                 if (resp.status == 200) {
-                    _this.type = 'buy';
-                    _this.stocks.buyStock2(symbol, _this.accountId, _this.shares).subscribe();
-                    _this.stocks.updateBalanceBuy(symbol, _this.accountId, _this.shares).subscribe(function (data) {
+                    this.type = 'buy';
+                    this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe();
+                    this.stocks.updateBalanceBuy(symbol, this.accountId, this.shares).subscribe(data => {
                     });
-                    _this.stocks.transactions(_this.accountId, symbol, _this.type, _this.shares).subscribe(function (data) { });
-                    _this.shares = 0;
+                    this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => { });
+                    this.shares = 0;
                 }
-            }, function (error) {
+            }, error => {
                 if (error.status == 404) {
                     alert('Purchase Failed: Insufficient Funds');
-                    _this.shares = 0;
+                    this.shares = 0;
                 }
             });
         }
-    };
-    BuyModalComponent.prototype.sellStockButton2 = function (symbol) {
-        var _this = this;
+    }
+    sellStockButton2(symbol) {
         if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
             alert('Must be a positive whole number');
             return false;
         }
         else {
-            this.data.checkStock(symbol, this.accountId, this.shares).subscribe(function (resp) {
+            this.data.checkStock(symbol, this.accountId, this.shares).subscribe(resp => {
                 if (resp.status == 200) {
-                    _this.type = 'sell';
-                    _this.stocks.sellStock(symbol, _this.accountId, _this.shares).subscribe();
-                    _this.stocks.updateBalanceSell(symbol, _this.accountId, _this.shares).subscribe(function (data) {
+                    this.type = 'sell';
+                    this.stocks.sellStock(symbol, this.accountId, this.shares).subscribe();
+                    this.stocks.updateBalanceSell(symbol, this.accountId, this.shares).subscribe(data => {
                     });
-                    _this.stocks.transactions(_this.accountId, symbol, _this.type, _this.shares).subscribe(function (data) { });
-                    _this.shares = 0;
+                    this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => { });
+                    this.shares = 0;
                 }
-            }, function (error) {
+            }, error => {
                 if (error.status == 404) {
                     alert('Sell Failed: Insufficient Share Quantity');
-                    _this.shares = 0;
+                    this.shares = 0;
                 }
             });
         }
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], BuyModalComponent.prototype, "symbol", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], BuyModalComponent.prototype, "symbolString", void 0);
-    BuyModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-buy-modal',
-            template: __webpack_require__(/*! ./buy-modal.component.html */ "./src/app/buy-modal/buy-modal.component.html"),
-            styles: [__webpack_require__(/*! ./buy-modal.component.scss */ "./src/app/buy-modal/buy-modal.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
-    ], BuyModalComponent);
-    return BuyModalComponent;
-}());
+    }
+};
+BuyModalComponent.ctorParameters = () => [
+    { type: _stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"] },
+    { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], BuyModalComponent.prototype, "symbol", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
+], BuyModalComponent.prototype, "symbolString", void 0);
+BuyModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-buy-modal',
+        template: __webpack_require__(/*! raw-loader!./buy-modal.component.html */ "./node_modules/raw-loader/index.js!./src/app/buy-modal/buy-modal.component.html"),
+        styles: [__webpack_require__(/*! ./buy-modal.component.scss */ "./src/app/buy-modal/buy-modal.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
+], BuyModalComponent);
 
 
-
-/***/ }),
-
-/***/ "./src/app/buy-sell/buy-sell.component.html":
-/*!**************************************************!*\
-  !*** ./src/app/buy-sell/buy-sell.component.html ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<body class='container'>\n\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n    <app-stock-card class='col-12' [symbol]=\"TSLA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"AMZN\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"FB\"></app-stock-card> \n  </div>\n</body>\n\n<app-buy-modal [symbol]=\"FB\" [symbolString]=\"'FB'\"></app-buy-modal>\n<app-buy-modal [symbol]=\"TSLA\" [symbolString]=\"'TSLA'\"></app-buy-modal>\n\n\n<div class=\"modal fade\" id=\"buySearchStock\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of searchStockData'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of searchStockData'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton3()' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n    </div>\n    <div class=\"modal fade\" id=\"sellSearchStock\" tabindex='-1'>\n      <div class=\"modal-dialog\" role=\"document\">    \n        <div class=\"modal-content\">\n          <div class=\"modal-header\" *ngFor='let stocks of searchStockData'>\n            <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n              <form>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of searchStockData'>Number of shares at: ${{stocks.price}}</label>\n                    <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                  </div>\n                </form>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n            <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton3()' data-dismiss=\"modal\">Sell</button>\n          </div>\n        </div>\n      </div>\n    </div>\n\n<!-- <div class=\"modal fade\" id=\"buyTSLA\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of TSLA'>\n        <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of TSLA'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"TSLA\")' data-dismiss=\"modal\">Buy</button>\n      </div>\n    </div>\n  </div>\n  </div> -->\n  <div class=\"modal fade\" id=\"sellTSLA\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of TSLA'>\n          <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of TSLA'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"TSLA\")' data-dismiss=\"modal\">Sell</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n  <div class=\"modal fade\" id=\"buyAMZN\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of AMZN'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of AMZN'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"AMZN\")' data-dismiss=\"modal\">Buy</button>\n        </div>\n      </div>\n    </div>\n</div>\n<div class=\"modal fade\" id=\"sellAMZN\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of AMZN'>\n        <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of AMZN'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"AMZN\")' data-dismiss=\"modal\">Sell</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"modal fade\" id=\"buyFB\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of FB'>\n        <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of FB'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton2(\"FB\")' data-dismiss=\"modal\">Buy</button>\n      </div>\n    </div>\n  </div>\n</div>\n  <div class=\"modal fade\" id=\"sellFB\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of FB'>\n          <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of FB'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton2(\"FB\")' data-dismiss=\"modal\">Sell</button>\n        </div>\n      </div>\n    </div>\n    </div>\n\n\n\n  \n\n"
 
 /***/ }),
 
@@ -698,7 +755,7 @@ module.exports = "<body class='container'>\n\n      <div class='form-group' id='
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#stocks {\n  margin: 50px 0 50px 0; }\n\n#searchStock {\n  margin: 10px 0 0 0; }\n\n#searchBar {\n  margin: 10px 0 0 0; }\n\nbody div {\n  display: flex;\n  width: 100%; }\n\nbody div p {\n  margin: 0 20px 0 0; }\n\nbutton {\n  margin: 0 5px 0 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYnV5LXNlbGwvRDpcXE1hc3Rlcm1pbmRcXEZpbmFuY2UtdHJhY2tpbmdcXGFuZ3VsYXIvc3JjXFxhcHBcXGJ1eS1zZWxsXFxidXktc2VsbC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLHFCQUFxQixFQUFBOztBQUd6QjtFQUNJLGtCQUFrQixFQUFBOztBQUd0QjtFQUNJLGtCQUFrQixFQUFBOztBQUd0QjtFQUNJLGFBQWE7RUFDYixXQUFXLEVBQUE7O0FBR2Y7RUFDSSxrQkFBa0IsRUFBQTs7QUFHdEI7RUFDSSxpQkFBaUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2J1eS1zZWxsL2J1eS1zZWxsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3N0b2Nrc3tcclxuICAgIG1hcmdpbjogNTBweCAwIDUwcHggMDtcclxufVxyXG5cclxuI3NlYXJjaFN0b2Nre1xyXG4gICAgbWFyZ2luOiAxMHB4IDAgMCAwO1xyXG59XHJcblxyXG4jc2VhcmNoQmFyIHtcclxuICAgIG1hcmdpbjogMTBweCAwIDAgMDtcclxufVxyXG5cclxuYm9keSBkaXZ7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbmJvZHkgZGl2IHAge1xyXG4gICAgbWFyZ2luOiAwIDIwcHggMCAwO1xyXG59XHJcblxyXG5idXR0b24ge1xyXG4gICAgbWFyZ2luOiAwIDVweCAwIDA7XHJcbn0iXX0= */"
+module.exports = "#stocks {\n  margin: 50px 0 50px 0;\n}\n\n#searchStock {\n  margin: 10px 0 0 0;\n}\n\n#searchBar {\n  margin: 10px 0 0 0;\n}\n\nbody div {\n  display: flex;\n  width: 100%;\n}\n\nbody div p {\n  margin: 0 20px 0 0;\n}\n\nbutton {\n  margin: 0 5px 0 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYnV5LXNlbGwvRDpcXE1hc3Rlcm1pbmRcXEZpbmFuY2UtdHJhY2tpbmdcXGFuZ3VsYXIvc3JjXFxhcHBcXGJ1eS1zZWxsXFxidXktc2VsbC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYnV5LXNlbGwvYnV5LXNlbGwuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxxQkFBQTtBQ0NKOztBREVBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLGtCQUFBO0FDQ0o7O0FERUE7RUFDSSxhQUFBO0VBQ0EsV0FBQTtBQ0NKOztBREVBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLGlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9idXktc2VsbC9idXktc2VsbC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNzdG9ja3N7XHJcbiAgICBtYXJnaW46IDUwcHggMCA1MHB4IDA7XHJcbn1cclxuXHJcbiNzZWFyY2hTdG9ja3tcclxuICAgIG1hcmdpbjogMTBweCAwIDAgMDtcclxufVxyXG5cclxuI3NlYXJjaEJhciB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAwIDA7XHJcbn1cclxuXHJcbmJvZHkgZGl2e1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG5ib2R5IGRpdiBwIHtcclxuICAgIG1hcmdpbjogMCAyMHB4IDAgMDtcclxufVxyXG5cclxuYnV0dG9uIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG59IiwiI3N0b2NrcyB7XG4gIG1hcmdpbjogNTBweCAwIDUwcHggMDtcbn1cblxuI3NlYXJjaFN0b2NrIHtcbiAgbWFyZ2luOiAxMHB4IDAgMCAwO1xufVxuXG4jc2VhcmNoQmFyIHtcbiAgbWFyZ2luOiAxMHB4IDAgMCAwO1xufVxuXG5ib2R5IGRpdiB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG5ib2R5IGRpdiBwIHtcbiAgbWFyZ2luOiAwIDIwcHggMCAwO1xufVxuXG5idXR0b24ge1xuICBtYXJnaW46IDAgNXB4IDAgMDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -713,7 +770,7 @@ module.exports = "#stocks {\n  margin: 50px 0 50px 0; }\n\n#searchStock {\n  mar
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BuySellComponent", function() { return BuySellComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
@@ -723,8 +780,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var BuySellComponent = /** @class */ (function () {
-    function BuySellComponent(stocks, data) {
+let BuySellComponent = class BuySellComponent {
+    constructor(stocks, data) {
         this.stocks = stocks;
         this.data = data;
         this.TSLA = [];
@@ -738,20 +795,19 @@ var BuySellComponent = /** @class */ (function () {
         this.userId = 1;
         this.accountId = 1;
     }
-    BuySellComponent.prototype.ngOnInit = function () {
-        var _this = this;
+    ngOnInit() {
         var searchStockBox = document.getElementById('searchStock');
         searchStockBox.style.display = "none";
-        this.data.returnStocks('TSLA').subscribe(function (data) {
-            _this.TSLA = data;
+        this.data.returnStocks('TSLA').subscribe((data) => {
+            this.TSLA = data;
             console.log(data);
         });
-        this.data.returnStocks('AMZN').subscribe(function (data) {
-            _this.AMZN = data;
+        this.data.returnStocks('AMZN').subscribe((data) => {
+            this.AMZN = data;
             console.log(data);
         });
-        this.data.returnStocks('FB').subscribe(function (data) {
-            _this.FB = data;
+        this.data.returnStocks('FB').subscribe((data) => {
+            this.FB = data;
             console.log(data);
         });
         this.chart = new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"]('myChart', {
@@ -773,114 +829,109 @@ var BuySellComponent = /** @class */ (function () {
                 }
             }
         });
-    };
-    BuySellComponent.prototype.searchStocks = function () {
-        var _this = this;
+    }
+    searchStocks() {
         var searchStockBox = document.getElementById('searchStock');
         if (searchStockBox.style.display === "none") {
             searchStockBox.style.display = "flex";
         }
         this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
-        this.data.returnStocks(this.searchStockSymbol).subscribe(function (data) {
-            _this.searchStockData = data;
+        this.data.returnStocks(this.searchStockSymbol).subscribe((data) => {
+            this.searchStockData = data;
         });
-    };
-    BuySellComponent.prototype.updateChart = function () {
-        var _this = this;
-        this.data.chartData(this.searchStockSymbol).subscribe(function (data) {
-            _this.chartInfo = data;
-            _this.lableList = [];
-            _this.priceList = [];
-            for (var i = 0; i < data.length; i++) {
-                _this.lableList.push(data[i].date);
+    }
+    updateChart() {
+        this.data.chartData(this.searchStockSymbol).subscribe((data) => {
+            this.chartInfo = data;
+            this.lableList = [];
+            this.priceList = [];
+            for (let i = 0; i < data.length; i++) {
+                this.lableList.push(data[i].date);
             }
-            for (var y = 0; y < data.length; y++) {
-                _this.priceList.push(data[y].closing_price);
+            for (let y = 0; y < data.length; y++) {
+                this.priceList.push(data[y].closing_price);
             }
-            _this.chart.data.datasets[0].label = _this.searchStockSymbol;
-            _this.chart.data.labels = _this.lableList;
-            _this.chart.data.datasets[0].data = _this.priceList;
-            _this.chart.options.title.text = "Previous Month's Stock Prices for " + _this.searchStockSymbol;
-            console.log(_this.priceList);
-            _this.chart.update();
+            this.chart.data.datasets[0].label = this.searchStockSymbol;
+            this.chart.data.labels = this.lableList;
+            this.chart.data.datasets[0].data = this.priceList;
+            this.chart.options.title.text = `Previous Month's Stock Prices for ${this.searchStockSymbol}`;
+            console.log(this.priceList);
+            this.chart.update();
         });
-    };
-    BuySellComponent.prototype.buyStockButton2 = function (symbol) {
-        var _this = this;
+    }
+    buyStockButton2(symbol) {
         if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
             alert('Must be a positive whole number');
             this.shares = 0;
             return false;
         }
         else {
-            this.data.checkBalance(symbol, this.accountId, this.shares).subscribe(function (resp) {
+            this.data.checkBalance(symbol, this.accountId, this.shares).subscribe(resp => {
                 if (resp.status == 200) {
-                    _this.type = 'buy';
-                    _this.stocks.buyStock2(symbol, _this.accountId, _this.shares).subscribe();
-                    _this.stocks.updateBalanceBuy(symbol, _this.accountId, _this.shares).subscribe(function (data) {
+                    this.type = 'buy';
+                    this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe();
+                    this.stocks.updateBalanceBuy(symbol, this.accountId, this.shares).subscribe(data => {
                     });
-                    _this.stocks.transactions(_this.accountId, symbol, _this.type, _this.shares).subscribe(function (data) { });
-                    _this.shares = 0;
+                    this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => { });
+                    this.shares = 0;
                 }
-            }, function (error) {
+            }, error => {
                 if (error.status == 404) {
                     alert('Purchase Failed: Insufficient Funds');
-                    _this.shares = 0;
+                    this.shares = 0;
                 }
             });
         }
-    };
-    BuySellComponent.prototype.sellStockButton2 = function (symbol) {
-        var _this = this;
+    }
+    sellStockButton2(symbol) {
         if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
             alert('Must be a positive whole number');
             return false;
         }
         else {
-            this.data.checkStock(symbol, this.accountId, this.shares).subscribe(function (resp) {
+            this.data.checkStock(symbol, this.accountId, this.shares).subscribe(resp => {
                 if (resp.status == 200) {
-                    _this.type = 'sell';
-                    _this.stocks.sellStock(symbol, _this.accountId, _this.shares).subscribe();
-                    _this.stocks.updateBalanceSell(symbol, _this.accountId, _this.shares).subscribe(function (data) {
+                    this.type = 'sell';
+                    this.stocks.sellStock(symbol, this.accountId, this.shares).subscribe();
+                    this.stocks.updateBalanceSell(symbol, this.accountId, this.shares).subscribe(data => {
                     });
-                    _this.stocks.transactions(_this.accountId, symbol, _this.type, _this.shares).subscribe(function (data) { });
-                    _this.shares = 0;
+                    this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => { });
+                    this.shares = 0;
                 }
-            }, function (error) {
+            }, error => {
                 if (error.status == 404) {
                     alert('Sell Failed: Insufficient Share Quantity');
-                    _this.shares = 0;
+                    this.shares = 0;
                 }
             });
         }
-    };
-    BuySellComponent.prototype.buyStockButton3 = function () {
-        var _this = this;
+    }
+    buyStockButton3() {
         if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
             alert('Must be a positive whole number');
             this.shares = 0;
             return false;
         }
         else {
-            this.data.checkBalance(this.searchStockSymbol, this.accountId, this.shares).subscribe(function (resp) {
+            this.data.checkBalance(this.searchStockSymbol, this.accountId, this.shares).subscribe(resp => {
                 if (resp.status == 200) {
-                    _this.type = 'buy';
-                    _this.stocks.buyStock2(_this.searchStockSymbol, _this.accountId, _this.shares).subscribe();
-                    _this.stocks.updateBalanceBuy(_this.searchStockSymbol, _this.accountId, _this.shares).subscribe(function (data) {
+                    this.type = 'buy';
+                    this.stocks.buyStock2(this.searchStockSymbol, this.accountId, this.shares).subscribe();
+                    this.stocks.updateBalanceBuy(this.searchStockSymbol, this.accountId, this.shares).subscribe(data => {
                     });
-                    _this.stocks.transactions(_this.accountId, _this.searchStockSymbol, _this.type, _this.shares).subscribe(function (data) { });
-                    _this.shares = 0;
+                    this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(data => { });
+                    this.shares = 0;
                 }
                 ;
-            }, function (error) {
+            }, error => {
                 if (error.status == 404) {
                     alert('Sell Failed: Insufficient Share Quantity');
-                    _this.shares = 0;
+                    this.shares = 0;
                 }
             });
         }
-    };
-    BuySellComponent.prototype.sellStockButton3 = function () {
+    }
+    sellStockButton3() {
         if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
             alert('Must be a positive whole number');
             return false;
@@ -888,22 +939,25 @@ var BuySellComponent = /** @class */ (function () {
         else {
             this.type = 'sell';
             this.stocks.sellStock(this.searchStockSymbol, this.accountId, this.shares).subscribe();
-            this.stocks.updateBalanceSell(this.searchStockSymbol, this.accountId, this.shares).subscribe(function (data) {
+            this.stocks.updateBalanceSell(this.searchStockSymbol, this.accountId, this.shares).subscribe(data => {
             });
-            this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(function (data) { });
+            this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(data => { });
             this.shares = 0;
         }
-    };
-    BuySellComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-buy-sell',
-            template: __webpack_require__(/*! ./buy-sell.component.html */ "./src/app/buy-sell/buy-sell.component.html"),
-            styles: [__webpack_require__(/*! ./buy-sell.component.scss */ "./src/app/buy-sell/buy-sell.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
-    ], BuySellComponent);
-    return BuySellComponent;
-}());
+    }
+};
+BuySellComponent.ctorParameters = () => [
+    { type: _stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"] },
+    { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] }
+];
+BuySellComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-buy-sell',
+        template: __webpack_require__(/*! raw-loader!./buy-sell.component.html */ "./node_modules/raw-loader/index.js!./src/app/buy-sell/buy-sell.component.html"),
+        styles: [__webpack_require__(/*! ./buy-sell.component.scss */ "./src/app/buy-sell/buy-sell.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
+], BuySellComponent);
 
 
 
@@ -920,53 +974,44 @@ var BuySellComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataService", function() { return DataService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 
 
 
-var DataService = /** @class */ (function () {
-    function DataService(http) {
+let DataService = class DataService {
+    constructor(http) {
         this.http = http;
     }
-    DataService.prototype.returnStocks = function (symbol) {
-        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
+    returnStocks(symbol) {
+        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
         return this.http.get('http://localhost:7000/api/stockData', params);
-    };
+    }
     ;
-    DataService.prototype.chartData = function (symbol) {
-        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
+    chartData(symbol) {
+        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
         return this.http.get('http://localhost:7000/api/historicalData', params);
-    };
-    DataService.prototype.checkBalance = function (symbol, accountId, shares) {
-        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
-        return this.http.get('http://localhost:7000/api/checkBalance', { observe: 'response', params: params });
-    };
-    DataService.prototype.checkStock = function (symbol, accountId, shares) {
-        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
-        return this.http.get('http://localhost:7000/api/checkStock', { observe: 'response', params: params });
-    };
-    DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
-    ], DataService);
-    return DataService;
-}());
+    }
+    checkBalance(symbol, accountId, shares) {
+        const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
+        return this.http.get('http://localhost:7000/api/checkBalance', { observe: 'response', params });
+    }
+    checkStock(symbol, accountId, shares) {
+        const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
+        return this.http.get('http://localhost:7000/api/checkStock', { observe: 'response', params });
+    }
+};
+DataService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+];
+DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+], DataService);
 
 
-
-/***/ }),
-
-/***/ "./src/app/home/home.component.html":
-/*!******************************************!*\
-  !*** ./src/app/home/home.component.html ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Login'>Login/Register</button>\n    </div>\n</header>\n\n<app-login></app-login>\n  \n<div>\n    <h3>GitHub Repository</h3>\n      <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</div>"
 
 /***/ }),
 
@@ -977,7 +1022,7 @@ module.exports = "<header id='showcase'>\n  <div class='card'>\n      <h1>Fantas
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#showcase {\n  background: url(\"https://images.unsplash.com/photo-1535320903710-d993d3d77d29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: 100vh;\n  justify-content: center;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center; }\n\nheader div {\n  width: 50%;\n  background-color: rgba(137, 137, 146, 0.5);\n  align-items: center;\n  justify-content: center;\n  font-size: 20px; }\n\ndiv button {\n  font-size: 20px;\n  margin: 0 5px 5px 5px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcaG9tZVxcaG9tZS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLHdKQUF3SjtFQUV4Siw0QkFBNEI7RUFDNUIsc0JBQXNCO0VBQ3RCLDJCQUEyQjtFQUMzQixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLGFBQWE7RUFDYixzQkFBc0I7RUFDdEIsbUJBQW1CO0VBQ25CLHVCQUF1QixFQUFBOztBQUczQjtFQUNJLFVBQVU7RUFDViwwQ0FBMEM7RUFDMUMsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUN2QixlQUFlLEVBQUE7O0FBR25CO0VBQ0ksZUFBYztFQUNkLHFCQUFxQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3Nob3djYXNlIHtcclxuICAgIGJhY2tncm91bmQ6IHVybCgnaHR0cHM6Ly9pbWFnZXMudW5zcGxhc2guY29tL3Bob3RvLTE1MzUzMjA5MDM3MTAtZDk5M2QzZDc3ZDI5P2l4bGliPXJiLTEuMi4xJml4aWQ9ZXlKaGNIQmZhV1FpT2pFeU1EZDkmYXV0bz1mb3JtYXQmZml0PWNyb3Amdz03NTAmcT04MCcpO1xyXG4gICAgLy8gYmFja2dyb3VuZDogdXJsKCcuLi8uLi9sYW5kaW5nSW1hZ2UuanBnJyk7XHJcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xyXG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcclxuICAgIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG5oZWFkZXIgZGl2IHtcclxuICAgIHdpZHRoOiA1MCU7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEzNywgMTM3LCAxNDYsIDAuNSk7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuXHJcbmRpdiBidXR0b24ge1xyXG4gICAgZm9udC1zaXplOjIwcHg7XHJcbiAgICBtYXJnaW46IDAgNXB4IDVweCA1cHg7XHJcbn0iXX0= */"
+module.exports = "#showcase {\n  background: url(\"https://images.unsplash.com/photo-1535320903710-d993d3d77d29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: 100vh;\n  justify-content: center;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\nheader div {\n  width: 50%;\n  background-color: rgba(137, 137, 146, 0.5);\n  align-items: center;\n  justify-content: center;\n  font-size: 20px;\n}\n\ndiv button {\n  font-size: 20px;\n  margin: 0 5px 5px 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcaG9tZVxcaG9tZS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksd0pBQUE7RUFFQSw0QkFBQTtFQUNBLHNCQUFBO0VBQ0EsMkJBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0FDQUo7O0FER0E7RUFDSSxVQUFBO0VBQ0EsMENBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtBQ0FKOztBREdBO0VBQ0ksZUFBQTtFQUNBLHFCQUFBO0FDQUoiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjc2hvd2Nhc2Uge1xyXG4gICAgYmFja2dyb3VuZDogdXJsKCdodHRwczovL2ltYWdlcy51bnNwbGFzaC5jb20vcGhvdG8tMTUzNTMyMDkwMzcxMC1kOTkzZDNkNzdkMjk/aXhsaWI9cmItMS4yLjEmaXhpZD1leUpoY0hCZmFXUWlPakV5TURkOSZhdXRvPWZvcm1hdCZmaXQ9Y3JvcCZ3PTc1MCZxPTgwJyk7XHJcbiAgICAvLyBiYWNrZ3JvdW5kOiB1cmwoJy4uLy4uL2xhbmRpbmdJbWFnZS5qcGcnKTtcclxuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XHJcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gICAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xyXG4gICAgaGVpZ2h0OiAxMDB2aDtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbn1cclxuXHJcbmhlYWRlciBkaXYge1xyXG4gICAgd2lkdGg6IDUwJTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMTM3LCAxMzcsIDE0NiwgMC41KTtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxufVxyXG5cclxuZGl2IGJ1dHRvbiB7XHJcbiAgICBmb250LXNpemU6MjBweDtcclxuICAgIG1hcmdpbjogMCA1cHggNXB4IDVweDtcclxufSIsIiNzaG93Y2FzZSB7XG4gIGJhY2tncm91bmQ6IHVybChcImh0dHBzOi8vaW1hZ2VzLnVuc3BsYXNoLmNvbS9waG90by0xNTM1MzIwOTAzNzEwLWQ5OTNkM2Q3N2QyOT9peGxpYj1yYi0xLjIuMSZpeGlkPWV5SmhjSEJmYVdRaU9qRXlNRGQ5JmF1dG89Zm9ybWF0JmZpdD1jcm9wJnc9NzUwJnE9ODBcIik7XG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcbiAgaGVpZ2h0OiAxMDB2aDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG5oZWFkZXIgZGl2IHtcbiAgd2lkdGg6IDUwJTtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgxMzcsIDEzNywgMTQ2LCAwLjUpO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZm9udC1zaXplOiAyMHB4O1xufVxuXG5kaXYgYnV0dG9uIHtcbiAgZm9udC1zaXplOiAyMHB4O1xuICBtYXJnaW46IDAgNXB4IDVweCA1cHg7XG59Il19 */"
 
 /***/ }),
 
@@ -992,37 +1037,24 @@ module.exports = "#showcase {\n  background: url(\"https://images.unsplash.com/p
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 
 
-var HomeComponent = /** @class */ (function () {
-    function HomeComponent() {
+let HomeComponent = class HomeComponent {
+    constructor() { }
+    ngOnInit() {
     }
-    HomeComponent.prototype.ngOnInit = function () {
-    };
-    HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-home',
-            template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
-            styles: [__webpack_require__(/*! ./home.component.scss */ "./src/app/home/home.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], HomeComponent);
-    return HomeComponent;
-}());
+};
+HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-home',
+        template: __webpack_require__(/*! raw-loader!./home.component.html */ "./node_modules/raw-loader/index.js!./src/app/home/home.component.html"),
+        styles: [__webpack_require__(/*! ./home.component.scss */ "./src/app/home/home.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], HomeComponent);
 
 
-
-/***/ }),
-
-/***/ "./src/app/login/login.component.html":
-/*!********************************************!*\
-  !*** ./src/app/login/login.component.html ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"modal fade\" id=\"Login\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-c-tabs\">\n            <ul class=\"nav nav-tabs tabs-2\" role=\"tablist\">\n                <li class=\"nav-item\">\n                  <a class=\"nav-link active\" data-toggle=\"tab\" href=\"#loginTab\" role=\"tab\">Login</a>\n                </li>\n                <li class=\"nav-item\">\n                  <a class=\"nav-link\" data-toggle=\"tab\" href=\"#registerTab\" role=\"tab\">Register</a>\n                </li>\n              </ul>\n        <div class='tab-content'>\n\n        <div class='tab-pane fad-in show active' id='loginTab' role='tabpanel'>\n          <div class=\"modal-body\">\n              <form>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\">Email</label>\n                    <input type=\"email\" class=\"form-control\" id=\"emailLogin\" required>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"password\" class=\"col-form-label\">Password</label>\n                    <input type='password' class=\"form-control\" id=\"passwordLogin\" minlength=\"8\" required>\n                  </div>\n                </form>\n                <div class=\"text-center mt-2\">\n                    <button type=\"button\" class=\"btn btn-primary\">Login</button>\n                  </div>\n          </div>\n          <div class=\"modal-footer justify-content-center\">\n              <div class=\"options\">\n                  <p>Not a member? <a href=\"#\" class=\"blue-text\">Sign Up</a></p>\n                  <p>Forgot <a href=\"#\" class=\"blue-text\">Password?</a></p>\n                </div>\n            <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n          </div>\n      </div>\n\n        <div class='tab-pane fade' id='registerTab' role='tabpanel'>\n            <div class=\"modal-body\">\n                <form>\n                    <div class=\"form-group\">\n                      <label for=\"email\" class=\"col-form-label\">Email</label>\n                      <input type=\"email\" class=\"form-control\" id=\"emailRegister\" required>\n                    </div>\n                    <div class=\"form-group\">\n                      <label for=\"password\" class=\"col-form-label\">Password</label>\n                      <input type='password' class=\"form-control\" id=\"passwordRegister\" minlength=\"8\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"password\" class=\"col-form-label\">Retype Password</label>\n                        <input type='password' class=\"form-control\" id=\"passwordRegisterCheck\" minlength=\"8\" required>\n                      </div>\n                  </form>\n                  <div class=\"text-center mt-2\">\n                      <button type=\"button\" class=\"btn btn-primary\">Register</button>\n                  </div>\n            </div>\n            <div class=\"modal-footer justify-content-center\">\n                <div class=\"options\">\n                    <p>Already have an account? <a class=\"blue-text\" data-toggle=\"tab\" href=\"#loginTab\">Log In</a></p>\n                  </div>\n              <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      </div>\n      </div>\n    </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -1048,37 +1080,24 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginComponent", function() { return LoginComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 
 
-var LoginComponent = /** @class */ (function () {
-    function LoginComponent() {
+let LoginComponent = class LoginComponent {
+    constructor() { }
+    ngOnInit() {
     }
-    LoginComponent.prototype.ngOnInit = function () {
-    };
-    LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-login',
-            template: __webpack_require__(/*! ./login.component.html */ "./src/app/login/login.component.html"),
-            styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], LoginComponent);
-    return LoginComponent;
-}());
+};
+LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-login',
+        template: __webpack_require__(/*! raw-loader!./login.component.html */ "./node_modules/raw-loader/index.js!./src/app/login/login.component.html"),
+        styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], LoginComponent);
 
 
-
-/***/ }),
-
-/***/ "./src/app/nav/nav.component.html":
-/*!****************************************!*\
-  !*** ./src/app/nav/nav.component.html ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Finance App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Buy & Sell</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/account'>Account</a></li>\n    </ul>\n  </div>\n</nav>\n</body>\n</html>"
 
 /***/ }),
 
@@ -1089,7 +1108,7 @@ module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "html {\n  height: 100%; }\n\nbody {\n  padding-bottom: 70px; }\n\n#header {\n  font-size: 30px;\n  font-style: bold; }\n\nnav a {\n  font-size: 20px; }\n\n#top-nav {\n  background-color: #2bb41f; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbmF2L0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxuYXZcXG5hdi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQVcsRUFBQTs7QUFHZjtFQUNJLG9CQUFvQixFQUFBOztBQUd4QjtFQUNJLGVBQWU7RUFDZixnQkFBZ0IsRUFBQTs7QUFHcEI7RUFDSSxlQUFlLEVBQUE7O0FBR25CO0VBQ0kseUJBQWtDLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9uYXYvbmF2LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaHRtbCB7XHJcbiAgICBoZWlnaHQ6MTAwJTtcclxufVxyXG5cclxuYm9keSB7XHJcbiAgICBwYWRkaW5nLWJvdHRvbTogNzBweDtcclxufVxyXG5cclxuI2hlYWRlciB7XHJcbiAgICBmb250LXNpemU6IDMwcHg7XHJcbiAgICBmb250LXN0eWxlOiBib2xkO1xyXG59XHJcblxyXG5uYXYgYSB7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuXHJcbiN0b3AtbmF2IHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYig0MywgMTgwLCAzMSk7XHJcbn0iXX0= */"
+module.exports = "html {\n  height: 100%;\n}\n\nbody {\n  padding-bottom: 70px;\n}\n\n#header {\n  font-size: 30px;\n  font-style: bold;\n}\n\nnav a {\n  font-size: 20px;\n}\n\n#top-nav {\n  background-color: #2bb41f;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbmF2L0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxuYXZcXG5hdi5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbmF2L25hdi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQUE7QUNDSjs7QURFQTtFQUNJLG9CQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsZ0JBQUE7QUNDSjs7QURFQTtFQUNJLGVBQUE7QUNDSjs7QURFQTtFQUNJLHlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9uYXYvbmF2LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaHRtbCB7XHJcbiAgICBoZWlnaHQ6MTAwJTtcclxufVxyXG5cclxuYm9keSB7XHJcbiAgICBwYWRkaW5nLWJvdHRvbTogNzBweDtcclxufVxyXG5cclxuI2hlYWRlciB7XHJcbiAgICBmb250LXNpemU6IDMwcHg7XHJcbiAgICBmb250LXN0eWxlOiBib2xkO1xyXG59XHJcblxyXG5uYXYgYSB7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuXHJcbiN0b3AtbmF2IHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYig0MywgMTgwLCAzMSk7XHJcbn0iLCJodG1sIHtcbiAgaGVpZ2h0OiAxMDAlO1xufVxuXG5ib2R5IHtcbiAgcGFkZGluZy1ib3R0b206IDcwcHg7XG59XG5cbiNoZWFkZXIge1xuICBmb250LXNpemU6IDMwcHg7XG4gIGZvbnQtc3R5bGU6IGJvbGQ7XG59XG5cbm5hdiBhIHtcbiAgZm9udC1zaXplOiAyMHB4O1xufVxuXG4jdG9wLW5hdiB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMyYmI0MWY7XG59Il19 */"
 
 /***/ }),
 
@@ -1104,37 +1123,24 @@ module.exports = "html {\n  height: 100%; }\n\nbody {\n  padding-bottom: 70px; }
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavComponent", function() { return NavComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 
 
-var NavComponent = /** @class */ (function () {
-    function NavComponent() {
+let NavComponent = class NavComponent {
+    constructor() { }
+    ngOnInit() {
     }
-    NavComponent.prototype.ngOnInit = function () {
-    };
-    NavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-nav',
-            template: __webpack_require__(/*! ./nav.component.html */ "./src/app/nav/nav.component.html"),
-            styles: [__webpack_require__(/*! ./nav.component.scss */ "./src/app/nav/nav.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], NavComponent);
-    return NavComponent;
-}());
+};
+NavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-nav',
+        template: __webpack_require__(/*! raw-loader!./nav.component.html */ "./node_modules/raw-loader/index.js!./src/app/nav/nav.component.html"),
+        styles: [__webpack_require__(/*! ./nav.component.scss */ "./src/app/nav/nav.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], NavComponent);
 
 
-
-/***/ }),
-
-/***/ "./src/app/portfolio/portfolio.component.html":
-/*!****************************************************!*\
-  !*** ./src/app/portfolio/portfolio.component.html ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<body class='container' id='container'>\n    <canvas id=\"myChart\" ></canvas>\n  <div id='portfolio'>\n    <div class='card' id='card'>\n      <div class='card-body'>\n          <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n          </p>\n          <a class=\"btn btn-lg btn-secondary\">Buy</a>\n          <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n      </div>\n    </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n            </p>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Buy</a>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n        </div>\n      </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n            </p>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Buy</a>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n        </div>\n      </div>  \n  </div>\n</body>\n"
 
 /***/ }),
 
@@ -1145,7 +1151,7 @@ module.exports = "<body class='container' id='container'>\n    <canvas id=\"myCh
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#portfolio {\n  margin: 10px 0 10px 0; }\n\n#graph {\n  margin: 10px 0 0 0;\n  height: 350px;\n  width: 120%; }\n\nbody div a {\n  margin: 0 5px 0 0;\n  justify-content: right; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvL0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxwb3J0Zm9saW9cXHBvcnRmb2xpby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNJLHFCQUFxQixFQUFBOztBQUd6QjtFQUNJLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsV0FDSixFQUFBOztBQUdBO0VBQ0ksaUJBQWlCO0VBQ2pCLHNCQUFzQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5cclxuI3BvcnRmb2xpbyB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAxMHB4IDA7IFxyXG59XHJcblxyXG4jZ3JhcGgge1xyXG4gICAgbWFyZ2luOiAxMHB4IDAgMCAwO1xyXG4gICAgaGVpZ2h0OiAzNTBweDtcclxuICAgIHdpZHRoOiAxMjAlXHJcbn1cclxuXHJcblxyXG5ib2R5IGRpdiBhIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG4gICAganVzdGlmeS1jb250ZW50OiByaWdodDtcclxufSJdfQ== */"
+module.exports = "#portfolio {\n  margin: 10px 0 10px 0;\n}\n\n#graph {\n  margin: 10px 0 0 0;\n  height: 350px;\n  width: 120%;\n}\n\nbody div a {\n  margin: 0 5px 0 0;\n  justify-content: right;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvL0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxwb3J0Zm9saW9cXHBvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNJLHFCQUFBO0FDREo7O0FESUE7RUFDSSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxXQUFBO0FDREo7O0FES0E7RUFDSSxpQkFBQTtFQUNBLHNCQUFBO0FDRkoiLCJmaWxlIjoic3JjL2FwcC9wb3J0Zm9saW8vcG9ydGZvbGlvLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcblxyXG4jcG9ydGZvbGlvIHtcclxuICAgIG1hcmdpbjogMTBweCAwIDEwcHggMDsgXHJcbn1cclxuXHJcbiNncmFwaCB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAwIDA7XHJcbiAgICBoZWlnaHQ6IDM1MHB4O1xyXG4gICAgd2lkdGg6IDEyMCVcclxufVxyXG5cclxuXHJcbmJvZHkgZGl2IGEge1xyXG4gICAgbWFyZ2luOiAwIDVweCAwIDA7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHJpZ2h0O1xyXG59IiwiI3BvcnRmb2xpbyB7XG4gIG1hcmdpbjogMTBweCAwIDEwcHggMDtcbn1cblxuI2dyYXBoIHtcbiAgbWFyZ2luOiAxMHB4IDAgMCAwO1xuICBoZWlnaHQ6IDM1MHB4O1xuICB3aWR0aDogMTIwJTtcbn1cblxuYm9keSBkaXYgYSB7XG4gIG1hcmdpbjogMCA1cHggMCAwO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHJpZ2h0O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -1160,7 +1166,7 @@ module.exports = "#portfolio {\n  margin: 10px 0 10px 0; }\n\n#graph {\n  margin
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortfolioComponent", function() { return PortfolioComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
@@ -1170,13 +1176,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var PortfolioComponent = /** @class */ (function () {
-    function PortfolioComponent(stocks, data) {
+let PortfolioComponent = class PortfolioComponent {
+    constructor(stocks, data) {
         this.stocks = stocks;
         this.data = data;
         this.stockSearch = 'TSLA';
     }
-    PortfolioComponent.prototype.ngOnInit = function () {
+    ngOnInit() {
         // var ctx = document.getElementById('myChart').getContext('2d');
         var json = [
             {
@@ -1555,7 +1561,7 @@ var PortfolioComponent = /** @class */ (function () {
             }
         ];
         var labelList = [];
-        for (var i = 0; i < json.length; i++) {
+        for (let i = 0; i < json.length; i++) {
             labelList.push(json[i].date);
         }
         var ctx = document.getElementById('myChart');
@@ -1594,44 +1600,36 @@ var PortfolioComponent = /** @class */ (function () {
             options: {
                 title: {
                     display: true,
-                    text: "Previous Month's Stock Prices for IDK"
+                    text: `Previous Month's Stock Prices for IDK`
                 }
             }
         });
-    };
+    }
     // searchStock() {
     //   this.stocks.retrieveStockList(this.stockSearch).subscribe(data => {
     //     console.log(data)
     //   });
     // }
-    PortfolioComponent.prototype.buyStock = function () {
-        this.data.returnStocks(this.stockSearch).subscribe(function (data) {
+    buyStock() {
+        this.data.returnStocks(this.stockSearch).subscribe(data => {
             console.log(data);
         });
-    };
-    PortfolioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-portfolio',
-            template: __webpack_require__(/*! ./portfolio.component.html */ "./src/app/portfolio/portfolio.component.html"),
-            styles: [__webpack_require__(/*! ./portfolio.component.scss */ "./src/app/portfolio/portfolio.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
-    ], PortfolioComponent);
-    return PortfolioComponent;
-}());
+    }
+};
+PortfolioComponent.ctorParameters = () => [
+    { type: _stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"] },
+    { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] }
+];
+PortfolioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-portfolio',
+        template: __webpack_require__(/*! raw-loader!./portfolio.component.html */ "./node_modules/raw-loader/index.js!./src/app/portfolio/portfolio.component.html"),
+        styles: [__webpack_require__(/*! ./portfolio.component.scss */ "./src/app/portfolio/portfolio.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
+], PortfolioComponent);
 
 
-
-/***/ }),
-
-/***/ "./src/app/sell-modal/sell-modal.component.html":
-/*!******************************************************!*\
-  !*** ./src/app/sell-modal/sell-modal.component.html ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  sell-modal works!\n</p>\n"
 
 /***/ }),
 
@@ -1657,37 +1655,24 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SellModalComponent", function() { return SellModalComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 
 
-var SellModalComponent = /** @class */ (function () {
-    function SellModalComponent() {
+let SellModalComponent = class SellModalComponent {
+    constructor() { }
+    ngOnInit() {
     }
-    SellModalComponent.prototype.ngOnInit = function () {
-    };
-    SellModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-sell-modal',
-            template: __webpack_require__(/*! ./sell-modal.component.html */ "./src/app/sell-modal/sell-modal.component.html"),
-            styles: [__webpack_require__(/*! ./sell-modal.component.scss */ "./src/app/sell-modal/sell-modal.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], SellModalComponent);
-    return SellModalComponent;
-}());
+};
+SellModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-sell-modal',
+        template: __webpack_require__(/*! raw-loader!./sell-modal.component.html */ "./node_modules/raw-loader/index.js!./src/app/sell-modal/sell-modal.component.html"),
+        styles: [__webpack_require__(/*! ./sell-modal.component.scss */ "./src/app/sell-modal/sell-modal.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], SellModalComponent);
 
 
-
-/***/ }),
-
-/***/ "./src/app/stock-card/stock-card.component.html":
-/*!******************************************************!*\
-  !*** ./src/app/stock-card/stock-card.component.html ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class='card'>\n  <div class='card-body'>\n    <div class='col-3' *ngFor='let stock of symbol'>\n        <b>{{stock.company}} : {{stock.symbol}}</b>\n    </div>\n    <div class='col-7' *ngFor='let stock of symbol'>\n        <p><b>Current Price:</b> ${{stock.price}}</p>\n        <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n        <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n    </div>\n    <div class='col-2'>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'>Buy</button>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellTSLA'>Sell</button>\n      </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1698,7 +1683,7 @@ module.exports = "<div class='card'>\n  <div class='card-body'>\n    <div class=
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "div {\n  display: flex;\n  width: 100%; }\n\ndiv p {\n  margin: 0 20px 0 0; }\n\nbutton {\n  margin: 0 5px 0 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3RvY2stY2FyZC9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcc3RvY2stY2FyZFxcc3RvY2stY2FyZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFJQTtFQUNJLGFBQWE7RUFDYixXQUFXLEVBQUE7O0FBR2Y7RUFDSSxrQkFBa0IsRUFBQTs7QUFHdEI7RUFDSSxpQkFBaUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3N0b2NrLWNhcmQvc3RvY2stY2FyZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi8vICNzaW5nbGVDYXJkIHtcclxuLy8gICAgIG1hcmdpbjogMTBweCAwIDAgMDtcclxuLy8gfVxyXG5cclxuZGl2IHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuZGl2IHAge1xyXG4gICAgbWFyZ2luOiAwIDIwcHggMCAwO1xyXG59XHJcblxyXG5idXR0b24ge1xyXG4gICAgbWFyZ2luOiAwIDVweCAwIDA7XHJcbn0iXX0= */"
+module.exports = "div {\n  display: flex;\n  width: 100%;\n}\n\ndiv p {\n  margin: 0 20px 0 0;\n}\n\nbutton {\n  margin: 0 5px 0 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3RvY2stY2FyZC9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcc3RvY2stY2FyZFxcc3RvY2stY2FyZC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvc3RvY2stY2FyZC9zdG9jay1jYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUlBO0VBQ0ksYUFBQTtFQUNBLFdBQUE7QUNISjs7QURNQTtFQUNJLGtCQUFBO0FDSEo7O0FETUE7RUFDSSxpQkFBQTtBQ0hKIiwiZmlsZSI6InNyYy9hcHAvc3RvY2stY2FyZC9zdG9jay1jYXJkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gI3NpbmdsZUNhcmQge1xyXG4vLyAgICAgbWFyZ2luOiAxMHB4IDAgMCAwO1xyXG4vLyB9XHJcblxyXG5kaXYge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG5kaXYgcCB7XHJcbiAgICBtYXJnaW46IDAgMjBweCAwIDA7XHJcbn1cclxuXHJcbmJ1dHRvbiB7XHJcbiAgICBtYXJnaW46IDAgNXB4IDAgMDtcclxufSIsImRpdiB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG5kaXYgcCB7XG4gIG1hcmdpbjogMCAyMHB4IDAgMDtcbn1cblxuYnV0dG9uIHtcbiAgbWFyZ2luOiAwIDVweCAwIDA7XG59Il19 */"
 
 /***/ }),
 
@@ -1713,28 +1698,26 @@ module.exports = "div {\n  display: flex;\n  width: 100%; }\n\ndiv p {\n  margin
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockCardComponent", function() { return StockCardComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 
 
-var StockCardComponent = /** @class */ (function () {
-    function StockCardComponent() {
+let StockCardComponent = class StockCardComponent {
+    constructor() { }
+    ngOnInit() {
     }
-    StockCardComponent.prototype.ngOnInit = function () {
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], StockCardComponent.prototype, "symbol", void 0);
-    StockCardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-stock-card',
-            template: __webpack_require__(/*! ./stock-card.component.html */ "./src/app/stock-card/stock-card.component.html"),
-            styles: [__webpack_require__(/*! ./stock-card.component.scss */ "./src/app/stock-card/stock-card.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], StockCardComponent);
-    return StockCardComponent;
-}());
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], StockCardComponent.prototype, "symbol", void 0);
+StockCardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-stock-card',
+        template: __webpack_require__(/*! raw-loader!./stock-card.component.html */ "./node_modules/raw-loader/index.js!./src/app/stock-card/stock-card.component.html"),
+        styles: [__webpack_require__(/*! ./stock-card.component.scss */ "./src/app/stock-card/stock-card.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], StockCardComponent);
 
 
 
@@ -1751,43 +1734,45 @@ var StockCardComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StocksService", function() { return StocksService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 
 
 
-var StocksService = /** @class */ (function () {
-    function StocksService(http) {
+let StocksService = class StocksService {
+    constructor(http) {
         this.http = http;
     }
-    StocksService.prototype.buyStock2 = function (symbol, accountId, shares) {
-        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
+    buyStock2(symbol, accountId, shares) {
+        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
         return this.http.get('http://localhost:7000/api/buyStock', params);
-    };
-    StocksService.prototype.sellStock = function (symbol, accountId, shares) {
-        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
+    }
+    sellStock(symbol, accountId, shares) {
+        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
         return this.http.get('http://localhost:7000/api/sellStock', params);
-    };
-    StocksService.prototype.updateBalanceBuy = function (symbol, accountId, shares) {
-        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
+    }
+    updateBalanceBuy(symbol, accountId, shares) {
+        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
         return this.http.get('http://localhost:7000/api/updateBalanceBuy', params);
-    };
-    StocksService.prototype.updateBalanceSell = function (symbol, accountId, shares) {
-        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
+    }
+    updateBalanceSell(symbol, accountId, shares) {
+        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
         return this.http.get('http://localhost:7000/api/updateBalanceSell', params);
-    };
-    StocksService.prototype.transactions = function (accountId, symbol, type, shares) {
-        var params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('accountId', accountId).set('symbol', symbol).set('type', type).set('shares', shares) };
+    }
+    transactions(accountId, symbol, type, shares) {
+        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('accountId', accountId).set('symbol', symbol).set('type', type).set('shares', shares) };
         return this.http.get('http://localhost:7000/api/transactions', params);
-    };
-    StocksService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
-    ], StocksService);
-    return StocksService;
-}());
+    }
+};
+StocksService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+];
+StocksService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+], StocksService);
 
 
 
@@ -1806,7 +1791,7 @@ __webpack_require__.r(__webpack_exports__);
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-var environment = {
+const environment = {
     production: false
 };
 /*
@@ -1830,8 +1815,8 @@ var environment = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm2015/platform-browser-dynamic.js");
 /* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 
@@ -1842,7 +1827,7 @@ if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].produc
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
 }
 Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])
-    .catch(function (err) { return console.error(err); });
+    .catch(err => console.error(err));
 
 
 /***/ }),
