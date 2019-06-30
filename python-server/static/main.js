@@ -737,7 +737,6 @@ var BuySellComponent = /** @class */ (function () {
         this.username = 'Remington';
         this.userId = 1;
         this.accountId = 1;
-        this.stockPrice = 200.92;
     }
     BuySellComponent.prototype.ngOnInit = function () {
         var _this = this;

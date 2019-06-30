@@ -10,6 +10,7 @@ import { Chart } from 'chart.js';
   templateUrl: './buy-sell.component.html',
   styleUrls: ['./buy-sell.component.scss']
 })
+
 export class BuySellComponent implements OnInit {
 
   TSLA: any[] =[];
@@ -23,7 +24,6 @@ export class BuySellComponent implements OnInit {
   userId = 1;
   accountId = 1;
   shares: number;
-  stockPrice = 200.92;
   type: string;
   searchStockSymbol: string;
   chart: Chart;
@@ -69,7 +69,6 @@ export class BuySellComponent implements OnInit {
         }
       }
     });
-
   }
 
   searchStocks() {
@@ -83,7 +82,6 @@ export class BuySellComponent implements OnInit {
     this.data.returnStocks(this.searchStockSymbol).subscribe((data: any[]) => {
       this.searchStockData = data;
     });
-
   }
 
   updateChart() {
@@ -107,8 +105,7 @@ export class BuySellComponent implements OnInit {
       console.log(this.priceList)
 
       this.chart.update()
-    });
-    
+    }); 
   }
 
   buyStockButton2(symbol) {
@@ -133,8 +130,8 @@ export class BuySellComponent implements OnInit {
           this.shares = 0;
         }
       });
+    }
   }
-}
 
   sellStockButton2(symbol) {
     if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
@@ -157,8 +154,8 @@ export class BuySellComponent implements OnInit {
           this.shares = 0;
         }
       });
+    }
   }
-}
 
 
 buyStockButton3() {
@@ -197,7 +194,7 @@ sellStockButton3() {
     });
     this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(data => {});
     this.shares=0
-}
-}
+    }
+  }
 
 }
