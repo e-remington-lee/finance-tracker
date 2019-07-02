@@ -3,8 +3,6 @@ import { StocksService } from '../stocks.service';
 import { DataService } from '../data.service';
 import { Chart } from 'chart.js';
 
-
-
 @Component({
   selector: 'app-buy-sell',
   templateUrl: './buy-sell.component.html',
@@ -25,7 +23,6 @@ export class BuySellComponent implements OnInit {
   accountId = 1;
   searchStockSymbol: string;
   chart: Chart;
-
 
   constructor(private stocks: StocksService, private data: DataService) { }
 
@@ -96,8 +93,6 @@ export class BuySellComponent implements OnInit {
       this.chart.data.labels = this.lableList;
       this.chart.data.datasets[0].data = this.priceList;
       this.chart.options.title.text = `Previous Month's Stock Prices for ${this.searchStockSymbol}`
-
-      console.log(this.priceList)
 
       this.chart.update()
     }); 

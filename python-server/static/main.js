@@ -370,7 +370,7 @@ module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container' id='container'>\n    <canvas id=\"myChart\" ></canvas>\n  <div id='portfolio'>\n    <div class='card' id='card'>\n      <div class='card-body'>\n          <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n          </p>\n          <a class=\"btn btn-lg btn-secondary\">Buy</a>\n          <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n      </div>\n    </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n            </p>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Buy</a>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n        </div>\n      </div>\n    <div class='card' id='card'>\n        <div class='card-body'>\n            <p>\n            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons\n            </p>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Buy</a>\n            <a routerLink='/buySell' class=\"btn btn-lg btn-secondary\">Sell</a>\n        </div>\n      </div>  \n  </div>\n</body>\n"
+module.exports = "<body class='container' id='container'>\n    <canvas id=\"myChart\" ></canvas>\n  <div class='row' id='portfolio'>\n    <app-stock-card class='col-12' [symbol]=\"TSLA\" [symbolString]=\"'TSLA'\"></app-stock-card>\n  </div>\n</body>\n"
 
 /***/ }),
 
@@ -823,7 +823,6 @@ let BuySellComponent = class BuySellComponent {
             this.chart.data.labels = this.lableList;
             this.chart.data.datasets[0].data = this.priceList;
             this.chart.options.title.text = `Previous Month's Stock Prices for ${this.searchStockSymbol}`;
-            console.log(this.priceList);
             this.chart.update();
         });
     }
@@ -870,6 +869,9 @@ let DataService = class DataService {
         return this.http.get('http://localhost:7000/api/stockData', params);
     }
     ;
+    checkSymbol() {
+        // checks if symbol is valid, if yes return 200, not, 404
+    }
     chartData(symbol) {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
         return this.http.get('http://localhost:7000/api/historicalData', params);
@@ -1033,7 +1035,7 @@ NavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#portfolio {\n  margin: 10px 0 10px 0;\n}\n\n#graph {\n  margin: 10px 0 0 0;\n  height: 350px;\n  width: 120%;\n}\n\nbody div a {\n  margin: 0 5px 0 0;\n  justify-content: right;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvL0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxwb3J0Zm9saW9cXHBvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNJLHFCQUFBO0FDREo7O0FESUE7RUFDSSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxXQUFBO0FDREo7O0FES0E7RUFDSSxpQkFBQTtFQUNBLHNCQUFBO0FDRkoiLCJmaWxlIjoic3JjL2FwcC9wb3J0Zm9saW8vcG9ydGZvbGlvLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcblxyXG4jcG9ydGZvbGlvIHtcclxuICAgIG1hcmdpbjogMTBweCAwIDEwcHggMDsgXHJcbn1cclxuXHJcbiNncmFwaCB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAwIDA7XHJcbiAgICBoZWlnaHQ6IDM1MHB4O1xyXG4gICAgd2lkdGg6IDEyMCVcclxufVxyXG5cclxuXHJcbmJvZHkgZGl2IGEge1xyXG4gICAgbWFyZ2luOiAwIDVweCAwIDA7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHJpZ2h0O1xyXG59IiwiI3BvcnRmb2xpbyB7XG4gIG1hcmdpbjogMTBweCAwIDEwcHggMDtcbn1cblxuI2dyYXBoIHtcbiAgbWFyZ2luOiAxMHB4IDAgMCAwO1xuICBoZWlnaHQ6IDM1MHB4O1xuICB3aWR0aDogMTIwJTtcbn1cblxuYm9keSBkaXYgYSB7XG4gIG1hcmdpbjogMCA1cHggMCAwO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHJpZ2h0O1xufSJdfQ== */"
+module.exports = "#portfolio {\n  margin: 10px 0 10px 0;\n  display: flex;\n}\n\n#graph {\n  margin: 10px 0 0 0;\n  height: 350px;\n  width: 120%;\n}\n\nbody div a {\n  margin: 0 5px 0 0;\n  justify-content: right;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvL0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxwb3J0Zm9saW9cXHBvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNJLHFCQUFBO0VBQ0EsYUFBQTtBQ0RKOztBRElBO0VBQ0ksa0JBQUE7RUFDQSxhQUFBO0VBQ0EsV0FBQTtBQ0RKOztBREtBO0VBQ0ksaUJBQUE7RUFDQSxzQkFBQTtBQ0ZKIiwiZmlsZSI6InNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5cclxuI3BvcnRmb2xpbyB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAxMHB4IDA7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG59XHJcblxyXG4jZ3JhcGgge1xyXG4gICAgbWFyZ2luOiAxMHB4IDAgMCAwO1xyXG4gICAgaGVpZ2h0OiAzNTBweDtcclxuICAgIHdpZHRoOiAxMjAlXHJcbn1cclxuXHJcblxyXG5ib2R5IGRpdiBhIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG4gICAganVzdGlmeS1jb250ZW50OiByaWdodDtcclxufSIsIiNwb3J0Zm9saW8ge1xuICBtYXJnaW46IDEwcHggMCAxMHB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG59XG5cbiNncmFwaCB7XG4gIG1hcmdpbjogMTBweCAwIDAgMDtcbiAgaGVpZ2h0OiAzNTBweDtcbiAgd2lkdGg6IDEyMCU7XG59XG5cbmJvZHkgZGl2IGEge1xuICBtYXJnaW46IDAgNXB4IDAgMDtcbiAganVzdGlmeS1jb250ZW50OiByaWdodDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -1485,16 +1487,6 @@ let PortfolioComponent = class PortfolioComponent {
                     text: `Previous Month's Stock Prices for IDK`
                 }
             }
-        });
-    }
-    // searchStock() {
-    //   this.stocks.retrieveStockList(this.stockSearch).subscribe(data => {
-    //     console.log(data)
-    //   });
-    // }
-    buyStock() {
-        this.data.returnStocks(this.stockSearch).subscribe(data => {
-            console.log(data);
         });
     }
 };

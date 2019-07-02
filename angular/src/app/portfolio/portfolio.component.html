@@ -1,32 +1,6 @@
 <body class='container' id='container'>
     <canvas id="myChart" ></canvas>
-  <div id='portfolio'>
-    <div class='card' id='card'>
-      <div class='card-body'>
-          <p>
-            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons
-          </p>
-          <a class="btn btn-lg btn-secondary">Buy</a>
-          <a routerLink='/buySell' class="btn btn-lg btn-secondary">Sell</a>
-      </div>
-    </div>
-    <div class='card' id='card'>
-        <div class='card-body'>
-            <p>
-            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons
-            </p>
-            <a routerLink='/buySell' class="btn btn-lg btn-secondary">Buy</a>
-            <a routerLink='/buySell' class="btn btn-lg btn-secondary">Sell</a>
-        </div>
-      </div>
-    <div class='card' id='card'>
-        <div class='card-body'>
-            <p>
-            ngfor* each stock--- Tesla: TSLA ---- Bought price ---- current price -----  BUY SELL buttons
-            </p>
-            <a routerLink='/buySell' class="btn btn-lg btn-secondary">Buy</a>
-            <a routerLink='/buySell' class="btn btn-lg btn-secondary">Sell</a>
-        </div>
-      </div>  
+  <div class='row' id='portfolio'>
+    <app-stock-card class='col-12' [symbol]="TSLA" [symbolString]="'TSLA'"></app-stock-card>
   </div>
 </body>

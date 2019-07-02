@@ -14,6 +14,10 @@ export class DataService {
     return this.http.get('http://localhost:7000/api/stockData', params);
   };
 
+  checkSymbol() {
+    // checks if symbol is valid, if yes return 200, not, 404
+  }
+
   chartData(symbol) {
     const params = { params: new HttpParams().set('symbol', symbol) };
     return this.http.get('http://localhost:7000/api/historicalData', params);

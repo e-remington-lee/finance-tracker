@@ -8,7 +8,6 @@ export class StocksService {
 
   constructor(private http: HttpClient) { }
 
-
   buyStock2(symbol, accountId, shares) {
     const params = { params: new HttpParams().set('symbol', symbol).set( 'accountId', accountId).set('shares', shares) };
     return this.http.get('http://localhost:7000/api/buyStock', params);
