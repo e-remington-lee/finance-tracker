@@ -9,8 +9,8 @@
         <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       
     </div>
     <div class='col-2'>
-        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'>Buy</button>
-        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellTSLA'>Sell</button>
+        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'(click)='openBuyModal()'>Buy</button>
+        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellStock' (click)='openSellModal()'>Sell</button>
       </div>
   </div>
 </div>

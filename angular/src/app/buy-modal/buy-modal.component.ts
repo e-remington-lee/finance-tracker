@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { StocksService } from '../stocks.service';
 import { DataService } from '../data.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-buy-modal',
@@ -9,50 +10,33 @@ import { DataService } from '../data.service';
 })
 export class BuyModalComponent implements OnInit {
 
-  @Input() symbol: any;
-  @Input() symbolString: string;
-  TSLA: any[] =[];
-  AMZN: any[] =[];
-  FB: any[] =[];
-  searchStockData: any[] =[];
-  chartInfo: any[] = [];
-  lableList: any[] =[];
-  priceList: any[] =[];
+  symbol: any[] = [];
+  symbolString: string;
   username = 'Remington';
   userId = 1;
   accountId = 1;
   shares: number;
-  stockPrice = 200.92;
-  type: string;
-  searchStockSymbol: string;
-
-
-  constructor(private stocks: StocksService, private data: DataService) { }
+  
+  constructor(private stocks: StocksService, private data: DataService, private ngbActiveModal: NgbActiveModal ) { }
 
   ngOnInit() {
   }
 
-  onClickFaceBook() {
-    // set this.symbol = something
-  }
-
-  onClickTesla() {
-
-  }
-  buyStockButton2(symbol) {
+  buyStockButton() {
     if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
       alert('Must be a positive whole number');
       this.shares=0;
+      
       return false
     } else {
-      this.data.checkBalance(symbol, this.accountId, this.shares).subscribe(resp => {
+      this.data.checkBalance(this.symbolString, this.accountId, this.shares).subscribe(resp => {
         if (resp.status == 200) {
-          this.type = 'buy';
-          this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe();
-          this.stocks.updateBalanceBuy(symbol, this.accountId, this.shares).subscribe(data => {
+          const type= 'buy';
+          this.stocks.buyStock2(this.symbolString, this.accountId, this.shares).subscribe();
+          this.stocks.updateBalanceBuy(this.symbolString, this.accountId, this.shares).subscribe(data => {
           });
-          this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => {});
-          this.shares=0;
+          this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe(data => {});
+          this.shares=0;  
         }
       },
       error => {
@@ -62,29 +46,11 @@ export class BuyModalComponent implements OnInit {
         }
       });
   }
+  this.ngbActiveModal.close();
 }
 
-  sellStockButton2(symbol) {
-    if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-      alert('Must be a positive whole number');
-      return false
-    } else {
-      this.data.checkStock(symbol, this.accountId, this.shares).subscribe(resp => {
-        if (resp.status == 200) {
-          this.type = 'sell';
-          this.stocks.sellStock(symbol, this.accountId, this.shares).subscribe();
-          this.stocks.updateBalanceSell(symbol, this.accountId, this.shares).subscribe(data => {
-          });
-          this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => {});
-          this.shares=0
-        }
-      },
-      error => {
-        if (error.status == 404) {
-          alert('Sell Failed: Insufficient Share Quantity')
-          this.shares = 0;
-        }
-      });
+  closeModal() {
+    this.ngbActiveModal.close();
   }
-}
+
 }

@@ -5,17 +5,19 @@
           placeholder="Search for your own stocks (symbol required)" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>
     </div>  
     <div class='row' id='searchStock'>
-        <app-stock-card class='col-12'  [symbol]="searchStockData"></app-stock-card>
+        <app-stock-card class='col-12'  [symbol]="searchStockData" [symbolString]='searchStockSymbol'></app-stock-card>
         <canvas id="myChart" ></canvas>
     </div>
 
   <div class='row' id='stocks'>
-    <app-stock-card class='col-12' [symbol]="TSLA"></app-stock-card>
-    <app-stock-card class='col-12' [symbol]="AMZN"></app-stock-card>
-    <app-stock-card class='col-12' [symbol]="FB"></app-stock-card> 
+    <app-stock-card class='col-12' [symbol]="TSLA" [symbolString]="'TSLA'"></app-stock-card>
+    <app-stock-card class='col-12' [symbol]="AMZN" [symbolString]="'AMZN'"></app-stock-card>
+    <app-stock-card class='col-12' [symbol]="FB" [symbolString]="'FB'"></app-stock-card> 
   </div>
 </body>
 
+
+<!-- 
 <app-buy-modal [symbol]="FB" [symbolString]="'FB'"></app-buy-modal>
 <app-buy-modal [symbol]="TSLA" [symbolString]="'TSLA'"></app-buy-modal>
 
@@ -25,7 +27,7 @@
       <div class="modal-content">
         <div class="modal-header" *ngFor='let stocks of searchStockData'>
           <h5 class="modal-title" >Buy {{stocks.company}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)='closeModal()'>
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -38,7 +40,7 @@
               </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)='closeModal()'>Close</button>
           <button type="button" class="btn btn-primary" (click)='buyStockButton3()' data-dismiss="modal">Buy</button>
         </div>
       </div>
@@ -69,7 +71,7 @@
       </div>
     </div>
 
-<!-- <div class="modal fade" id="buyTSLA" tabindex='-1'>
+<div class="modal fade" id="buyTSLA" tabindex='-1'>
   <div class="modal-dialog" role="document">    
     <div class="modal-content">
       <div class="modal-header" *ngFor='let stocks of TSLA'>
@@ -92,7 +94,7 @@
       </div>
     </div>
   </div>
-  </div> -->
+  </div>
   <div class="modal fade" id="sellTSLA" tabindex='-1'>
     <div class="modal-dialog" role="document">    
       <div class="modal-content">
@@ -220,4 +222,4 @@
 
 
   
-
+ -->

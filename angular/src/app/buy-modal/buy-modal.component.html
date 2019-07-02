@@ -3,7 +3,7 @@
       <div class="modal-content">
         <div class="modal-header" *ngFor='let stocks of symbol'>
           <h5 class="modal-title" >Buy {{stocks.company}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)='closeModal()'>
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -16,8 +16,8 @@
               </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)='buyStockButton2(symbolString)' data-dismiss="modal">Buy</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)='closeModal()'>Close</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)='buyStockButton()'>Buy</button>
         </div>
       </div>
     </div>

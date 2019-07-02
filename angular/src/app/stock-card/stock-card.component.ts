@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { BuyModalComponent } from '../buy-modal/buy-modal.component';
 
 @Component({
   selector: 'app-stock-card',
@@ -8,10 +10,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class StockCardComponent implements OnInit {
 
   @Input() symbol: any;
+  @Input() symbolString: string;
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
+  }
+
+  openBuyModal() {
+    const modal = this.modalService.open(BuyModalComponent);
+    modal.componentInstance.symbolString = this.symbolString;
+    modal.componentInstance.symbol = this.symbol;
   }
 
 }
