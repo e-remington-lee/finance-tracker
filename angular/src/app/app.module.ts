@@ -30,7 +30,10 @@ import { SellModalComponent } from './sell-modal/sell-modal.component';
     BuyModalComponent,
     SellModalComponent,
   ],
-  entryComponents: [BuyModalComponent],
+  entryComponents: [
+    BuyModalComponent,
+    SellModalComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

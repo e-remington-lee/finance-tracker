@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BuyModalComponent } from '../buy-modal/buy-modal.component';
+import { SellModalComponent } from '../sell-modal/sell-modal.component';
 
 @Component({
   selector: 'app-stock-card',
@@ -19,6 +20,12 @@ export class StockCardComponent implements OnInit {
 
   openBuyModal() {
     const modal = this.modalService.open(BuyModalComponent);
+    modal.componentInstance.symbolString = this.symbolString;
+    modal.componentInstance.symbol = this.symbol;
+  }
+
+  openSellModal() {
+    const modal = this.modalService.open(SellModalComponent);
     modal.componentInstance.symbolString = this.symbolString;
     modal.componentInstance.symbol = this.symbol;
   }

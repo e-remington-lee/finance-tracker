@@ -12,6 +12,7 @@ export class BuyModalComponent implements OnInit {
 
   symbol: any[] = [];
   symbolString: string;
+
   username = 'Remington';
   userId = 1;
   accountId = 1;
@@ -33,9 +34,8 @@ export class BuyModalComponent implements OnInit {
         if (resp.status == 200) {
           const type= 'buy';
           this.stocks.buyStock2(this.symbolString, this.accountId, this.shares).subscribe();
-          this.stocks.updateBalanceBuy(this.symbolString, this.accountId, this.shares).subscribe(data => {
-          });
-          this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe(data => {});
+          this.stocks.updateBalanceBuy(this.symbolString, this.accountId, this.shares).subscribe();
+          this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe();
           this.shares=0;  
         }
       },

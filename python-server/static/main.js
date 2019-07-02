@@ -381,7 +381,7 @@ module.exports = "<body class='container' id='container'>\n    <canvas id=\"myCh
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  sell-modal works!\n</p>\n"
+module.exports = "<div class=\"modal fade\" id=\"sellStock\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of symbol'>\n        <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)='closeModal()'>\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)='closeModal()'>Close</button>\n        <button type=\"button\" class=\"btn btn-primary\"  data-dismiss=\"modal\" (click)='sellStockButton()'>Sell</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -610,7 +610,10 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__["BuyModalComponent"],
             _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_16__["SellModalComponent"],
         ],
-        entryComponents: [_buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__["BuyModalComponent"]],
+        entryComponents: [
+            _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__["BuyModalComponent"],
+            _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_16__["SellModalComponent"]
+        ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
@@ -681,9 +684,8 @@ let BuyModalComponent = class BuyModalComponent {
                 if (resp.status == 200) {
                     const type = 'buy';
                     this.stocks.buyStock2(this.symbolString, this.accountId, this.shares).subscribe();
-                    this.stocks.updateBalanceBuy(this.symbolString, this.accountId, this.shares).subscribe(data => {
-                    });
-                    this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe(data => { });
+                    this.stocks.updateBalanceBuy(this.symbolString, this.accountId, this.shares).subscribe();
+                    this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe();
                     this.shares = 0;
                 }
             }, error => {
@@ -769,15 +771,12 @@ let BuySellComponent = class BuySellComponent {
         searchStockBox.style.display = "none";
         this.data.returnStocks('TSLA').subscribe((data) => {
             this.TSLA = data;
-            console.log(data);
         });
         this.data.returnStocks('AMZN').subscribe((data) => {
             this.AMZN = data;
-            console.log(data);
         });
         this.data.returnStocks('FB').subscribe((data) => {
             this.FB = data;
-            console.log(data);
         });
         this.chart = new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"]('myChart', {
             type: 'line',
@@ -827,92 +826,6 @@ let BuySellComponent = class BuySellComponent {
             console.log(this.priceList);
             this.chart.update();
         });
-    }
-    buyStockButton2(symbol) {
-        if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-            alert('Must be a positive whole number');
-            this.shares = 0;
-            return false;
-        }
-        else {
-            this.data.checkBalance(symbol, this.accountId, this.shares).subscribe(resp => {
-                if (resp.status == 200) {
-                    this.type = 'buy';
-                    this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe();
-                    this.stocks.updateBalanceBuy(symbol, this.accountId, this.shares).subscribe(data => {
-                    });
-                    this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => { });
-                    this.shares = 0;
-                }
-            }, error => {
-                if (error.status == 404) {
-                    alert('Purchase Failed: Insufficient Funds');
-                    this.shares = 0;
-                }
-            });
-        }
-    }
-    sellStockButton2(symbol) {
-        if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-            alert('Must be a positive whole number');
-            return false;
-        }
-        else {
-            this.data.checkStock(symbol, this.accountId, this.shares).subscribe(resp => {
-                if (resp.status == 200) {
-                    this.type = 'sell';
-                    this.stocks.sellStock(symbol, this.accountId, this.shares).subscribe();
-                    this.stocks.updateBalanceSell(symbol, this.accountId, this.shares).subscribe(data => {
-                    });
-                    this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => { });
-                    this.shares = 0;
-                }
-            }, error => {
-                if (error.status == 404) {
-                    alert('Sell Failed: Insufficient Share Quantity');
-                    this.shares = 0;
-                }
-            });
-        }
-    }
-    buyStockButton3() {
-        if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-            alert('Must be a positive whole number');
-            this.shares = 0;
-            return false;
-        }
-        else {
-            this.data.checkBalance(this.searchStockSymbol, this.accountId, this.shares).subscribe(resp => {
-                if (resp.status == 200) {
-                    this.type = 'buy';
-                    this.stocks.buyStock2(this.searchStockSymbol, this.accountId, this.shares).subscribe();
-                    this.stocks.updateBalanceBuy(this.searchStockSymbol, this.accountId, this.shares).subscribe(data => {
-                    });
-                    this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(data => { });
-                    this.shares = 0;
-                }
-                ;
-            }, error => {
-                if (error.status == 404) {
-                    alert('Sell Failed: Insufficient Share Quantity');
-                    this.shares = 0;
-                }
-            });
-        }
-    }
-    sellStockButton3() {
-        if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-            alert('Must be a positive whole number');
-            return false;
-        }
-        else {
-            this.type = 'sell';
-            this.stocks.sellStock(this.searchStockSymbol, this.accountId, this.shares).subscribe();
-            this.stocks.updateBalanceSell(this.searchStockSymbol, this.accountId, this.shares).subscribe(data => {
-            });
-            this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(data => { });
-            this.shares = 0;
-        }
     }
 };
 BuySellComponent.ctorParameters = () => [
@@ -1625,20 +1538,70 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SellModalComponent", function() { return SellModalComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+
+
+
 
 
 let SellModalComponent = class SellModalComponent {
-    constructor() { }
+    constructor(stocks, data, ngbActiveModal) {
+        this.stocks = stocks;
+        this.data = data;
+        this.ngbActiveModal = ngbActiveModal;
+        this.symbol = [];
+        this.TSLA = [];
+        this.AMZN = [];
+        this.FB = [];
+        this.searchStockData = [];
+        this.username = 'Remington';
+        this.userId = 1;
+        this.accountId = 1;
+    }
     ngOnInit() {
     }
+    sellStockButton() {
+        if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
+            alert('Must be a positive whole number');
+            this.ngbActiveModal.close();
+            return false;
+        }
+        else {
+            this.data.checkStock(this.symbolString, this.accountId, this.shares).subscribe(resp => {
+                if (resp.status == 200) {
+                    const type = 'sell';
+                    this.stocks.sellStock(this.symbolString, this.accountId, this.shares).subscribe();
+                    this.stocks.updateBalanceSell(this.symbolString, this.accountId, this.shares).subscribe();
+                    this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe();
+                    this.shares = 0;
+                    this.ngbActiveModal.close();
+                }
+            }, error => {
+                if (error.status == 404) {
+                    alert('Sell Failed: Insufficient Share Quantity');
+                    this.shares = 0;
+                }
+            });
+        }
+    }
+    closeModal() {
+        this.ngbActiveModal.close();
+    }
 };
+SellModalComponent.ctorParameters = () => [
+    { type: _stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"] },
+    { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] },
+    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"] }
+];
 SellModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-sell-modal',
         template: __webpack_require__(/*! raw-loader!./sell-modal.component.html */ "./node_modules/raw-loader/index.js!./src/app/sell-modal/sell-modal.component.html"),
         styles: [__webpack_require__(/*! ./sell-modal.component.scss */ "./src/app/sell-modal/sell-modal.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"]])
 ], SellModalComponent);
 
 
@@ -1670,6 +1633,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
 /* harmony import */ var _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../buy-modal/buy-modal.component */ "./src/app/buy-modal/buy-modal.component.ts");
+/* harmony import */ var _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../sell-modal/sell-modal.component */ "./src/app/sell-modal/sell-modal.component.ts");
+
 
 
 
@@ -1682,6 +1647,11 @@ let StockCardComponent = class StockCardComponent {
     }
     openBuyModal() {
         const modal = this.modalService.open(_buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_3__["BuyModalComponent"]);
+        modal.componentInstance.symbolString = this.symbolString;
+        modal.componentInstance.symbol = this.symbol;
+    }
+    openSellModal() {
+        const modal = this.modalService.open(_sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_4__["SellModalComponent"]);
         modal.componentInstance.symbolString = this.symbolString;
         modal.componentInstance.symbol = this.symbol;
     }
