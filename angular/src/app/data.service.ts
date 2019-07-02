@@ -14,6 +14,11 @@ export class DataService {
     return this.http.get('http://localhost:7000/api/stockData', params);
   };
 
+  getAccountData(accountId) {
+    const params = { params: new HttpParams().set('accountId', accountId)} ;
+    return this.http.get('http://localhost:7000/api/checkStock', params);
+  }
+
   checkSymbol() {
     // checks if symbol is valid, if yes return 200, not, 404
   }
@@ -32,4 +37,6 @@ export class DataService {
    const params = new HttpParams().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
    return this.http.get('http://localhost:7000/api/checkStock', {observe: 'response', params});
   }
+
+
 }
