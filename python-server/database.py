@@ -9,11 +9,12 @@ def create_connection():
             user = os.environ['db_username'],
             password = os.environ['db_password'])
 
-def buy_stock(symbol, shares, account_id):
+def buy_stock(symbol, shares, account_id, latest_price):
      connection = create_connection()
      cur = connection.cursor()
 
-     cur.execute("INSERT INTO holdings (account_id, symbol, shares) VALUES (%(account_id)s, %(symbol)s, %(shares)s) ON CONFLICT (account_id, symbol) DO UPDATE SET shares = holdings.shares + %(shares)s WHERE holdings.account_id = %(account_id)s AND holdings.symbol = %(symbol)s", {'symbol': symbol, 'shares': shares, 'account_id': account_id})
+     cur.execute("INSERT INTO holdings (account_id, symbol, shares, value_at_purchase) VALUES (%(account_id)s, %(symbol)s, %(shares)s, %(latest_price)s) ON CONFLICT (account_id, symbol) DO UPDATE SET shares = holdings.shares + %(shares)s WHERE holdings.account_id = %(account_id)s AND holdings.symbol = %(symbol)s", {'symbol': symbol, 'shares': shares, 'account_id': account_id, 'latest_price': latest_price})
+     cur.execute("UPDATE HOLDINGS SET value_at_purchase = %(latest_price)s WHERE holdings.account_id = %(account_id)s AND holdings.symbol = %(symbol)s", {'symbol': symbol, 'account_id': account_id,'latest_price': latest_price})
      connection.commit()
 
      cur.close()

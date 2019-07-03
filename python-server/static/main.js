@@ -1069,9 +1069,9 @@ let PortfolioComponent = class PortfolioComponent {
         this.accountData = [];
     }
     ngOnInit() {
-        this.data.getAccountData(this.accountId).subscribe((data) => {
-            this.accountData = data;
-        });
+        // this.data.getAccountData(this.accountId).subscribe((data: any[])=> {
+        //   this.accountData = data;
+        // });
     }
 };
 PortfolioComponent.ctorParameters = () => [

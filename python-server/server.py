@@ -151,15 +151,12 @@ def buy_stock_endpoint():
         account_id  = request.args.get('accountId')
         shares = request.args.get('shares')
 
-        buy_stock(symbol, shares, account_id)
+        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
 
-        # payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-        # r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote', params=payload)
+        latest_price = r.text
+        buy_stock(symbol, shares, account_id, latest_price)
 
-        # stock_price = [{
-        #                 'price': r.json()['latestPrice']
-        #                 }]
-        # return jsonify(stock_price)
         return jsonify(shares)
     return None
 
@@ -172,15 +169,21 @@ def sell_stock_endpoint():
 
         sell_stock(symbol, shares, account_id)
 
-        # payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-        # r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote', params=payload)
-
-        # stock_price = [{
-        #                 'price': r.json()['latestPrice']
-        #                 }]
-        # return jsonify(stock_price)
         return jsonify(shares)
     return None
+
+@app.route('/api/portfolioData', methods=['GET', 'POST'])
+def portfolio_data():
+        if request.method == 'GET':
+            symbol = request.args.get('symbol')
+            account_id  = request.args.get('accountId')
+            shares = request.args.get('shares')
+
+            sell_stock(symbol, shares, account_id)
+
+            return jsonify(shares)
+        return None
+
 
 if __name__ =='__main__':
     app.run(debug=True, port=7000)
