@@ -95,5 +95,4 @@ def check_stock_holdings(account_id, symbol):
 
      cur.close()
      connection.close()
-     # return {'account_id': row[1], 'symbol': row[2], 'shares': row[3]}
      return {'shares': row[3]}
