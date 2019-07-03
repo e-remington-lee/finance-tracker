@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import requests
 import api_tokens
-from database import buy_stock, sell_stock, update_balance_buy, update_balance_sell, transaction_list, check_account_balance, check_stock_holdings
+from database import buy_stock, sell_stock, update_balance_buy, update_balance_sell, transaction_list, check_account_balance, check_stock_holdings, portfolio_holdings
 from stock_calculator import calculate_price
 
 
@@ -133,6 +133,7 @@ def check_stock():
             symbol = request.args.get('symbol')
             account_id = request.args.get('accountId')
             shares = request.args.get('shares')
+            
 
             holdings = check_stock_holdings(account_id, symbol)
             current_holdings = holdings['shares']
@@ -175,13 +176,15 @@ def sell_stock_endpoint():
 @app.route('/api/portfolioData', methods=['GET', 'POST'])
 def portfolio_data():
         if request.method == 'GET':
-            symbol = request.args.get('symbol')
             account_id  = request.args.get('accountId')
-            shares = request.args.get('shares')
 
-            sell_stock(symbol, shares, account_id)
+            # payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+            # r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
+            latest_price = 125.50
 
-            return jsonify(shares)
+            x = portfolio_holdings(account_id, latest_price)
+
+            return jsonify(x)
         return None
 
 

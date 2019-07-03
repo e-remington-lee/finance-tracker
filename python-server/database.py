@@ -97,3 +97,24 @@ def check_stock_holdings(account_id, symbol):
      cur.close()
      connection.close()
      return {'shares': row[3]}
+
+
+def portfolio_holdings(account_id, latest_price):
+     connection = create_connection()
+     cur = connection.cursor()
+
+     cur.execute("SELECT * FROM holdings WHERE account_id = %(account_id)s", {'account_id': account_id})
+
+     rows = cur.fetchall()
+
+     y = []
+     for row in rows:
+          y.append({'symbol': row[2],
+           'shares': row[3],
+            'percent_change': round(100*((latest_price - float(row[5].replace('$', '').replace(',','')))/float(row[5].replace('$', '').replace(',',''))),2)
+            })
+
+     cur.close()
+     connection.close()
+
+     return y
