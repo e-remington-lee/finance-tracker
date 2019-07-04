@@ -10,7 +10,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class BuyModalComponent implements OnInit {
 
-  symbol: any[] = [];
+  symbol: any[]=[];
   symbolString: string;
 
   username = 'Remington';
@@ -21,6 +21,7 @@ export class BuyModalComponent implements OnInit {
   constructor(private stocks: StocksService, private data: DataService, private ngbActiveModal: NgbActiveModal ) { }
 
   ngOnInit() {
+    console.log(this.symbol)
   }
 
   buyStockButton() {
@@ -33,7 +34,7 @@ export class BuyModalComponent implements OnInit {
       this.data.checkBalance(this.symbolString, this.accountId, this.shares).subscribe(resp => {
         if (resp.status == 200) {
           const type= 'buy';
-          this.stocks.buyStock2(this.symbolString, this.accountId, this.shares).subscribe();
+          this.stocks.buyStock2(this.symbolString, this.accountId, this.shares, this.symbol).subscribe();
           this.stocks.updateBalanceBuy(this.symbolString, this.accountId, this.shares).subscribe();
           this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe();
           this.shares=0;  
