@@ -12,24 +12,20 @@ export class StocksService {
     return this.http.post('http://localhost:7000/api/buyStock', stockData);
   }
 
-  sellStock(symbol, accountId, shares) {
-    const params = { params: new HttpParams().set('symbol', symbol).set( 'accountId', accountId).set('shares', shares) };
-    return this.http.get('http://localhost:7000/api/sellStock', params);
+  sellStock(stockData) {
+    return this.http.post('http://localhost:7000/api/sellStock', stockData);
   }
 
-  updateBalanceBuy(symbol, accountId, shares) {
-    const params = { params: new HttpParams().set('symbol', symbol).set( 'accountId', accountId).set('shares', shares) };
-    return this.http.get('http://localhost:7000/api/updateBalanceBuy', params);
+  updateBalanceBuy(stockData) {
+    return this.http.post('http://localhost:7000/api/updateBalanceBuy', stockData);
   }
 
-  updateBalanceSell(symbol, accountId, shares) {
-    const params = { params: new HttpParams().set('symbol', symbol).set( 'accountId', accountId).set('shares', shares) };
-    return this.http.get('http://localhost:7000/api/updateBalanceSell', params);
+  updateBalanceSell(stockData) {
+    return this.http.post('http://localhost:7000/api/updateBalanceSell', stockData);
   }
 
-  transactions(accountId, symbol, type, shares) {
-    const params = { params: new HttpParams().set('accountId', accountId).set('symbol', symbol).set('type', type).set('shares', shares) }  
-    return this.http.get('http://localhost:7000/api/transactions', params);
+  transactions(stockData) {
+    return this.http.post('http://localhost:7000/api/transactions', stockData);
   }
 }
 

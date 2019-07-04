@@ -55,12 +55,14 @@ def historical_info():
     return None
 
 
-@app.route('/api/updateBalanceBuy', methods=['GET', 'POST'])
+@app.route('/api/updateBalanceBuy', methods=['POST'])
 def balance_change_buy():
-    if request.method =='GET':
-        symbol = request.args.get('symbol')
-        account_id  = request.args.get('accountId')
-        shares = int(request.args.get('shares'))
+    if request.method =='POST':
+        response = request.get_json()
+
+        symbol = response[0]['symbol']
+        account_id  = response[0]['accountId']
+        shares = int(response[0]['shares'])
         
         payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
         r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
@@ -72,12 +74,14 @@ def balance_change_buy():
     return None
 
 
-@app.route('/api/updateBalanceSell', methods=['GET', 'POST'])
+@app.route('/api/updateBalanceSell', methods=['POST'])
 def balance_change_sell():
-    if request.method =='GET':
-        symbol = request.args.get('symbol')
-        account_id  = request.args.get('accountId')
-        shares = int(request.args.get('shares'))
+    if request.method =='POST':
+        response = request.get_json()
+
+        symbol = response[0]['symbol']
+        account_id = response[0]['accountId']
+        shares = int(response[0]['shares'])
         
         payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
         r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
@@ -89,18 +93,20 @@ def balance_change_sell():
     return None
 
 
-@app.route('/api/transactions', methods=['GET', 'POST'])
+@app.route('/api/transactions', methods=[ 'POST'])
 def transactions():
-    if request.method == 'GET':
-        symbol = request.args.get('symbol')
-        account_id = request.args.get('accountId')
-        shares = request.args.get('shares')
-        transaction_type = request.args.get('type')
+    if request.method == 'POST':
+        response = request.get_json()
+
+        symbol = response[0]['symbol']
+        account_id = response[0]['accountId']
+        shares = response[0]['shares']
+        transaction_type = response[0]['type']
 
         payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
         r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-        
         stock_price = r.text
+        
         transaction_list(account_id, symbol, transaction_type, stock_price, shares)
         return jsonify(stock_price)
     return None
@@ -145,36 +151,36 @@ def check_stock():
         return None
 
 
-@app.route('/api/buyStock', methods=['GET', 'POST'])
+@app.route('/api/buyStock', methods=['POST'])
 def buy_stock_endpoint():
-    if request.method == 'POST':
-        response = request.get_json()
+    response = request.get_json()
 
-        symbol = response[0]['symbol']
-        account_id  = response[0]['accountId']
-        shares = response[0]['shares']
-        company_name = response[0]['company']
-        # latest_price = response[0]['price']
+    symbol = response[0]['symbol']
+    account_id  = response[0]['accountId']
+    shares = response[0]['shares']
+    company_name = response[0]['company']
 
-        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-        latest_price = float(r.text)
+    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
+    latest_price = float(r.text)
 
-        buy_stock(symbol, shares, account_id, company_name, latest_price)
-        print(latest_price)
-        return jsonify(company_name)
-    return None
+    buy_stock(symbol, shares, account_id, company_name, latest_price)
+    print(latest_price)
+    return jsonify(company_name)
 
 
-@app.route('/api/sellStock', methods=['GET', 'POST'])
+
+@app.route('/api/sellStock', methods=['POST'])
 def sell_stock_endpoint():
-    if request.method == 'GET':
-        symbol = request.args.get('symbol')
-        account_id  = request.args.get('accountId')
-        shares = request.args.get('shares')
-        sell_stock(symbol, shares, account_id)
-        return jsonify(shares)
-    return None
+    response = request.get_json()
+
+    symbol = response[0]['symbol']
+    account_id  = response[0]['accountId']
+    shares = response[0]['shares']
+
+    sell_stock(symbol, shares, account_id)
+    return jsonify(shares)
+
 
 
 @app.route('/api/portfolioData', methods=['GET', 'POST'])

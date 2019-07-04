@@ -689,8 +689,8 @@ let BuyModalComponent = class BuyModalComponent {
                     const type = 'buy';
                     console.log(this.symbol);
                     this.stocks.buyStock2(this.symbol).subscribe();
-                    this.stocks.updateBalanceBuy(this.symbolString, this.accountId, this.shares).subscribe();
-                    this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe();
+                    this.stocks.updateBalanceBuy(this.symbol).subscribe();
+                    this.stocks.transactions(this.symbol).subscribe();
                     this.shares = 0;
                 }
             }, error => {
@@ -1153,12 +1153,14 @@ let SellModalComponent = class SellModalComponent {
         else {
             this.data.checkStock(this.symbolString, this.accountId, this.shares).subscribe(resp => {
                 if (resp.status == 200) {
-                    this.symbol['accountId'] = this.accountId;
-                    this.symbol['shares'] = this.shares;
+                    this.symbol[0]['accountId'] = this.accountId;
+                    this.symbol[0]['shares'] = this.shares;
+                    this.symbol[0]['type'] = 'sell';
+                    console.log(this.symbol);
                     const type = 'sell';
-                    this.stocks.sellStock(this.symbolString, this.accountId, this.shares).subscribe();
-                    this.stocks.updateBalanceSell(this.symbolString, this.accountId, this.shares).subscribe();
-                    this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe();
+                    this.stocks.sellStock(this.symbol).subscribe();
+                    this.stocks.updateBalanceSell(this.symbol).subscribe();
+                    this.stocks.transactions(this.symbol).subscribe();
                     this.shares = 0;
                     this.ngbActiveModal.close();
                 }
@@ -1287,21 +1289,17 @@ let StocksService = class StocksService {
     buyStock2(stockData) {
         return this.http.post('http://localhost:7000/api/buyStock', stockData);
     }
-    sellStock(symbol, accountId, shares) {
-        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
-        return this.http.get('http://localhost:7000/api/sellStock', params);
+    sellStock(stockData) {
+        return this.http.post('http://localhost:7000/api/sellStock', stockData);
     }
-    updateBalanceBuy(symbol, accountId, shares) {
-        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
-        return this.http.get('http://localhost:7000/api/updateBalanceBuy', params);
+    updateBalanceBuy(stockData) {
+        return this.http.post('http://localhost:7000/api/updateBalanceBuy', stockData);
     }
-    updateBalanceSell(symbol, accountId, shares) {
-        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares) };
-        return this.http.get('http://localhost:7000/api/updateBalanceSell', params);
+    updateBalanceSell(stockData) {
+        return this.http.post('http://localhost:7000/api/updateBalanceSell', stockData);
     }
-    transactions(accountId, symbol, type, shares) {
-        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('accountId', accountId).set('symbol', symbol).set('type', type).set('shares', shares) };
-        return this.http.get('http://localhost:7000/api/transactions', params);
+    transactions(stockData) {
+        return this.http.post('http://localhost:7000/api/transactions', stockData);
     }
 };
 StocksService.ctorParameters = () => [

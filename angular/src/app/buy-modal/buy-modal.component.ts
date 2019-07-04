@@ -40,8 +40,8 @@ export class BuyModalComponent implements OnInit {
           const type= 'buy';
           console.log(this.symbol)
           this.stocks.buyStock2(this.symbol).subscribe();
-          this.stocks.updateBalanceBuy(this.symbolString, this.accountId, this.shares).subscribe();
-          this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe();
+          this.stocks.updateBalanceBuy(this.symbol).subscribe();
+          this.stocks.transactions(this.symbol).subscribe();
           this.shares=0;  
         }
       },

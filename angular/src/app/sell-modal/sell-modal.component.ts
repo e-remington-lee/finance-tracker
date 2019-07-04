@@ -38,13 +38,15 @@ export class SellModalComponent implements OnInit {
     } else {
       this.data.checkStock(this.symbolString, this.accountId, this.shares).subscribe(resp => {
         if (resp.status == 200) {
-          this.symbol['accountId']= this.accountId;
-          this.symbol['shares'] = this.shares;
-
+          this.symbol[0]['accountId']= this.accountId;
+          this.symbol[0]['shares'] = this.shares;
+          this.symbol[0]['type'] = 'sell';
+          
+          console.log(this.symbol);
           const type = 'sell';
-          this.stocks.sellStock(this.symbolString, this.accountId, this.shares).subscribe();
-          this.stocks.updateBalanceSell(this.symbolString, this.accountId, this.shares).subscribe();
-          this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe();
+          this.stocks.sellStock(this.symbol).subscribe();
+          this.stocks.updateBalanceSell(this.symbol).subscribe();
+          this.stocks.transactions(this.symbol).subscribe();
           this.shares=0
           this.ngbActiveModal.close();
         }
