@@ -27,6 +27,7 @@ export class SellModalComponent implements OnInit {
   constructor(private stocks: StocksService, private data: DataService, private ngbActiveModal: NgbActiveModal) { }
 
   ngOnInit() {
+    console.log(this.symbol);
   }
 
   sellStockButton() {
@@ -37,6 +38,9 @@ export class SellModalComponent implements OnInit {
     } else {
       this.data.checkStock(this.symbolString, this.accountId, this.shares).subscribe(resp => {
         if (resp.status == 200) {
+          this.symbol['accountId']= this.accountId;
+          this.symbol['shares'] = this.shares;
+
           const type = 'sell';
           this.stocks.sellStock(this.symbolString, this.accountId, this.shares).subscribe();
           this.stocks.updateBalanceSell(this.symbolString, this.accountId, this.shares).subscribe();

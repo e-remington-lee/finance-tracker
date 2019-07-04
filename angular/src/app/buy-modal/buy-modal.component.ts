@@ -33,8 +33,13 @@ export class BuyModalComponent implements OnInit {
     } else {
       this.data.checkBalance(this.symbolString, this.accountId, this.shares).subscribe(resp => {
         if (resp.status == 200) {
+          this.symbol[0]['type'] = 'buy'
+          this.symbol[0]['accountId'] = this.accountId
+          this.symbol[0]['shares'] = this.shares
+
           const type= 'buy';
-          this.stocks.buyStock2(this.symbolString, this.accountId, this.shares, this.symbol).subscribe();
+          console.log(this.symbol)
+          this.stocks.buyStock2(this.symbol).subscribe();
           this.stocks.updateBalanceBuy(this.symbolString, this.accountId, this.shares).subscribe();
           this.stocks.transactions(this.accountId, this.symbolString, type, this.shares).subscribe();
           this.shares=0;  
