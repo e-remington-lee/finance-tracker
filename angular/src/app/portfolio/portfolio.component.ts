@@ -17,9 +17,11 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit() {
     this.data.getAccountData(this.accountId).subscribe((data: any[])=> {
-      for (let i =0; i<data.length; i++){
-        this.accountData.push(data);
-      }
+      // for (let i =0; i<data.length; i++){
+      //   this.accountData.push(data);
+      // }
+
+      this.accountData = data;
     
       console.log(this.accountData);
     });

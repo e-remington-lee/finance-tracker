@@ -1,6 +1,6 @@
 <body class='container' id='container'>
     <canvas id="myChart" ></canvas>
   <div class='row' id='portfolio' >
-    <app-stock-card *ngFor = 'let stock of accountData' class='col-12' [symbol]="stock" [symbolString]="stock.symbol"></app-stock-card>
+    <app-stock-card *ngFor = 'let symbol of accountData' class='col-12' [symbol]="symbol"></app-stock-card>
   </div>
 </body>

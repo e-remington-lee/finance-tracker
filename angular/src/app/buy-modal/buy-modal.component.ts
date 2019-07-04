@@ -11,7 +11,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class BuyModalComponent implements OnInit {
 
   symbol: any[]=[];
-  symbolString: string;
 
   username = 'Remington';
   userId = 1;
@@ -31,7 +30,7 @@ export class BuyModalComponent implements OnInit {
       
       return false
     } else {
-      this.data.checkBalance(this.symbolString, this.accountId, this.shares).subscribe(resp => {
+      this.data.checkBalance(this.symbol[0]['symbol'], this.accountId, this.shares).subscribe(resp => {
         if (resp.status == 200) {
           this.symbol[0]['type'] = 'buy'
           this.symbol[0]['accountId'] = this.accountId

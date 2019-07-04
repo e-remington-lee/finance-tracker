@@ -11,7 +11,6 @@ import { SellModalComponent } from '../sell-modal/sell-modal.component';
 export class StockCardComponent implements OnInit {
 
   @Input() symbol: any;
-  @Input() symbolString: string;
 
   constructor(private modalService: NgbModal) { }
 
@@ -20,13 +19,11 @@ export class StockCardComponent implements OnInit {
 
   openBuyModal() {
     const modal = this.modalService.open(BuyModalComponent);
-    modal.componentInstance.symbolString = this.symbolString;
     modal.componentInstance.symbol = this.symbol;
   }
 
   openSellModal() {
     const modal = this.modalService.open(SellModalComponent);
-    modal.componentInstance.symbolString = this.symbolString;
     modal.componentInstance.symbol = this.symbol;
   }
 

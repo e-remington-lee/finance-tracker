@@ -11,7 +11,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class SellModalComponent implements OnInit {
 
   symbol: any[] = [];
-  symbolString: string;
 
   TSLA: any[] = [];
   AMZN: any[] = [];
@@ -36,7 +35,7 @@ export class SellModalComponent implements OnInit {
       this.ngbActiveModal.close();
       return false
     } else {
-      this.data.checkStock(this.symbolString, this.accountId, this.shares).subscribe(resp => {
+      this.data.checkStock(this.symbol[0]['symbol'], this.accountId, this.shares).subscribe(resp => {
         if (resp.status == 200) {
           this.symbol[0]['accountId']= this.accountId;
           this.symbol[0]['shares'] = this.shares;
