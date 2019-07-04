@@ -16,9 +16,13 @@ export class PortfolioComponent implements OnInit {
   constructor(private stocks: StocksService, private data: DataService) { }
 
   ngOnInit() {
-    // this.data.getAccountData(this.accountId).subscribe((data: any[])=> {
-    //   this.accountData = data;
-    // });
+    this.data.getAccountData(this.accountId).subscribe((data: any[])=> {
+      for (let i =0; i<data.length; i++){
+        this.accountData.push(data);
+      }
+      
+      console.log(this.accountData);
+    });
   }
 
 }

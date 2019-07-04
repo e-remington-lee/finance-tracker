@@ -51,7 +51,6 @@ def historical_info():
     return jsonify(historical_data)
 
 
-
 @app.route('/api/updateBalanceBuy', methods=['POST'])
 def balance_change_buy():
     response = request.get_json()
@@ -67,7 +66,6 @@ def balance_change_buy():
     balance_change = calculate_price(latest_price, shares)
     update_balance_buy(account_id, balance_change)
     return jsonify(balance_change)
-
 
 
 @app.route('/api/updateBalanceSell', methods=['POST'])
@@ -126,8 +124,7 @@ def check_balance():
     return "", 200
 
 
-
-@app.route('/api/checkStock', methods=['GET', 'POST'])
+@app.route('/api/checkStock', methods=['GET'])
 def check_stock():
     symbol = request.args.get('symbol')
     account_id = request.args.get('accountId')
@@ -139,7 +136,6 @@ def check_stock():
     if int(current_holdings) < int(shares):
         return "", 404
     return "", 200
-
 
 
 @app.route('/api/buyStock', methods=['POST'])
@@ -160,7 +156,6 @@ def buy_stock_endpoint():
     return jsonify(company_name)
 
 
-
 @app.route('/api/sellStock', methods=['POST'])
 def sell_stock_endpoint():
     response = request.get_json()
@@ -173,8 +168,7 @@ def sell_stock_endpoint():
     return jsonify(shares)
 
 
-
-@app.route('/api/portfolioData', methods=['POST'])
+@app.route('/api/portfolioData', methods=['GET'])
 def portfolio_data():
     account_id  = request.args.get('accountId')
     # payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}

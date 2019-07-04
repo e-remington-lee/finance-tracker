@@ -370,7 +370,7 @@ module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container' id='container'>\n    <canvas id=\"myChart\" ></canvas>\n  <div class='row' id='portfolio'>\n    <app-stock-card class='col-12' [symbol]=\"TSLA\" [symbolString]=\"'TSLA'\"></app-stock-card>\n  </div>\n</body>\n"
+module.exports = "<body class='container' id='container'>\n    <canvas id=\"myChart\" ></canvas>\n  <div class='row' id='portfolio' >\n    <app-stock-card *ngFor = 'let stock of accountData' class='col-12' [symbol]=\"stock\" [symbolString]=\"stock.symbol\"></app-stock-card>\n  </div>\n</body>\n"
 
 /***/ }),
 
@@ -876,10 +876,10 @@ let DataService = class DataService {
     ;
     getAccountData(accountId) {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('accountId', accountId) };
-        return this.http.get('http://localhost:7000/api/checkStock', params);
+        return this.http.get('http://localhost:7000/api/portfolioData', params);
     }
     checkSymbol() {
-        // checks if symbol is valid, if yes return 200, not, 404
+        // checks if symbol is valid when you search in buy/sell, if yes return 200, not, 404
     }
     chartData(symbol) {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
@@ -1074,9 +1074,12 @@ let PortfolioComponent = class PortfolioComponent {
         this.accountData = [];
     }
     ngOnInit() {
-        // this.data.getAccountData(this.accountId).subscribe((data: any[])=> {
-        //   this.accountData = data;
-        // });
+        this.data.getAccountData(this.accountId).subscribe((data) => {
+            for (let i = 0; i < data.length; i++) {
+                this.accountData.push(data);
+            }
+            console.log(this.accountData);
+        });
     }
 };
 PortfolioComponent.ctorParameters = () => [
