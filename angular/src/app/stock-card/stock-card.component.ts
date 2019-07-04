@@ -10,7 +10,7 @@ import { SellModalComponent } from '../sell-modal/sell-modal.component';
 })
 export class StockCardComponent implements OnInit {
 
-  @Input() symbol: any;
+  @Input() symbol: any[]=[];
 
   constructor(private modalService: NgbModal) { }
 

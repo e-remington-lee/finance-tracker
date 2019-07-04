@@ -370,7 +370,7 @@ module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container' id='container'>\n    <canvas id=\"myChart\" ></canvas>\n  <div class='row' id='portfolio' >\n    <app-stock-card *ngFor = 'let symbol of accountData' class='col-12' [symbol]=\"symbol\"></app-stock-card>\n  </div>\n</body>\n"
+module.exports = "<body class='container' id='container'>\n    <canvas id=\"myChart\" ></canvas>\n  <div class='row' id='portfolio'>\n    <app-stock-card *ngFor = 'let symbol of accountData' class='col-12' [symbol]=\"symbol\"></app-stock-card>\n    <!-- <div class='card'  *ngFor='let stock of accountData'>\n      <div class='card-body'>\n        <div class='col-3' *ngFor='let stock of accountData'>\n            <b>{{stock.company}} : {{stock.symbol}}</b>\n        </div>\n        <div class='col-7' *ngFor='let stock of accountData'>\n            <p><b>Current Price:</b> ${{stock.price}}</p>\n            <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n            <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n        </div>\n        <div class='col-2'>\n            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'(click)='openBuyModal()'>Buy</button>\n            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellStock' (click)='openSellModal()'>Sell</button>\n          </div>\n      </div>\n    </div> -->\n  </div>\n</body>\n"
 
 /***/ }),
 
@@ -1232,6 +1232,7 @@ __webpack_require__.r(__webpack_exports__);
 let StockCardComponent = class StockCardComponent {
     constructor(modalService) {
         this.modalService = modalService;
+        this.symbol = [];
     }
     ngOnInit() {
     }
@@ -1249,7 +1250,7 @@ StockCardComponent.ctorParameters = () => [
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
 ], StockCardComponent.prototype, "symbol", void 0);
 StockCardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
