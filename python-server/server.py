@@ -14,141 +14,132 @@ def home_page(path):
     return render_template('index.html')
 
 
-@app.route('/api/stockData', methods=['GET', 'POST'])
+@app.route('/api/stockData', methods=['GET'])
 def stock_info():
-    if request.method == 'GET':
-        symbol = request.args.get('symbol')
-        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote', params=payload)
+    symbol = request.args.get('symbol')
+    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote', params=payload)
 
-        change_percent = round(float(r.json()['changePercent'])*100,3)
-        latest_price = round(float(r.json()['latestPrice']),2)
-        change = round(float(r.json()['change']),2)
+    change_percent = round(float(r.json()['changePercent'])*100,3)
+    latest_price = round(float(r.json()['latestPrice']),2)
+    change = round(float(r.json()['change']),2)
 
-        stock_data = [{
-                        'price': latest_price,
-                        'company': r.json()['companyName'],
-                        'symbol': r.json()['symbol'],
-                        'changePercent': change_percent,
-                        'change': change
-                        }]
-        return jsonify(stock_data)
-    return None
+    stock_data = [{
+                    'price': latest_price,
+                    'company': r.json()['companyName'],
+                    'symbol': r.json()['symbol'],
+                    'changePercent': change_percent,
+                    'change': change
+                     }]
+    return jsonify(stock_data)
 
 
-@app.route('/api/historicalData', methods=['GET', 'POST'])
+@app.route('/api/historicalData', methods=['GET'])
 def historical_info():
-    if request.method == 'GET':
-        symbol = request.args.get('symbol')
-        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/chart/1m', params=payload)
+    symbol = request.args.get('symbol')
+    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/chart/1m', params=payload)
 
-        historical_data = []
-        count = 0
+    historical_data = []
+    count = 0
 
-        for x in r.json():
-            x = {'date': r.json()[count]['date'],
-                'closing_price': r.json()[count]['close']}
-            historical_data.append(x)
-            count +=1
-        return jsonify(historical_data)
-    return None
+    for x in r.json():
+        x = {'date': r.json()[count]['date'],
+            'closing_price': r.json()[count]['close']}
+        historical_data.append(x)
+        count +=1
+    return jsonify(historical_data)
+
 
 
 @app.route('/api/updateBalanceBuy', methods=['POST'])
 def balance_change_buy():
-    if request.method =='POST':
-        response = request.get_json()
+    response = request.get_json()
 
-        symbol = response[0]['symbol']
-        account_id  = response[0]['accountId']
-        shares = int(response[0]['shares'])
+    symbol = response[0]['symbol']
+    account_id  = response[0]['accountId']
+    shares = int(response[0]['shares'])
         
-        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-        latest_price = float(r.text)
+    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
+    latest_price = float(r.text)
 
-        balance_change = calculate_price(latest_price, shares)
-        update_balance_buy(account_id, balance_change)
-        return jsonify(balance_change)
-    return None
+    balance_change = calculate_price(latest_price, shares)
+    update_balance_buy(account_id, balance_change)
+    return jsonify(balance_change)
+
 
 
 @app.route('/api/updateBalanceSell', methods=['POST'])
 def balance_change_sell():
-    if request.method =='POST':
-        response = request.get_json()
+    response = request.get_json()
 
-        symbol = response[0]['symbol']
-        account_id = response[0]['accountId']
-        shares = int(response[0]['shares'])
+    symbol = response[0]['symbol']
+    account_id = response[0]['accountId']
+    shares = int(response[0]['shares'])
         
-        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-        latest_price = float(r.text)
+    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
+    latest_price = float(r.text)
 
-        balance_change = calculate_price(latest_price, shares)
-        update_balance_sell(account_id, balance_change)
-        return jsonify(balance_change)
-    return None
-
+    balance_change = calculate_price(latest_price, shares)
+    update_balance_sell(account_id, balance_change)
+    return jsonify(balance_change)
+ 
 
 @app.route('/api/transactions', methods=[ 'POST'])
 def transactions():
-    if request.method == 'POST':
-        response = request.get_json()
+    response = request.get_json()
 
-        symbol = response[0]['symbol']
-        account_id = response[0]['accountId']
-        shares = response[0]['shares']
-        transaction_type = response[0]['type']
+    symbol = response[0]['symbol']
+    account_id = response[0]['accountId']
+    shares = response[0]['shares']
+    transaction_type = response[0]['type']
 
-        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-        stock_price = r.text
+    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
+    stock_price = r.text
         
-        transaction_list(account_id, symbol, transaction_type, stock_price, shares)
-        return jsonify(stock_price)
-    return None
+    transaction_list(account_id, symbol, transaction_type, stock_price, shares)
+    return jsonify(stock_price)
+
 
 
 @app.route('/api/checkBalance', methods=['GET', 'POST'])
 def check_balance():
-        if request.method == 'GET':
-            symbol = request.args.get('symbol')
-            account_id = request.args.get('accountId')
-            shares = int(request.args.get('shares'))
+    symbol = request.args.get('symbol')
+    account_id = request.args.get('accountId')
+    shares = int(request.args.get('shares'))
 
-            payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-            r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-            latest_price = float(r.text)
+    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
+    latest_price = float(r.text)
 
-            balance_change = calculate_price(latest_price, shares)
+    balance_change = calculate_price(latest_price, shares)
 
-            balance = check_account_balance(account_id)
-            float_balance = balance['account_balance']
-            float_balance = float_balance.replace('$', '').replace(',','')
+    balance = check_account_balance(account_id)
+    float_balance = balance['account_balance']
+    float_balance = float_balance.replace('$', '').replace(',','')
 
-            if float(float_balance) < balance_change:
-                return "", 404
-            return "", 200
-        return None
+    if float(float_balance) < balance_change:
+        return "", 404
+    return "", 200
+
 
 
 @app.route('/api/checkStock', methods=['GET', 'POST'])
 def check_stock():
-        if request.method == 'GET':
-            symbol = request.args.get('symbol')
-            account_id = request.args.get('accountId')
-            shares = request.args.get('shares')
+    symbol = request.args.get('symbol')
+    account_id = request.args.get('accountId')
+    shares = request.args.get('shares')
             
-            holdings = check_stock_holdings(account_id, symbol)
-            current_holdings = holdings['shares']
+    holdings = check_stock_holdings(account_id, symbol)
+    current_holdings = holdings['shares']
 
-            if int(current_holdings) < int(shares):
-                return "", 404
-            return "", 200
-        return None
+    if int(current_holdings) < int(shares):
+        return "", 404
+    return "", 200
+
 
 
 @app.route('/api/buyStock', methods=['POST'])
@@ -183,16 +174,14 @@ def sell_stock_endpoint():
 
 
 
-@app.route('/api/portfolioData', methods=['GET', 'POST'])
+@app.route('/api/portfolioData', methods=['POST'])
 def portfolio_data():
-        if request.method == 'GET':
-            account_id  = request.args.get('accountId')
-            # payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-            # r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-            latest_price = 125.50
-            x = portfolio_holdings(account_id, latest_price)
-            return jsonify(x)
-        return None
+    account_id  = request.args.get('accountId')
+    # payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+    # r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
+    latest_price = 125.50
+    x = portfolio_holdings(account_id, latest_price)
+    return jsonify(x)
 
 
 if __name__ =='__main__':
