@@ -184,6 +184,13 @@ def portfolio_data():
 
     return jsonify(portfolio_information)
 
+# @app.route('/api/totalValue', methods=['GET'])
+# def total_value():
+#     account_id  = request.args.get('accountId')
+
+#     print(portfolio_data)
+#     x = total_asset_value(portfolio_data, account_id)
+
 
 if __name__ =='__main__':
     app.run(debug=True, port=7000)
