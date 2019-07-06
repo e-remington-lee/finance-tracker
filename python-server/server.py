@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, jsonify
 import requests
 import api_tokens
-from database import buy_stock, sell_stock, update_balance_buy, update_balance_sell, transaction_list, check_account_balance, check_stock_holdings, portfolio_holdings
+# from database import buy_stock, sell_stock, update_balance_buy, update_balance_sell, portfolio_symbols, transaction_list, check_account_balance, check_stock_holdings, portfolio_holdings
+from database import *
 from stock_calculator import calculate_price
 
 
@@ -117,7 +118,6 @@ def check_balance():
 
     balance = check_account_balance(account_id)
     float_balance = balance['account_balance']
-    float_balance = float_balance.replace('$', '').replace(',','')
 
     if float(float_balance) < balance_change:
         return "", 404
@@ -171,11 +171,18 @@ def sell_stock_endpoint():
 @app.route('/api/portfolioData', methods=['GET'])
 def portfolio_data():
     account_id  = request.args.get('accountId')
-    # payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-    # r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-    latest_price = 125.50
-    x = portfolio_holdings(account_id, latest_price)
-    return jsonify(x)
+
+    symbol_list = portfolio_symbols(account_id)
+
+    latest_price_list = []
+    for symbol in symbol_list:
+        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
+        latest_price_list.append(float(r.text))
+
+    portfolio_information = portfolio_holdings(account_id, latest_price_list)
+
+    return jsonify(portfolio_information)
 
 
 if __name__ =='__main__':

@@ -103,24 +103,45 @@ def check_stock_holdings(account_id, symbol):
      return {'shares': row[3]}
 
 
-def portfolio_holdings(account_id, latest_price):
+def portfolio_holdings(account_id, latest_price_list):
      connection = create_connection()
      cur = connection.cursor()
 
-     cur.execute("SELECT * FROM holdings WHERE account_id = %(account_id)s", {'account_id': account_id})
+     cur.execute("SELECT * FROM holdings WHERE account_id = %(account_id)s ORDER BY holding_id ASC", {'account_id': account_id})
 
      rows = cur.fetchall()
 
+     holding_value = [round(row[3]*x,2) for row,x in zip(rows,latest_price_list)]
+     percent_change = [round(((float(x)-float(row[5]))/float(row[5]))*100,3) for row,x in zip(rows, latest_price_list)]
+
      y = []
+     i=0
      for row in rows:
           y.append({
                     'company': row[6],
                     'symbol': row[2],
                     'shares': row[3],
-                    'holding_value': int(row[3])*latest_price,
-                    'percent_change': round(100*((latest_price - float(row[5].replace('$', '').replace(',','')))/float(row[5].replace('$', '').replace(',',''))),2)
+                    'holding_value': holding_value[i],
+                    'percent_change': percent_change[i]
+                    })
+          i+=1
 
-          })
+     cur.close()
+     connection.close()
+
+     return y
+
+def portfolio_symbols(account_id):
+     connection = create_connection()
+     cur = connection.cursor()
+
+     cur.execute("SELECT * FROM holdings WHERE account_id = %(account_id)s ORDER BY holding_id ASC", {'account_id': account_id})
+
+     rows = cur.fetchall()
+
+     y = []
+     for row in rows:
+          y.append(row[2])
 
      cur.close()
      connection.close()
