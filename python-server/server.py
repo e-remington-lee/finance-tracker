@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import requests
-import api_tokens
-# from database import buy_stock, sell_stock, update_balance_buy, update_balance_sell, portfolio_symbols, transaction_list, check_account_balance, check_stock_holdings, portfolio_holdings
 from database import *
+from iex_connect import *
 from stock_calculator import calculate_price
 
 
@@ -18,11 +17,7 @@ def home_page(path):
 @app.route('/api/stockData', methods=['GET'])
 def stock_info():
     symbol = request.args.get('symbol')
-    payload = {
-                'token': 'pk_de4620b808c14be59ad8257623d8a6d2',
-                'filter': 'change,changePercent,companyName,symbol,latestPrice'
-                }
-    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote', params=payload)
+    r = iex_stock_data(symbol)
     print(r)
     if r != None:
         change_percent = round(float(r.json()['changePercent'])*100,3)
@@ -42,12 +37,7 @@ def stock_info():
 @app.route('/api/historicalData', methods=['GET'])
 def historical_info():
     symbol = request.args.get('symbol')
-    payload = {
-                'token': 'pk_de4620b808c14be59ad8257623d8a6d2',
-                'filter': 'label,close'
-            }
-    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/chart/1m', params=payload)
-
+    r = iex_chart_data(symbol)
     historical_data = []
     count = 0
     for x in r.json():
@@ -66,10 +56,8 @@ def balance_change_buy():
     account_id  = response[0]['accountId']
     shares = int(response[0]['shares'])
         
-    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-    latest_price = float(r.text)
-
+    latest_price = iex_latest_price(symbol)
+    print(latest_price)
     balance_change = calculate_price(latest_price, shares)
     update_balance_buy(account_id, balance_change)
     return jsonify(balance_change), 201
@@ -82,11 +70,8 @@ def balance_change_sell():
     symbol = response[0]['symbol']
     account_id = response[0]['accountId']
     shares = int(response[0]['shares'])
-        
-    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-    latest_price = float(r.text)
 
+    latest_price = iex_latest_price(symbol)
     balance_change = calculate_price(latest_price, shares)
     update_balance_sell(account_id, balance_change)
     return jsonify(balance_change), 201
@@ -101,9 +86,7 @@ def transactions():
     shares = response[0]['shares']
     transaction_type = response[0]['type']
 
-    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-    stock_price = r.text
+    stock_price = iex_latest_price(symbol)
         
     transaction_list(account_id, symbol, transaction_type, stock_price, shares)
     return jsonify(stock_price), 201
@@ -116,10 +99,7 @@ def check_balance():
     account_id = request.args.get('accountId')
     shares = int(request.args.get('shares'))
 
-    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-    latest_price = float(r.text)
-
+    latest_price = iex_latest_price(symbol)
     balance_change = calculate_price(latest_price, shares)
 
     balance = check_account_balance(account_id)
@@ -153,9 +133,7 @@ def buy_stock_endpoint():
     shares = response[0]['shares']
     company_name = response[0]['company']
 
-    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-    r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-    latest_price = float(r.text)
+    latest_price = iex_latest_price(symbol)
 
     buy_stock(symbol, shares, account_id, company_name, latest_price)
     print(latest_price)
@@ -182,9 +160,8 @@ def portfolio_data():
 
     latest_price_list = []
     for symbol in symbol_list:
-        payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
-        r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-        latest_price_list.append(float(r.text))
+        latest_price = iex_latest_price(symbol)
+        latest_price_list.append(latest_price)
 
     portfolio_information = portfolio_holdings(account_id, latest_price_list)
 

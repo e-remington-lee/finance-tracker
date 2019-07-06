@@ -135,7 +135,7 @@ def portfolio_holdings(account_id, latest_price_list):
      asset_values = [{
                     'total_holding_value': total_holding_value,
                     'total_cash': total_cash,
-                    'total_asset_value': total_cash + total_holding_value
+                    'total_asset_value': round(total_cash + total_holding_value,2)
                     }]
 
      cur.close()
