@@ -26,8 +26,8 @@ export class BuyModalComponent implements OnInit {
   buyStockButton() {
     if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
       alert('Must be a positive whole number');
+      this.ngbActiveModal.close();
       this.shares=0;
-      
       return false
     } else {
       this.data.checkBalance(this.symbol[0]['symbol'], this.accountId, this.shares).subscribe(resp => {
@@ -36,12 +36,12 @@ export class BuyModalComponent implements OnInit {
           this.symbol[0]['accountId'] = this.accountId
           this.symbol[0]['shares'] = this.shares
 
-          const type= 'buy';
           console.log(this.symbol)
           this.stocks.buyStock2(this.symbol).subscribe();
           this.stocks.updateBalanceBuy(this.symbol).subscribe();
           this.stocks.transactions(this.symbol).subscribe();
           this.shares=0;  
+          alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`)
         }
       },
       error => {

@@ -677,6 +677,7 @@ let BuyModalComponent = class BuyModalComponent {
     buyStockButton() {
         if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
             alert('Must be a positive whole number');
+            this.ngbActiveModal.close();
             this.shares = 0;
             return false;
         }
@@ -686,12 +687,12 @@ let BuyModalComponent = class BuyModalComponent {
                     this.symbol[0]['type'] = 'buy';
                     this.symbol[0]['accountId'] = this.accountId;
                     this.symbol[0]['shares'] = this.shares;
-                    const type = 'buy';
                     console.log(this.symbol);
                     this.stocks.buyStock2(this.symbol).subscribe();
                     this.stocks.updateBalanceBuy(this.symbol).subscribe();
                     this.stocks.transactions(this.symbol).subscribe();
                     this.shares = 0;
+                    alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`);
                 }
             }, error => {
                 if (error.status == 404) {
@@ -1160,13 +1161,11 @@ let SellModalComponent = class SellModalComponent {
                     this.symbol[0]['accountId'] = this.accountId;
                     this.symbol[0]['shares'] = this.shares;
                     this.symbol[0]['type'] = 'sell';
-                    console.log(this.symbol);
-                    const type = 'sell';
                     this.stocks.sellStock(this.symbol).subscribe();
                     this.stocks.updateBalanceSell(this.symbol).subscribe();
                     this.stocks.transactions(this.symbol).subscribe();
                     this.shares = 0;
-                    this.ngbActiveModal.close();
+                    alert(`Successfully sold ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`);
                 }
             }, error => {
                 if (error.status == 404) {
@@ -1175,6 +1174,7 @@ let SellModalComponent = class SellModalComponent {
                 }
             });
         }
+        this.ngbActiveModal.close();
     }
     closeModal() {
         this.ngbActiveModal.close();

@@ -41,13 +41,12 @@ export class SellModalComponent implements OnInit {
           this.symbol[0]['shares'] = this.shares;
           this.symbol[0]['type'] = 'sell';
           
-          console.log(this.symbol);
-          const type = 'sell';
           this.stocks.sellStock(this.symbol).subscribe();
           this.stocks.updateBalanceSell(this.symbol).subscribe();
           this.stocks.transactions(this.symbol).subscribe();
           this.shares=0
-          this.ngbActiveModal.close();
+
+          alert(`Successfully sold ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`)
         }
       },
       error => {
@@ -57,6 +56,7 @@ export class SellModalComponent implements OnInit {
         }
       });
     }
+    this.ngbActiveModal.close();
   }
 
   closeModal() {
