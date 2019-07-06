@@ -32,7 +32,7 @@ def stock_info():
                     'changePercent': change_percent,
                     'change': change
                      }]
-    return jsonify(stock_data)
+    return jsonify(stock_data), 200
 
 
 @app.route('/api/historicalData', methods=['GET'])
@@ -49,7 +49,7 @@ def historical_info():
             'closing_price': r.json()[count]['close']}
         historical_data.append(x)
         count +=1
-    return jsonify(historical_data)
+    return jsonify(historical_data), 200
 
 
 @app.route('/api/updateBalanceBuy', methods=['POST'])
@@ -66,7 +66,7 @@ def balance_change_buy():
 
     balance_change = calculate_price(latest_price, shares)
     update_balance_buy(account_id, balance_change)
-    return jsonify(balance_change)
+    return jsonify(balance_change), 201
 
 
 @app.route('/api/updateBalanceSell', methods=['POST'])
@@ -83,7 +83,7 @@ def balance_change_sell():
 
     balance_change = calculate_price(latest_price, shares)
     update_balance_sell(account_id, balance_change)
-    return jsonify(balance_change)
+    return jsonify(balance_change), 201
  
 
 @app.route('/api/transactions', methods=[ 'POST'])
@@ -100,11 +100,11 @@ def transactions():
     stock_price = r.text
         
     transaction_list(account_id, symbol, transaction_type, stock_price, shares)
-    return jsonify(stock_price)
+    return jsonify(stock_price), 201
 
 
 
-@app.route('/api/checkBalance', methods=['GET', 'POST'])
+@app.route('/api/checkBalance', methods=['GET'])
 def check_balance():
     symbol = request.args.get('symbol')
     account_id = request.args.get('accountId')
@@ -153,7 +153,7 @@ def buy_stock_endpoint():
 
     buy_stock(symbol, shares, account_id, company_name, latest_price)
     print(latest_price)
-    return jsonify(company_name)
+    return jsonify(company_name), 201
 
 
 @app.route('/api/sellStock', methods=['POST'])
@@ -165,7 +165,7 @@ def sell_stock_endpoint():
     shares = response[0]['shares']
 
     sell_stock(symbol, shares, account_id)
-    return jsonify(account_id)
+    return jsonify(account_id), 201
 
 
 @app.route('/api/portfolioData', methods=['GET'])
@@ -182,14 +182,7 @@ def portfolio_data():
 
     portfolio_information = portfolio_holdings(account_id, latest_price_list)
 
-    return jsonify(portfolio_information)
-
-# @app.route('/api/totalValue', methods=['GET'])
-# def total_value():
-#     account_id  = request.args.get('accountId')
-
-#     print(portfolio_data)
-#     x = total_asset_value(portfolio_data, account_id)
+    return jsonify(portfolio_information), 200
 
 
 if __name__ =='__main__':

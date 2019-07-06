@@ -109,8 +109,10 @@ def portfolio_holdings(account_id, latest_price_list):
      connection = create_connection()
      cur = connection.cursor()
 
-     cur.execute("SELECT * FROM holdings WHERE account_id = %(account_id)s ORDER BY holding_id ASC", {'account_id': account_id})
-
+     cur.execute('''SELECT * FROM holdings 
+                    INNER JOIN account_balance on holdings.account_id = account_balance.account_id
+                    WHERE holdings.account_id = %(account_id)s ORDER BY holdings.holding_id ASC''', {'account_id': account_id})
+     
      rows = cur.fetchall()
 
      holding_value = [round(row[3]*x,2) for row,x in zip(rows,latest_price_list)]
@@ -129,11 +131,12 @@ def portfolio_holdings(account_id, latest_price_list):
                     })
           i+=1
           
-     account_cash = 60000.00
+     
+     total_cash = float(rows[0][9])
      asset_values = [{
                     'total_holding_value': total_holding_value,
-                    'account_cash': account_cash,
-                    'total_asset_value': account_cash + total_holding_value
+                    'total_cash': total_cash,
+                    'total_asset_value': total_cash + total_holding_value
                     }]
 
      cur.close()
@@ -149,26 +152,10 @@ def portfolio_symbols(account_id):
 
      rows = cur.fetchall()
 
-     y = []
+     price_data = []
      for row in rows:
-          y.append(row[2])
+          price_data.append(row[2])
 
      cur.close()
      connection.close()
-     return y
-
-# def total_asset_value(account_id):
-#      connection = create_connection()
-#      cur = connection.cursor()
-
-#      cur.execute("SELECT * FROM holdings WHERE account_id = %(account_id)s ORDER BY holding_id ASC", {'account_id': account_id})
-
-#      rows = cur.fetchall()
-
-#      y = []
-#      for row in rows:
-#           y.append(row[2])
-
-#      cur.close()
-#      connection.close()
-#      return y
+     return price_data
