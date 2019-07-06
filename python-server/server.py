@@ -165,7 +165,7 @@ def sell_stock_endpoint():
     shares = response[0]['shares']
 
     sell_stock(symbol, shares, account_id)
-    return jsonify(accountId)
+    return jsonify(account_id)
 
 
 @app.route('/api/portfolioData', methods=['GET'])

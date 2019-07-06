@@ -41,7 +41,7 @@ def update_balance_buy(account_id, balance_change):
     connection = create_connection()
     cur = connection.cursor()
 
-    cur.execute("UPDATE account_balance SET account_balance = account_balance - %(balance_change)s::money WHERE account_id = %(account_id)s", {'balance_change': balance_change, 'account_id': account_id})
+    cur.execute("UPDATE account_balance SET account_balance = account_balance - %(balance_change)s WHERE account_id = %(account_id)s", {'balance_change': balance_change, 'account_id': account_id})
 
     connection.commit()
 
@@ -53,7 +53,7 @@ def update_balance_sell(account_id, balance_change):
     connection = create_connection()
     cur = connection.cursor()
 
-    cur.execute("UPDATE account_balance SET account_balance = account_balance + %(balance_change)s::money WHERE account_id = %(account_id)s", {'balance_change': balance_change, 'account_id': account_id})
+    cur.execute("UPDATE account_balance SET account_balance = account_balance + %(balance_change)s WHERE account_id = %(account_id)s", {'balance_change': balance_change, 'account_id': account_id})
 
     connection.commit()
 
