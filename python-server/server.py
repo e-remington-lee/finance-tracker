@@ -18,34 +18,40 @@ def home_page(path):
 @app.route('/api/stockData', methods=['GET'])
 def stock_info():
     symbol = request.args.get('symbol')
-    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+    payload = {
+                'token': 'pk_de4620b808c14be59ad8257623d8a6d2',
+                'filter': 'change,changePercent,companyName,symbol,latestPrice'
+                }
     r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote', params=payload)
+    print(r)
+    if r != None:
+        change_percent = round(float(r.json()['changePercent'])*100,3)
+        latest_price = round(float(r.json()['latestPrice']),2)
+        change = round(float(r.json()['change']),2)
 
-    change_percent = round(float(r.json()['changePercent'])*100,3)
-    latest_price = round(float(r.json()['latestPrice']),2)
-    change = round(float(r.json()['change']),2)
-
-    stock_data = [{
-                    'price': latest_price,
-                    'company': r.json()['companyName'],
-                    'symbol': r.json()['symbol'],
-                    'changePercent': change_percent,
-                    'change': change
-                     }]
-    return jsonify(stock_data), 200
-
+        stock_data = [{
+                        'price': latest_price,
+                        'company': r.json()['companyName'],
+                        'symbol': r.json()['symbol'],
+                        'changePercent': change_percent,
+                        'change': change
+                        }]
+        return jsonify(stock_data), 200
+    return "", 404
 
 @app.route('/api/historicalData', methods=['GET'])
 def historical_info():
     symbol = request.args.get('symbol')
-    payload = { 'token': 'pk_de4620b808c14be59ad8257623d8a6d2'}
+    payload = {
+                'token': 'pk_de4620b808c14be59ad8257623d8a6d2',
+                'filter': 'label,close'
+            }
     r=requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/chart/1m', params=payload)
 
     historical_data = []
     count = 0
-
     for x in r.json():
-        x = {'date': r.json()[count]['date'],
+        x = {'date': r.json()[count]['label'],
             'closing_price': r.json()[count]['close']}
         historical_data.append(x)
         count +=1

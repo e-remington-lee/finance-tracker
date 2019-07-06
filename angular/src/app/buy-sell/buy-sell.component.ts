@@ -71,7 +71,7 @@ export class BuySellComponent implements OnInit {
 
     this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
 
-    this.data.returnStocks(this.searchStockSymbol).subscribe((data: any[]) => {
+    this.data.returnStocks(this.searchStockSymbol).subscribe((data: any[]) => {   
       this.searchStockData = data;
     });
   }

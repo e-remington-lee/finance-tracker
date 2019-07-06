@@ -131,7 +131,6 @@ def portfolio_holdings(account_id, latest_price_list):
                     })
           i+=1
           
-     
      total_cash = float(rows[0][9])
      asset_values = [{
                     'total_holding_value': total_holding_value,
