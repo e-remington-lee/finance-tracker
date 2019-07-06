@@ -115,7 +115,7 @@ def portfolio_holdings(account_id, latest_price_list):
 
      holding_value = [round(row[3]*x,2) for row,x in zip(rows,latest_price_list)]
      percent_change = [round(((float(x)-float(row[5]))/float(row[5]))*100,3) for row,x in zip(rows, latest_price_list)]
-     total_holding_value = [round(sum(holding_value),2)]
+     total_holding_value = round(sum(holding_value),2)
 
      asset_data = []
      i=0
@@ -128,15 +128,17 @@ def portfolio_holdings(account_id, latest_price_list):
                     'percent_change': percent_change[i]
                     })
           i+=1
-
-     cur.execute("SELECT * FROM account_balance WHERE account_id = %(account_id)s", {'account_id': account_id})
-
-     account_cash = cur.fetchone()
-     # total_asset_value = [float(account_cash[2]) + float(total_holding_value)]
+          
+     account_cash = 60000.00
+     asset_values = [{
+                    'total_holding_value': total_holding_value,
+                    'account_cash': account_cash,
+                    'total_asset_value': account_cash + total_holding_value
+                    }]
 
      cur.close()
      connection.close()
-     return {'asset_data': asset_data, 'total_holding_value': total_holding_value}
+     return {'asset_data': asset_data, 'asset_values': asset_values}
 
 
 def portfolio_symbols(account_id):
