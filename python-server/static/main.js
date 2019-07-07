@@ -326,7 +326,7 @@ module.exports = "<div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n    <app-stock-card class='col-12' [symbol]=\"TSLA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"AMZN\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"FB\"></app-stock-card> \n  </div>\n</body>\n\n"
+module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n    <app-stock-card class='col-12' [symbol]=\"TSLA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"AMZN\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"FB\"></app-stock-card>\n    <canvas id=\"chartIndicators\" ></canvas> \n  </div>\n</body>\n\n"
 
 /***/ }),
 
@@ -817,6 +817,35 @@ let BuySellComponent = class BuySellComponent {
                 }
             }
         });
+        this.chartIndicators = new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"]('chartIndicators', {
+            type: 'line',
+            data: {
+                labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
+                datasets: [{
+                        data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
+                        label: "Africa",
+                        borderColor: "#3e95cd",
+                        fill: false
+                    }, {
+                        data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],
+                        label: "Asia",
+                        borderColor: "#8e5ea2",
+                        fill: false
+                    }, {
+                        data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],
+                        label: "Europe",
+                        borderColor: "#3cba9f",
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Stock Indicators"
+                }
+            }
+        });
     }
     searchStocks() {
         var searchStockBox = document.getElementById('searchStock');
@@ -1163,9 +1192,9 @@ let PortfolioComponent = class PortfolioComponent {
     ngOnInit() {
         this.data.getAccountData(this.accountId).subscribe((data) => {
             this.accountData = data;
-            console.log(this.accountData['asset_data']);
-            console.log(this.accountData['asset_values']);
-            console.log(this.accountData);
+            // console.log(this.accountData['asset_data']);
+            // console.log(this.accountData['asset_values']);
+            // console.log(this.accountData);
             this.assetData = this.accountData['asset_data'];
             this.assetValues = this.accountData['asset_values'];
             var companyName = [];
@@ -1176,7 +1205,6 @@ let PortfolioComponent = class PortfolioComponent {
                 holdingValue.push(this.assetData[x]['holding_value_float']);
                 color.push("#3e95cd");
             }
-            console.log(companyName, holdingValue, color);
             new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"](document.getElementById("myChart"), {
                 type: 'bar',
                 data: {
