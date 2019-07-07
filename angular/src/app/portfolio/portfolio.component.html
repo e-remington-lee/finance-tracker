@@ -3,11 +3,11 @@
           <div class ='card-header'>
             <h3>Account Data</h3>
           </div>
-            <div class='card-body' *ngFor='let bob of assetValues'>
+            <div class='card-body' *ngFor='let asset of assetValues'>
                 <ul class='list-group list-group-flush'>
-                  <li class="list-group-item"><b>Account Balance: </b> ${{bob.total_cash}}</li>
-                  <li class="list-group-item"><b>Total Holding Value: </b>${{bob.total_asset_value}} </li>
-                  <li class="list-group-item"><b>Total Asset Value: </b>${{bob.total_holding_value}}</li>                         
+                  <li class="list-group-item"><b>Account Balance: </b> ${{asset.total_cash}}</li>
+                  <li class="list-group-item"><b>Total Holding Value: </b>${{asset.total_holding_value}} </li>
+                  <li class="list-group-item"><b>Total Asset Value: </b>${{asset.total_asset_value}}</li>                         
                 </ul>
             </div>
           </div>
