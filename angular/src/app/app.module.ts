@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { StockCardComponent } from './stock-card/stock-card.component';
 import { BuyModalComponent } from './buy-modal/buy-modal.component';
 import { SellModalComponent } from './sell-modal/sell-modal.component';
+import { PortfolioCardComponent } from './portfolio-card/portfolio-card.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SellModalComponent } from './sell-modal/sell-modal.component';
     StockCardComponent,
     BuyModalComponent,
     SellModalComponent,
+    PortfolioCardComponent,
   ],
   entryComponents: [
     BuyModalComponent,

@@ -125,7 +125,7 @@ def portfolio_holdings(account_id, latest_price_list):
           asset_data.append({
                     'company': row[6],
                     'symbol': row[2],
-                    'shares': row[3],
+                    'shares': row[3], 
                     'holding_value': holding_value[i],
                     'percent_change': percent_change[i]
                     })

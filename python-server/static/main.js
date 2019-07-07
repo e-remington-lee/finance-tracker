@@ -363,6 +363,17 @@ module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/portfolio-card/portfolio-card.component.html":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/portfolio-card/portfolio-card.component.html ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div class='col-3'>\n          <b>{{stock.company}} : {{stock.symbol}}</b>\n      </div>\n      <div class='col-7'>\n          <p><b>Current Price:</b> ${{stock.price}}</p>\n\n          <!-- <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n          <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>        -->\n      </div>\n      <div class='col-2'>\n          <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'(click)='openBuyModal()'>Buy</button>\n          <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellStock' (click)='openSellModal()'>Sell</button>\n        </div>\n    </div>\n  </div>\n"
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/index.js!./src/app/portfolio/portfolio.component.html":
 /*!******************************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/portfolio/portfolio.component.html ***!
@@ -370,7 +381,7 @@ module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container' id='container'>\n    <canvas id=\"myChart\" ></canvas>\n  <div class='row' id='portfolio'>\n    <app-stock-card *ngFor = 'let symbol of accountData' class='col-12' [symbol]=\"symbol\"></app-stock-card>\n    <!-- <div class='card'  *ngFor='let stock of accountData'>\n      <div class='card-body'>\n        <div class='col-3' *ngFor='let stock of accountData'>\n            <b>{{stock.company}} : {{stock.symbol}}</b>\n        </div>\n        <div class='col-7' *ngFor='let stock of accountData'>\n            <p><b>Current Price:</b> ${{stock.price}}</p>\n            <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n            <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n        </div>\n        <div class='col-2'>\n            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'(click)='openBuyModal()'>Buy</button>\n            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellStock' (click)='openSellModal()'>Sell</button>\n          </div>\n      </div>\n    </div> -->\n  </div>\n</body>\n"
+module.exports = "<body class='container' id='container'>\n    <canvas id=\"myChart\" ></canvas>\n        <div class='card text-center'>\n          <div class ='card-header'>\n            <h3>Account Data</h3>\n          </div>\n            <div class='card-body' *ngFor='let bob of assetValues'>\n\n                <ul class='list-group list-group-flush'>\n                  <li class=\"list-group-item\"><b>${{bob.total_cash}}</b></li>\n                  <li class=\"list-group-item\"><b>${{bob.total_asset_value}}</b> </li>\n                  <li class=\"list-group-item\"><b>${{bob.total_holding_value}}</b></li>                         \n                </ul>\n          \n\n            </div>\n          </div>\n  <div class='row' id='portfolio'>\n    <app-portfolio-card *ngFor = 'let stock of assetData' class='col-12' [stock]=\"stock\"></app-portfolio-card>\n  </div>\n</body>\n"
 
 /***/ }),
 
@@ -577,6 +588,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stock_card_stock_card_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./stock-card/stock-card.component */ "./src/app/stock-card/stock-card.component.ts");
 /* harmony import */ var _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./buy-modal/buy-modal.component */ "./src/app/buy-modal/buy-modal.component.ts");
 /* harmony import */ var _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./sell-modal/sell-modal.component */ "./src/app/sell-modal/sell-modal.component.ts");
+/* harmony import */ var _portfolio_card_portfolio_card_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./portfolio-card/portfolio-card.component */ "./src/app/portfolio-card/portfolio-card.component.ts");
+
 
 
 
@@ -609,6 +622,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _stock_card_stock_card_component__WEBPACK_IMPORTED_MODULE_14__["StockCardComponent"],
             _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__["BuyModalComponent"],
             _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_16__["SellModalComponent"],
+            _portfolio_card_portfolio_card_component__WEBPACK_IMPORTED_MODULE_17__["PortfolioCardComponent"],
         ],
         entryComponents: [
             _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__["BuyModalComponent"],
@@ -1038,6 +1052,63 @@ NavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/portfolio-card/portfolio-card.component.scss":
+/*!**************************************************************!*\
+  !*** ./src/app/portfolio-card/portfolio-card.component.scss ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "div {\n  display: flex;\n  width: 100%;\n}\n\ndiv p {\n  margin: 0 20px 0 0;\n}\n\nbutton {\n  margin: 0 5px 0 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvLWNhcmQvRDpcXE1hc3Rlcm1pbmRcXEZpbmFuY2UtdHJhY2tpbmdcXGFuZ3VsYXIvc3JjXFxhcHBcXHBvcnRmb2xpby1jYXJkXFxwb3J0Zm9saW8tY2FyZC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvLWNhcmQvcG9ydGZvbGlvLWNhcmQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0EsV0FBQTtBQ0NKOztBREVBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLGlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9wb3J0Zm9saW8tY2FyZC9wb3J0Zm9saW8tY2FyZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImRpdiB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbmRpdiBwIHtcclxuICAgIG1hcmdpbjogMCAyMHB4IDAgMDtcclxufVxyXG5cclxuYnV0dG9uIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG59IiwiZGl2IHtcbiAgZGlzcGxheTogZmxleDtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbmRpdiBwIHtcbiAgbWFyZ2luOiAwIDIwcHggMCAwO1xufVxuXG5idXR0b24ge1xuICBtYXJnaW46IDAgNXB4IDAgMDtcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/portfolio-card/portfolio-card.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/portfolio-card/portfolio-card.component.ts ***!
+  \************************************************************/
+/*! exports provided: PortfolioCardComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortfolioCardComponent", function() { return PortfolioCardComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+
+
+
+let PortfolioCardComponent = class PortfolioCardComponent {
+    // assetData = this.stock['asset_data'];
+    // assetValues = this.stock['asset_values']
+    constructor(modalService) {
+        this.modalService = modalService;
+        this.stock = [];
+    }
+    ngOnInit() {
+    }
+};
+PortfolioCardComponent.ctorParameters = () => [
+    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
+], PortfolioCardComponent.prototype, "stock", void 0);
+PortfolioCardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-portfolio-card',
+        template: __webpack_require__(/*! raw-loader!./portfolio-card.component.html */ "./node_modules/raw-loader/index.js!./src/app/portfolio-card/portfolio-card.component.html"),
+        styles: [__webpack_require__(/*! ./portfolio-card.component.scss */ "./src/app/portfolio-card/portfolio-card.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"]])
+], PortfolioCardComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/portfolio/portfolio.component.scss":
 /*!****************************************************!*\
   !*** ./src/app/portfolio/portfolio.component.scss ***!
@@ -1045,7 +1116,7 @@ NavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#portfolio {\n  margin: 10px 0 10px 0;\n  display: flex;\n}\n\n#graph {\n  margin: 10px 0 0 0;\n  height: 350px;\n  width: 120%;\n}\n\nbody div a {\n  margin: 0 5px 0 0;\n  justify-content: right;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvL0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxwb3J0Zm9saW9cXHBvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNJLHFCQUFBO0VBQ0EsYUFBQTtBQ0RKOztBRElBO0VBQ0ksa0JBQUE7RUFDQSxhQUFBO0VBQ0EsV0FBQTtBQ0RKOztBREtBO0VBQ0ksaUJBQUE7RUFDQSxzQkFBQTtBQ0ZKIiwiZmlsZSI6InNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5cclxuI3BvcnRmb2xpbyB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAxMHB4IDA7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG59XHJcblxyXG4jZ3JhcGgge1xyXG4gICAgbWFyZ2luOiAxMHB4IDAgMCAwO1xyXG4gICAgaGVpZ2h0OiAzNTBweDtcclxuICAgIHdpZHRoOiAxMjAlXHJcbn1cclxuXHJcblxyXG5ib2R5IGRpdiBhIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG4gICAganVzdGlmeS1jb250ZW50OiByaWdodDtcclxufSIsIiNwb3J0Zm9saW8ge1xuICBtYXJnaW46IDEwcHggMCAxMHB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG59XG5cbiNncmFwaCB7XG4gIG1hcmdpbjogMTBweCAwIDAgMDtcbiAgaGVpZ2h0OiAzNTBweDtcbiAgd2lkdGg6IDEyMCU7XG59XG5cbmJvZHkgZGl2IGEge1xuICBtYXJnaW46IDAgNXB4IDAgMDtcbiAganVzdGlmeS1jb250ZW50OiByaWdodDtcbn0iXX0= */"
+module.exports = "#accountInfo {\n  display: flex;\n  width: 100%;\n}\n\n#portfolio {\n  margin: 10px 0 10px 0;\n  display: flex;\n}\n\n#graph {\n  margin: 10px 0 0 0;\n  height: 350px;\n  width: 120%;\n}\n\nbody div a {\n  margin: 0 5px 0 0;\n  justify-content: right;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvL0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxwb3J0Zm9saW9cXHBvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGFBQUE7RUFDQSxXQUFBO0FDQ0o7O0FERUE7RUFDSSxxQkFBQTtFQUNBLGFBQUE7QUNDSjs7QURFQTtFQUNJLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLFdBQUE7QUNDSjs7QURHQTtFQUNJLGlCQUFBO0VBQ0Esc0JBQUE7QUNBSiIsImZpbGUiOiJzcmMvYXBwL3BvcnRmb2xpby9wb3J0Zm9saW8uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjYWNjb3VudEluZm8ge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4jcG9ydGZvbGlvIHtcclxuICAgIG1hcmdpbjogMTBweCAwIDEwcHggMDtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbn1cclxuXHJcbiNncmFwaCB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAwIDA7XHJcbiAgICBoZWlnaHQ6IDM1MHB4O1xyXG4gICAgd2lkdGg6IDEyMCVcclxufVxyXG5cclxuXHJcbmJvZHkgZGl2IGEge1xyXG4gICAgbWFyZ2luOiAwIDVweCAwIDA7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHJpZ2h0O1xyXG59IiwiI2FjY291bnRJbmZvIHtcbiAgZGlzcGxheTogZmxleDtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbiNwb3J0Zm9saW8ge1xuICBtYXJnaW46IDEwcHggMCAxMHB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG59XG5cbiNncmFwaCB7XG4gIG1hcmdpbjogMTBweCAwIDAgMDtcbiAgaGVpZ2h0OiAzNTBweDtcbiAgd2lkdGg6IDEyMCU7XG59XG5cbmJvZHkgZGl2IGEge1xuICBtYXJnaW46IDAgNXB4IDAgMDtcbiAganVzdGlmeS1jb250ZW50OiByaWdodDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -1073,14 +1144,17 @@ let PortfolioComponent = class PortfolioComponent {
         this.data = data;
         this.accountId = 1;
         this.accountData = [];
+        this.assetData = [];
+        this.assetValues = [];
     }
     ngOnInit() {
         this.data.getAccountData(this.accountId).subscribe((data) => {
-            // for (let i =0; i<data.length; i++){
-            //   this.accountData.push(data);
-            // }
             this.accountData = data;
+            console.log(this.accountData['asset_data']);
+            console.log(this.accountData['asset_values']);
             console.log(this.accountData);
+            this.assetData = this.accountData['asset_data'];
+            this.assetValues = this.accountData['asset_values'];
         });
     }
 };

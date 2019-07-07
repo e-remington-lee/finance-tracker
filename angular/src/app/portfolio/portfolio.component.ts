@@ -12,18 +12,21 @@ export class PortfolioComponent implements OnInit {
 
   accountId = 1;
   accountData: any[] = [];
+  assetData: any[] = [];
+  assetValues: any[] = [];
 
   constructor(private stocks: StocksService, private data: DataService) { }
 
   ngOnInit() {
     this.data.getAccountData(this.accountId).subscribe((data: any[])=> {
-      // for (let i =0; i<data.length; i++){
-      //   this.accountData.push(data);
-      // }
-
       this.accountData = data;
-    
+      console.log(this.accountData['asset_data']);
+      console.log(this.accountData['asset_values']);
       console.log(this.accountData);
+      
+      this.assetData = this.accountData['asset_data'];
+      this.assetValues = this.accountData['asset_values'];
+      
     });
   }
 
