@@ -26,6 +26,37 @@ export class PortfolioComponent implements OnInit {
       
       this.assetData = this.accountData['asset_data'];
       this.assetValues = this.accountData['asset_values'];
+
+      var companyName = [];
+      var holdingValue = [];
+      var color = []
+
+      for (let x=0; x < this.assetData.length; x++) {
+          companyName.push(this.assetData[x]['company'])
+          holdingValue.push(this.assetData[x]['holding_value_float'])
+          color.push("#3e95cd")
+      }
+      console.log(companyName, holdingValue, color)
+      new Chart(document.getElementById("myChart"), {
+        type: 'bar',
+        data: {
+          labels: companyName,
+          datasets: [
+            {
+              label: "Current Stock Value",
+              backgroundColor: color,
+              data: holdingValue
+            }
+          ]
+        },
+        options: {
+          legend: { display: true },
+          title: {
+            display: true,
+            text: 'Portfolio Holdings'
+          }
+        }
+    });
       
     });
   }

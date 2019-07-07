@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import requests
 from database import *
 from iex_connect import *
+from money import *
 from stock_calculator import calculate_price
 
 
@@ -21,8 +22,8 @@ def stock_info():
     print(r)
     if r != None:
         change_percent = round(float(r.json()['changePercent'])*100,3)
-        latest_price = round(float(r.json()['latestPrice']),2)
-        change = round(float(r.json()['change']),2)
+        latest_price = money(round(float(r.json()['latestPrice']),2))
+        change = money(round(float(r.json()['change']),2))
 
         stock_data = [{
                         'price': latest_price,

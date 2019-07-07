@@ -11,12 +11,20 @@ import { SellModalComponent } from '../sell-modal/sell-modal.component';
 export class PortfolioCardComponent implements OnInit {
 
   @Input() stock: any[]=[];
-  // assetData = this.stock['asset_data'];
-  // assetValues = this.stock['asset_values']
 
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
+  }
+
+  openBuyModal() {
+    const modal = this.modalService.open(BuyModalComponent);
+    modal.componentInstance.symbol = this.stock;
+  }
+
+  openSellModal() {
+    const modal = this.modalService.open(SellModalComponent);
+    modal.componentInstance.symbol = this.stock;
   }
 
 }

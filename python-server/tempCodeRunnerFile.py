@@ -1,2 +1,1 @@
 
-def portfolio_data():

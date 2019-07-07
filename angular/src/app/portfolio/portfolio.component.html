@@ -1,20 +1,17 @@
 <body class='container' id='container'>
-    <canvas id="myChart" ></canvas>
-        <div class='card text-center'>
+        <div class='card text-center' id='account'>
           <div class ='card-header'>
             <h3>Account Data</h3>
           </div>
             <div class='card-body' *ngFor='let bob of assetValues'>
-
                 <ul class='list-group list-group-flush'>
-                  <li class="list-group-item"><b>${{bob.total_cash}}</b></li>
-                  <li class="list-group-item"><b>${{bob.total_asset_value}}</b> </li>
-                  <li class="list-group-item"><b>${{bob.total_holding_value}}</b></li>                         
+                  <li class="list-group-item"><b>Account Balance: </b> ${{bob.total_cash}}</li>
+                  <li class="list-group-item"><b>Total Holding Value: </b>${{bob.total_asset_value}} </li>
+                  <li class="list-group-item"><b>Total Asset Value: </b>${{bob.total_holding_value}}</li>                         
                 </ul>
-          
-
             </div>
           </div>
+        <canvas id="myChart" ></canvas>
   <div class='row' id='portfolio'>
     <app-portfolio-card *ngFor = 'let stock of assetData' class='col-12' [stock]="stock"></app-portfolio-card>
   </div>

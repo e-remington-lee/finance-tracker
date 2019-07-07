@@ -4,14 +4,13 @@
           <b>{{stock.company}} : {{stock.symbol}}</b>
       </div>
       <div class='col-7'>
-          <p><b>Current Price:</b> ${{stock.price}}</p>
-
-          <!-- <p><b>Percent Change:</b> {{stock.changePercent}}% </p>
-          <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>        -->
+          <p><b>Holding Value: </b> ${{stock.holding_value}}</p>
+          <p><b>Shares: </b> {{stock.shares}}</p>
+          <p><b>Percent Change: </b> %{{stock.percent_change}}</p>
       </div>
-      <div class='col-2'>
+      <!-- <div class='col-2'>
           <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'(click)='openBuyModal()'>Buy</button>
           <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellStock' (click)='openSellModal()'>Sell</button>
-        </div>
+        </div> -->
     </div>
   </div>

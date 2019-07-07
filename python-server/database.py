@@ -1,6 +1,7 @@
 import os
 import psycopg2
 import sqlalchemy
+from money import *
 
 
 def create_connection():
@@ -118,6 +119,7 @@ def portfolio_holdings(account_id, latest_price_list):
      holding_value = [round(row[3]*x,2) for row,x in zip(rows,latest_price_list)]
      percent_change = [round(((float(x)-float(row[5]))/float(row[5]))*100,3) for row,x in zip(rows, latest_price_list)]
      total_holding_value = round(sum(holding_value),2)
+     total_holding_value_money= money(total_holding_value)
 
      asset_data = []
      i=0
@@ -126,16 +128,20 @@ def portfolio_holdings(account_id, latest_price_list):
                     'company': row[6],
                     'symbol': row[2],
                     'shares': row[3], 
-                    'holding_value': holding_value[i],
+                    'holding_value': money(holding_value[i]),
+                    'holding_value_float': holding_value[i],
                     'percent_change': percent_change[i]
                     })
           i+=1
           
      total_cash = float(rows[0][9])
+     total_cash_money = money(total_cash)
+     total_asset = round(total_cash + total_holding_value,2)
+     total_asset_money = money(total_asset)
      asset_values = [{
-                    'total_holding_value': total_holding_value,
-                    'total_cash': total_cash,
-                    'total_asset_value': round(total_cash + total_holding_value,2)
+                    'total_holding_value': total_holding_value_money,
+                    'total_cash': total_cash_money,
+                    'total_asset_value': total_asset_money
                     }]
 
      cur.close()
