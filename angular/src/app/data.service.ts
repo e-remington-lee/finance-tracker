@@ -19,10 +19,6 @@ export class DataService {
     return this.http.get('http://localhost:7000/api/portfolioData', params);
   }
 
-  checkSymbol() {
-    // checks if symbol is valid when you search in buy/sell, if yes return 200, not, 404
-  }
-
   chartData(symbol) {
     const params = { params: new HttpParams().set('symbol', symbol) };
     return this.http.get('http://localhost:7000/api/historicalData', params);
