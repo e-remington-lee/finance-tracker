@@ -24,6 +24,7 @@ export class PortfolioComponent implements OnInit {
       // console.log(this.accountData['asset_values']);
       // console.log(this.accountData);
       
+      
       this.assetData = this.accountData['asset_data'];
       this.assetValues = this.accountData['asset_values'];
 
