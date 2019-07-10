@@ -34,5 +34,10 @@ export class DataService {
    return this.http.get('http://localhost:7000/api/checkStock', {observe: 'response', params});
   }
 
+  login(email, password) {
+    const params = new HttpParams().set('email', email).set('password', password)
+    return this.http.get('http://localhost:7000/api/login', {params})
+  }
+
 
 }

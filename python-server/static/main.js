@@ -348,7 +348,7 @@ module.exports = "<header id='showcase'>\n  <div class='card'>\n      <h1>Fantas
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"Login\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-c-tabs\">\n            <ul class=\"nav nav-tabs tabs-2\" role=\"tablist\">\n                <li class=\"nav-item\">\n                  <a class=\"nav-link active\" data-toggle=\"tab\" href=\"#loginTab\" role=\"tab\">Login</a>\n                </li>\n                <li class=\"nav-item\">\n                  <a class=\"nav-link\" data-toggle=\"tab\" href=\"#registerTab\" role=\"tab\">Register</a>\n                </li>\n              </ul>\n        <div class='tab-content'>\n\n        <div class='tab-pane fad-in show active' id='loginTab' role='tabpanel'>\n          <div class=\"modal-body\">\n              <form>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\">Email</label>\n                    <input type=\"email\" class=\"form-control\" id=\"emailLogin\" required>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"password\" class=\"col-form-label\">Password</label>\n                    <input type='password' class=\"form-control\" id=\"passwordLogin\" minlength=\"8\" required>\n                  </div>\n                </form>\n                <div class=\"text-center mt-2\">\n                    <button type=\"button\" class=\"btn btn-primary\">Login</button>\n                  </div>\n          </div>\n          <div class=\"modal-footer justify-content-center\">\n              <div class=\"options\">\n                  <p>Not a member? <a href=\"#\" class=\"blue-text\">Sign Up</a></p>\n                  <p>Forgot <a href=\"#\" class=\"blue-text\">Password?</a></p>\n                </div>\n            <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n          </div>\n      </div>\n\n        <div class='tab-pane fade' id='registerTab' role='tabpanel'>\n            <div class=\"modal-body\">\n                <form>\n                    <div class=\"form-group\">\n                      <label for=\"email\" class=\"col-form-label\">Email</label>\n                      <input type=\"email\" class=\"form-control\" id=\"emailRegister\" required>\n                    </div>\n                    <div class=\"form-group\">\n                      <label for=\"password\" class=\"col-form-label\">Password</label>\n                      <input type='password' class=\"form-control\" id=\"passwordRegister\" minlength=\"8\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"password\" class=\"col-form-label\">Retype Password</label>\n                        <input type='password' class=\"form-control\" id=\"passwordRegisterCheck\" minlength=\"8\" required>\n                      </div>\n                  </form>\n                  <div class=\"text-center mt-2\">\n                      <button type=\"button\" class=\"btn btn-primary\">Register</button>\n                  </div>\n            </div>\n            <div class=\"modal-footer justify-content-center\">\n                <div class=\"options\">\n                    <p>Already have an account? <a class=\"blue-text\" data-toggle=\"tab\" href=\"#loginTab\">Log In</a></p>\n                  </div>\n              <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      </div>\n      </div>\n    </div>\n    </div>\n  </div>\n"
+module.exports = "<div class=\"modal fade\" id=\"Login\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-c-tabs\">\n            <ul class=\"nav nav-tabs tabs-2\" role=\"tablist\">\n                <li class=\"nav-item\">\n                  <a class=\"nav-link active\" data-toggle=\"tab\" href=\"#loginTab\" role=\"tab\">Login</a>\n                </li>\n                <li class=\"nav-item\">\n                  <a class=\"nav-link\" data-toggle=\"tab\" href=\"#registerTab\" role=\"tab\">Register</a>\n                </li>\n              </ul>\n        <div class='tab-content'>\n\n        <div class='tab-pane fad-in show active' id='loginTab' role='tabpanel'>\n          <div class=\"modal-body\">\n              <form>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\">Email</label>\n                    <input type=\"email\" [(ngModel)]='email' class=\"form-control\" id=\"emailLogin\" name='emailLogin' required>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"password\" class=\"col-form-label\">Password</label>\n                    <input type='password' [(ngModel)]='password' class=\"form-control\" id=\"passwordLogin\" name='passwordLogin' minlength=\"8\" required>\n                  </div>\n                </form>\n                <div class=\"text-center mt-2\">\n                    <button type=\"button\" class=\"btn btn-primary\" (click)='login()'>Login</button>\n                  </div>\n          </div>\n          <div class=\"modal-footer justify-content-center\">\n              <div class=\"options\">\n                  <p>Not a member? <a href=\"#\" class=\"blue-text\">Sign Up</a></p>\n                  <p>Forgot <a href=\"#\" class=\"blue-text\">Password?</a></p>\n                </div>\n            <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n          </div>\n      </div>\n\n        <div class='tab-pane fade' id='registerTab' role='tabpanel'>\n            <div class=\"modal-body\">\n                <form>\n                    <div class=\"form-group\">\n                      <label for=\"email\" class=\"col-form-label\">Email</label>\n                      <input type=\"email\" class=\"form-control\" id=\"emailRegister\" required>\n                    </div>\n                    <div class=\"form-group\">\n                      <label for=\"password\" class=\"col-form-label\">Password</label>\n                      <input type='password' class=\"form-control\" id=\"passwordRegister\" minlength=\"8\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"password\" class=\"col-form-label\">Retype Password</label>\n                        <input type='password' class=\"form-control\" id=\"passwordRegisterCheck\" minlength=\"8\" required>\n                      </div>\n                  </form>\n                  <div class=\"text-center mt-2\">\n                      <button type=\"button\" class=\"btn btn-primary\">Register</button>\n                  </div>\n            </div>\n            <div class=\"modal-footer justify-content-center\">\n                <div class=\"options\">\n                    <p>Already have an account? <a class=\"blue-text\" data-toggle=\"tab\" href=\"#loginTab\">Log In</a></p>\n                  </div>\n              <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      </div>\n      </div>\n    </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -922,9 +922,6 @@ let DataService = class DataService {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('accountId', accountId) };
         return this.http.get('http://localhost:7000/api/portfolioData', params);
     }
-    checkSymbol() {
-        // checks if symbol is valid when you search in buy/sell, if yes return 200, not, 404
-    }
     chartData(symbol) {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
         return this.http.get('http://localhost:7000/api/historicalData', params);
@@ -936,6 +933,10 @@ let DataService = class DataService {
     checkStock(symbol, accountId, shares) {
         const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
         return this.http.get('http://localhost:7000/api/checkStock', { observe: 'response', params });
+    }
+    login(email, password) {
+        const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('email', email).set('password', password);
+        return this.http.get('http://localhost:7000/api/login', { params });
     }
 };
 DataService.ctorParameters = () => [
@@ -1018,20 +1019,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginComponent", function() { return LoginComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+
 
 
 let LoginComponent = class LoginComponent {
-    constructor() { }
+    constructor(data) {
+        this.data = data;
+    }
     ngOnInit() {
     }
+    login() {
+        console.log(this.email, this.password);
+        this.data.login(this.email, this.password).subscribe((data) => {
+            console.log(data);
+        });
+    }
 };
+LoginComponent.ctorParameters = () => [
+    { type: _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"] }
+];
 LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-login',
         template: __webpack_require__(/*! raw-loader!./login.component.html */ "./node_modules/raw-loader/index.js!./src/app/login/login.component.html"),
         styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"]])
 ], LoginComponent);
 
 
@@ -1192,9 +1206,9 @@ let PortfolioComponent = class PortfolioComponent {
     ngOnInit() {
         this.data.getAccountData(this.accountId).subscribe((data) => {
             this.accountData = data;
-            // console.log(this.accountData['asset_data']);
-            // console.log(this.accountData['asset_values']);
-            // console.log(this.accountData);
+            console.log(this.accountData['asset_data']);
+            console.log(this.accountData['asset_values']);
+            console.log(this.accountData);
             this.assetData = this.accountData['asset_data'];
             this.assetValues = this.accountData['asset_values'];
             var companyName = [];

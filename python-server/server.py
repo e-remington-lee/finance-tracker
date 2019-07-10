@@ -4,6 +4,8 @@ from database import *
 from iex_connect import *
 from money import *
 from stock_calculator import calculate_price
+import jwt
+import datetime
 
 
 app = Flask(__name__)
@@ -167,6 +169,38 @@ def portfolio_data():
     portfolio_information = portfolio_holdings(account_id, latest_price_list)
 
     return jsonify(portfolio_information), 200
+
+@app.route('/api/login', methods=['GET'])
+def login_user():
+    #check db for a match
+    secret_key ='bob'
+
+    email = request.args.get('email')
+    password = request.args.get('password')
+    print(email, password)
+
+    user = {'user_id': 1,
+            'account_id': 1,
+            'username': 'Remington',
+            'email': 'fake@gmail.com',
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)  
+            }      
+
+    x = jwt.encode(user, secret_key, algorithm='HS256')
+
+    token = {'token': x.decode('UTF-8')}
+    
+    # try:
+    #     jwt.decode('JWT_STRING', secret_key, algorithms=['HS256'])s
+    # except jwt.ExpiredSignatureError:
+    #     print('expired signature')
+    return jsonify(token)
+
+
+@app.route('/api/register', methods=['POST'])
+def register_user():
+
+    return None
 
 
 if __name__ =='__main__':

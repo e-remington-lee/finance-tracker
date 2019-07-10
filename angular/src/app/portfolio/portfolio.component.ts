@@ -20,11 +20,10 @@ export class PortfolioComponent implements OnInit {
   ngOnInit() {
     this.data.getAccountData(this.accountId).subscribe((data: any[])=> {
       this.accountData = data;
-      // console.log(this.accountData['asset_data']);
-      // console.log(this.accountData['asset_values']);
-      // console.log(this.accountData);
-      
-      
+      console.log(this.accountData['asset_data']);
+      console.log(this.accountData['asset_values']);
+      console.log(this.accountData);
+
       this.assetData = this.accountData['asset_data'];
       this.assetValues = this.accountData['asset_values'];
 

@@ -130,7 +130,8 @@ def portfolio_holdings(account_id, latest_price_list):
                     'shares': row[3], 
                     'holding_value': money(holding_value[i]),
                     'holding_value_float': holding_value[i],
-                    'percent_change': percent_change[i]
+                    'percent_change': percent_change[i],
+                    'current_price': money(latest_price_list[i])
                     })
           i+=1
           
