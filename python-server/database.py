@@ -5,11 +5,13 @@ from money import *
 
 
 def create_connection():
+     """Tesing doc strings."""
     return psycopg2.connect(
             host = os.environ['db_host'],
             database = os.environ['db_database_stocks'],
             user = os.environ['db_username'],
             password = os.environ['db_password'])
+
 
 
 def buy_stock(symbol, shares, account_id, company_name, latest_price):

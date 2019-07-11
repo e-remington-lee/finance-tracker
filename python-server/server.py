@@ -194,7 +194,7 @@ def login_user():
     #     jwt.decode('JWT_STRING', secret_key, algorithms=['HS256'])s
     # except jwt.ExpiredSignatureError:
     #     print('expired signature')
-    return jsonify(token)
+    return jsonify(token), 200
 
 
 @app.route('/api/register', methods=['POST'])
