@@ -5,7 +5,7 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 11.3
 
--- Started on 2019-07-05 22:28:30
+-- Started on 2019-07-11 22:53:01
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 2952 (class 1262 OID 16485)
+-- TOC entry 2953 (class 1262 OID 16485)
 -- Name: stock_tracking_app; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -50,7 +50,7 @@ CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
 
 
 --
--- TOC entry 2953 (class 0 OID 0)
+-- TOC entry 2954 (class 0 OID 0)
 -- Dependencies: 2
 -- Name: EXTENSION citext; Type: COMMENT; Schema: -; Owner: 
 --
@@ -112,7 +112,7 @@ CREATE SEQUENCE public.account_balance_account_id_seq
 ALTER TABLE public.account_balance_account_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2954 (class 0 OID 0)
+-- TOC entry 2955 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: account_balance_account_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -137,7 +137,7 @@ CREATE SEQUENCE public.account_balance_user_id_seq
 ALTER TABLE public.account_balance_user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2955 (class 0 OID 0)
+-- TOC entry 2956 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: account_balance_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -180,7 +180,7 @@ CREATE SEQUENCE public.holdings_holding_id_seq
 ALTER TABLE public.holdings_holding_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2956 (class 0 OID 0)
+-- TOC entry 2957 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: holdings_holding_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -223,7 +223,7 @@ CREATE SEQUENCE public.transactions_transaction_id_seq
 ALTER TABLE public.transactions_transaction_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2957 (class 0 OID 0)
+-- TOC entry 2958 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: transactions_transaction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -241,7 +241,8 @@ CREATE TABLE public.user_accounts (
     first_name character varying(25) NOT NULL,
     last_name character varying(25) NOT NULL,
     email character varying(35) NOT NULL,
-    created_date timestamp without time zone DEFAULT now()
+    created_date timestamp without time zone DEFAULT now(),
+    password character varying(25) DEFAULT 'badpassword'::character varying NOT NULL
 );
 
 
@@ -264,7 +265,7 @@ CREATE SEQUENCE public.user_accounts_user_id_seq
 ALTER TABLE public.user_accounts_user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2958 (class 0 OID 0)
+-- TOC entry 2959 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: user_accounts_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -273,7 +274,7 @@ ALTER SEQUENCE public.user_accounts_user_id_seq OWNED BY public.user_accounts.us
 
 
 --
--- TOC entry 2801 (class 2604 OID 16628)
+-- TOC entry 2802 (class 2604 OID 16628)
 -- Name: account_balance user_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -281,7 +282,7 @@ ALTER TABLE ONLY public.account_balance ALTER COLUMN user_id SET DEFAULT nextval
 
 
 --
--- TOC entry 2802 (class 2604 OID 16629)
+-- TOC entry 2803 (class 2604 OID 16629)
 -- Name: account_balance account_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -289,7 +290,7 @@ ALTER TABLE ONLY public.account_balance ALTER COLUMN account_id SET DEFAULT next
 
 
 --
--- TOC entry 2806 (class 2604 OID 16658)
+-- TOC entry 2807 (class 2604 OID 16658)
 -- Name: holdings holding_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -297,7 +298,7 @@ ALTER TABLE ONLY public.holdings ALTER COLUMN holding_id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 2804 (class 2604 OID 16638)
+-- TOC entry 2805 (class 2604 OID 16638)
 -- Name: transactions transaction_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -313,7 +314,7 @@ ALTER TABLE ONLY public.user_accounts ALTER COLUMN user_id SET DEFAULT nextval('
 
 
 --
--- TOC entry 2813 (class 2606 OID 16632)
+-- TOC entry 2814 (class 2606 OID 16632)
 -- Name: account_balance account_balance_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -322,7 +323,7 @@ ALTER TABLE ONLY public.account_balance
 
 
 --
--- TOC entry 2819 (class 2606 OID 16682)
+-- TOC entry 2820 (class 2606 OID 16682)
 -- Name: holdings account_symbol_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -331,7 +332,7 @@ ALTER TABLE ONLY public.holdings
 
 
 --
--- TOC entry 2821 (class 2606 OID 16661)
+-- TOC entry 2822 (class 2606 OID 16661)
 -- Name: holdings holdings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -340,7 +341,7 @@ ALTER TABLE ONLY public.holdings
 
 
 --
--- TOC entry 2817 (class 2606 OID 16641)
+-- TOC entry 2818 (class 2606 OID 16641)
 -- Name: transactions transactions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -349,7 +350,7 @@ ALTER TABLE ONLY public.transactions
 
 
 --
--- TOC entry 2815 (class 2606 OID 16652)
+-- TOC entry 2816 (class 2606 OID 16652)
 -- Name: account_balance unique_account_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -358,7 +359,7 @@ ALTER TABLE ONLY public.account_balance
 
 
 --
--- TOC entry 2811 (class 2606 OID 16620)
+-- TOC entry 2812 (class 2606 OID 16620)
 -- Name: user_accounts user_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -367,7 +368,7 @@ ALTER TABLE ONLY public.user_accounts
 
 
 --
--- TOC entry 2825 (class 2620 OID 16678)
+-- TOC entry 2826 (class 2620 OID 16678)
 -- Name: holdings update_stock_holdings; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -375,7 +376,7 @@ CREATE TRIGGER update_stock_holdings BEFORE UPDATE ON public.holdings FOR EACH R
 
 
 --
--- TOC entry 2823 (class 2606 OID 16672)
+-- TOC entry 2824 (class 2606 OID 16672)
 -- Name: transactions f_key_account_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -384,7 +385,7 @@ ALTER TABLE ONLY public.transactions
 
 
 --
--- TOC entry 2822 (class 2606 OID 16667)
+-- TOC entry 2823 (class 2606 OID 16667)
 -- Name: account_balance f_key_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -393,7 +394,7 @@ ALTER TABLE ONLY public.account_balance
 
 
 --
--- TOC entry 2824 (class 2606 OID 16662)
+-- TOC entry 2825 (class 2606 OID 16662)
 -- Name: holdings holdings_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -401,7 +402,7 @@ ALTER TABLE ONLY public.holdings
     ADD CONSTRAINT holdings_account_id_fkey FOREIGN KEY (account_id) REFERENCES public.account_balance(account_id);
 
 
--- Completed on 2019-07-05 22:28:31
+-- Completed on 2019-07-11 22:53:01
 
 --
 -- PostgreSQL database dump complete

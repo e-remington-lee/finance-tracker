@@ -6,15 +6,40 @@ from money import *
 from stock_calculator import calculate_price
 import jwt
 import datetime
+from functools import wraps
 
 
 app = Flask(__name__)
-
+secret_key = 'bob'
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def home_page(path):
     return render_template('index.html')
+
+
+def login_token(arg):
+    @wraps(arg)
+    def decorated(*args, **kwargs):
+        token = request.args.get('token')
+
+        try:
+            jwt.decode(token, secret_key, algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            print('expired signature')
+        except: 
+            return "Return to login page"
+
+        return arg(*args, **kwargs)
+    return decorated
+
+
+@app.route('/account')
+@login_token
+def something():
+    print('logged in!')
+    # return render_template('index.html')
+    return "logged in"
 
 
 @app.route('/api/stockData', methods=['GET'])
@@ -173,11 +198,12 @@ def portfolio_data():
 @app.route('/api/login', methods=['GET'])
 def login_user():
     #check db for a match
-    secret_key ='bob'
 
+    #make this secure??
     email = request.args.get('email')
     password = request.args.get('password')
-    print(email, password)
+    w = login_account(email, password)
+    print(w)
 
     user = {'user_id': 1,
             'account_id': 1,
@@ -190,10 +216,6 @@ def login_user():
 
     token = {'token': x.decode('UTF-8')}
     
-    # try:
-    #     jwt.decode('JWT_STRING', secret_key, algorithms=['HS256'])s
-    # except jwt.ExpiredSignatureError:
-    #     print('expired signature')
     return jsonify(token), 200
 
 

@@ -1032,7 +1032,8 @@ let LoginComponent = class LoginComponent {
     login() {
         console.log(this.email, this.password);
         this.data.login(this.email, this.password).subscribe((data) => {
-            console.log(data);
+            console.log(data['token']);
+            sessionStorage.setItem('loginKey', data['token']);
         });
     }
 };

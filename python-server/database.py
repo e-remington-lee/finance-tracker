@@ -5,7 +5,6 @@ from money import *
 
 
 def create_connection():
-     """Tesing doc strings."""
     return psycopg2.connect(
             host = os.environ['db_host'],
             database = os.environ['db_database_stocks'],
@@ -167,3 +166,15 @@ def portfolio_symbols(account_id):
      cur.close()
      connection.close()
      return price_data
+
+def login_account(email, password):
+     connection = create_connection()
+     cur = connection.cursor()
+
+     cur.execute("SELECT * FROM user_accounts WHERE email = %(email)s AND password = %(password)s", {'email': email, 'password': password})
+
+     row = cur.fetchone()
+
+     cur.close()
+     connection.close()
+     return {'user_id': row[0], 'first_name': row[1]}
