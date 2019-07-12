@@ -39,5 +39,9 @@ export class DataService {
     return this.http.get('http://localhost:7000/api/login', {params})
   }
 
+  checkLogin(token) {
+    const params = new HttpParams().set('token', token)
+    return this.http.get('http://localhost:7000/account', {params})
+  }
 
 }

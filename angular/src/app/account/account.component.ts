@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { Session } from 'protractor';
 
 @Component({
   selector: 'app-account',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.data.checkLogin(sessionStorage.getItem('token')).subscribe()
   }
 
 }
