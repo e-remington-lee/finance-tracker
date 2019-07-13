@@ -37,7 +37,7 @@ def login_token(f):
 
         return f(*args, **kwargs)
     return decorated
-    
+
 
 @app.route('/api/login', methods=['GET'])
 def login_user():
@@ -51,7 +51,7 @@ def login_user():
         return make_response('Login failed', 401, {'WWW-Authentication.route' : 'Login required!'})
 
     user = {'user_id': login_response['user_id'],
-            'account_id': 1,
+            'account_id': login_response['account_id'],
             'username': login_response['first_name'],
             'email': email,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)  

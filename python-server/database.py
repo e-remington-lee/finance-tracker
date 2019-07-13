@@ -194,6 +194,7 @@ def login_account(email, password):
      cur = connection.cursor()
 
      cur.execute('''SELECT * FROM user_accounts 
+                    INNER JOIN account_balance on user_accounts.user_id = account_balance.user_id
                     WHERE email = %(email)s AND password = %(password)s''', 
                     {'email': email, 'password': password})
 
@@ -204,4 +205,4 @@ def login_account(email, password):
 
      cur.close()
      connection.close()
-     return {'user_id': row[0], 'first_name': row[1]}
+     return {'user_id': row[0], 'account_id': row[7], 'first_name': row[1]}
