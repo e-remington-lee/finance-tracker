@@ -54,9 +54,8 @@ def login_user():
             }   
 
     # print(user)
-
-    x = jwt.encode(user, secret_key, algorithm='HS256')
-    token = {'token': x.decode('UTF-8')}
+    encoded_token = jwt.encode(user, secret_key, algorithm='HS256')
+    token = {'token': encoded_token.decode('UTF-8')}
     
     return jsonify(token), 200
 
