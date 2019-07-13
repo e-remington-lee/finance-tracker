@@ -18,8 +18,8 @@ def home_page(path):
     return render_template('index.html')
 
 
-def login_token(arg):
-    @wraps(arg)
+def login_token(f):
+    @wraps(f)
     def decorated(*args, **kwargs):
         #replace with headers?
         token = request.args.get('token')
@@ -35,8 +35,9 @@ def login_token(arg):
         except: 
             return "Return to login page"
 
-        return arg(*args, **kwargs)
+        return f(*args, **kwargs)
     return decorated
+    
 
 @app.route('/api/login', methods=['GET'])
 def login_user():

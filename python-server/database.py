@@ -23,7 +23,10 @@ def buy_stock(symbol, shares, account_id, company_name, latest_price):
                WHERE holdings.account_id = %(account_id)s AND holdings.symbol = %(symbol)s''',
                {'symbol': symbol, 'shares': shares, 'account_id': account_id, 'company_name': company_name, 'latest_price': latest_price})
 
-     cur.execute("UPDATE HOLDINGS SET value_at_purchase = %(latest_price)s WHERE holdings.account_id = %(account_id)s AND holdings.symbol = %(symbol)s", {'symbol': symbol, 'account_id': account_id,'latest_price': latest_price})
+     cur.execute('''UPDATE HOLDINGS 
+                    SET value_at_purchase = %(latest_price)s 
+                    WHERE holdings.account_id = %(account_id)s AND holdings.symbol = %(symbol)s''', 
+                    {'symbol': symbol, 'account_id': account_id,'latest_price': latest_price})
     
      connection.commit()
      cur.close()
@@ -35,7 +38,10 @@ def sell_stock(symbol, shares, account_id):
      connection = create_connection()
      cur = connection.cursor()
 
-     cur.execute("UPDATE holdings SET shares = holdings.shares - %(shares)s WHERE account_id = %(account_id)s AND symbol = %(symbol)s", {'symbol': symbol, 'shares': shares, 'account_id': account_id})
+     cur.execute('''UPDATE holdings 
+                    SET shares = holdings.shares - %(shares)s 
+                    WHERE account_id = %(account_id)s AND symbol = %(symbol)s''',
+                    {'symbol': symbol, 'shares': shares, 'account_id': account_id})
      
      connection.commit()
      cur.close()
@@ -47,7 +53,10 @@ def update_balance_buy(account_id, balance_change):
     connection = create_connection()
     cur = connection.cursor()
 
-    cur.execute("UPDATE account_balance SET account_balance = account_balance - %(balance_change)s WHERE account_id = %(account_id)s", {'balance_change': balance_change, 'account_id': account_id})
+    cur.execute('''UPDATE account_balance 
+                    SET account_balance = account_balance - %(balance_change)s 
+                    WHERE account_id = %(account_id)s''', 
+                    {'balance_change': balance_change, 'account_id': account_id})
 
     connection.commit()
     cur.close()
@@ -59,7 +68,10 @@ def update_balance_sell(account_id, balance_change):
     connection = create_connection()
     cur = connection.cursor()
 
-    cur.execute("UPDATE account_balance SET account_balance = account_balance + %(balance_change)s WHERE account_id = %(account_id)s", {'balance_change': balance_change, 'account_id': account_id})
+    cur.execute('''UPDATE account_balance 
+               SET account_balance = account_balance + %(balance_change)s 
+               WHERE account_id = %(account_id)s''', 
+               {'balance_change': balance_change, 'account_id': account_id})
 
     connection.commit()
     cur.close()
@@ -71,8 +83,10 @@ def transaction_list(account_id, symbol, transaction_type, stock_price, shares):
     connection = create_connection()
     cur = connection.cursor()
 
-    cur.execute("INSERT INTO transactions (account_id, symbol, type, stock_price, shares) values (%(account_id)s, %(symbol)s, %(type)s, %(stock_price)s, %(shares)s)",
-     {'account_id': account_id, 'symbol': symbol, 'type': transaction_type, 'stock_price': stock_price, 'shares': shares})
+    cur.execute('''INSERT INTO transactions 
+               (account_id, symbol, type, stock_price, shares) 
+               values (%(account_id)s, %(symbol)s, %(type)s, %(stock_price)s, %(shares)s)''',
+               {'account_id': account_id, 'symbol': symbol, 'type': transaction_type, 'stock_price': stock_price, 'shares': shares})
 
     connection.commit()
     cur.close()
@@ -84,7 +98,9 @@ def check_account_balance(account_id):
      connection = create_connection()
      cur = connection.cursor()
 
-     cur.execute("SELECT * FROM account_balance WHERE account_id = %(account_id)s", {'account_id': account_id})
+     cur.execute('''SELECT * FROM account_balance 
+                    WHERE account_id = %(account_id)s''', 
+                    {'account_id': account_id})
 
      row = cur.fetchone()
 
@@ -98,7 +114,10 @@ def check_stock_holdings(account_id, symbol):
      connection = create_connection()
      cur = connection.cursor()
 
-     cur.execute("SELECT * FROM holdings WHERE account_id = %(account_id)s AND symbol = %(symbol)s", {'account_id': account_id, 'symbol': symbol})
+     cur.execute('''SELECT * FROM holdings 
+                    WHERE account_id = %(account_id)s AND symbol = %(symbol)s''', 
+                    {'account_id': account_id, 'symbol': symbol})
+
      row = cur.fetchone()
 
      connection.commit()
@@ -155,7 +174,10 @@ def portfolio_symbols(account_id):
      connection = create_connection()
      cur = connection.cursor()
 
-     cur.execute("SELECT * FROM holdings WHERE account_id = %(account_id)s ORDER BY holding_id ASC", {'account_id': account_id})
+     cur.execute('''SELECT * FROM holdings 
+                    WHERE account_id = %(account_id)s 
+                    ORDER BY holding_id ASC''', 
+                    {'account_id': account_id})
 
      rows = cur.fetchall()
 
@@ -171,7 +193,9 @@ def login_account(email, password):
      connection = create_connection()
      cur = connection.cursor()
 
-     cur.execute("SELECT * FROM user_accounts WHERE email = %(email)s AND password = %(password)s", {'email': email, 'password': password})
+     cur.execute('''SELECT * FROM user_accounts 
+                    WHERE email = %(email)s AND password = %(password)s''', 
+                    {'email': email, 'password': password})
 
      row = cur.fetchone()
 
