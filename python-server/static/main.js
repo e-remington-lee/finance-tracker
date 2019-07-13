@@ -460,7 +460,7 @@ __webpack_require__.r(__webpack_exports__);
 let AccountComponent = class AccountComponent {
     constructor(data) {
         this.data = data;
-        this.data.checkLogin(sessionStorage.getItem('token')).subscribe();
+        this.data.checkLogin(sessionStorage.getItem('Authorization')).subscribe();
     }
     ngOnInit() {
     }
@@ -597,6 +597,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./buy-modal/buy-modal.component */ "./src/app/buy-modal/buy-modal.component.ts");
 /* harmony import */ var _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./sell-modal/sell-modal.component */ "./src/app/sell-modal/sell-modal.component.ts");
 /* harmony import */ var _portfolio_card_portfolio_card_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./portfolio-card/portfolio-card.component */ "./src/app/portfolio-card/portfolio-card.component.ts");
+/* harmony import */ var _tokeninterceptor_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./tokeninterceptor.service */ "./src/app/tokeninterceptor.service.ts");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
+
+
 
 
 
@@ -643,10 +647,47 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModule"]
         ],
-        providers: [],
+        providers: [_auth_service__WEBPACK_IMPORTED_MODULE_19__["AuthService"],
+            {
+                provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HTTP_INTERCEPTORS"],
+                useClass: _tokeninterceptor_service__WEBPACK_IMPORTED_MODULE_18__["TokeninterceptorService"],
+                multi: true
+            }
+        ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/auth.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/auth.service.ts ***!
+  \*********************************/
+/*! exports provided: AuthService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let AuthService = class AuthService {
+    constructor() { }
+    getToken() {
+        return sessionStorage.getItem('Authorization');
+    }
+};
+AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], AuthService);
 
 
 
@@ -957,8 +998,7 @@ let DataService = class DataService {
         const content = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-token': token
+            'Access-Control-Allow-Headers': 'Content-Type'
         };
         const options = { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"](content) };
         return this.http.get('http://localhost:7000/account', options);
@@ -1060,8 +1100,9 @@ let LoginComponent = class LoginComponent {
             // const headers = new Headers();
             // headers.append('Content-Type', 'application/json')
             console.log(data['token']);
-            sessionStorage.setItem('access-token', data['token']);
+            sessionStorage.setItem('Authorization', data['token']);
         });
+        console.log(this.email, this.password);
     }
 };
 LoginComponent.ctorParameters = () => [
@@ -1496,6 +1537,49 @@ StocksService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
 ], StocksService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/tokeninterceptor.service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/tokeninterceptor.service.ts ***!
+  \*********************************************/
+/*! exports provided: TokeninterceptorService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TokeninterceptorService", function() { return TokeninterceptorService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
+
+
+
+let TokeninterceptorService = class TokeninterceptorService {
+    constructor(auth) {
+        this.auth = auth;
+    }
+    intercept(req, next) {
+        let authorizedToken = req.clone({
+            setHeaders: {
+                Authorization: `${this.auth.getToken()}`
+            }
+        });
+        return next.handle(authorizedToken);
+    }
+};
+TokeninterceptorService.ctorParameters = () => [
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] }
+];
+TokeninterceptorService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+], TokeninterceptorService);
 
 
 

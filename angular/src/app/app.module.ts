@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -17,6 +17,8 @@ import { StockCardComponent } from './stock-card/stock-card.component';
 import { BuyModalComponent } from './buy-modal/buy-modal.component';
 import { SellModalComponent } from './sell-modal/sell-modal.component';
 import { PortfolioCardComponent } from './portfolio-card/portfolio-card.component';
+import { TokeninterceptorService } from './tokeninterceptor.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,13 @@ import { PortfolioCardComponent } from './portfolio-card/portfolio-card.componen
     FormsModule,
     NgbModule   
   ],
-  providers: [],
+  providers: [AuthService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokeninterceptorService,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

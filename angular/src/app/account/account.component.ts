@@ -10,7 +10,7 @@ import { Session } from 'protractor';
 export class AccountComponent implements OnInit {
 
   constructor(private data: DataService) {
-    this.data.checkLogin(sessionStorage.getItem('token')).subscribe() 
+    this.data.checkLogin(sessionStorage.getItem('Authorization')).subscribe() 
   }
 
   ngOnInit() {

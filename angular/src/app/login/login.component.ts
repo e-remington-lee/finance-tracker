@@ -23,8 +23,9 @@ export class LoginComponent implements OnInit {
       // headers.append('Content-Type', 'application/json')
 
       console.log(data['token'])
-      sessionStorage.setItem('access-token', data['token'])
+      sessionStorage.setItem('Authorization', data['token'])
     })
+    console.log(this.email, this.password)
   }
     
   }

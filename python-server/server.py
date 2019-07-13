@@ -8,7 +8,6 @@ import jwt
 import datetime
 from functools import wraps
 
-
 app = Flask(__name__)
 secret_key = 'bob'
 
@@ -22,10 +21,10 @@ def login_token(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = None
-
-        if 'access-token' in request.headers:
-            token = request.headers['access-token']
-
+        
+        if 'Authorization' in request.headers:
+            token = request.headers['Authorization']
+        print(request.headers)
         try:
             jwt.decode(token, secret_key, algorithms=['HS256'])
         except jwt.ExpiredSignatureError:
@@ -43,7 +42,7 @@ def login_user():
     email = request.headers['x-email']
     password = request.headers['x-password']
     login_response = login_account(email, password)
-    print(login_response)
+    # print(login_response)
 
     if login_response == None:
         return make_response('Login failed', 401, {'WWW-Authentication.route' : 'Login required!'})
@@ -51,11 +50,10 @@ def login_user():
     user = {'user_id': login_response['user_id'],
             'account_id': login_response['account_id'],
             'username': login_response['first_name'],
-            'email': email,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)  
             }   
 
-    print(user)
+    # print(user)
 
     x = jwt.encode(user, secret_key, algorithm='HS256')
     token = {'token': x.decode('UTF-8')}
@@ -72,6 +70,9 @@ def register_user():
 @app.route('/account')
 @login_token
 def something():
+    decoded = jwt.decode(request.headers['Authorization'], secret_key, algorithm='HS256')
+    user_id = decoded['user_id']
+    print(f'user_id is : {user_id}')
     print('logged in!')
     return "logged in"
 
