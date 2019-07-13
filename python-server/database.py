@@ -175,6 +175,9 @@ def login_account(email, password):
 
      row = cur.fetchone()
 
+     if row == None:
+          return None
+
      cur.close()
      connection.close()
      return {'user_id': row[0], 'first_name': row[1]}

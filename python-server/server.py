@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, make_response
 import requests
 from database import *
 from iex_connect import *
@@ -21,7 +21,12 @@ def home_page(path):
 def login_token(arg):
     @wraps(arg)
     def decorated(*args, **kwargs):
+        #replace with headers?
         token = request.args.get('token')
+        # token = None
+
+        # if 'token' in request.headers:
+        #     token = request.headers['token']
 
         try:
             jwt.decode(token, secret_key, algorithms=['HS256'])
@@ -32,6 +37,37 @@ def login_token(arg):
 
         return arg(*args, **kwargs)
     return decorated
+
+@app.route('/api/login', methods=['GET'])
+def login_user():
+    #check db for a match
+    #make this secure??
+    email = request.args.get('email')
+    password = request.args.get('password')
+    login_response = login_account(email, password)
+    print(login_response)
+    if login_response == None:
+        return make_response('Login failed', 401, {'WWW-Authentication.route' : 'Login required!'})
+
+    user = {'user_id': login_response['user_id'],
+            'account_id': 1,
+            'username': login_response['first_name'],
+            'email': email,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)  
+            }   
+
+    print(user)
+    x = jwt.encode(user, secret_key, algorithm='HS256')
+
+    token = {'token': x.decode('UTF-8')}
+    
+    return jsonify(token), 200
+
+
+@app.route('/api/register', methods=['POST'])
+def register_user():
+
+    return None
 
 
 @app.route('/account')
@@ -194,35 +230,6 @@ def portfolio_data():
     portfolio_information = portfolio_holdings(account_id, latest_price_list)
 
     return jsonify(portfolio_information), 200
-
-@app.route('/api/login', methods=['GET'])
-def login_user():
-    #check db for a match
-
-    #make this secure??
-    email = request.args.get('email')
-    password = request.args.get('password')
-    w = login_account(email, password)
-    print(w)
-
-    user = {'user_id': 1,
-            'account_id': 1,
-            'username': 'Remington',
-            'email': 'fake@gmail.com',
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)  
-            }      
-
-    x = jwt.encode(user, secret_key, algorithm='HS256')
-
-    token = {'token': x.decode('UTF-8')}
-    
-    return jsonify(token), 200
-
-
-@app.route('/api/register', methods=['POST'])
-def register_user():
-
-    return None
 
 
 if __name__ =='__main__':

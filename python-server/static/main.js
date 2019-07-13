@@ -460,9 +460,9 @@ __webpack_require__.r(__webpack_exports__);
 let AccountComponent = class AccountComponent {
     constructor(data) {
         this.data = data;
+        this.data.checkLogin(sessionStorage.getItem('token')).subscribe();
     }
     ngOnInit() {
-        this.data.checkLogin(sessionStorage.getItem('token')).subscribe();
     }
 };
 AccountComponent.ctorParameters = () => [
@@ -1044,6 +1044,8 @@ let LoginComponent = class LoginComponent {
     login() {
         console.log(this.email, this.password);
         this.data.login(this.email, this.password).subscribe((data) => {
+            // const headers = new Headers();
+            // headers.append('Content-Type', 'application/json')
             console.log(data['token']);
             sessionStorage.setItem('token', data['token']);
         });

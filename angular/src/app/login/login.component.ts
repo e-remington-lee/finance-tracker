@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
   login() {
     console.log(this.email, this.password)
     this.data.login(this.email, this.password).subscribe((data: any) => {
+      // const headers = new Headers();
+      // headers.append('Content-Type', 'application/json')
+
       console.log(data['token'])
       sessionStorage.setItem('token', data['token'])
     })

@@ -22,7 +22,6 @@ export class SellModalComponent implements OnInit {
   shares: number;
   
 
-
   constructor(private stocks: StocksService, private data: DataService, private ngbActiveModal: NgbActiveModal) { }
 
   ngOnInit() {
