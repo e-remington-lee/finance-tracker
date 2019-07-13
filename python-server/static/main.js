@@ -943,12 +943,25 @@ let DataService = class DataService {
         return this.http.get('http://localhost:7000/api/checkStock', { observe: 'response', params });
     }
     login(email, password) {
-        const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('email', email).set('password', password);
-        return this.http.get('http://localhost:7000/api/login', { params });
+        const content = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'x-email': email,
+            'x-password': password
+        };
+        const options = { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"](content) };
+        return this.http.get('http://localhost:7000/api/login', options);
     }
     checkLogin(token) {
-        const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('token', token);
-        return this.http.get('http://localhost:7000/account', { params });
+        const content = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-token': token
+        };
+        const options = { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"](content) };
+        return this.http.get('http://localhost:7000/account', options);
     }
 };
 DataService.ctorParameters = () => [
@@ -1047,7 +1060,7 @@ let LoginComponent = class LoginComponent {
             // const headers = new Headers();
             // headers.append('Content-Type', 'application/json')
             console.log(data['token']);
-            sessionStorage.setItem('token', data['token']);
+            sessionStorage.setItem('access-token', data['token']);
         });
     }
 };

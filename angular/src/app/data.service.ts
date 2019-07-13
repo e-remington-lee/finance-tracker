@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -35,13 +35,29 @@ export class DataService {
   }
 
   login(email, password) {
-    const params = new HttpParams().set('email', email).set('password', password)
-    return this.http.get('http://localhost:7000/api/login', {params})
+    const content = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'x-email': email,
+      'x-password': password
+    }
+
+    const options = {headers: new HttpHeaders(content)}
+
+    return this.http.get('http://localhost:7000/api/login', options)
   }
 
   checkLogin(token) {
-    const params = new HttpParams().set('token', token)
-    return this.http.get('http://localhost:7000/account', {params})
+    const content = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-token': token
+    }
+    const options = {headers: new HttpHeaders(content)}
+
+    return this.http.get('http://localhost:7000/account', options)
   }
 
 }

@@ -21,17 +21,15 @@ def home_page(path):
 def login_token(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        #replace with headers?
-        token = request.args.get('token')
-        # token = None
+        token = None
 
-        # if 'token' in request.headers:
-        #     token = request.headers['token']
+        if 'access-token' in request.headers:
+            token = request.headers['access-token']
 
         try:
             jwt.decode(token, secret_key, algorithms=['HS256'])
         except jwt.ExpiredSignatureError:
-            print('expired signature')
+            return "Expired token"
         except: 
             return "Return to login page"
 
@@ -41,12 +39,12 @@ def login_token(f):
 
 @app.route('/api/login', methods=['GET'])
 def login_user():
-    #check db for a match
     #make this secure??
-    email = request.args.get('email')
-    password = request.args.get('password')
+    email = request.headers['x-email']
+    password = request.headers['x-password']
     login_response = login_account(email, password)
     print(login_response)
+
     if login_response == None:
         return make_response('Login failed', 401, {'WWW-Authentication.route' : 'Login required!'})
 
@@ -58,8 +56,8 @@ def login_user():
             }   
 
     print(user)
-    x = jwt.encode(user, secret_key, algorithm='HS256')
 
+    x = jwt.encode(user, secret_key, algorithm='HS256')
     token = {'token': x.decode('UTF-8')}
     
     return jsonify(token), 200
@@ -75,7 +73,6 @@ def register_user():
 @login_token
 def something():
     print('logged in!')
-    # return render_template('index.html')
     return "logged in"
 
 
