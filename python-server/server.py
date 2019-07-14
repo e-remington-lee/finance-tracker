@@ -38,6 +38,7 @@ def login_token(f):
 
 @app.route('/api/login', methods=['GET'])
 def login_user():
+    
     #make this secure??
     email = request.headers['x-email']
     password = request.headers['x-password']
