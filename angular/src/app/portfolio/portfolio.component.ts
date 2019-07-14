@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../stocks.service';
 import { DataService } from '../data.service';
 import { Chart } from 'chart.js';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -10,12 +11,15 @@ import { Chart } from 'chart.js';
 })
 export class PortfolioComponent implements OnInit {
 
-  accountId = 1;
+  // accountId = 1;
+  accountId: number;
   accountData: any[] = [];
   assetData: any[] = [];
   assetValues: any[] = [];
 
-  constructor(private stocks: StocksService, private data: DataService) { }
+  constructor(private stocks: StocksService, private data: DataService, private auth: AuthService) {
+    this.accountId = this.auth.decodeUser()['account_id']
+   }
 
   ngOnInit() {
     this.data.getAccountData(this.accountId).subscribe((data: any[])=> {

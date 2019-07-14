@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../stocks.service';
 import { DataService } from '../data.service';
 import { Chart } from 'chart.js';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-buy-sell',
@@ -18,14 +19,14 @@ export class BuySellComponent implements OnInit {
   chartInfo: any[] = [];
   lableList: any[] =[];
   priceList: any[] =[];
-  username = 'Remington';
-  userId = 1;
-  accountId = 1;
+  accountId: number;
   searchStockSymbol: string;
   chart: Chart;
   chartIndicators: Chart;
 
-  constructor(private stocks: StocksService, private data: DataService) { }
+  constructor(private stocks: StocksService, private data: DataService, private auth: AuthService) {
+    this.accountId = this.auth.decodeUser()['account_id']
+   }
 
   ngOnInit() {
     var searchStockBox = document.getElementById('searchStock');

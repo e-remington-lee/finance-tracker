@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Session } from 'protractor';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-account',
@@ -9,12 +11,11 @@ import { Session } from 'protractor';
 })
 export class AccountComponent implements OnInit {
   
-  userId: number;
-  // npm instll jwt? then call the sessionStorage, decode jwt, get access to user_id? or subscribe to a route?
-
-  constructor(private data: DataService) {
-    this.data.checkLogin(sessionStorage.getItem('Authorization')).subscribe()
+  constructor(private data: DataService, private auth: AuthService) {
+    // this.data.checkLogin(sessionStorage.getItem('Authorization')).subscribe()
+    // console.log(this.auth.accessRoute)
   }
+
 
   ngOnInit() {
     

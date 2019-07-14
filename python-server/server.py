@@ -51,7 +51,7 @@ def login_user():
     user = {'user_id': login_response['user_id'],
             'account_id': login_response['account_id'],
             'username': login_response['first_name'],
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)  
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=5)  
             }   
 
     # print(user)
@@ -67,14 +67,14 @@ def register_user():
     return None
 
 
-@app.route('/account')
-@login_token
-def something():
-    decoded = jwt.decode(request.headers['Authorization'], secret_key, algorithm='HS256')
-    user_id = decoded['user_id']
-    print(f'user_id is : {user_id}')
-    print('logged in!')
-    return "logged in"
+# @app.route('/account')
+# @login_token
+# def something():
+#     decoded = jwt.decode(request.headers['Authorization'], secret_key, algorithm='HS256')
+#     user_id = decoded['user_id']
+#     print(f'user_id is : {user_id}')
+#     print('logged in!')
+#     return "logged in"
 
 
 @app.route('/api/stockData', methods=['GET'])

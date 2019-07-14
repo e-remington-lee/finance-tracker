@@ -341,6 +341,17 @@ module.exports = "<header id='showcase'>\n  <div class='card'>\n      <h1>Fantas
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/login-page/login-page.component.html":
+/*!********************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/login-page/login-page.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>login-page works!</p>\n"
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/index.js!./src/app/login/login.component.html":
 /*!**********************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/login/login.component.html ***!
@@ -454,20 +465,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+
 
 
 
 let AccountComponent = class AccountComponent {
-    // npm instll jwt? then call the sessionStorage, decode jwt, get access to user_id? or subscribe to a route?
-    constructor(data) {
+    constructor(data, auth) {
         this.data = data;
-        this.data.checkLogin(sessionStorage.getItem('Authorization')).subscribe();
+        this.auth = auth;
+        // this.data.checkLogin(sessionStorage.getItem('Authorization')).subscribe()
+        // console.log(this.auth.accessRoute)
     }
     ngOnInit() {
     }
 };
 AccountComponent.ctorParameters = () => [
-    { type: _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"] }
+    { type: _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"] },
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"] }
 ];
 AccountComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -475,7 +490,7 @@ AccountComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./account.component.html */ "./node_modules/raw-loader/index.js!./src/app/account/account.component.html"),
         styles: [__webpack_require__(/*! ./account.component.scss */ "./src/app/account/account.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])
 ], AccountComponent);
 
 
@@ -499,8 +514,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./buy-sell/buy-sell.component */ "./src/app/buy-sell/buy-sell.component.ts");
 /* harmony import */ var _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./portfolio/portfolio.component */ "./src/app/portfolio/portfolio.component.ts");
 /* harmony import */ var _account_account_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./account/account.component */ "./src/app/account/account.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
+/* harmony import */ var _login_page_login_page_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./login-page/login-page.component */ "./src/app/login-page/login-page.component.ts");
 
 
 
@@ -512,10 +527,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [
     { path: '', component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
-    { path: 'buySell', component: _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_4__["BuySellComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]] },
-    { path: 'portfolio', component: _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_5__["PortfolioComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]] },
-    { path: 'account', component: _account_account_component__WEBPACK_IMPORTED_MODULE_6__["AccountComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]] },
-    { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"] },
+    { path: 'buySell', component: _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_4__["BuySellComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
+    { path: 'portfolio', component: _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_5__["PortfolioComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
+    { path: 'account', component: _account_account_component__WEBPACK_IMPORTED_MODULE_6__["AccountComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
+    { path: 'login', component: _login_page_login_page_component__WEBPACK_IMPORTED_MODULE_8__["LoginPageComponent"] },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -523,7 +538,7 @@ AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)],
         exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
-        providers: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]]
+        providers: [_auth_guard__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]]
     })
 ], AppRoutingModule);
 
@@ -604,6 +619,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tokeninterceptor_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./tokeninterceptor.service */ "./src/app/tokeninterceptor.service.ts");
 /* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
 /* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
+/* harmony import */ var _login_page_login_page_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./login-page/login-page.component */ "./src/app/login-page/login-page.component.ts");
+
 
 
 
@@ -641,6 +658,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__["BuyModalComponent"],
             _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_16__["SellModalComponent"],
             _portfolio_card_portfolio_card_component__WEBPACK_IMPORTED_MODULE_17__["PortfolioCardComponent"],
+            _login_page_login_page_component__WEBPACK_IMPORTED_MODULE_21__["LoginPageComponent"],
         ],
         entryComponents: [
             _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__["BuyModalComponent"],
@@ -681,15 +699,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 
 let AuthGuard = class AuthGuard {
-    constructor(auth) {
+    constructor(auth, router) {
         this.auth = auth;
+        this.router = router;
     }
     canActivate(next, state) {
-        return this.auth.accessRoute;
+        if (this.auth.accessRoute) {
+            return true;
+        }
+        else {
+            this.router.navigate(['login']);
+            return false;
+        }
     }
     canActivateChild(next, state) {
         return false;
@@ -699,13 +726,14 @@ let AuthGuard = class AuthGuard {
     }
 };
 AuthGuard.ctorParameters = () => [
-    { type: _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] }
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
 ];
 AuthGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
 ], AuthGuard);
 
 
@@ -724,6 +752,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var jwt_decode__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jwt-decode */ "./node_modules/jwt-decode/lib/index.js");
+/* harmony import */ var jwt_decode__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jwt_decode__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 let AuthService = class AuthService {
@@ -731,14 +762,32 @@ let AuthService = class AuthService {
     getToken() {
         return sessionStorage.getItem('Authorization');
     }
+    // get accessRoute(): boolean {
+    //   //on loop check if it's expired, not just if it is present
+    //   if (sessionStorage.getItem('Authorization')) {
+    //     return true
+    //   } else {
+    //     return false
+    //   }
+    // }
     get accessRoute() {
         //on loop check if it's expired, not just if it is present
-        if (sessionStorage.getItem('Authorization')) {
-            return true;
-        }
-        else {
+        const x = sessionStorage.getItem('Authorization');
+        if (x == null || x == undefined || x == '') {
             return false;
         }
+        const y = jwt_decode__WEBPACK_IMPORTED_MODULE_2__(x);
+        const date = new Date(0);
+        const tokenDate = date.setUTCSeconds(y.exp);
+        if (new Date().valueOf() > tokenDate.valueOf()) {
+            return false;
+        }
+        return true;
+    }
+    decodeUser() {
+        const x = sessionStorage.getItem('Authorization');
+        const y = jwt_decode__WEBPACK_IMPORTED_MODULE_2__(x);
+        return y;
     }
 };
 AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -874,15 +923,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+
 
 
 
 
 
 let BuySellComponent = class BuySellComponent {
-    constructor(stocks, data) {
+    constructor(stocks, data, auth) {
         this.stocks = stocks;
         this.data = data;
+        this.auth = auth;
         this.TSLA = [];
         this.AMZN = [];
         this.FB = [];
@@ -890,9 +942,7 @@ let BuySellComponent = class BuySellComponent {
         this.chartInfo = [];
         this.lableList = [];
         this.priceList = [];
-        this.username = 'Remington';
-        this.userId = 1;
-        this.accountId = 1;
+        this.accountId = this.auth.decodeUser()['account_id'];
     }
     ngOnInit() {
         var searchStockBox = document.getElementById('searchStock');
@@ -986,7 +1036,8 @@ let BuySellComponent = class BuySellComponent {
 };
 BuySellComponent.ctorParameters = () => [
     { type: _stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"] },
-    { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] }
+    { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] },
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] }
 ];
 BuySellComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -994,7 +1045,7 @@ BuySellComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./buy-sell.component.html */ "./node_modules/raw-loader/index.js!./src/app/buy-sell/buy-sell.component.html"),
         styles: [__webpack_require__(/*! ./buy-sell.component.scss */ "./src/app/buy-sell/buy-sell.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
 ], BuySellComponent);
 
 
@@ -1053,15 +1104,6 @@ let DataService = class DataService {
         const options = { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"](content) };
         return this.http.get('http://localhost:7000/api/login', options);
     }
-    checkLogin(token) {
-        const content = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Access-Control-Allow-Headers': 'Content-Type'
-        };
-        const options = { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"](content) };
-        return this.http.get('http://localhost:7000/account', options);
-    }
 };
 DataService.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
@@ -1115,6 +1157,49 @@ HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
 ], HomeComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/login-page/login-page.component.scss":
+/*!******************************************************!*\
+  !*** ./src/app/login-page/login-page.component.scss ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ2luLXBhZ2UvbG9naW4tcGFnZS5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/login-page/login-page.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/login-page/login-page.component.ts ***!
+  \****************************************************/
+/*! exports provided: LoginPageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageComponent", function() { return LoginPageComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let LoginPageComponent = class LoginPageComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+};
+LoginPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-login-page',
+        template: __webpack_require__(/*! raw-loader!./login-page.component.html */ "./node_modules/raw-loader/index.js!./src/app/login-page/login-page.component.html"),
+        styles: [__webpack_require__(/*! ./login-page.component.scss */ "./src/app/login-page/login-page.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], LoginPageComponent);
 
 
 
@@ -1321,19 +1406,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+
 
 
 
 
 
 let PortfolioComponent = class PortfolioComponent {
-    constructor(stocks, data) {
+    constructor(stocks, data, auth) {
         this.stocks = stocks;
         this.data = data;
-        this.accountId = 1;
+        this.auth = auth;
         this.accountData = [];
         this.assetData = [];
         this.assetValues = [];
+        this.accountId = this.auth.decodeUser()['account_id'];
     }
     ngOnInit() {
         this.data.getAccountData(this.accountId).subscribe((data) => {
@@ -1376,7 +1464,8 @@ let PortfolioComponent = class PortfolioComponent {
 };
 PortfolioComponent.ctorParameters = () => [
     { type: _stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"] },
-    { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] }
+    { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] },
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] }
 ];
 PortfolioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1384,7 +1473,7 @@ PortfolioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./portfolio.component.html */ "./node_modules/raw-loader/index.js!./src/app/portfolio/portfolio.component.html"),
         styles: [__webpack_require__(/*! ./portfolio.component.scss */ "./src/app/portfolio/portfolio.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
 ], PortfolioComponent);
 
 

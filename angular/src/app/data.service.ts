@@ -47,15 +47,5 @@ export class DataService {
     return this.http.get('http://localhost:7000/api/login', options)
   }
 
-  checkLogin(token) {
-    const content = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Headers': 'Content-Type'
-    }
-    const options = {headers: new HttpHeaders(content)}
-
-    return this.http.get('http://localhost:7000/account', options)
-  }
 
 }

@@ -21,6 +21,7 @@ import { TokeninterceptorService } from './tokeninterceptor.service';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { RouterModule } from '@angular/router';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RouterModule } from '@angular/router';
     BuyModalComponent,
     SellModalComponent,
     PortfolioCardComponent,
+    LoginPageComponent,
   ],
   entryComponents: [
     BuyModalComponent,
