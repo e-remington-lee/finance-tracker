@@ -458,6 +458,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AccountComponent = class AccountComponent {
+    // npm instll jwt? then call the sessionStorage, decode jwt, get access to user_id? or subscribe to a route?
     constructor(data) {
         this.data = data;
         this.data.checkLogin(sessionStorage.getItem('Authorization')).subscribe();
@@ -731,6 +732,7 @@ let AuthService = class AuthService {
         return sessionStorage.getItem('Authorization');
     }
     get accessRoute() {
+        //on loop check if it's expired, not just if it is present
         if (sessionStorage.getItem('Authorization')) {
             return true;
         }

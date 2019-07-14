@@ -10,6 +10,7 @@ export class AuthService {
   }
 
   get accessRoute(): boolean {
+    //on loop check if it's expired, not just if it is present
     if (sessionStorage.getItem('Authorization')) {
       return true
     } else {
