@@ -499,6 +499,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./portfolio/portfolio.component */ "./src/app/portfolio/portfolio.component.ts");
 /* harmony import */ var _account_account_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./account/account.component */ "./src/app/account/account.component.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
+
 
 
 
@@ -509,9 +511,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [
     { path: '', component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
-    { path: 'buySell', component: _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_4__["BuySellComponent"] },
-    { path: 'portfolio', component: _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_5__["PortfolioComponent"] },
-    { path: 'account', component: _account_account_component__WEBPACK_IMPORTED_MODULE_6__["AccountComponent"] },
+    { path: 'buySell', component: _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_4__["BuySellComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]] },
+    { path: 'portfolio', component: _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_5__["PortfolioComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]] },
+    { path: 'account', component: _account_account_component__WEBPACK_IMPORTED_MODULE_6__["AccountComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]] },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"] },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -519,7 +521,8 @@ let AppRoutingModule = class AppRoutingModule {
 AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
+        providers: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]]
     })
 ], AppRoutingModule);
 
@@ -599,6 +602,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _portfolio_card_portfolio_card_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./portfolio-card/portfolio-card.component */ "./src/app/portfolio-card/portfolio-card.component.ts");
 /* harmony import */ var _tokeninterceptor_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./tokeninterceptor.service */ "./src/app/tokeninterceptor.service.ts");
 /* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
+
 
 
 
@@ -647,7 +652,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModule"]
         ],
-        providers: [_auth_service__WEBPACK_IMPORTED_MODULE_19__["AuthService"],
+        providers: [_auth_service__WEBPACK_IMPORTED_MODULE_19__["AuthService"], _auth_guard__WEBPACK_IMPORTED_MODULE_20__["AuthGuard"],
             {
                 provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HTTP_INTERCEPTORS"],
                 useClass: _tokeninterceptor_service__WEBPACK_IMPORTED_MODULE_18__["TokeninterceptorService"],
@@ -657,6 +662,50 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/auth.guard.ts":
+/*!*******************************!*\
+  !*** ./src/app/auth.guard.ts ***!
+  \*******************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
+
+
+
+let AuthGuard = class AuthGuard {
+    constructor(auth) {
+        this.auth = auth;
+    }
+    canActivate(next, state) {
+        return this.auth.accessRoute;
+    }
+    canActivateChild(next, state) {
+        return false;
+    }
+    canLoad(route, segments) {
+        return true;
+    }
+};
+AuthGuard.ctorParameters = () => [
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] }
+];
+AuthGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+], AuthGuard);
 
 
 
@@ -680,6 +729,14 @@ let AuthService = class AuthService {
     constructor() { }
     getToken() {
         return sessionStorage.getItem('Authorization');
+    }
+    get accessRoute() {
+        if (sessionStorage.getItem('Authorization')) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 };
 AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1099,14 +1156,13 @@ let LoginComponent = class LoginComponent {
     ngOnInit() {
     }
     login() {
-        console.log(this.email, this.password);
         this.data.login(this.email, this.password).subscribe((data) => {
+            //Logic to determine if login is successful
             // this.ngbActiveModal.close();
             // this.router.navigate(['portfolio']);
             console.log(data['token']);
             sessionStorage.setItem('Authorization', data['token']);
         });
-        console.log(this.email, this.password);
     }
 };
 LoginComponent.ctorParameters = () => [

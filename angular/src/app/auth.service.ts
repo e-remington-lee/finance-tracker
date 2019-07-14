@@ -9,5 +9,13 @@ export class AuthService {
     return sessionStorage.getItem('Authorization')
   }
 
+  get accessRoute(): boolean {
+    if (sessionStorage.getItem('Authorization')) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   constructor() { }
 }

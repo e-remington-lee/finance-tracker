@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +19,8 @@ import { SellModalComponent } from './sell-modal/sell-modal.component';
 import { PortfolioCardComponent } from './portfolio-card/portfolio-card.component';
 import { TokeninterceptorService } from './tokeninterceptor.service';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -43,9 +45,9 @@ import { AuthService } from './auth.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule   
+    NgbModule
   ],
-  providers: [AuthService,
+  providers: [AuthService, AuthGuard,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokeninterceptorService,
