@@ -5,7 +5,7 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 11.3
 
--- Started on 2019-07-11 22:53:01
+-- Started on 2019-07-14 02:07:39
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -402,7 +402,7 @@ ALTER TABLE ONLY public.holdings
     ADD CONSTRAINT holdings_account_id_fkey FOREIGN KEY (account_id) REFERENCES public.account_balance(account_id);
 
 
--- Completed on 2019-07-11 22:53:01
+-- Completed on 2019-07-14 02:07:39
 
 --
 -- PostgreSQL database dump complete
