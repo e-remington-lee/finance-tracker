@@ -17,11 +17,13 @@
               <form>
                   <div class="form-group">
                     <label for="email" class="col-form-label">Email</label>
-                    <input type="email" [(ngModel)]='email' class="form-control" id="emailLogin" name='emailLogin' required>
+                    <input type="email" [(ngModel)]='email' class="form-control" id="emailLogin" name='emailLogin' 
+                      maxlength="15" required>
                   </div>
                   <div class="form-group">
                     <label for="password" class="col-form-label">Password</label>
-                    <input type='password' [(ngModel)]='password' class="form-control" id="passwordLogin" name='passwordLogin' minlength="8" required>
+                    <input type='password' [(ngModel)]='password' class="form-control" id="passwordLogin" 
+                        name='passwordLogin' minlength="8" maxlength="15" required>
                   </div>
                 </form>
                 <div class="text-center mt-2">
@@ -30,8 +32,8 @@
           </div>
           <div class="modal-footer justify-content-center">
               <div class="options">
-                  <p>Not a member? <a href="#" class="blue-text">Sign Up</a></p>
-                  <p>Forgot <a href="#" class="blue-text">Password?</a></p>
+                  <p>Not a member? <a class="blue-text" routerLink='/login' data-dismiss="modal">Sign Up</a></p>
+                  <p>Forgot <a routerLink='login' class="blue-text" data-dismiss="modal">Password?</a></p>
                 </div>
             <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
           </div>
@@ -42,24 +44,34 @@
                 <form>
                     <div class="form-group">
                       <label for="email" class="col-form-label">Email</label>
-                      <input type="email" class="form-control" id="emailRegister" required>
+                      <input type="email" class="form-control" id="emailRegister" maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="email" class="col-form-label">Username</label>
+                      <input type="email" class="form-control" id="userRegister" minlength="3" maxlength="15" required>
                     </div>
                     <div class="form-group">
                       <label for="password" class="col-form-label">Password</label>
-                      <input type='password' class="form-control" id="passwordRegister" minlength="8" required>
+                      <input type='password' class="form-control" id="passwordRegister" minlength="8" maxlength="15" required>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-form-label">Retype Password</label>
-                        <input type='password' class="form-control" id="passwordRegisterCheck" minlength="8" required>
+                        <input type='password' class="form-control" id="passwordRegisterCheck" minlength="8" maxlength="15" required>
                       </div>
                   </form>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input">
+                      By Clicking register you're agree to our policy & terms
+                    </label>
+                    </div>
                   <div class="text-center mt-2">
                       <button type="button" class="btn btn-primary">Register</button>
                   </div>
             </div>
             <div class="modal-footer justify-content-center">
                 <div class="options">
-                    <p>Already have an account? <a class="blue-text" data-toggle="tab" href="#loginTab">Log In</a></p>
+                    <p>Already have an account? <a class="blue-text" routerLink='/login' data-dismiss="modal">Log In</a></p>
                   </div>
               <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
             </div>

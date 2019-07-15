@@ -326,7 +326,7 @@ module.exports = "<div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()'>\n    </div>  \n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n      <!-- <canvas id=\"chartIndicators\" ></canvas>  -->\n    <app-stock-card class='col-12' [symbol]=\"SPY\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"DIA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"IWM\"></app-stock-card>\n  </div>\n</body>\n\n"
+module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n      <!-- <canvas id=\"chartIndicators\" ></canvas>  -->\n    <app-stock-card class='col-12' [symbol]=\"SPY\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"DIA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"IWM\"></app-stock-card>\n  </div>\n</body>\n\n"
 
 /***/ }),
 
@@ -337,7 +337,7 @@ module.exports = "<body class='container'>\n      <div class='form-group' id='se
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Login'>Login/Register</button>\n    </div>\n</header>\n\n<app-login></app-login>\n  \n<div>\n    <h3>GitHub Repository</h3>\n      <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</div>"
+module.exports = "\n<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Login'>Login/Register</button>\n    </div>\n</header>\n\n<app-login></app-login>\n  \n<div>\n    <h3>GitHub Repository</h3>\n      <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</div>\n"
 
 /***/ }),
 
@@ -348,7 +348,7 @@ module.exports = "<header id='showcase'>\n  <div class='card'>\n      <h1>Fantas
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>login-page works!</p>\n"
+module.exports = "<body>\n\t<div class=\"container-fluid\">\n\t\t<div class=\"container\">\n\t\t\t<h2 class=\"text-center\" id=\"title\">Login or Register</h2>\n \t\t\t<hr>\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-md-5\">\n \t\t\t\t\t<form role=\"form\">\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<p><b>Register</b></p>\t\n \t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"text\" name=\"username1\" id=\"username1\" class=\"form-control input-lg\" placeholder=\"Username\">\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"email\" name=\"email1\" id=\"email1\" class=\"form-control input-lg\" placeholder=\"Email Address\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"password\" name=\"password1\" id=\"password1\" class=\"form-control input-lg\" placeholder=\"Password\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"password\" name=\"password2\" id=\"password2\" class=\"form-control input-lg\" placeholder=\"Retype Password\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"form-check\">\n\t\t\t\t\t\t\t\t<label class=\"form-check-label\" id='checkLabel'>\n\t\t\t\t\t\t\t\t  <input type=\"checkbox\" class=\"form-check-input\">\n\t\t\t\t\t\t\t\t  By Clicking register you're agree to our policy & terms\n\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t  </div>\n \t\t\t\t\t\t\t<div>\n \t\t\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn btn-primary\">Register</button>\n \t\t\t\t\t\t\t</div>\n\t\t\t\t\t</form>\n                </div>\n                <div class=\"col-md-2\">\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<div class=\"col-md-5\">\n \t\t\t\t \t\t<form role=\"form\">\n\t\t\t\t\t\t\t<p><b> Login using your account</b> </p> \t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"email\" name=\"username\" id=\"username\" class=\"form-control input-lg\" placeholder=\"username\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"password\" name=\"password\" id=\"password\" class=\"form-control input-lg\" placeholder=\"Password\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn btn-primary\">Login</button>\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t</form>\t\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t</body>\n\t \n"
 
 /***/ }),
 
@@ -359,7 +359,7 @@ module.exports = "<p>login-page works!</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"Login\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-c-tabs\">\n            <ul class=\"nav nav-tabs tabs-2\" role=\"tablist\">\n                <li class=\"nav-item\">\n                  <a class=\"nav-link active\" data-toggle=\"tab\" href=\"#loginTab\" role=\"tab\">Login</a>\n                </li>\n                <li class=\"nav-item\">\n                  <a class=\"nav-link\" data-toggle=\"tab\" href=\"#registerTab\" role=\"tab\">Register</a>\n                </li>\n              </ul>\n        <div class='tab-content'>\n\n        <div class='tab-pane fad-in show active' id='loginTab' role='tabpanel'>\n          <div class=\"modal-body\">\n              <form>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\">Email</label>\n                    <input type=\"email\" [(ngModel)]='email' class=\"form-control\" id=\"emailLogin\" name='emailLogin' required>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"password\" class=\"col-form-label\">Password</label>\n                    <input type='password' [(ngModel)]='password' class=\"form-control\" id=\"passwordLogin\" name='passwordLogin' minlength=\"8\" required>\n                  </div>\n                </form>\n                <div class=\"text-center mt-2\">\n                    <button type=\"button\" class=\"btn btn-primary\" (click)='login()'>Login</button>\n                  </div>\n          </div>\n          <div class=\"modal-footer justify-content-center\">\n              <div class=\"options\">\n                  <p>Not a member? <a href=\"#\" class=\"blue-text\">Sign Up</a></p>\n                  <p>Forgot <a href=\"#\" class=\"blue-text\">Password?</a></p>\n                </div>\n            <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n          </div>\n      </div>\n\n        <div class='tab-pane fade' id='registerTab' role='tabpanel'>\n            <div class=\"modal-body\">\n                <form>\n                    <div class=\"form-group\">\n                      <label for=\"email\" class=\"col-form-label\">Email</label>\n                      <input type=\"email\" class=\"form-control\" id=\"emailRegister\" required>\n                    </div>\n                    <div class=\"form-group\">\n                      <label for=\"password\" class=\"col-form-label\">Password</label>\n                      <input type='password' class=\"form-control\" id=\"passwordRegister\" minlength=\"8\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"password\" class=\"col-form-label\">Retype Password</label>\n                        <input type='password' class=\"form-control\" id=\"passwordRegisterCheck\" minlength=\"8\" required>\n                      </div>\n                  </form>\n                  <div class=\"text-center mt-2\">\n                      <button type=\"button\" class=\"btn btn-primary\">Register</button>\n                  </div>\n            </div>\n            <div class=\"modal-footer justify-content-center\">\n                <div class=\"options\">\n                    <p>Already have an account? <a class=\"blue-text\" data-toggle=\"tab\" href=\"#loginTab\">Log In</a></p>\n                  </div>\n              <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      </div>\n      </div>\n    </div>\n    </div>\n  </div>\n"
+module.exports = "<div class=\"modal fade\" id=\"Login\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-c-tabs\">\n            <ul class=\"nav nav-tabs tabs-2\" role=\"tablist\">\n                <li class=\"nav-item\">\n                  <a class=\"nav-link active\" data-toggle=\"tab\" href=\"#loginTab\" role=\"tab\">Login</a>\n                </li>\n                <li class=\"nav-item\">\n                  <a class=\"nav-link\" data-toggle=\"tab\" href=\"#registerTab\" role=\"tab\">Register</a>\n                </li>\n              </ul>\n        <div class='tab-content'>\n\n        <div class='tab-pane fad-in show active' id='loginTab' role='tabpanel'>\n          <div class=\"modal-body\">\n              <form>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\">Email</label>\n                    <input type=\"email\" [(ngModel)]='email' class=\"form-control\" id=\"emailLogin\" name='emailLogin' \n                      maxlength=\"15\" required>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"password\" class=\"col-form-label\">Password</label>\n                    <input type='password' [(ngModel)]='password' class=\"form-control\" id=\"passwordLogin\" \n                        name='passwordLogin' minlength=\"8\" maxlength=\"15\" required>\n                  </div>\n                </form>\n                <div class=\"text-center mt-2\">\n                    <button type=\"button\" class=\"btn btn-primary\" (click)='login()'>Login</button>\n                  </div>\n          </div>\n          <div class=\"modal-footer justify-content-center\">\n              <div class=\"options\">\n                  <p>Not a member? <a class=\"blue-text\" routerLink='/login' data-dismiss=\"modal\">Sign Up</a></p>\n                  <p>Forgot <a routerLink='login' class=\"blue-text\" data-dismiss=\"modal\">Password?</a></p>\n                </div>\n            <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n          </div>\n      </div>\n\n        <div class='tab-pane fade' id='registerTab' role='tabpanel'>\n            <div class=\"modal-body\">\n                <form>\n                    <div class=\"form-group\">\n                      <label for=\"email\" class=\"col-form-label\">Email</label>\n                      <input type=\"email\" class=\"form-control\" id=\"emailRegister\" maxlength=\"50\" required>\n                    </div>\n                    <div class=\"form-group\">\n                      <label for=\"email\" class=\"col-form-label\">Username</label>\n                      <input type=\"email\" class=\"form-control\" id=\"userRegister\" minlength=\"3\" maxlength=\"15\" required>\n                    </div>\n                    <div class=\"form-group\">\n                      <label for=\"password\" class=\"col-form-label\">Password</label>\n                      <input type='password' class=\"form-control\" id=\"passwordRegister\" minlength=\"8\" maxlength=\"15\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"password\" class=\"col-form-label\">Retype Password</label>\n                        <input type='password' class=\"form-control\" id=\"passwordRegisterCheck\" minlength=\"8\" maxlength=\"15\" required>\n                      </div>\n                  </form>\n                  <div class=\"form-check\">\n                    <label class=\"form-check-label\">\n                      <input type=\"checkbox\" class=\"form-check-input\">\n                      By Clicking register you're agree to our policy & terms\n                    </label>\n                    </div>\n                  <div class=\"text-center mt-2\">\n                      <button type=\"button\" class=\"btn btn-primary\">Register</button>\n                  </div>\n            </div>\n            <div class=\"modal-footer justify-content-center\">\n                <div class=\"options\">\n                    <p>Already have an account? <a class=\"blue-text\" routerLink='/login' data-dismiss=\"modal\">Log In</a></p>\n                  </div>\n              <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      </div>\n      </div>\n    </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -381,7 +381,7 @@ module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div class='col-3' style=\"border-right: 1px solid #ccc\">\n          <b>{{stock.company}} : {{stock.symbol}}</b>\n      </div>\n      <div class='col-9'>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Holding Value: </b> ${{stock.holding_value}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Shares: </b> {{stock.shares}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Current Price: </b> {{stock.current_price}}%</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Percent Change: </b> {{stock.percent_change}}%</p>  \n      </div>\n    </div>\n  </div>\n"
+module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div class='col-3' style=\"border-right: 1px solid #ccc\">\n          <b>{{stock.company}} : {{stock.symbol}}</b>\n      </div>\n      <div class='col-9'>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Holding Value: </b> ${{stock.holding_value}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Shares: </b> {{stock.shares}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Current Price: </b> ${{stock.current_price}}</p>\n          <p><b>Percent Change: </b> {{stock.percent_change}}%</p>  \n      </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -903,7 +903,7 @@ BuyModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#stocks {\n  margin: 50px 0 50px 0;\n}\n\n#searchStock {\n  margin: 10px 0 0 0;\n}\n\n#searchBar {\n  margin: 10px 0 0 0;\n}\n\nbody div {\n  display: flex;\n  width: 100%;\n}\n\nbody div p {\n  margin: 0 20px 0 0;\n}\n\nbutton {\n  margin: 0 5px 0 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYnV5LXNlbGwvRDpcXE1hc3Rlcm1pbmRcXEZpbmFuY2UtdHJhY2tpbmdcXGFuZ3VsYXIvc3JjXFxhcHBcXGJ1eS1zZWxsXFxidXktc2VsbC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYnV5LXNlbGwvYnV5LXNlbGwuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxxQkFBQTtBQ0NKOztBREVBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLGtCQUFBO0FDQ0o7O0FERUE7RUFDSSxhQUFBO0VBQ0EsV0FBQTtBQ0NKOztBREVBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLGlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9idXktc2VsbC9idXktc2VsbC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNzdG9ja3N7XHJcbiAgICBtYXJnaW46IDUwcHggMCA1MHB4IDA7XHJcbn1cclxuXHJcbiNzZWFyY2hTdG9ja3tcclxuICAgIG1hcmdpbjogMTBweCAwIDAgMDtcclxufVxyXG5cclxuI3NlYXJjaEJhciB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAwIDA7XHJcbn1cclxuXHJcbmJvZHkgZGl2e1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG5ib2R5IGRpdiBwIHtcclxuICAgIG1hcmdpbjogMCAyMHB4IDAgMDtcclxufVxyXG5cclxuYnV0dG9uIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG59IiwiI3N0b2NrcyB7XG4gIG1hcmdpbjogNTBweCAwIDUwcHggMDtcbn1cblxuI3NlYXJjaFN0b2NrIHtcbiAgbWFyZ2luOiAxMHB4IDAgMCAwO1xufVxuXG4jc2VhcmNoQmFyIHtcbiAgbWFyZ2luOiAxMHB4IDAgMCAwO1xufVxuXG5ib2R5IGRpdiB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG5ib2R5IGRpdiBwIHtcbiAgbWFyZ2luOiAwIDIwcHggMCAwO1xufVxuXG5idXR0b24ge1xuICBtYXJnaW46IDAgNXB4IDAgMDtcbn0iXX0= */"
+module.exports = "#stocks {\n  margin: 50px 0 50px 0;\n}\n\nbody {\n  background-color: white;\n  padding: 10px;\n  height: 100%;\n}\n\n#searchStock {\n  margin: 10px 0 0 0;\n}\n\n#searchBar {\n  margin: 10px 0 0 0;\n}\n\nbody div {\n  display: flex;\n  width: 100%;\n}\n\nbody div p {\n  margin: 0 20px 0 0;\n}\n\nbutton {\n  margin: 0 5px 0 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYnV5LXNlbGwvRDpcXE1hc3Rlcm1pbmRcXEZpbmFuY2UtdHJhY2tpbmdcXGFuZ3VsYXIvc3JjXFxhcHBcXGJ1eS1zZWxsXFxidXktc2VsbC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYnV5LXNlbGwvYnV5LXNlbGwuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxxQkFBQTtBQ0NKOztBREdBO0VBQU0sdUJBQUE7RUFBdUIsYUFBQTtFQUFhLFlBQUE7QUNHMUM7O0FEREE7RUFDSSxrQkFBQTtBQ0lKOztBRERBO0VBQ0ksa0JBQUE7QUNJSjs7QUREQTtFQUNJLGFBQUE7RUFDQSxXQUFBO0FDSUo7O0FEREE7RUFDSSxrQkFBQTtBQ0lKOztBRERBO0VBQ0ksaUJBQUE7QUNJSiIsImZpbGUiOiJzcmMvYXBwL2J1eS1zZWxsL2J1eS1zZWxsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3N0b2Nrc3tcclxuICAgIG1hcmdpbjogNTBweCAwIDUwcHggMDtcclxufVxyXG4vLyBib2R5IHtiYWNrZ3JvdW5kLWNvbG9yOiNlZWU7fVxyXG4vLyBib2R5IHtwYWRkaW5nOjUwcHg7fVxyXG5ib2R5IHtiYWNrZ3JvdW5kLWNvbG9yOndoaXRlO3BhZGRpbmc6MTBweDtoZWlnaHQ6MTAwJX1cclxuXHJcbiNzZWFyY2hTdG9ja3tcclxuICAgIG1hcmdpbjogMTBweCAwIDAgMDtcclxufVxyXG5cclxuI3NlYXJjaEJhciB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAwIDA7XHJcbn1cclxuXHJcbmJvZHkgZGl2e1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG5ib2R5IGRpdiBwIHtcclxuICAgIG1hcmdpbjogMCAyMHB4IDAgMDtcclxufVxyXG5cclxuYnV0dG9uIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG59IiwiI3N0b2NrcyB7XG4gIG1hcmdpbjogNTBweCAwIDUwcHggMDtcbn1cblxuYm9keSB7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICBwYWRkaW5nOiAxMHB4O1xuICBoZWlnaHQ6IDEwMCU7XG59XG5cbiNzZWFyY2hTdG9jayB7XG4gIG1hcmdpbjogMTBweCAwIDAgMDtcbn1cblxuI3NlYXJjaEJhciB7XG4gIG1hcmdpbjogMTBweCAwIDAgMDtcbn1cblxuYm9keSBkaXYge1xuICBkaXNwbGF5OiBmbGV4O1xuICB3aWR0aDogMTAwJTtcbn1cblxuYm9keSBkaXYgcCB7XG4gIG1hcmdpbjogMCAyMHB4IDAgMDtcbn1cblxuYnV0dG9uIHtcbiAgbWFyZ2luOiAwIDVweCAwIDA7XG59Il19 */"
 
 /***/ }),
 
@@ -921,14 +921,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+
 
 
 
 
 
 let BuySellComponent = class BuySellComponent {
-    // chart: Chart;
     // chartIndicators: Chart;
     constructor(stocks, data, auth) {
         this.stocks = stocks;
@@ -955,25 +957,26 @@ let BuySellComponent = class BuySellComponent {
         this.data.returnStocks('IWM').subscribe((data) => {
             this.IWM = data;
         });
-        // this.chart = new Chart('myChart', {
-        //   type: 'line',
-        //   data: {
-        //     labels: null,
-        //     datasets: [{ 
-        //         data: null,
-        //         label: 'Stock',
-        //         borderColor: "#3e95cd",
-        //         fill: false
-        //       }
-        //     ]
-        //   },
-        //   options: {
-        //     title: {
-        //       display: true,
-        //       text: "Stock Data"
-        //     }
-        //   }
-        // });
+        chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"].defaults.line.spanGaps = true;
+        this.chart = new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"]('myChart', {
+            type: 'line',
+            data: {
+                labels: null,
+                datasets: [{
+                        data: null,
+                        label: 'Stock',
+                        borderColor: "#3e95cd",
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Stock Data"
+                }
+            }
+        });
         // this.chartIndicators = new Chart('chartIndicators', {
         //   type: 'line',
         //   data: {
@@ -1014,11 +1017,30 @@ let BuySellComponent = class BuySellComponent {
             this.searchStockData = data;
         });
     }
+    updateChart() {
+        this.data.chartData(this.searchStockSymbol).subscribe((data) => {
+            console.log(data);
+            this.chartInfo = data;
+            this.lableList = [];
+            this.priceList = [];
+            for (let i = 0; i < data.length; i++) {
+                this.lableList.push(data[i].label);
+            }
+            for (let y = 0; y < data.length; y++) {
+                this.priceList.push(data[y].average);
+            }
+            this.chart.data.datasets[0].label = this.searchStockSymbol;
+            this.chart.data.labels = this.lableList;
+            this.chart.data.datasets[0].data = this.priceList;
+            this.chart.options.title.text = `Daily Prices For ${this.searchStockSymbol} on ${data[0].date} `;
+            this.chart.update();
+        });
+    }
 };
 BuySellComponent.ctorParameters = () => [
     { type: _stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"] },
     { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] },
-    { type: _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] }
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] }
 ];
 BuySellComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1026,7 +1048,7 @@ BuySellComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./buy-sell.component.html */ "./node_modules/raw-loader/index.js!./src/app/buy-sell/buy-sell.component.html"),
         styles: [__webpack_require__(/*! ./buy-sell.component.scss */ "./src/app/buy-sell/buy-sell.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
 ], BuySellComponent);
 
 
@@ -1062,10 +1084,10 @@ let DataService = class DataService {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('accountId', accountId) };
         return this.http.get('http://localhost:7000/api/portfolioData', params);
     }
-    // chartData(symbol) {
-    //   const params = { params: new HttpParams().set('symbol', symbol) };
-    //   return this.http.get('http://localhost:7000/api/historicalData', params);
-    // }
+    chartData(symbol) {
+        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
+        return this.http.get('http://localhost:7000/api/intraDayData', params);
+    }
     checkBalance(symbol, accountId, shares) {
         const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
         return this.http.get('http://localhost:7000/api/checkBalance', { observe: 'response', params });
@@ -1150,7 +1172,7 @@ HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ2luLXBhZ2UvbG9naW4tcGFnZS5jb21wb25lbnQuc2NzcyJ9 */"
+module.exports = ".container-fluid {\n  padding: 15px;\n}\n\n#checkLabel {\n  margin: 0 0 10px 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9naW4tcGFnZS9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcbG9naW4tcGFnZVxcbG9naW4tcGFnZS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbG9naW4tcGFnZS9sb2dpbi1wYWdlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksYUFBQTtBQ0NKOztBRENBO0VBQ0ksa0JBQUE7QUNFSiIsImZpbGUiOiJzcmMvYXBwL2xvZ2luLXBhZ2UvbG9naW4tcGFnZS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250YWluZXItZmx1aWQge1xyXG4gICAgcGFkZGluZzoxNXB4O1xyXG59XHJcbiNjaGVja0xhYmVsIHtcclxuICAgIG1hcmdpbjogMCAwIDEwcHggMCA7XHJcbn0iLCIuY29udGFpbmVyLWZsdWlkIHtcbiAgcGFkZGluZzogMTVweDtcbn1cblxuI2NoZWNrTGFiZWwge1xuICBtYXJnaW46IDAgMCAxMHB4IDA7XG59Il19 */"
 
 /***/ }),
 
@@ -1367,7 +1389,7 @@ PortfolioCardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#account {\n  margin: 20px 0 0 0;\n}\n\n#portfolio {\n  margin: 10px 0 10px 0;\n  display: flex;\n}\n\nbody div a {\n  margin: 0 5px 0 0;\n  justify-content: right;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvL0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxwb3J0Zm9saW9cXHBvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0FDQ0o7O0FERUE7RUFDSSxxQkFBQTtFQUNBLGFBQUE7QUNDSjs7QURFQTtFQUNJLGlCQUFBO0VBQ0Esc0JBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BvcnRmb2xpby9wb3J0Zm9saW8uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjYWNjb3VudCB7XHJcbiAgICBtYXJnaW46IDIwcHggMCAwIDA7XHJcbn1cclxuXHJcbiNwb3J0Zm9saW8ge1xyXG4gICAgbWFyZ2luOiAxMHB4IDAgMTBweCAwO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxufVxyXG5cclxuYm9keSBkaXYgYSB7XHJcbiAgICBtYXJnaW46IDAgNXB4IDAgMDtcclxuICAgIGp1c3RpZnktY29udGVudDogcmlnaHQ7XHJcbn0iLCIjYWNjb3VudCB7XG4gIG1hcmdpbjogMjBweCAwIDAgMDtcbn1cblxuI3BvcnRmb2xpbyB7XG4gIG1hcmdpbjogMTBweCAwIDEwcHggMDtcbiAgZGlzcGxheTogZmxleDtcbn1cblxuYm9keSBkaXYgYSB7XG4gIG1hcmdpbjogMCA1cHggMCAwO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHJpZ2h0O1xufSJdfQ== */"
+module.exports = "#account {\n  margin: 20px 0 0 0;\n}\n\nbody {\n  background-color: white;\n  padding: 10px;\n  height: 100%;\n}\n\n#portfolio {\n  margin: 10px 0 10px 0;\n  display: flex;\n}\n\nbody div a {\n  margin: 0 5px 0 0;\n  justify-content: right;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvL0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxwb3J0Zm9saW9cXHBvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0FDQ0o7O0FEQ0E7RUFBTSx1QkFBQTtFQUF1QixhQUFBO0VBQWEsWUFBQTtBQ0sxQzs7QURKQTtFQUNJLHFCQUFBO0VBQ0EsYUFBQTtBQ09KOztBREpBO0VBQ0ksaUJBQUE7RUFDQSxzQkFBQTtBQ09KIiwiZmlsZSI6InNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNhY2NvdW50IHtcclxuICAgIG1hcmdpbjogMjBweCAwIDAgMDtcclxufVxyXG5ib2R5IHtiYWNrZ3JvdW5kLWNvbG9yOndoaXRlO3BhZGRpbmc6MTBweDtoZWlnaHQ6MTAwJX1cclxuI3BvcnRmb2xpbyB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAxMHB4IDA7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG59XHJcblxyXG5ib2R5IGRpdiBhIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG4gICAganVzdGlmeS1jb250ZW50OiByaWdodDtcclxufSIsIiNhY2NvdW50IHtcbiAgbWFyZ2luOiAyMHB4IDAgMCAwO1xufVxuXG5ib2R5IHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIGhlaWdodDogMTAwJTtcbn1cblxuI3BvcnRmb2xpbyB7XG4gIG1hcmdpbjogMTBweCAwIDEwcHggMDtcbiAgZGlzcGxheTogZmxleDtcbn1cblxuYm9keSBkaXYgYSB7XG4gIG1hcmdpbjogMCA1cHggMCAwO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHJpZ2h0O1xufSJdfQ== */"
 
 /***/ }),
 

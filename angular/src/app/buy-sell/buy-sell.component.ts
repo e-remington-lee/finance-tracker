@@ -21,7 +21,7 @@ export class BuySellComponent implements OnInit {
   priceList: any[] =[];
   accountId: number;
   searchStockSymbol: string;
-  // chart: Chart;
+  chart: Chart;
   // chartIndicators: Chart;
 
   constructor(private stocks: StocksService, private data: DataService, private auth: AuthService) {
@@ -43,26 +43,26 @@ export class BuySellComponent implements OnInit {
     this.data.returnStocks('IWM').subscribe((data: any[]) => {
       this.IWM =  data;
     });
-
-    // this.chart = new Chart('myChart', {
-    //   type: 'line',
-    //   data: {
-    //     labels: null,
-    //     datasets: [{ 
-    //         data: null,
-    //         label: 'Stock',
-    //         borderColor: "#3e95cd",
-    //         fill: false
-    //       }
-    //     ]
-    //   },
-    //   options: {
-    //     title: {
-    //       display: true,
-    //       text: "Stock Data"
-    //     }
-    //   }
-    // });
+    Chart.defaults.line.spanGaps = true;
+    this.chart = new Chart('myChart', {
+      type: 'line',
+      data: {
+        labels: null,
+        datasets: [{ 
+            data: null,
+            label: 'Stock',
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Stock Data"
+        }
+      }
+    });
 
     // this.chartIndicators = new Chart('chartIndicators', {
     //   type: 'line',
@@ -108,115 +108,27 @@ export class BuySellComponent implements OnInit {
     });
   }
 
-  // updateChart() {
-  //   this.data.chartData(this.searchStockSymbol).subscribe((data: any[]) => {
-  //     this.chartInfo = data;
-  //     this.lableList = [];
-  //     this.priceList =[];
+  updateChart() {
+    this.data.chartData(this.searchStockSymbol).subscribe((data: any[]) => {
+      console.log(data)
+      this.chartInfo = data;
+      this.lableList = [];
+      this.priceList =[];
     
-  //     for (let i = 0; i<data.length; i++) {
-  //         this.lableList.push(data[i].date); 
-  //     }
+      for (let i = 0; i<data.length; i++) {
+          this.lableList.push(data[i].label); 
+      }
 
-  //     for (let y = 0; y<data.length; y++) {
-  //       this.priceList.push(data[y].closing_price)
-  //     }
-  //     this.chart.data.datasets[0].label = this.searchStockSymbol;
-  //     this.chart.data.labels = this.lableList;
-  //     this.chart.data.datasets[0].data = this.priceList;
-  //     this.chart.options.title.text = `Previous Month's Stock Prices for ${this.searchStockSymbol}`
+      for (let y = 0; y<data.length; y++) {
+        this.priceList.push(data[y].average)
+      }
+      this.chart.data.datasets[0].label = this.searchStockSymbol;
+      this.chart.data.labels = this.lableList;
+      this.chart.data.datasets[0].data = this.priceList;
+      this.chart.options.title.text = `Daily Prices For ${this.searchStockSymbol} on ${data[0].date} `
 
-  //     this.chart.update()
-  //   }); 
-  // }
-
-  // buyStockButton2(symbol) {
-  //   if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-  //     alert('Must be a positive whole number');
-  //     this.shares=0;
-  //     return false
-  //   } else {
-  //     this.data.checkBalance(symbol, this.accountId, this.shares).subscribe(resp => {
-  //       if (resp.status == 200) {
-  //         this.type = 'buy';
-  //         this.stocks.buyStock2(symbol, this.accountId, this.shares).subscribe();
-  //         this.stocks.updateBalanceBuy(symbol, this.accountId, this.shares).subscribe(data => {
-  //         });
-  //         this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => {});
-  //         this.shares=0;
-  //       }
-  //     },
-  //     error => {
-  //       if (error.status == 404) {
-  //         alert('Purchase Failed: Insufficient Funds')
-  //         this.shares = 0;
-  //       }
-  //     });
-  //   }
-  // }
-
-//   sellStockButton2(symbol) {
-//     if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-//       alert('Must be a positive whole number');
-//       return false
-//     } else {
-//       this.data.checkStock(symbol, this.accountId, this.shares).subscribe(resp => {
-//         if (resp.status == 200) {
-//           this.type = 'sell';
-//           this.stocks.sellStock(symbol, this.accountId, this.shares).subscribe();
-//           this.stocks.updateBalanceSell(symbol, this.accountId, this.shares).subscribe(data => {
-//           });
-//           this.stocks.transactions(this.accountId, symbol, this.type, this.shares).subscribe(data => {});
-//           this.shares=0
-//         }
-//       },
-//       error => {
-//         if (error.status == 404) {
-//           alert('Sell Failed: Insufficient Share Quantity')
-//           this.shares = 0;
-//         }
-//       });
-//     }
-//   }
-
-
-// buyStockButton3() {
-//   if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-//     alert('Must be a positive whole number');
-//     this.shares = 0
-//     return false
-//   } else {
-//     this.data.checkBalance(this.searchStockSymbol, this.accountId, this.shares).subscribe(resp => {
-//       if (resp.status == 200) {
-//         this.type = 'buy';
-//         this.stocks.buyStock2(this.searchStockSymbol, this.accountId, this.shares).subscribe();
-//         this.stocks.updateBalanceBuy(this.searchStockSymbol, this.accountId, this.shares).subscribe(data => {
-//         });
-//         this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(data => {});
-//         this.shares=0;
-//       };
-//     },
-//     error => {
-//       if (error.status == 404) {
-//         alert('Sell Failed: Insufficient Share Quantity')
-//         this.shares = 0;
-//       }
-//     });
-//   }
-// }
-
-// sellStockButton3() {
-//   if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-//     alert('Must be a positive whole number');
-//     return false
-//   } else {
-//     this.type = 'sell';
-//     this.stocks.sellStock(this.searchStockSymbol, this.accountId, this.shares).subscribe();
-//     this.stocks.updateBalanceSell(this.searchStockSymbol, this.accountId, this.shares).subscribe(data => {
-//     });
-//     this.stocks.transactions(this.accountId, this.searchStockSymbol, this.type, this.shares).subscribe(data => {});
-//     this.shares=0
-//     }
-//   }
+      this.chart.update()
+    }); 
+  }
 
 }

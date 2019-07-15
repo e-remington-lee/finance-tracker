@@ -8,8 +8,10 @@ import jwt
 import datetime
 from functools import wraps
 
+
 app = Flask(__name__)
 secret_key = 'bob'
+
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -43,7 +45,6 @@ def login_user():
     email = request.headers['x-email']
     password = request.headers['x-password']
     login_response = login_account(email, password)
-    # print(login_response)
 
     if login_response == None:
         return make_response('Login failed', 401, {'WWW-Authentication.route' : 'Login required!'})
@@ -51,7 +52,7 @@ def login_user():
     user = {'user_id': login_response['user_id'],
             'account_id': login_response['account_id'],
             'username': login_response['first_name'],
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)  
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=1440)  
             }   
 
     # print(user)
@@ -97,15 +98,17 @@ def stock_info():
         return jsonify(stock_data), 200
     return "", 404
 
-@app.route('/api/historicalData', methods=['GET'])
+@app.route('/api/intraDayData', methods=['GET'])
 def historical_info():
     symbol = request.args.get('symbol')
     r = iex_chart_data(symbol)
     historical_data = []
     count = 0
     for x in r.json():
-        x = {'date': r.json()[count]['label'],
-            'closing_price': r.json()[count]['close']}
+        x = {'date': r.json()[count]['date'],
+            'average': r.json()[count]['average'],
+            'label': r.json()[count]['label']
+            }
         historical_data.append(x)
         count +=1
     return jsonify(historical_data), 200
