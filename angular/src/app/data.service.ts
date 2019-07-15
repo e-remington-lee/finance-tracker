@@ -46,6 +46,4 @@ export class DataService {
 
     return this.http.get('http://localhost:7000/api/login', options)
   }
-
-
 }

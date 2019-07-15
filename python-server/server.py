@@ -10,6 +10,7 @@ from functools import wraps
 
 
 app = Flask(__name__)
+#change the secret key!!
 secret_key = 'bob'
 
 
@@ -34,17 +35,19 @@ def login_token(f):
         except: 
             return "Return to login page"
 
+        print('decorator works!')
         return f(*args, **kwargs)
     return decorated
 
 
 @app.route('/api/login', methods=['GET'])
 def login_user():
-    
     #make this secure??
     email = request.headers['x-email']
     password = request.headers['x-password']
+
     login_response = login_account(email, password)
+   
 
     if login_response == None:
         return make_response('Login failed', 401, {'WWW-Authentication.route' : 'Login required!'})
@@ -52,10 +55,9 @@ def login_user():
     user = {'user_id': login_response['user_id'],
             'account_id': login_response['account_id'],
             'username': login_response['first_name'],
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=1440)  
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=40)  
             }   
 
-    # print(user)
     encoded_token = jwt.encode(user, secret_key, algorithm='HS256')
     token = {'token': encoded_token.decode('UTF-8')}
     
