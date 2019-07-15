@@ -326,7 +326,7 @@ module.exports = "<div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n      <canvas id=\"chartIndicators\" ></canvas> \n    <app-stock-card class='col-12' [symbol]=\"TSLA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"AMZN\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"FB\"></app-stock-card>\n  </div>\n</body>\n\n"
+module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()'>\n    </div>  \n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n      <!-- <canvas id=\"chartIndicators\" ></canvas>  -->\n    <app-stock-card class='col-12' [symbol]=\"SPY\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"DIA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"IWM\"></app-stock-card>\n  </div>\n</body>\n\n"
 
 /***/ }),
 
@@ -381,7 +381,7 @@ module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div class='col-3'>\n          <b>{{stock.company}} : {{stock.symbol}}</b>\n      </div>\n      <div class='col-7'>\n          <p><b>Holding Value: </b> ${{stock.holding_value}}</p>\n          <p><b>Shares: </b> {{stock.shares}}</p>\n          <p><b>Percent Change: </b> %{{stock.percent_change}}</p>\n      </div>\n      <!-- <div class='col-2'>\n          <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'(click)='openBuyModal()'>Buy</button>\n          <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellStock' (click)='openSellModal()'>Sell</button>\n        </div> -->\n    </div>\n  </div>\n"
+module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div class='col-3' style=\"border-right: 1px solid #ccc\">\n          <b>{{stock.company}} : {{stock.symbol}}</b>\n      </div>\n      <div class='col-9'>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Holding Value: </b> ${{stock.holding_value}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Shares: </b> {{stock.shares}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Current Price: </b> {{stock.current_price}}%</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Percent Change: </b> {{stock.percent_change}}%</p>  \n      </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -414,7 +414,7 @@ module.exports = "<div class=\"modal fade\" id=\"sellStock\" tabindex='-1'>\n  <
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='card'>\n  <div class='card-body'>\n    <div class='col-3' *ngFor='let stock of symbol'>\n        <b>{{stock.company}} : {{stock.symbol}}</b>\n    </div>\n    <div class='col-7' *ngFor='let stock of symbol'>\n        <p><b>Current Price:</b> ${{stock.price}}</p>\n        <p><b>Percent Change:</b> {{stock.changePercent}}% </p>\n        <p><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n    </div>\n    <div class='col-2'>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'(click)='openBuyModal()'>Buy</button>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellStock' (click)='openSellModal()'>Sell</button>\n      </div>\n  </div>\n</div>"
+module.exports = "<div class='card'>\n  <div class='card-body'>\n    <div class='col-3' *ngFor='let stock of symbol' style=\"padding-right:10px; border-right: 1px solid #ccc\">\n        <b>{{stock.company}} : {{stock.symbol}}</b>\n    </div>\n    <div class='col-7' *ngFor='let stock of symbol'>\n        <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Current Price:</b> ${{stock.price}}</p>\n        <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Percent Change:</b> {{stock.changePercent}}% </p>\n        <p ><b>Daily Gain/Loss:</b> ${{stock.change}} </p>       \n    </div>\n    <div class='col-2'>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'(click)='openBuyModal()'>Buy</button>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellStock' (click)='openSellModal()'>Sell</button>\n      </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -921,23 +921,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
-
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
 
 
 
 
 
 let BuySellComponent = class BuySellComponent {
+    // chart: Chart;
+    // chartIndicators: Chart;
     constructor(stocks, data, auth) {
         this.stocks = stocks;
         this.data = data;
         this.auth = auth;
-        this.TSLA = [];
-        this.AMZN = [];
-        this.FB = [];
+        this.SPY = [];
+        this.DIA = [];
+        this.IWM = [];
         this.searchStockData = [];
         this.chartInfo = [];
         this.lableList = [];
@@ -947,63 +946,63 @@ let BuySellComponent = class BuySellComponent {
     ngOnInit() {
         var searchStockBox = document.getElementById('searchStock');
         searchStockBox.style.display = "none";
-        this.data.returnStocks('TSLA').subscribe((data) => {
-            this.TSLA = data;
+        this.data.returnStocks('SPY').subscribe((data) => {
+            this.SPY = data;
         });
-        this.data.returnStocks('AMZN').subscribe((data) => {
-            this.AMZN = data;
+        this.data.returnStocks('DIA').subscribe((data) => {
+            this.DIA = data;
         });
-        this.data.returnStocks('FB').subscribe((data) => {
-            this.FB = data;
+        this.data.returnStocks('IWM').subscribe((data) => {
+            this.IWM = data;
         });
-        this.chart = new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"]('myChart', {
-            type: 'line',
-            data: {
-                labels: null,
-                datasets: [{
-                        data: null,
-                        label: 'Stock',
-                        borderColor: "#3e95cd",
-                        fill: false
-                    }
-                ]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "Stock Data"
-                }
-            }
-        });
-        this.chartIndicators = new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"]('chartIndicators', {
-            type: 'line',
-            data: {
-                labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
-                datasets: [{
-                        data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-                        label: "Africa",
-                        borderColor: "#3e95cd",
-                        fill: false
-                    }, {
-                        data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],
-                        label: "Asia",
-                        borderColor: "#8e5ea2",
-                        fill: false
-                    }, {
-                        data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],
-                        label: "Europe",
-                        borderColor: "#3cba9f",
-                        fill: false
-                    }
-                ]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "Stock Indicators"
-                }
-            }
-        });
+        // this.chart = new Chart('myChart', {
+        //   type: 'line',
+        //   data: {
+        //     labels: null,
+        //     datasets: [{ 
+        //         data: null,
+        //         label: 'Stock',
+        //         borderColor: "#3e95cd",
+        //         fill: false
+        //       }
+        //     ]
+        //   },
+        //   options: {
+        //     title: {
+        //       display: true,
+        //       text: "Stock Data"
+        //     }
+        //   }
+        // });
+        // this.chartIndicators = new Chart('chartIndicators', {
+        //   type: 'line',
+        //   data: {
+        //     labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+        //     datasets: [{ 
+        //         data: [86,114,106,106,107,111,133,221,783,2478],
+        //         label: "Africa",
+        //         borderColor: "#3e95cd",
+        //         fill: false
+        //       }, { 
+        //         data: [282,350,411,502,635,809,947,1402,3700,5267],
+        //         label: "Asia",
+        //         borderColor: "#8e5ea2",
+        //         fill: false
+        //       }, { 
+        //         data: [168,170,178,190,203,276,408,547,675,734],
+        //         label: "Europe",
+        //         borderColor: "#3cba9f",
+        //         fill: false
+        //       }
+        //     ]
+        //   },
+        //   options: {
+        //     title: {
+        //       display: true,
+        //       text: "Stock Indicators"
+        //     }
+        //   }
+        // });
     }
     searchStocks() {
         var searchStockBox = document.getElementById('searchStock');
@@ -1015,29 +1014,11 @@ let BuySellComponent = class BuySellComponent {
             this.searchStockData = data;
         });
     }
-    updateChart() {
-        this.data.chartData(this.searchStockSymbol).subscribe((data) => {
-            this.chartInfo = data;
-            this.lableList = [];
-            this.priceList = [];
-            for (let i = 0; i < data.length; i++) {
-                this.lableList.push(data[i].date);
-            }
-            for (let y = 0; y < data.length; y++) {
-                this.priceList.push(data[y].closing_price);
-            }
-            this.chart.data.datasets[0].label = this.searchStockSymbol;
-            this.chart.data.labels = this.lableList;
-            this.chart.data.datasets[0].data = this.priceList;
-            this.chart.options.title.text = `Previous Month's Stock Prices for ${this.searchStockSymbol}`;
-            this.chart.update();
-        });
-    }
 };
 BuySellComponent.ctorParameters = () => [
     { type: _stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"] },
     { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] },
-    { type: _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] }
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] }
 ];
 BuySellComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1045,7 +1026,7 @@ BuySellComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./buy-sell.component.html */ "./node_modules/raw-loader/index.js!./src/app/buy-sell/buy-sell.component.html"),
         styles: [__webpack_require__(/*! ./buy-sell.component.scss */ "./src/app/buy-sell/buy-sell.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
 ], BuySellComponent);
 
 
@@ -1081,10 +1062,10 @@ let DataService = class DataService {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('accountId', accountId) };
         return this.http.get('http://localhost:7000/api/portfolioData', params);
     }
-    chartData(symbol) {
-        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
-        return this.http.get('http://localhost:7000/api/historicalData', params);
-    }
+    // chartData(symbol) {
+    //   const params = { params: new HttpParams().set('symbol', symbol) };
+    //   return this.http.get('http://localhost:7000/api/historicalData', params);
+    // }
     checkBalance(symbol, accountId, shares) {
         const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
         return this.http.get('http://localhost:7000/api/checkBalance', { observe: 'response', params });

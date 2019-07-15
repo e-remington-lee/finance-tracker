@@ -1,16 +1,13 @@
 <div class='card'>
     <div class='card-body'>
-      <div class='col-3'>
+      <div class='col-3' style="border-right: 1px solid #ccc">
           <b>{{stock.company}} : {{stock.symbol}}</b>
       </div>
-      <div class='col-7'>
-          <p><b>Holding Value: </b> ${{stock.holding_value}}</p>
-          <p><b>Shares: </b> {{stock.shares}}</p>
-          <p><b>Percent Change: </b> %{{stock.percent_change}}</p>
+      <div class='col-9'>
+          <p style="padding-right:10px; border-right: 1px solid #ccc"><b>Holding Value: </b> ${{stock.holding_value}}</p>
+          <p style="padding-right:10px; border-right: 1px solid #ccc"><b>Shares: </b> {{stock.shares}}</p>
+          <p style="padding-right:10px; border-right: 1px solid #ccc"><b>Current Price: </b> {{stock.current_price}}%</p>
+          <p style="padding-right:10px; border-right: 1px solid #ccc"><b>Percent Change: </b> {{stock.percent_change}}%</p>  
       </div>
-      <!-- <div class='col-2'>
-          <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#buyStock'(click)='openBuyModal()'>Buy</button>
-          <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#sellStock' (click)='openSellModal()'>Sell</button>
-        </div> -->
     </div>
   </div>

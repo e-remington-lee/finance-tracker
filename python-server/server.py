@@ -51,7 +51,7 @@ def login_user():
     user = {'user_id': login_response['user_id'],
             'account_id': login_response['account_id'],
             'username': login_response['first_name'],
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=5)  
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)  
             }   
 
     # print(user)
