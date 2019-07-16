@@ -10,15 +10,13 @@ export class NavComponent implements OnInit {
 
   default: string = 'My Account';
 
-  constructor(private auth: AuthService) {
-
-   }
+  constructor(private auth: AuthService) {}
 
   ngOnInit() {
     try {
       this.default = this.auth.decodeUser()['first_name'];
-    } 
-    catch(error)  {
+    }
+    catch (error) {
       return null
     }
   }
