@@ -154,8 +154,11 @@ def portfolio_holdings(account_id, latest_price_list):
                     'current_price': money(latest_price_list[i])
                     })
           i+=1
+     try:     
+          total_cash = float(rows[0][9])
+     except IndexError:
+          total_cash = 100000.00
           
-     total_cash = float(rows[0][9])
      total_cash_money = money(total_cash)
      total_asset = round(total_cash + total_holding_value,2)
      total_asset_money = money(total_asset)
