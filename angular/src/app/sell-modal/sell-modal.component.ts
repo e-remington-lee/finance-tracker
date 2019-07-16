@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../stocks.service';
 import { DataService } from '../data.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sell-modal',
@@ -17,12 +18,14 @@ export class SellModalComponent implements OnInit {
   FB: any[] = [];
   searchStockData: any[] = [];
   username = 'Remington';
-  userId = 1;
-  accountId = 1;
+  accountId: number;
   shares: number;
   
 
-  constructor(private stocks: StocksService, private data: DataService, private ngbActiveModal: NgbActiveModal) { }
+  constructor(private stocks: StocksService, private data: DataService, private ngbActiveModal: NgbActiveModal,
+     private auth: AuthService) {
+       this.accountId = this.auth.decodeUser()['account_id'];
+      }
 
   ngOnInit() {
     console.log(this.symbol);
