@@ -66,8 +66,14 @@ def login_user():
 
 @app.route('/api/register', methods=['POST'])
 def register_user():
-
-    return None
+    response = request.get_json()
+    first_name = response['firstName'].lower()
+    last_name = response['lastName'].lower()
+    email = response['email'].lower()
+    password = response['password']
+    create_user = register_user_database(first_name, last_name, email, password)
+    print(email, last_name, password)
+    return jsonify(response), 201
 
 
 # @app.route('/account')

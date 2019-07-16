@@ -46,4 +46,8 @@ export class DataService {
 
     return this.http.get('http://localhost:7000/api/login', options)
   }
+  
+  register(content) {
+    return this.http.post('http://localhost:7000/api/register', content)    
+  }
 }

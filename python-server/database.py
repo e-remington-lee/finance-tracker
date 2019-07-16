@@ -206,3 +206,23 @@ def login_account(email, password):
      cur.close()
      connection.close()
      return {'user_id': row[0], 'account_id': row[7], 'first_name': row[1]}
+
+def register_user_database(first_name, last_name, email, password):
+     connection = create_connection()
+     cur = connection.cursor()
+
+     cur.execute('''WITH new_user AS (
+                    INSERT INTO user_accounts
+                    (first_name, last_name, email, password)
+                    VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s)
+                    returning user_id
+                    )
+                    INSERT INTO account_balance (user_id, account_id, account_balance)
+                    VALUES (
+                    (select user_id from new_user), (select user_id from new_user), 100000.00::numeric
+                    );''',
+                    {'first_name': first_name, 'last_name':last_name, 'email': email, 'password': password})
+     connection.commit()
+     cur.close()
+     connection.close()
+     return None
