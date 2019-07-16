@@ -26,8 +26,10 @@ export class LoginComponent implements OnInit {
     this.data.login(this.email, this.password).subscribe((data: any) => {
       //Logic to determine if login is successful
       // this.ngbActiveModal.close();
+
+      //refresh page to reinitialize the 'My Account" name
       // this.router.navigate(['portfolio']);
-      console.log(data['token']);
+      console.log('Logged in!')
       sessionStorage.setItem('Authorization', data['token']);
     },
     (error: any) => {

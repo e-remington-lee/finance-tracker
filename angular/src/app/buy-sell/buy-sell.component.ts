@@ -105,7 +105,13 @@ export class BuySellComponent implements OnInit {
 
     this.data.returnStocks(this.searchStockSymbol).subscribe((data: any[]) => {   
       this.searchStockData = data;
-    });
+    },
+    (error: any) => {
+      if (error.status === 500) {
+        alert(`${this.searchStockSymbol} was not found`)
+      }
+    }
+    );
   }
 
   updateChart() {

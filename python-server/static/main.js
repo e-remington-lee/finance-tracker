@@ -370,7 +370,7 @@ module.exports = "<div class=\"modal fade\" id=\"Login\" tabindex='-1'>\n    <di
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Finance App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Buy & Sell</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/account'>Account</a></li>\n    </ul>\n  </div>\n</nav>\n</body>\n</html>"
+module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Stock Trading App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Trade</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/account'>{{default}}</a></li>\n    </ul>\n  </div>\n</nav>\n</body>\n</html>"
 
 /***/ }),
 
@@ -762,16 +762,7 @@ let AuthService = class AuthService {
     getToken() {
         return sessionStorage.getItem('Authorization');
     }
-    // get accessRoute(): boolean {
-    //   //on loop check if it's expired, not just if it is present
-    //   if (sessionStorage.getItem('Authorization')) {
-    //     return true
-    //   } else {
-    //     return false
-    //   }
-    // }
     get accessRoute() {
-        //on loop check if it's expired, not just if it is present
         const x = sessionStorage.getItem('Authorization');
         if (x == null || x == undefined || x == '') {
             return false;
@@ -1018,6 +1009,10 @@ let BuySellComponent = class BuySellComponent {
         this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
         this.data.returnStocks(this.searchStockSymbol).subscribe((data) => {
             this.searchStockData = data;
+        }, (error) => {
+            if (error.status === 500) {
+                alert(`${this.searchStockSymbol} was not found`);
+            }
         });
     }
     updateChart() {
@@ -1255,8 +1250,9 @@ let LoginComponent = class LoginComponent {
         this.data.login(this.email, this.password).subscribe((data) => {
             //Logic to determine if login is successful
             // this.ngbActiveModal.close();
+            //refresh page to reinitialize the 'My Account" name
             // this.router.navigate(['portfolio']);
-            console.log(data['token']);
+            console.log('Logged in!');
             sessionStorage.setItem('Authorization', data['token']);
         }, (error) => {
             if (error.status === 401) {
@@ -1320,20 +1316,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavComponent", function() { return NavComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+
 
 
 let NavComponent = class NavComponent {
-    constructor() { }
+    constructor(auth) {
+        this.auth = auth;
+        this.default = 'My Account';
+    }
     ngOnInit() {
+        try {
+            this.default = this.auth.decodeUser()['first_name'];
+        }
+        catch (error) {
+            return null;
+        }
     }
 };
+NavComponent.ctorParameters = () => [
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"] }
+];
 NavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-nav',
         template: __webpack_require__(/*! raw-loader!./nav.component.html */ "./node_modules/raw-loader/index.js!./src/app/nav/nav.component.html"),
         styles: [__webpack_require__(/*! ./nav.component.scss */ "./src/app/nav/nav.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
 ], NavComponent);
 
 
