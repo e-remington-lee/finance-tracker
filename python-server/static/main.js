@@ -827,20 +827,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+
 
 
 
 
 
 let BuyModalComponent = class BuyModalComponent {
-    constructor(stocks, data, ngbActiveModal) {
+    constructor(stocks, data, ngbActiveModal, auth) {
         this.stocks = stocks;
         this.data = data;
         this.ngbActiveModal = ngbActiveModal;
+        this.auth = auth;
         this.symbol = [];
-        this.username = 'Remington';
-        this.userId = 1;
-        this.accountId = 1;
+        this.accountId = this.auth.decodeUser()['account_id'];
     }
     ngOnInit() {
         console.log(this.symbol);
@@ -881,7 +882,8 @@ let BuyModalComponent = class BuyModalComponent {
 BuyModalComponent.ctorParameters = () => [
     { type: _stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"] },
     { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] },
-    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"] }
+    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"] },
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] }
 ];
 BuyModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -889,7 +891,8 @@ BuyModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./buy-modal.component.html */ "./node_modules/raw-loader/index.js!./src/app/buy-modal/buy-modal.component.html"),
         styles: [__webpack_require__(/*! ./buy-modal.component.scss */ "./src/app/buy-modal/buy-modal.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"],
+        _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
 ], BuyModalComponent);
 
 
@@ -1531,24 +1534,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stocks.service */ "./src/app/stocks.service.ts");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+
 
 
 
 
 
 let SellModalComponent = class SellModalComponent {
-    constructor(stocks, data, ngbActiveModal) {
+    constructor(stocks, data, ngbActiveModal, auth) {
         this.stocks = stocks;
         this.data = data;
         this.ngbActiveModal = ngbActiveModal;
+        this.auth = auth;
         this.symbol = [];
         this.TSLA = [];
         this.AMZN = [];
         this.FB = [];
         this.searchStockData = [];
         this.username = 'Remington';
-        this.userId = 1;
-        this.accountId = 1;
+        this.accountId = this.auth.decodeUser()['account_id'];
     }
     ngOnInit() {
         console.log(this.symbol);
@@ -1587,7 +1592,8 @@ let SellModalComponent = class SellModalComponent {
 SellModalComponent.ctorParameters = () => [
     { type: _stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"] },
     { type: _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] },
-    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"] }
+    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"] },
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] }
 ];
 SellModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1595,7 +1601,8 @@ SellModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./sell-modal.component.html */ "./node_modules/raw-loader/index.js!./src/app/sell-modal/sell-modal.component.html"),
         styles: [__webpack_require__(/*! ./sell-modal.component.scss */ "./src/app/sell-modal/sell-modal.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"],
+        _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
 ], SellModalComponent);
 
 
