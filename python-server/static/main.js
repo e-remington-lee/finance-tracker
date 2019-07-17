@@ -337,7 +337,7 @@ module.exports = "<body class='container'>\n      <div class='form-group' id='se
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Login'>Login/Register</button>\n    </div>\n</header>\n\n<app-login></app-login>\n  \n<div>\n    <h3>GitHub Repository</h3>\n      <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</div>\n"
+module.exports = "\n<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Login' (click)='openLoginModal()'>Login/Register</button>\n    </div>\n</header>\n\n<app-login></app-login>\n  \n<div>\n    <h3>GitHub Repository</h3>\n      <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</div>\n"
 
 /***/ }),
 
@@ -662,7 +662,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         ],
         entryComponents: [
             _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__["BuyModalComponent"],
-            _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_16__["SellModalComponent"]
+            _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_16__["SellModalComponent"],
+            _login_login_component__WEBPACK_IMPORTED_MODULE_13__["LoginComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -671,7 +672,10 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModule"]
         ],
-        providers: [_auth_service__WEBPACK_IMPORTED_MODULE_19__["AuthService"], _auth_guard__WEBPACK_IMPORTED_MODULE_20__["AuthGuard"],
+        providers: [
+            _auth_service__WEBPACK_IMPORTED_MODULE_19__["AuthService"],
+            _auth_guard__WEBPACK_IMPORTED_MODULE_20__["AuthGuard"],
+            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbActiveModal"],
             {
                 provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HTTP_INTERCEPTORS"],
                 useClass: _tokeninterceptor_service__WEBPACK_IMPORTED_MODULE_18__["TokeninterceptorService"],
@@ -1146,20 +1150,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+
 
 
 let HomeComponent = class HomeComponent {
-    constructor() { }
+    constructor(modalService) {
+        this.modalService = modalService;
+    }
     ngOnInit() {
     }
 };
+HomeComponent.ctorParameters = () => [
+    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"] }
+];
 HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-home',
         template: __webpack_require__(/*! raw-loader!./home.component.html */ "./node_modules/raw-loader/index.js!./src/app/home/home.component.html"),
         styles: [__webpack_require__(/*! ./home.component.scss */ "./src/app/home/home.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"]])
 ], HomeComponent);
 
 
@@ -1234,26 +1245,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
 
 
 
 
-// import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 let LoginComponent = class LoginComponent {
-    constructor(data, router) {
+    constructor(data, router, ngbActiveModal) {
         this.data = data;
         this.router = router;
+        this.ngbActiveModal = ngbActiveModal;
     }
     ngOnInit() {
     }
     login() {
         this.data.login(this.email, this.password).subscribe((data) => {
-            //Logic to determine if login is successful
-            // this.ngbActiveModal.close();
-            //refresh page to reinitialize the 'My Account" name
-            // this.router.navigate(['portfolio']);
+            this.ngbActiveModal.close();
             console.log('Logged in!');
             sessionStorage.setItem('Authorization', data['token']);
+            // this.router.navigate(['portfolio']);
         }, (error) => {
             if (error.status === 401) {
                 this.errorMessage = "Incorrect email or password";
@@ -1278,7 +1289,8 @@ let LoginComponent = class LoginComponent {
 };
 LoginComponent.ctorParameters = () => [
     { type: _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"] }
 ];
 LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1286,7 +1298,7 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./login.component.html */ "./node_modules/raw-loader/index.js!./src/app/login/login.component.html"),
         styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"]])
 ], LoginComponent);
 
 

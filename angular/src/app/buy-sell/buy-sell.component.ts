@@ -43,6 +43,7 @@ export class BuySellComponent implements OnInit {
     this.data.returnStocks('IWM').subscribe((data: any[]) => {
       this.IWM =  data;
     });
+    
     Chart.defaults.line.spanGaps = true;
     this.chart = new Chart('myChart', {
       type: 'line',

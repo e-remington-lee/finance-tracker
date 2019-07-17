@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
-// import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  bob: string;
   email: string;
   password: string;
   password2: string;
@@ -17,20 +18,19 @@ export class LoginComponent implements OnInit {
   lastName:string;
   errorMessage: string;
 
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private data: DataService, private router: Router, private ngbActiveModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
 
   login() {
-    this.data.login(this.email, this.password).subscribe((data: any) => {
-      //Logic to determine if login is successful
-      // this.ngbActiveModal.close();
 
-      //refresh page to reinitialize the 'My Account" name
-      // this.router.navigate(['portfolio']);
+    this.data.login(this.email, this.password).subscribe((data: any) => {
+      this.ngbActiveModal.close();
       console.log('Logged in!')
       sessionStorage.setItem('Authorization', data['token']);
+      
+      // this.router.navigate(['portfolio']);
     },
     (error: any) => {
       if (error.status === 401) {

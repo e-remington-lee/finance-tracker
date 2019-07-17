@@ -21,7 +21,7 @@ export class BuyModalComponent implements OnInit {
       }
 
   ngOnInit() {
-    console.log(this.symbol)
+    console.log(this.symbol);
   }
 
   buyStockButton() {

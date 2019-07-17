@@ -7,11 +7,10 @@ from stock_calculator import calculate_price
 import jwt
 import datetime
 from functools import wraps
-
+import os
 
 app = Flask(__name__)
-#change the secret key!!
-secret_key = 'bob'
+secret_key = os.environ['secret_token_key']
 
 
 @app.route('/', defaults={'path': ''})
@@ -20,20 +19,15 @@ def home_page(path):
     return render_template('index.html')
 
 
-def login_token(f):
+def login_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = None
-        
-        if 'Authorization' in request.headers:
-            token = request.headers['Authorization']
-        print(request.headers)
+
         try:
-            jwt.decode(token, secret_key, algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-            return "Expired token"
+            token = request.headers['Authorization']
         except: 
-            return "Return to login page"
+            return make_response('Token Error', 401, {'WWW-Authentication.route' : 'Valid Token Required'})
 
         print('decorator works!')
         return f(*args, **kwargs)
@@ -47,7 +41,6 @@ def login_user():
     password = request.headers['x-password']
 
     login_response = login_account(email, password)
-   
 
     if login_response == None:
         return make_response('Login failed', 401, {'WWW-Authentication.route' : 'Login required!'})
@@ -76,17 +69,8 @@ def register_user():
     return jsonify(response), 201
 
 
-# @app.route('/account')
-# @login_token
-# def something():
-#     decoded = jwt.decode(request.headers['Authorization'], secret_key, algorithm='HS256')
-#     user_id = decoded['user_id']
-#     print(f'user_id is : {user_id}')
-#     print('logged in!')
-#     return "logged in"
-
-
 @app.route('/api/stockData', methods=['GET'])
+
 def stock_info():
     symbol = request.args.get('symbol')
     r = iex_stock_data(symbol)
@@ -105,6 +89,7 @@ def stock_info():
                         }]
         return jsonify(stock_data), 200
     return "", 404
+
 
 @app.route('/api/intraDayData', methods=['GET'])
 def historical_info():
@@ -238,7 +223,6 @@ def portfolio_data():
         latest_price_list.append(latest_price)
 
     portfolio_information = portfolio_holdings(account_id, latest_price_list)
-
     return jsonify(portfolio_information), 200
 
 

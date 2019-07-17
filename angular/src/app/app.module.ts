@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +20,6 @@ import { PortfolioCardComponent } from './portfolio-card/portfolio-card.componen
 import { TokeninterceptorService } from './tokeninterceptor.service';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
-import { RouterModule } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
@@ -40,7 +39,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
   ],
   entryComponents: [
     BuyModalComponent,
-    SellModalComponent
+    SellModalComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +49,10 @@ import { LoginPageComponent } from './login-page/login-page.component';
     FormsModule,
     NgbModule
   ],
-  providers: [AuthService, AuthGuard,
+  providers: [
+    AuthService, 
+    AuthGuard,
+    NgbActiveModal,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokeninterceptorService,
