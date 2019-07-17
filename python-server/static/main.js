@@ -293,7 +293,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  account works!\n</p>\n"
+module.exports = "<p>Account page stuff</p>"
 
 /***/ }),
 
@@ -337,7 +337,7 @@ module.exports = "<body class='container'>\n      <div class='form-group' id='se
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#login' (click)='openLoginModal()'>Login/Register</button>\n    </div>\n</header>\n\n<app-login></app-login>\n  \n<div>\n    <h3>GitHub Repository</h3>\n      <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</div>\n"
+module.exports = "\n<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#login' (click)='openLoginModal()'>Login/Register</button>\n    </div>\n</header>\n\n<app-login></app-login>\n<hr>\n<footer>\n  <h3>GitHub Repository</h3>\n  <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</footer>\n\n"
 
 /***/ }),
 
@@ -370,7 +370,7 @@ module.exports = "<div class=\"modal fade\" id=\"login\" tabindex='-1'>\n    <di
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Stock Trading App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Trade</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/account'>{{default}}</a></li>\n    </ul>\n  </div>\n</nav>\n</body>\n</html>"
+module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Stock Trading App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Trade</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/rulesRanking'>Rules</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/account'>{{default}}</a></li>\n    </ul>\n  </div>\n</nav>\n</body>\n</html>"
 
 /***/ }),
 
@@ -393,6 +393,17 @@ module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div cl
 /***/ (function(module, exports) {
 
 module.exports = "<body class='container' id='container'>\n        <div class='card text-center' id='account'>\n          <div class ='card-header'>\n            <h3>Account Data</h3>\n          </div>\n            <div class='card-body' *ngFor='let asset of assetValues'>\n                <ul class='list-group list-group-flush'>\n                  <li class=\"list-group-item\"><b>Account Balance: </b> ${{asset.total_cash}}</li>\n                  <li class=\"list-group-item\"><b>Total Holding Value: </b>${{asset.total_holding_value}} </li>\n                  <li class=\"list-group-item\"><b>Total Asset Value: </b>${{asset.total_asset_value}}</li>                         \n                </ul>\n            </div>\n          </div>\n        <canvas id=\"myChart\" ></canvas>\n  <div class='row' id='portfolio'>\n    <app-portfolio-card *ngFor = 'let stock of assetData' class='col-12' [stock]=\"stock\"></app-portfolio-card>\n  </div>\n</body>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/rules-ranking/rules-ranking.component.html":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/rules-ranking/rules-ranking.component.html ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\" id = 'heading'>\n        <!-- used for spacing the top without ruining the format of page -->\n      </div>\n        <div class=\"container\">\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n              <h2>Trade</h2>\n              <p>Search stock symbols and use fake money to trade on the live market and test your skills</p>\n              <p><a class=\"btn btn-secondary\" href=\"#\" role=\"button\">Trade</a></p>\n           </div>\n            <div class=\"col-md-6\">\n              <h2>Portfolio</h2>\n              <p>Each account starts with $100,000 fake dollars, see how much money you can earn by trading stocks</p>\n              <p><a class=\"btn btn-secondary\" href=\"#\" role=\"button\">Portfolio</a></p>\n      \n            </div>\n          </div>\n      \n          <hr>\n      \n          <footer>\n              <h3>GitHub Repository</h3>\n              <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n            </footer>\n        </div> "
 
 /***/ }),
 
@@ -448,7 +459,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FjY291bnQvYWNjb3VudC5jb21wb25lbnQuc2NzcyJ9 */"
+module.exports = "#heading {\n  margin: 20px 0 0 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWNjb3VudC9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcYWNjb3VudFxcYWNjb3VudC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYWNjb3VudC9hY2NvdW50LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL2FjY291bnQvYWNjb3VudC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNoZWFkaW5nIHtcclxuICAgIG1hcmdpbjogMjBweCAwIDAgMCA7XHJcbn0iLCIjaGVhZGluZyB7XG4gIG1hcmdpbjogMjBweCAwIDAgMDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -516,6 +527,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _account_account_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./account/account.component */ "./src/app/account/account.component.ts");
 /* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
 /* harmony import */ var _login_page_login_page_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./login-page/login-page.component */ "./src/app/login-page/login-page.component.ts");
+/* harmony import */ var _rules_ranking_rules_ranking_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./rules-ranking/rules-ranking.component */ "./src/app/rules-ranking/rules-ranking.component.ts");
+
 
 
 
@@ -531,6 +544,7 @@ const routes = [
     { path: 'portfolio', component: _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_5__["PortfolioComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
     { path: 'account', component: _account_account_component__WEBPACK_IMPORTED_MODULE_6__["AccountComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
     { path: 'login', component: _login_page_login_page_component__WEBPACK_IMPORTED_MODULE_8__["LoginPageComponent"] },
+    { path: 'rulesRanking', component: _rules_ranking_rules_ranking_component__WEBPACK_IMPORTED_MODULE_9__["RulesRankingComponent"] },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -620,6 +634,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth.service.ts");
 /* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
 /* harmony import */ var _login_page_login_page_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./login-page/login-page.component */ "./src/app/login-page/login-page.component.ts");
+/* harmony import */ var _rules_ranking_rules_ranking_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./rules-ranking/rules-ranking.component */ "./src/app/rules-ranking/rules-ranking.component.ts");
+
 
 
 
@@ -659,6 +675,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_16__["SellModalComponent"],
             _portfolio_card_portfolio_card_component__WEBPACK_IMPORTED_MODULE_17__["PortfolioCardComponent"],
             _login_page_login_page_component__WEBPACK_IMPORTED_MODULE_21__["LoginPageComponent"],
+            _rules_ranking_rules_ranking_component__WEBPACK_IMPORTED_MODULE_22__["RulesRankingComponent"],
         ],
         entryComponents: [
             _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__["BuyModalComponent"],
@@ -1140,7 +1157,7 @@ DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#showcase {\n  background: url(\"https://images.unsplash.com/photo-1535320903710-d993d3d77d29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: 100vh;\n  justify-content: center;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\nheader div {\n  width: 50%;\n  background-color: rgba(137, 137, 146, 0.5);\n  align-items: center;\n  justify-content: center;\n  font-size: 20px;\n}\n\ndiv button {\n  font-size: 20px;\n  margin: 0 5px 5px 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcaG9tZVxcaG9tZS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksd0pBQUE7RUFFQSw0QkFBQTtFQUNBLHNCQUFBO0VBQ0EsMkJBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0FDQUo7O0FER0E7RUFDSSxVQUFBO0VBQ0EsMENBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtBQ0FKOztBREdBO0VBQ0ksZUFBQTtFQUNBLHFCQUFBO0FDQUoiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjc2hvd2Nhc2Uge1xyXG4gICAgYmFja2dyb3VuZDogdXJsKCdodHRwczovL2ltYWdlcy51bnNwbGFzaC5jb20vcGhvdG8tMTUzNTMyMDkwMzcxMC1kOTkzZDNkNzdkMjk/aXhsaWI9cmItMS4yLjEmaXhpZD1leUpoY0hCZmFXUWlPakV5TURkOSZhdXRvPWZvcm1hdCZmaXQ9Y3JvcCZ3PTc1MCZxPTgwJyk7XHJcbiAgICAvLyBiYWNrZ3JvdW5kOiB1cmwoJy4uLy4uL2xhbmRpbmdJbWFnZS5qcGcnKTtcclxuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XHJcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gICAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xyXG4gICAgaGVpZ2h0OiAxMDB2aDtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbn1cclxuXHJcbmhlYWRlciBkaXYge1xyXG4gICAgd2lkdGg6IDUwJTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMTM3LCAxMzcsIDE0NiwgMC41KTtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxufVxyXG5cclxuZGl2IGJ1dHRvbiB7XHJcbiAgICBmb250LXNpemU6MjBweDtcclxuICAgIG1hcmdpbjogMCA1cHggNXB4IDVweDtcclxufSIsIiNzaG93Y2FzZSB7XG4gIGJhY2tncm91bmQ6IHVybChcImh0dHBzOi8vaW1hZ2VzLnVuc3BsYXNoLmNvbS9waG90by0xNTM1MzIwOTAzNzEwLWQ5OTNkM2Q3N2QyOT9peGxpYj1yYi0xLjIuMSZpeGlkPWV5SmhjSEJmYVdRaU9qRXlNRGQ5JmF1dG89Zm9ybWF0JmZpdD1jcm9wJnc9NzUwJnE9ODBcIik7XG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcbiAgaGVpZ2h0OiAxMDB2aDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG5oZWFkZXIgZGl2IHtcbiAgd2lkdGg6IDUwJTtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgxMzcsIDEzNywgMTQ2LCAwLjUpO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZm9udC1zaXplOiAyMHB4O1xufVxuXG5kaXYgYnV0dG9uIHtcbiAgZm9udC1zaXplOiAyMHB4O1xuICBtYXJnaW46IDAgNXB4IDVweCA1cHg7XG59Il19 */"
+module.exports = "#showcase {\n  background: url(\"https://images.unsplash.com/photo-1535320903710-d993d3d77d29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: 100vh;\n  justify-content: center;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\nheader div {\n  width: 50%;\n  background-color: rgba(137, 137, 146, 0.5);\n  align-items: center;\n  justify-content: center;\n  font-size: 20px;\n}\n\ndiv button {\n  font-size: 20px;\n  margin: 0 5px 5px 5px;\n}\n\nfooter {\n  margin: 0 0 0 30px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcaG9tZVxcaG9tZS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksd0pBQUE7RUFFQSw0QkFBQTtFQUNBLHNCQUFBO0VBQ0EsMkJBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0FDQUo7O0FER0E7RUFDSSxVQUFBO0VBQ0EsMENBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtBQ0FKOztBREdBO0VBQ0ksZUFBQTtFQUNBLHFCQUFBO0FDQUo7O0FER0E7RUFDSSxrQkFBQTtBQ0FKIiwiZmlsZSI6InNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3Nob3djYXNlIHtcclxuICAgIGJhY2tncm91bmQ6IHVybCgnaHR0cHM6Ly9pbWFnZXMudW5zcGxhc2guY29tL3Bob3RvLTE1MzUzMjA5MDM3MTAtZDk5M2QzZDc3ZDI5P2l4bGliPXJiLTEuMi4xJml4aWQ9ZXlKaGNIQmZhV1FpT2pFeU1EZDkmYXV0bz1mb3JtYXQmZml0PWNyb3Amdz03NTAmcT04MCcpO1xyXG4gICAgLy8gYmFja2dyb3VuZDogdXJsKCcuLi8uLi9sYW5kaW5nSW1hZ2UuanBnJyk7XHJcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xyXG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcclxuICAgIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG5oZWFkZXIgZGl2IHtcclxuICAgIHdpZHRoOiA1MCU7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEzNywgMTM3LCAxNDYsIDAuNSk7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuXHJcbmRpdiBidXR0b24ge1xyXG4gICAgZm9udC1zaXplOjIwcHg7XHJcbiAgICBtYXJnaW46IDAgNXB4IDVweCA1cHg7XHJcbn1cclxuXHJcbmZvb3RlciB7XHJcbiAgICBtYXJnaW46IDAgMCAwIDMwcHggO1xyXG59IiwiI3Nob3djYXNlIHtcbiAgYmFja2dyb3VuZDogdXJsKFwiaHR0cHM6Ly9pbWFnZXMudW5zcGxhc2guY29tL3Bob3RvLTE1MzUzMjA5MDM3MTAtZDk5M2QzZDc3ZDI5P2l4bGliPXJiLTEuMi4xJml4aWQ9ZXlKaGNIQmZhV1FpT2pFeU1EZDkmYXV0bz1mb3JtYXQmZml0PWNyb3Amdz03NTAmcT04MFwiKTtcbiAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xuICBoZWlnaHQ6IDEwMHZoO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5cbmhlYWRlciBkaXYge1xuICB3aWR0aDogNTAlO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEzNywgMTM3LCAxNDYsIDAuNSk7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBmb250LXNpemU6IDIwcHg7XG59XG5cbmRpdiBidXR0b24ge1xuICBmb250LXNpemU6IDIwcHg7XG4gIG1hcmdpbjogMCA1cHggNXB4IDVweDtcbn1cblxuZm9vdGVyIHtcbiAgbWFyZ2luOiAwIDAgMCAzMHB4O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -1344,7 +1361,7 @@ __webpack_require__.r(__webpack_exports__);
 let NavComponent = class NavComponent {
     constructor(auth) {
         this.auth = auth;
-        this.default = 'My Account';
+        this.default = 'Rules';
     }
     ngOnInit() {
         try {
@@ -1537,6 +1554,49 @@ PortfolioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
 ], PortfolioComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/rules-ranking/rules-ranking.component.scss":
+/*!************************************************************!*\
+  !*** ./src/app/rules-ranking/rules-ranking.component.scss ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "#heading {\n  margin: 20px 0 0 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcnVsZXMtcmFua2luZy9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxccnVsZXMtcmFua2luZ1xccnVsZXMtcmFua2luZy5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcnVsZXMtcmFua2luZy9ydWxlcy1yYW5raW5nLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3J1bGVzLXJhbmtpbmcvcnVsZXMtcmFua2luZy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNoZWFkaW5nIHtcclxuICAgIG1hcmdpbjogMjBweCAwIDAgMCA7XHJcbn0iLCIjaGVhZGluZyB7XG4gIG1hcmdpbjogMjBweCAwIDAgMDtcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/rules-ranking/rules-ranking.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/rules-ranking/rules-ranking.component.ts ***!
+  \**********************************************************/
+/*! exports provided: RulesRankingComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RulesRankingComponent", function() { return RulesRankingComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let RulesRankingComponent = class RulesRankingComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+};
+RulesRankingComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-rules-ranking',
+        template: __webpack_require__(/*! raw-loader!./rules-ranking.component.html */ "./node_modules/raw-loader/index.js!./src/app/rules-ranking/rules-ranking.component.html"),
+        styles: [__webpack_require__(/*! ./rules-ranking.component.scss */ "./src/app/rules-ranking/rules-ranking.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], RulesRankingComponent);
 
 
 

@@ -21,6 +21,7 @@ import { TokeninterceptorService } from './tokeninterceptor.service';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { RulesRankingComponent } from './rules-ranking/rules-ranking.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
     SellModalComponent,
     PortfolioCardComponent,
     LoginPageComponent,
+    RulesRankingComponent,
   ],
   entryComponents: [
     BuyModalComponent,

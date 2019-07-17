@@ -78,7 +78,6 @@ def register_user():
 def stock_info():
     symbol = request.args.get('symbol')
     r = iex_stock_data(symbol)
-    print(r)
     if r != None:
         change_percent = round(float(r.json()['changePercent'])*100,3)
         latest_price = money(round(float(r.json()['latestPrice']),2))
@@ -120,7 +119,6 @@ def balance_change_buy():
     shares = int(response[0]['shares'])
         
     latest_price = iex_latest_price(symbol)
-    print(latest_price)
     balance_change = calculate_price(latest_price, shares)
     update_balance_buy(account_id, balance_change)
     return jsonify(balance_change), 201
@@ -199,7 +197,6 @@ def buy_stock_endpoint():
     latest_price = iex_latest_price(symbol)
 
     buy_stock(symbol, shares, account_id, company_name, latest_price)
-    print(latest_price)
     return jsonify(company_name), 201
 
 
