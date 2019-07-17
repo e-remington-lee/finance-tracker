@@ -381,7 +381,7 @@ module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div class='col-3' style=\"border-right: 1px solid #ccc\">\n          <b>{{stock.company}} : {{stock.symbol}}</b>\n      </div>\n      <div class='col-9'>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Holding Value: </b> ${{stock.holding_value}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Shares: </b> {{stock.shares}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Current Price: </b> ${{stock.current_price}}</p>\n          <p><b>Percent Change: </b> {{stock.percent_change}}%</p>  \n      </div>\n    </div>\n  </div>\n"
+module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div class='col-3' style=\"border-right: 1px solid #ccc\">\n          <b>{{stock.company}} : {{stock.symbol}}</b>\n      </div>\n      <div class='col-7'>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Holding Value: </b> ${{stock.holding_value}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Shares: </b> {{stock.shares}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Last Price: </b> ${{stock.current_price}}</p>\n          <p><b>Percent Change: </b> {{stock.percent_change}}%</p>  \n      </div>\n      <div class='col-2'>\n        <button type='submit' class='btn btn-primary' <a></button> >Trade</button>\n    </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -1272,7 +1272,6 @@ let LoginComponent = class LoginComponent {
         });
     }
     register() {
-        //check if email is already used
         if (this.password === this.password2) {
             const content = {
                 'firstName': this.firstName,
@@ -1373,7 +1372,7 @@ NavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "div {\n  display: flex;\n  width: 100%;\n}\n\ndiv p {\n  margin: 0 20px 0 0;\n}\n\nbutton {\n  margin: 0 5px 0 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvLWNhcmQvRDpcXE1hc3Rlcm1pbmRcXEZpbmFuY2UtdHJhY2tpbmdcXGFuZ3VsYXIvc3JjXFxhcHBcXHBvcnRmb2xpby1jYXJkXFxwb3J0Zm9saW8tY2FyZC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvLWNhcmQvcG9ydGZvbGlvLWNhcmQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0EsV0FBQTtBQ0NKOztBREVBO0VBQ0ksa0JBQUE7QUNDSjs7QURFQTtFQUNJLGlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9wb3J0Zm9saW8tY2FyZC9wb3J0Zm9saW8tY2FyZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImRpdiB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbmRpdiBwIHtcclxuICAgIG1hcmdpbjogMCAyMHB4IDAgMDtcclxufVxyXG5cclxuYnV0dG9uIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG59IiwiZGl2IHtcbiAgZGlzcGxheTogZmxleDtcbiAgd2lkdGg6IDEwMCU7XG59XG5cbmRpdiBwIHtcbiAgbWFyZ2luOiAwIDIwcHggMCAwO1xufVxuXG5idXR0b24ge1xuICBtYXJnaW46IDAgNXB4IDAgMDtcbn0iXX0= */"
+module.exports = "div {\n  display: flex;\n  width: 100%;\n}\n\ndiv p {\n  margin: 0 5px 0 0;\n}\n\nbutton {\n  margin: 0 5px 0 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvLWNhcmQvRDpcXE1hc3Rlcm1pbmRcXEZpbmFuY2UtdHJhY2tpbmdcXGFuZ3VsYXIvc3JjXFxhcHBcXHBvcnRmb2xpby1jYXJkXFxwb3J0Zm9saW8tY2FyZC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvLWNhcmQvcG9ydGZvbGlvLWNhcmQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0EsV0FBQTtBQ0NKOztBREVBO0VBQ0ksaUJBQUE7QUNDSjs7QURFQTtFQUNJLGlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9wb3J0Zm9saW8tY2FyZC9wb3J0Zm9saW8tY2FyZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImRpdiB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbmRpdiBwIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG59XHJcblxyXG5idXR0b24ge1xyXG4gICAgbWFyZ2luOiAwIDVweCAwIDA7XHJcbn0iLCJkaXYge1xuICBkaXNwbGF5OiBmbGV4O1xuICB3aWR0aDogMTAwJTtcbn1cblxuZGl2IHAge1xuICBtYXJnaW46IDAgNXB4IDAgMDtcbn1cblxuYnV0dG9uIHtcbiAgbWFyZ2luOiAwIDVweCAwIDA7XG59Il19 */"
 
 /***/ }),
 

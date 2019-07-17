@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
       this.ngbActiveModal.close();
       console.log('Logged in!')
       sessionStorage.setItem('Authorization', data['token']);
-      
       // this.router.navigate(['portfolio']);
     },
     (error: any) => {
@@ -41,7 +40,6 @@ export class LoginComponent implements OnInit {
   }
 
   register() {
-    //check if email is already used
     if (this.password === this.password2){
       
       const content = {
@@ -60,8 +58,6 @@ export class LoginComponent implements OnInit {
         }
       });
     }
-
-    
   }
     
   }

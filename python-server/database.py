@@ -162,7 +162,11 @@ def portfolio_holdings(account_id, latest_price_list):
      try:     
           total_cash = float(rows[0][9])
      except IndexError:
-          total_cash = 100000.00
+          cur.execute('''SELECT * FROM account_balance
+                         WHERE account_id = %(account_id)s''', 
+                         {'account_id': account_id})
+          row = cur.fetchone()
+          total_cash = row[2]
 
      total_cash_money = money(total_cash)
      total_asset = round(total_cash + total_holding_value,2)
