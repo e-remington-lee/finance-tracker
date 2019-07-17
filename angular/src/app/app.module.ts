@@ -53,6 +53,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
     AuthService, 
     AuthGuard,
     NgbActiveModal,
+    BuySellComponent,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokeninterceptorService,

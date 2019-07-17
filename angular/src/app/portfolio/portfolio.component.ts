@@ -11,7 +11,6 @@ import { AuthService } from '../auth.service';
 })
 export class PortfolioComponent implements OnInit {
 
-  // accountId = 1;
   accountId: number;
   accountData: any[] = [];
   assetData: any[] = [];

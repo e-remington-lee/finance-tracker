@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { BuyModalComponent } from '../buy-modal/buy-modal.component';
-import { SellModalComponent } from '../sell-modal/sell-modal.component';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { BuySellComponent } from '../buy-sell/buy-sell.component';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-portfolio-card',
@@ -11,20 +11,19 @@ import { SellModalComponent } from '../sell-modal/sell-modal.component';
 export class PortfolioCardComponent implements OnInit {
 
   @Input() stock: any[]=[];
+  @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private buySell: BuySellComponent, private router: Router) {
+   }
 
   ngOnInit() {
   }
 
-  openBuyModal() {
-    const modal = this.modalService.open(BuyModalComponent);
-    modal.componentInstance.symbol = this.stock;
-  }
-
-  openSellModal() {
-    const modal = this.modalService.open(SellModalComponent);
-    modal.componentInstance.symbol = this.stock;
+  trade(): void {
+    this.notify.emit(this.stock['symbol'])
+    this.router.navigate(['/buySell']);
+    // this.buySell.portfolioTrade(this.stock['symbol']).subscribe();
+    console.log(this.stock['symbol']);
   }
 
 }

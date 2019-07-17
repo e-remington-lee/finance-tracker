@@ -326,7 +326,7 @@ module.exports = "<div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n      <!-- <canvas id=\"chartIndicators\" ></canvas>  -->\n    <app-stock-card class='col-12' [symbol]=\"SPY\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"DIA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"IWM\"></app-stock-card>\n  </div>\n</body>\n\n"
+module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n              <!-- <app-portfolio-card (notify)='portfolioTrade()'></app-portfolio-card> -->\n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n    <app-stock-card class='col-12' [symbol]=\"SPY\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"DIA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"IWM\"></app-stock-card>\n  </div>\n</body>\n\n"
 
 /***/ }),
 
@@ -381,7 +381,7 @@ module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div class='col-3' style=\"border-right: 1px solid #ccc\">\n          <b>{{stock.company}} : {{stock.symbol}}</b>\n      </div>\n      <div class='col-7'>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Holding Value: </b> ${{stock.holding_value}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Shares: </b> {{stock.shares}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Last Price: </b> ${{stock.current_price}}</p>\n          <p><b>Percent Change: </b> {{stock.percent_change}}%</p>  \n      </div>\n      <div class='col-2'>\n        <button type='submit' class='btn btn-primary' <a></button> >Trade</button>\n    </div>\n    </div>\n  </div>\n"
+module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div class='col-3' style=\"border-right: 1px solid #ccc\">\n          <b>{{stock.company}} : {{stock.symbol}}</b>\n      </div>\n      <div class='col-7'>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Holding Value: </b> ${{stock.holding_value}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Shares: </b> {{stock.shares}}</p>\n          <p style=\"padding-right:10px; border-right: 1px solid #ccc\"><b>Last Price: </b> ${{stock.current_price}}</p>\n          <p><b>Percent Change: </b> {{stock.percent_change}}%</p>  \n      </div>\n      <div class='col-2'>\n        <button type='submit' class='btn btn-primary' (click)='trade()'>Trade</button>\n    </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -676,6 +676,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _auth_service__WEBPACK_IMPORTED_MODULE_19__["AuthService"],
             _auth_guard__WEBPACK_IMPORTED_MODULE_20__["AuthGuard"],
             _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbActiveModal"],
+            _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_10__["BuySellComponent"],
             {
                 provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HTTP_INTERCEPTORS"],
                 useClass: _tokeninterceptor_service__WEBPACK_IMPORTED_MODULE_18__["TokeninterceptorService"],
@@ -1005,6 +1006,11 @@ let BuySellComponent = class BuySellComponent {
         //   }
         // });
     }
+    // portfolioTrade(stock) {
+    //   console.log('booobbbbb')
+    //   this.searchStockSymbol = stock;
+    //   this.searchStocks();
+    // }
     searchStocks() {
         var searchStockBox = document.getElementById('searchStock');
         if (searchStockBox.style.display === "none") {
@@ -1388,44 +1394,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortfolioCardComponent", function() { return PortfolioCardComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
-/* harmony import */ var _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../buy-modal/buy-modal.component */ "./src/app/buy-modal/buy-modal.component.ts");
-/* harmony import */ var _sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../sell-modal/sell-modal.component */ "./src/app/sell-modal/sell-modal.component.ts");
-
+/* harmony import */ var _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../buy-sell/buy-sell.component */ "./src/app/buy-sell/buy-sell.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 
 
 
 
 let PortfolioCardComponent = class PortfolioCardComponent {
-    constructor(modalService) {
-        this.modalService = modalService;
+    constructor(buySell, router) {
+        this.buySell = buySell;
+        this.router = router;
         this.stock = [];
+        this.notify = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     ngOnInit() {
     }
-    openBuyModal() {
-        const modal = this.modalService.open(_buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_3__["BuyModalComponent"]);
-        modal.componentInstance.symbol = this.stock;
-    }
-    openSellModal() {
-        const modal = this.modalService.open(_sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_4__["SellModalComponent"]);
-        modal.componentInstance.symbol = this.stock;
+    trade() {
+        this.notify.emit(this.stock['symbol']);
+        this.router.navigate(['/buySell']);
+        // this.buySell.portfolioTrade(this.stock['symbol']).subscribe();
+        console.log(this.stock['symbol']);
     }
 };
 PortfolioCardComponent.ctorParameters = () => [
-    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"] }
+    { type: _buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_2__["BuySellComponent"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
 ], PortfolioCardComponent.prototype, "stock", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"])
+], PortfolioCardComponent.prototype, "notify", void 0);
 PortfolioCardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-portfolio-card',
         template: __webpack_require__(/*! raw-loader!./portfolio-card.component.html */ "./node_modules/raw-loader/index.js!./src/app/portfolio-card/portfolio-card.component.html"),
         styles: [__webpack_require__(/*! ./portfolio-card.component.scss */ "./src/app/portfolio-card/portfolio-card.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_buy_sell_buy_sell_component__WEBPACK_IMPORTED_MODULE_2__["BuySellComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
 ], PortfolioCardComponent);
 
 
