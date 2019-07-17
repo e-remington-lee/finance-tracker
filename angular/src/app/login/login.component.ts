@@ -10,13 +10,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class LoginComponent implements OnInit {
 
-  bob: string;
+  
   email: string;
   password: string;
   password2: string;
   firstName: string;
   lastName:string;
   errorMessage: string;
+  registerEmailError: string;
 
   constructor(private data: DataService, private router: Router, private ngbActiveModal: NgbActiveModal) { }
 
@@ -52,6 +53,11 @@ export class LoginComponent implements OnInit {
       console.log(content)
       this.data.register(content).subscribe((data: any) => {
         console.log(data)
+      },
+      (error) => {
+        if (error.status ===401) {
+          this.registerEmailError = 'Email already exists';
+        }
       });
     }
 

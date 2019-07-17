@@ -65,8 +65,12 @@ def register_user():
     email = response['email'].lower()
     password = response['password']
     create_user = register_user_database(first_name, last_name, email, password)
+
+    if create_user != None:
+        return make_response('Registration failed', 401, {'WWW-Authentication.route' : 'Email already Registered'})
+
     print(email, last_name, password)
-    return jsonify(response), 201
+    return jsonify(create_user), 201
 
 
 @app.route('/api/stockData', methods=['GET'])

@@ -36,15 +36,16 @@
           <div class="modal-footer justify-content-center">
               <div class="options">
                   <p>Not a member? <a class="blue-text" routerLink='/login' data-dismiss="modal">Sign Up</a></p>
-                  <p>Forgot <a routerLink='login' class="blue-text" data-dismiss="modal">Password?</a></p>
                 </div>
             <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
           </div>
       </div>
-
         <div class='tab-pane fade' id='registerTab' role='tabpanel'>
             <div class="modal-body">
                 <form>
+                    <div id='error-div'>
+                        <p class='text-danger'>{{registerEmailError}}</p>
+                      </div>
                     <div class="form-group">
                       <label class="col-form-label">Email</label>
                       <input type="text" class="form-control" id="emailRegister" name='emailRegister'

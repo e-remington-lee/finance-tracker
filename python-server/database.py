@@ -219,7 +219,8 @@ def register_user_database(first_name, last_name, email, password):
      connection = create_connection()
      cur = connection.cursor()
 
-     cur.execute('''WITH new_user AS (
+     try:
+          cur.execute('''WITH new_user AS (
                     INSERT INTO user_accounts
                     (first_name, last_name, email, password)
                     VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s)
@@ -230,6 +231,9 @@ def register_user_database(first_name, last_name, email, password):
                     (select user_id from new_user), (select user_id from new_user), 100000.00::numeric
                     );''',
                     {'first_name': first_name, 'last_name':last_name, 'email': email, 'password': password})
+     except psycopg2.Error as error:
+          return error
+
      connection.commit()
      cur.close()
      connection.close()
