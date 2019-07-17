@@ -544,7 +544,7 @@ const routes = [
     { path: 'portfolio', component: _portfolio_portfolio_component__WEBPACK_IMPORTED_MODULE_5__["PortfolioComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
     { path: 'account', component: _account_account_component__WEBPACK_IMPORTED_MODULE_6__["AccountComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
     { path: 'login', component: _login_page_login_page_component__WEBPACK_IMPORTED_MODULE_8__["LoginPageComponent"] },
-    { path: 'rulesRanking', component: _rules_ranking_rules_ranking_component__WEBPACK_IMPORTED_MODULE_9__["RulesRankingComponent"] },
+    { path: 'rulesRanking', component: _rules_ranking_rules_ranking_component__WEBPACK_IMPORTED_MODULE_9__["RulesRankingComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };

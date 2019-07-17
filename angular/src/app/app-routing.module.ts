@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'portfolio', component: PortfolioComponent, canActivate: [AuthGuard]},
   {path: 'account', component: AccountComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginPageComponent},
-  {path: 'rulesRanking', component: RulesRankingComponent},
+  {path: 'rulesRanking', component: RulesRankingComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
