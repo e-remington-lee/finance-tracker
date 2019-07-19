@@ -370,7 +370,7 @@ module.exports = "<div class=\"modal fade\" id=\"login\" tabindex='-1'>\n    <di
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Stock Trading App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Trade</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/rulesRanking'>Rules</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/account'>{{default}}</a></li>\n      <div class=\"dropdown\">\n        <button class=\"dropbtn\">Dropdown \n          <i class=\"fa fa-caret-down\"></i>\n        </button>\n        <div class=\"dropdown-content\">\n          <a href=\"#\">Link 1</a>\n          <a href=\"#\">Link 2</a>\n          <a href=\"#\">Link 3</a>\n        </div>\n      </div>\n    </ul>\n  </div>\n</nav>\n</body>\n</html>"
+module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Stock Trading App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Trade</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/rulesRanking'>Rules</a></li>\n      <!-- <li class='navbar-item'><a class='nav-link' routerLink='/account'>{{default}}</a></li> -->\n    </ul>\n    <div class=\"dropdown\">\n      <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">{{default}}\n     </button>\n      <ul class=\"dropdown-menu\">\n        <li ><button (click)='logout()'>Logout </button></li>\n\n      </ul>\n    </div>\n  </div>\n</nav>\n</body>\n</html>"
 
 /***/ }),
 
@@ -1377,6 +1377,11 @@ let NavComponent = class NavComponent {
         catch (error) {
             return null;
         }
+    }
+    logout() {
+        console.log('Logged out');
+        sessionStorage.removeItem('Authorization');
+        location.reload();
     }
 };
 NavComponent.ctorParameters = () => [
