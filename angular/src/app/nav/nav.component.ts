@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
 })
 export class NavComponent implements OnInit {
 
-  default: string = 'Rules';
+  default: string = 'My Account';
 
   constructor(private auth: AuthService) {}
 

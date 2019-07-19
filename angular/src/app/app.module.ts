@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -36,6 +35,8 @@ import { RulesRankingComponent } from './rules-ranking/rules-ranking.component';
     BuyModalComponent,
     SellModalComponent,
     PortfolioCardComponent,
+
+    
     LoginPageComponent,
     RulesRankingComponent,
   ],

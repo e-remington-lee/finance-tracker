@@ -337,7 +337,7 @@ module.exports = "<body class='container'>\n      <div class='form-group' id='se
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#login' (click)='openLoginModal()'>Login/Register</button>\n    </div>\n</header>\n\n<app-login></app-login>\n<hr>\n<footer>\n  <h3>GitHub Repository</h3>\n  <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</footer>\n\n"
+module.exports = "\n<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#login' (click)='openLoginModal()'>Login/Register</button>\n    </div>\n</header>\n<app-login></app-login>\n<hr>\n<footer>\n  <h3>GitHub Repository</h3>\n  <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</footer>\n\n"
 
 /***/ }),
 
@@ -370,7 +370,7 @@ module.exports = "<div class=\"modal fade\" id=\"login\" tabindex='-1'>\n    <di
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Stock Trading App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Trade</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/rulesRanking'>Rules</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/account'>{{default}}</a></li>\n    </ul>\n  </div>\n</nav>\n</body>\n</html>"
+module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Stock Trading App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Trade</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/rulesRanking'>Rules</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/account'>{{default}}</a></li>\n      <div class=\"dropdown\">\n        <button class=\"dropbtn\">Dropdown \n          <i class=\"fa fa-caret-down\"></i>\n        </button>\n        <div class=\"dropdown-content\">\n          <a href=\"#\">Link 1</a>\n          <a href=\"#\">Link 2</a>\n          <a href=\"#\">Link 3</a>\n        </div>\n      </div>\n    </ul>\n  </div>\n</nav>\n</body>\n</html>"
 
 /***/ }),
 
@@ -403,7 +403,7 @@ module.exports = "<body class='container' id='container'>\n        <div class='c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" id = 'heading'>\n        <!-- used for spacing the top without ruining the format of page -->\n      </div>\n        <div class=\"container\">\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n              <h2>Trade</h2>\n              <p>Search stock symbols and use fake money to trade on the live market and test your skills</p>\n              <p><a class=\"btn btn-secondary\" href=\"#\" role=\"button\">Trade</a></p>\n           </div>\n            <div class=\"col-md-6\">\n              <h2>Portfolio</h2>\n              <p>Each account starts with $100,000 fake dollars, see how much money you can earn by trading stocks</p>\n              <p><a class=\"btn btn-secondary\" href=\"#\" role=\"button\">Portfolio</a></p>\n      \n            </div>\n          </div>\n      \n          <hr>\n      \n          <footer>\n              <h3>GitHub Repository</h3>\n              <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n            </footer>\n        </div> "
+module.exports = "<div class=\"container\" id = 'heading'>\n        <!-- used for spacing the top without ruining the format of page -->\n      </div>\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-md-6\">\n            <h2>Trade</h2>\n            <p>Search stock symbols and use fake money to trade on the live market and test your skills</p>\n            <p><a class=\"btn btn-secondary\" routerLink='/buySell' role=\"button\">Trade</a></p>\n        </div>\n        <div class=\"col-md-6\">\n            <h2>Portfolio</h2>\n            <p>Each account starts with $100,000 fake dollars, see how much money you can earn by trading stocks</p>\n            <p><a class=\"btn btn-secondary\" routerLink='/portfolio' role=\"button\">Portfolio</a></p>     \n        </div>\n    </div>     \n        <hr>\n        <footer>\n              <h3>GitHub Repository</h3>\n              <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n            </footer>\n        </div> "
 
 /***/ }),
 
@@ -459,7 +459,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#heading {\n  margin: 20px 0 0 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWNjb3VudC9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcYWNjb3VudFxcYWNjb3VudC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYWNjb3VudC9hY2NvdW50LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL2FjY291bnQvYWNjb3VudC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNoZWFkaW5nIHtcclxuICAgIG1hcmdpbjogMjBweCAwIDAgMCA7XHJcbn0iLCIjaGVhZGluZyB7XG4gIG1hcmdpbjogMjBweCAwIDAgMDtcbn0iXX0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FjY291bnQvYWNjb3VudC5jb21wb25lbnQuc2NzcyJ9 */"
 
 /***/ }),
 
@@ -1174,6 +1174,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../login/login.component */ "./src/app/login/login.component.ts");
+
 
 
 
@@ -1182,6 +1184,11 @@ let HomeComponent = class HomeComponent {
         this.modalService = modalService;
     }
     ngOnInit() {
+    }
+    openLoginModal() {
+        const modal = this.modalService.open(_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]);
+        modal.componentInstance.symbol = 'bob';
+        console.log('open');
     }
 };
 HomeComponent.ctorParameters = () => [
@@ -1287,7 +1294,7 @@ let LoginComponent = class LoginComponent {
             this.ngbActiveModal.close();
             console.log('Logged in!');
             sessionStorage.setItem('Authorization', data['token']);
-            // this.router.navigate(['portfolio']);
+            // this.router.navigate(['rulesRanking']);
         }, (error) => {
             if (error.status === 401) {
                 this.errorMessage = "Incorrect email or password";
@@ -1338,7 +1345,7 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "html {\n  height: 100%;\n}\n\nbody {\n  padding-bottom: 70px;\n}\n\n#header {\n  font-size: 30px;\n  font-style: bold;\n}\n\nnav a {\n  font-size: 20px;\n}\n\n#top-nav {\n  background-color: #2bb41f;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbmF2L0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxuYXZcXG5hdi5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbmF2L25hdi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQUE7QUNDSjs7QURFQTtFQUNJLG9CQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsZ0JBQUE7QUNDSjs7QURFQTtFQUNJLGVBQUE7QUNDSjs7QURFQTtFQUNJLHlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9uYXYvbmF2LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaHRtbCB7XHJcbiAgICBoZWlnaHQ6MTAwJTtcclxufVxyXG5cclxuYm9keSB7XHJcbiAgICBwYWRkaW5nLWJvdHRvbTogNzBweDtcclxufVxyXG5cclxuI2hlYWRlciB7XHJcbiAgICBmb250LXNpemU6IDMwcHg7XHJcbiAgICBmb250LXN0eWxlOiBib2xkO1xyXG59XHJcblxyXG5uYXYgYSB7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuXHJcbiN0b3AtbmF2IHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYig0MywgMTgwLCAzMSk7XHJcbn0iLCJodG1sIHtcbiAgaGVpZ2h0OiAxMDAlO1xufVxuXG5ib2R5IHtcbiAgcGFkZGluZy1ib3R0b206IDcwcHg7XG59XG5cbiNoZWFkZXIge1xuICBmb250LXNpemU6IDMwcHg7XG4gIGZvbnQtc3R5bGU6IGJvbGQ7XG59XG5cbm5hdiBhIHtcbiAgZm9udC1zaXplOiAyMHB4O1xufVxuXG4jdG9wLW5hdiB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMyYmI0MWY7XG59Il19 */"
+module.exports = "html {\n  height: 100%;\n}\n\nbody {\n  padding-bottom: 70px;\n}\n\n#header {\n  font-size: 30px;\n  font-style: bold;\n}\n\nnav a {\n  font-size: 20px;\n}\n\n#top-nav {\n  background-color: #2bb41f;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbmF2L0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxuYXZcXG5hdi5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbmF2L25hdi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQUE7QUNDSjs7QURFQTtFQUNJLG9CQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsZ0JBQUE7QUNDSjs7QURFQTtFQUNJLGVBQUE7QUNDSjs7QURFQTtFQUNJLHlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9uYXYvbmF2LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaHRtbCB7XHJcbiAgICBoZWlnaHQ6MTAwJTtcclxufVxyXG5cclxuYm9keSB7XHJcbiAgICBwYWRkaW5nLWJvdHRvbTogNzBweDtcclxufVxyXG5cclxuI2hlYWRlciB7XHJcbiAgICBmb250LXNpemU6IDMwcHg7XHJcbiAgICBmb250LXN0eWxlOiBib2xkO1xyXG59XHJcblxyXG5uYXYgYSB7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuXHJcbiN0b3AtbmF2IHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYig0MywgMTgwLCAzMSk7XHJcbn1cclxuXHJcbiIsImh0bWwge1xuICBoZWlnaHQ6IDEwMCU7XG59XG5cbmJvZHkge1xuICBwYWRkaW5nLWJvdHRvbTogNzBweDtcbn1cblxuI2hlYWRlciB7XG4gIGZvbnQtc2l6ZTogMzBweDtcbiAgZm9udC1zdHlsZTogYm9sZDtcbn1cblxubmF2IGEge1xuICBmb250LXNpemU6IDIwcHg7XG59XG5cbiN0b3AtbmF2IHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzJiYjQxZjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -1361,7 +1368,7 @@ __webpack_require__.r(__webpack_exports__);
 let NavComponent = class NavComponent {
     constructor(auth) {
         this.auth = auth;
-        this.default = 'Rules';
+        this.default = 'My Account';
     }
     ngOnInit() {
         try {

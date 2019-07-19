@@ -10,7 +10,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class LoginComponent implements OnInit {
 
-  
   email: string;
   password: string;
   password2: string;
@@ -25,12 +24,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
     this.data.login(this.email, this.password).subscribe((data: any) => {
       this.ngbActiveModal.close();
       console.log('Logged in!')
       sessionStorage.setItem('Authorization', data['token']);
-      // this.router.navigate(['portfolio']);
+      // this.router.navigate(['rulesRanking']);
     },
     (error: any) => {
       if (error.status === 401) {

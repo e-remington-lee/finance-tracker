@@ -74,7 +74,6 @@ def register_user():
 
 
 @app.route('/api/stockData', methods=['GET'])
-
 def stock_info():
     symbol = request.args.get('symbol')
     r = iex_stock_data(symbol)
