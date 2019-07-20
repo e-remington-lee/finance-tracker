@@ -3,7 +3,6 @@ import server
 import stock_calculator
 import decimal
 
-# print(stock_calculator.calculate_price(1,2))
 
 class Test_calculator(unittest.TestCase):
 
@@ -16,7 +15,8 @@ class Test_calculator(unittest.TestCase):
 
 class Test_endpoints(unittest.TestCase):
     def test_login(self):
-        pass
+        result = server.login_user()
+        self.assertIsNotNone()
 
 if __name__ == '__main__':
     unittest.main()
