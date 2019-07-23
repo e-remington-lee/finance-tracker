@@ -14,9 +14,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  openLoginModal() {
-   const modal = this.modalService.open(LoginComponent);
-   modal.componentInstance.symbol = 'bob';
-   console.log('open') 
-  }
+  // openLoginModal() {
+  //  const modal = this.modalService.open(LoginComponent);
+  //  modal.componentInstance.symbol = 'bob';
+  //  console.log('open') 
+  // }
 }

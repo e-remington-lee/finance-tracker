@@ -66,10 +66,9 @@ def register_user():
     password = response['password']
     create_user = register_user_database(first_name, last_name, email, password)
 
-    if create_user != None:
+    if create_user:
         return make_response('Registration failed', 401, {'WWW-Authentication.route' : 'Email already Registered'})
 
-    print(email, last_name, password)
     return jsonify(create_user), 201
 
 
@@ -77,7 +76,7 @@ def register_user():
 def stock_info():
     symbol = request.args.get('symbol')
     r = iex_stock_data(symbol)
-    if r != None:
+    if r:
         change_percent = round(float(r.json()['changePercent'])*100,3)
         latest_price = money(round(float(r.json()['latestPrice']),2))
         change = money(round(float(r.json()['change']),2))
@@ -150,7 +149,6 @@ def transactions():
         
     transaction_list(account_id, symbol, transaction_type, stock_price, shares)
     return jsonify(stock_price), 201
-
 
 
 @app.route('/api/checkBalance', methods=['GET'])

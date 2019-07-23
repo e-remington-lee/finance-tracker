@@ -370,7 +370,7 @@ module.exports = "<div class=\"modal fade\" id=\"login\" tabindex='-1'>\n    <di
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Stock Trading App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Trade</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/rulesRanking'>Rules</a></li>\n      <!-- <li class='navbar-item'><a class='nav-link' routerLink='/account'>{{default}}</a></li> -->\n    </ul>\n    <div class=\"dropdown\">\n      <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">{{default}}\n     </button>\n      <ul class=\"dropdown-menu\">\n        <li ><button (click)='logout()'>Logout </button></li>\n\n      </ul>\n    </div>\n  </div>\n</nav>\n</body>\n</html>"
+module.exports = "<html>\n<body>\n<nav class='navbar navbar-light navbar-expand-lg fixed-top' id='top-nav'>\n  <a routerLink =\"/\" class='navbar-brand' id='header'>Stock Trading App</a>\n    <button class='navbar-toggler' data-toggle='collapse' data-target=\"#containerLinks\">\n      <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class='collapse navbar-collapse' id='containerLinks'>\n    <ul class ='navbar-nav ml-auto'>\n      <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Trade</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>\n      <li class='navbar-item'><a class='nav-link' routerLink='/rulesRanking'>Rules</a></li>\n      <!-- <li class='navbar-item'><a class='nav-link' routerLink='/account'>{{default}}</a></li> -->\n    </ul>\n    <div class=\"dropdown\">\n      <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">{{default}}\n     </button>\n      <ul class=\"dropdown-menu\">\n        <li ><button (click)='logout()'>Logout </button></li>\n      </ul>\n    </div>\n  </div>\n</nav>\n</body>\n</html>"
 
 /***/ }),
 
@@ -1174,8 +1174,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../login/login.component */ "./src/app/login/login.component.ts");
-
 
 
 
@@ -1184,11 +1182,6 @@ let HomeComponent = class HomeComponent {
         this.modalService = modalService;
     }
     ngOnInit() {
-    }
-    openLoginModal() {
-        const modal = this.modalService.open(_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]);
-        modal.componentInstance.symbol = 'bob';
-        console.log('open');
     }
 };
 HomeComponent.ctorParameters = () => [
