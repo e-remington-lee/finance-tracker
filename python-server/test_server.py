@@ -2,6 +2,11 @@ import unittest
 import server
 import stock_calculator
 import decimal
+from unittest.mock import Mock
+
+json = Mock()
+
+print(json.loads('{"key": "value"}'))
 
 
 class Test_calculator(unittest.TestCase):
