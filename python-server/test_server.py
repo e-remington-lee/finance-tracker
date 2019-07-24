@@ -58,7 +58,7 @@ class Test_stock_info(unittest.TestCase):
     @classmethod
     def setupVariables(cls):
         cls.change_percent = 0.2
-
+    
     @patch("server.money")
     @patch("server.jsonify")
     @patch("server.iex_stock_data")
@@ -70,21 +70,18 @@ class Test_stock_info(unittest.TestCase):
         mock_jsonify.assert_not_called()
 
 
-        mock_iex.return_value = {'key': 'value'}
-        # change_percent.return_value = .02
-        stock_data = [{
-                        'latestPrice': 200,
-                        'companyName': 'Amazon',
-                        'symbol': 'BYND',
-                        'changePercent': 0.02,
-                        'change': 6.00
-                        }]
-
-        mock_money.return_value = "$1.10"
+        mock_iex.return_value = mock_request.json
+        mock_request.json.return_value = {'key': 'value'}
+        # stock_data = [{
+        #                 'latestPrice': 200,
+        #                 'companyName': 'Amazon',
+        #                 'symbol': 'BYND',
+        #                 'changePercent': 0.02,
+        #                 'change': 6.00
+        #                 }]
 
         server.stock_info()
         mock_jsonify.assert_called_once()
-
 
 
 if __name__ == '__main__':
