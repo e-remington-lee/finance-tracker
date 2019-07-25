@@ -15,6 +15,13 @@ class Test_calculator(unittest.TestCase):
     # def test_decimals(self):
         #check to return a decimal?
 
+class Test_home(unittest.TestCase):
+    @patch("server.render_template")
+    def test_home(self, mock_template):
+        mock_template.return_value = 'index.html'
+        result = server.home_page('key')
+        self.assertIsNotNone(result)
+
 
 class Test_login(unittest.TestCase):
     @patch("server.make_response")
@@ -156,12 +163,10 @@ class Test_transactions(unittest.TestCase):
 class Test_check_balance(unittest.TestCase):
     @patch("server.check_account_balance")
     @patch("server.calculate_price")
-    @patch("server.money")
-    @patch("server.jsonify")
     @patch("server.iex_latest_price")
     @patch("server.request")
-    def test_check_balance(self, mock_request, mock_iex, mock_jsonify, mock_money, mock_calculate, mock_account_balance):
-        mock_request.args.get.return_value = '10'
+    def test_check_balance(self, mock_request, mock_iex, mock_calculate, mock_account_balance):
+        mock_request.args.get.return_value = 10
         mock_iex.return_value = 21
         mock_calculate.return_value = 210
         mock_account_balance.return_value = {'account_balance': 1}
@@ -174,7 +179,75 @@ class Test_check_balance(unittest.TestCase):
         self.assertEqual(result, ("", 200))
 
 
+class Test_check_stock(unittest.TestCase):
+    @patch("server.check_stock_holdings")
+    @patch("server.request")
+    def test_check_stock(self, mock_request, mock_stock_holdings):
+        mock_request.args.get.return_value = 10
 
+        mock_stock_holdings.return_value = {'shares': 2}
+        result = server.check_stock()
+        self.assertEqual(result, ("", 404))
+
+        mock_stock_holdings.return_value = {'shares': 20}
+        result = server.check_stock()
+        self.assertEqual(result, ("", 200))
+
+
+class Test_buy_stock(unittest.TestCase):
+    @patch("server.buy_stock")
+    @patch("server.jsonify")
+    @patch("server.iex_latest_price")
+    @patch("server.request")
+    def test_buy_stock(self, mock_request, mock_iex, mock_jsonify, mock_buy_stock):
+        mock_request.get_json.return_value = [{
+                                            'symbol': 'BYND',
+                                            'accountId': 1,
+                                            'shares': 5,
+                                            'company': 'bob'
+                                            }]  
+        
+        mock_iex.return_value = 210.00
+        mock_buy_stock.return_value = {'key': 'value'}
+
+        server.buy_stock_endpoint()
+        mock_jsonify.assert_called_once()
+
+
+class Test_sell_stock(unittest.TestCase):
+    @patch("server.sell_stock")
+    @patch("server.jsonify")
+    @patch("server.iex_latest_price")
+    @patch("server.request")
+    def test_sell_stock(self, mock_request, mock_iex, mock_jsonify, mock_sell_stock):
+        mock_request.get_json.return_value = [{
+                                            'symbol': 'BYND',
+                                            'accountId': 1,
+                                            'shares': 5,
+                                            'company': 'bob'
+                                            }]  
+        
+        mock_iex.return_value = 210.00
+        mock_sell_stock.return_value = {'key': 'value'}
+
+        server.sell_stock_endpoint()
+        mock_jsonify.assert_called_once()
+
+
+class Test_portfolio_data(unittest.TestCase):
+    @patch("server.portfolio_holdings")
+    @patch("server.portfolio_symbols")
+    @patch("server.jsonify")
+    @patch("server.iex_latest_price")
+    @patch("server.request")
+    def test_portfolio_data(self, mock_request, mock_iex, mock_jsonify, mock_symbols, mock_portfolio):
+        mock_request.args.get.return_value = 1
+        mock_symbols = ['a', 'b', 'c']
+        mock_iex.return_value = 210.00
+        mock_portfolio.return_value = 'Text'
+
+        server.portfolio_data()
+        mock_jsonify.assert_called_once()
 
 
 if __name__ == '__main__':
