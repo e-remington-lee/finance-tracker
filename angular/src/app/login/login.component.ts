@@ -25,10 +25,18 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.data.login(this.email, this.password).subscribe((data: any) => {
+
       this.ngbActiveModal.close();
-      console.log('Logged in!')
+      console.log('Logged in!');
       sessionStorage.setItem('Authorization', data['token']);
       this.router.navigate(['rulesRanking']);
+
+      // var promise1 = new Promise(function(resolve, reject) {
+      //   resolve(this.router.navigate(['rulesRanking']));
+      // });
+      // promise1.then(function() {
+      //   location.reload();
+      // });
     },
     (error: any) => {
       if (error.status === 401) {
@@ -39,7 +47,6 @@ export class LoginComponent implements OnInit {
 
   register() {
     if (this.password === this.password2){
-      
       const content = {
         'firstName': this.firstName,
         'lastName': this.lastName,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +11,7 @@ export class NavComponent implements OnInit {
 
   default: string = 'My Account';
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {
     try {
@@ -25,6 +26,7 @@ export class NavComponent implements OnInit {
     console.log('Logged out');
    sessionStorage.removeItem('Authorization');
    location.reload();
+ 
   }
 
 
