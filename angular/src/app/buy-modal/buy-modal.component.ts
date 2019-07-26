@@ -46,7 +46,7 @@ export class BuyModalComponent implements OnInit {
         }
       },
       error => {
-        if (error.status == 404) {
+        if (error.status == 404 || error.status === 500) {
           alert('Purchase Failed: Insufficient Funds')
           this.shares = 0;
         }

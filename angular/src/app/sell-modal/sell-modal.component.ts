@@ -52,7 +52,7 @@ export class SellModalComponent implements OnInit {
         }
       },
       error => {
-        if (error.status == 404) {
+        if (error.status == 404 || error.status === 500) {
           alert('Sell Failed: Insufficient Share Quantity')
           this.shares = 0;
         }
