@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       this.ngbActiveModal.close();
       console.log('Logged in!')
       sessionStorage.setItem('Authorization', data['token']);
-      // this.router.navigate(['rulesRanking']);
+      this.router.navigate(['rulesRanking']);
     },
     (error: any) => {
       if (error.status === 401) {
@@ -56,6 +56,15 @@ export class LoginComponent implements OnInit {
         }
       });
     }
+  }
+
+  close() {
+    this.ngbActiveModal.close();
+  }
+
+  rulesPage() {
+    this.router.navigate(['rulesRanking']);
+    this.ngbActiveModal.close();
   }
     
   }
