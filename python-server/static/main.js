@@ -1275,18 +1275,6 @@ let LoginComponent = class LoginComponent {
     }
     ngOnInit() {
     }
-    login() {
-        this.data.login(this.email, this.password).subscribe((data) => {
-            this.ngbActiveModal.close();
-            console.log('Logged in!');
-            sessionStorage.setItem('Authorization', data['token']);
-            this.router.navigate(['rulesRanking']);
-        }, (error) => {
-            if (error.status === 401) {
-                this.errorMessage = "Incorrect email or password";
-            }
-        });
-    }
     register() {
         let myPromise = new Promise((resolve, reject) => {
             if (this.password === this.password2 && this.password.length >= 6 && this.email !== undefined && this.email.includes("@")
@@ -1298,7 +1286,8 @@ let LoginComponent = class LoginComponent {
                     'password': this.password
                 };
                 resolve(this.data.register(content).subscribe((data) => {
-                    console.log("Registering...");
+                    console.log("Registering..." + data);
+                    this.login();
                 }, (error) => {
                     if (error.status === 401) {
                         this.registerError = 'Email already exists';
@@ -1319,6 +1308,18 @@ let LoginComponent = class LoginComponent {
             }
         });
         myPromise.then(() => this.login()).catch(() => console.log('Bad Login'));
+    }
+    login() {
+        this.data.login(this.email, this.password).subscribe((data) => {
+            this.ngbActiveModal.close();
+            console.log('Logged in!');
+            sessionStorage.setItem('Authorization', data['token']);
+            this.router.navigate(['rulesRanking']);
+        }, (error) => {
+            if (error.status === 401) {
+                this.errorMessage = "Incorrect email or password";
+            }
+        });
     }
     close() {
         this.ngbActiveModal.close();
@@ -1353,7 +1354,7 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "html {\n  height: 100%;\n}\n\nbody {\n  padding-bottom: 70px;\n}\n\n#header {\n  font-size: 30px;\n  font-style: bold;\n}\n\nnav a {\n  font-size: 20px;\n}\n\n#top-nav {\n  background-color: #2bb41f;\n}\n\n.dropdown-menu {\n  position: absolute;\n  background-color: #f9f9f9;\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\n  padding: 12px 0 12px 16px;\n  z-index: 1;\n}\n\n#logout {\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbmF2L0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxuYXZcXG5hdi5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbmF2L25hdi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQUE7QUNDSjs7QURFQTtFQUNJLG9CQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsZ0JBQUE7QUNDSjs7QURFQTtFQUNJLGVBQUE7QUNDSjs7QURFQTtFQUNJLHlCQUFBO0FDQ0o7O0FEY0E7RUFDSSxrQkFBQTtFQUNBLHlCQUFBO0VBQ0EsK0NBQUE7RUFDQSx5QkFBQTtFQUNBLFVBQUE7QUNYSjs7QURjQTtFQUNJLGVBQUE7QUNYSiIsImZpbGUiOiJzcmMvYXBwL25hdi9uYXYuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJodG1sIHtcclxuICAgIGhlaWdodDoxMDAlO1xyXG59XHJcblxyXG5ib2R5IHtcclxuICAgIHBhZGRpbmctYm90dG9tOiA3MHB4O1xyXG59XHJcblxyXG4jaGVhZGVyIHtcclxuICAgIGZvbnQtc2l6ZTogMzBweDtcclxuICAgIGZvbnQtc3R5bGU6IGJvbGQ7XHJcbn1cclxuXHJcbm5hdiBhIHtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxufVxyXG5cclxuI3RvcC1uYXYge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDQzLCAxODAsIDMxKTtcclxufVxyXG5cclxuLy8gLmRyb3Bkb3duLW1lbnUge1xyXG4vLyAgICAgYmFja2dyb3VuZDp3aGl0ZTtcclxuLy8gICAgIHBhZGRpbmc6IDJweDtcclxuLy8gICAgIGZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7XHJcbi8vICAgICBmb250LXNpemU6MjBweDtcclxuLy8gICAgIGZvbnQtd2VpZ2h0OjYwMDtcclxuLy8gICAgIGNvbG9yOiBibGFjaztcclxuLy8gICAgIGxpbmUtaGVpZ2h0OiAxO1xyXG4vLyAgICAgYm9yZGVyOiAwO1xyXG4vLyAgICAgYm9yZGVyLXJhZGl1czogMDtcclxuLy8gfVxyXG5cclxuLmRyb3Bkb3duLW1lbnUge1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y5ZjlmOTtcclxuICAgIGJveC1zaGFkb3c6IDBweCA4cHggMTZweCAwcHggcmdiYSgwLDAsMCwwLjIpO1xyXG4gICAgcGFkZGluZzogMTJweCAwIDEycHggMTZweDtcclxuICAgIHotaW5kZXg6IDE7XHJcbn1cclxuXHJcbiNsb2dvdXQge1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG59IiwiaHRtbCB7XG4gIGhlaWdodDogMTAwJTtcbn1cblxuYm9keSB7XG4gIHBhZGRpbmctYm90dG9tOiA3MHB4O1xufVxuXG4jaGVhZGVyIHtcbiAgZm9udC1zaXplOiAzMHB4O1xuICBmb250LXN0eWxlOiBib2xkO1xufVxuXG5uYXYgYSB7XG4gIGZvbnQtc2l6ZTogMjBweDtcbn1cblxuI3RvcC1uYXYge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMmJiNDFmO1xufVxuXG4uZHJvcGRvd24tbWVudSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2Y5ZjlmOTtcbiAgYm94LXNoYWRvdzogMHB4IDhweCAxNnB4IDBweCByZ2JhKDAsIDAsIDAsIDAuMik7XG4gIHBhZGRpbmc6IDEycHggMCAxMnB4IDE2cHg7XG4gIHotaW5kZXg6IDE7XG59XG5cbiNsb2dvdXQge1xuICBjdXJzb3I6IHBvaW50ZXI7XG59Il19 */"
+module.exports = "html {\n  height: 100%;\n}\n\nbody {\n  padding-bottom: 70px;\n}\n\n#header {\n  font-size: 30px;\n  font-style: bold;\n}\n\nnav a {\n  font-size: 20px;\n}\n\n#top-nav {\n  background-color: #2bb41f;\n}\n\n.dropdown-menu {\n  position: absolute;\n  background-color: #f9f9f9;\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\n  padding: 8px 0 8px 4px;\n  z-index: 1;\n}\n\n#logout {\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbmF2L0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxuYXZcXG5hdi5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbmF2L25hdi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQUE7QUNDSjs7QURFQTtFQUNJLG9CQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsZ0JBQUE7QUNDSjs7QURFQTtFQUNJLGVBQUE7QUNDSjs7QURFQTtFQUNJLHlCQUFBO0FDQ0o7O0FEY0E7RUFDSSxrQkFBQTtFQUNBLHlCQUFBO0VBQ0EsK0NBQUE7RUFDQSxzQkFBQTtFQUNBLFVBQUE7QUNYSjs7QURjQTtFQUNJLGVBQUE7QUNYSiIsImZpbGUiOiJzcmMvYXBwL25hdi9uYXYuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJodG1sIHtcclxuICAgIGhlaWdodDoxMDAlO1xyXG59XHJcblxyXG5ib2R5IHtcclxuICAgIHBhZGRpbmctYm90dG9tOiA3MHB4O1xyXG59XHJcblxyXG4jaGVhZGVyIHtcclxuICAgIGZvbnQtc2l6ZTogMzBweDtcclxuICAgIGZvbnQtc3R5bGU6IGJvbGQ7XHJcbn1cclxuXHJcbm5hdiBhIHtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxufVxyXG5cclxuI3RvcC1uYXYge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDQzLCAxODAsIDMxKTtcclxufVxyXG5cclxuLy8gLmRyb3Bkb3duLW1lbnUge1xyXG4vLyAgICAgYmFja2dyb3VuZDp3aGl0ZTtcclxuLy8gICAgIHBhZGRpbmc6IDJweDtcclxuLy8gICAgIGZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7XHJcbi8vICAgICBmb250LXNpemU6MjBweDtcclxuLy8gICAgIGZvbnQtd2VpZ2h0OjYwMDtcclxuLy8gICAgIGNvbG9yOiBibGFjaztcclxuLy8gICAgIGxpbmUtaGVpZ2h0OiAxO1xyXG4vLyAgICAgYm9yZGVyOiAwO1xyXG4vLyAgICAgYm9yZGVyLXJhZGl1czogMDtcclxuLy8gfVxyXG5cclxuLmRyb3Bkb3duLW1lbnUge1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y5ZjlmOTtcclxuICAgIGJveC1zaGFkb3c6IDBweCA4cHggMTZweCAwcHggcmdiYSgwLDAsMCwwLjIpO1xyXG4gICAgcGFkZGluZzogOHB4IDAgOHB4IDRweDtcclxuICAgIHotaW5kZXg6IDE7XHJcbn1cclxuXHJcbiNsb2dvdXQge1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcbiIsImh0bWwge1xuICBoZWlnaHQ6IDEwMCU7XG59XG5cbmJvZHkge1xuICBwYWRkaW5nLWJvdHRvbTogNzBweDtcbn1cblxuI2hlYWRlciB7XG4gIGZvbnQtc2l6ZTogMzBweDtcbiAgZm9udC1zdHlsZTogYm9sZDtcbn1cblxubmF2IGEge1xuICBmb250LXNpemU6IDIwcHg7XG59XG5cbiN0b3AtbmF2IHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzJiYjQxZjtcbn1cblxuLmRyb3Bkb3duLW1lbnUge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmOWY5Zjk7XG4gIGJveC1zaGFkb3c6IDBweCA4cHggMTZweCAwcHggcmdiYSgwLCAwLCAwLCAwLjIpO1xuICBwYWRkaW5nOiA4cHggMCA4cHggNHB4O1xuICB6LWluZGV4OiAxO1xufVxuXG4jbG9nb3V0IHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufSJdfQ== */"
 
 /***/ }),
 

@@ -23,21 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    this.data.login(this.email, this.password).subscribe((data: any) => {
-      this.ngbActiveModal.close();
-      console.log('Logged in!');
-      sessionStorage.setItem('Authorization', data['token']);
-      this.router.navigate(['rulesRanking']);
-    },
-    (error: any) => {
-      if (error.status === 401) {
-          this.errorMessage = "Incorrect email or password";
-      }
-    });
-  }
-
-    register() {
+  register() {
     let myPromise = new Promise((resolve, reject) => {
       if (this.password === this.password2 && this.password.length >=6 && this.email !== undefined && this.email.includes("@")
           && this.firstName !== undefined && this.lastName !== undefined){
@@ -48,7 +34,8 @@ export class LoginComponent implements OnInit {
           'password': this.password
         }
         resolve(this.data.register(content).subscribe((data: any) => {
-          console.log("Registering...")
+          console.log("Registering..." + data)
+          this.login()
         },
         (error) => {
           if (error.status === 401) {
@@ -68,6 +55,19 @@ export class LoginComponent implements OnInit {
     myPromise.then(() => this.login()).catch(() => console.log('Bad Login'))
   }
 
+  login() {
+    this.data.login(this.email, this.password).subscribe((data: any) => {
+      this.ngbActiveModal.close();
+      console.log('Logged in!');
+      sessionStorage.setItem('Authorization', data['token']);
+      this.router.navigate(['rulesRanking']);
+    },
+    (error: any) => {
+      if (error.status === 401) {
+          this.errorMessage = "Incorrect email or password";
+      }
+    });
+  }
 
   close() {
     this.ngbActiveModal.close();

@@ -19,7 +19,7 @@ def home_page(path):
     return render_template('index.html')
 
 
-def login_required(f):
+def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = None
@@ -36,7 +36,6 @@ def login_required(f):
 
 @app.route('/api/login', methods=['GET'])
 def login_user():
-    #make this secure??
     email = request.headers['x-email']
     password = request.headers['x-password']
 
@@ -74,6 +73,7 @@ def register_user():
 
 
 @app.route('/api/stockData', methods=['GET'])
+@token_required
 def stock_info():
     symbol = request.args.get('symbol')
     r = iex_stock_data(symbol)
@@ -94,6 +94,7 @@ def stock_info():
 
 
 @app.route('/api/intraDayData', methods=['GET'])
+@token_required
 def historical_info():
     symbol = request.args.get('symbol')
     r = iex_chart_data(symbol)
@@ -110,6 +111,7 @@ def historical_info():
 
 
 @app.route('/api/updateBalanceBuy', methods=['POST'])
+@token_required
 def balance_change_buy():
     response = request.get_json()
 
@@ -124,6 +126,7 @@ def balance_change_buy():
 
 
 @app.route('/api/updateBalanceSell', methods=['POST'])
+@token_required
 def balance_change_sell():
     response = request.get_json()
 
@@ -138,6 +141,7 @@ def balance_change_sell():
  
 
 @app.route('/api/transactions', methods=[ 'POST'])
+@token_required
 def transactions():
     response = request.get_json()
 
@@ -153,6 +157,7 @@ def transactions():
 
 
 @app.route('/api/checkBalance', methods=['GET'])
+@token_required
 def check_balance():
     symbol = request.args.get('symbol')
     account_id = request.args.get('accountId')
@@ -170,6 +175,7 @@ def check_balance():
 
 
 @app.route('/api/checkStock', methods=['GET'])
+@token_required
 def check_stock():
     symbol = request.args.get('symbol')
     account_id = request.args.get('accountId')
@@ -184,6 +190,7 @@ def check_stock():
 
 
 @app.route('/api/buyStock', methods=['POST'])
+@token_required
 def buy_stock_endpoint():
     response = request.get_json()
 
@@ -199,6 +206,7 @@ def buy_stock_endpoint():
 
 
 @app.route('/api/sellStock', methods=['POST'])
+@token_required
 def sell_stock_endpoint():
     response = request.get_json()
 
@@ -211,6 +219,7 @@ def sell_stock_endpoint():
 
 
 @app.route('/api/portfolioData', methods=['GET'])
+@token_required
 def portfolio_data():
     account_id  = request.args.get('accountId')
 
