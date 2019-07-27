@@ -23,9 +23,7 @@ class Test_calculator(unittest.TestCase):
         result = stock_calculator.calculate_price(5.50, 10)
         self.assertEqual(55.0, result)
         self.assertIsInstance(type(result), type(float))
-    
-    # def test_decimals(self):
-        #check to return a decimal?
+
 
 class Test_home(unittest.TestCase):
     @patch("server.render_template")

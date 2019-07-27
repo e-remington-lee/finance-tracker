@@ -1,13 +1,16 @@
+import datetime
+import os
+from functools import wraps
+
 from flask import Flask, render_template, request, jsonify, make_response
 import requests
+import jwt
+
 from database import *
 from iex_connect import *
 from money import *
 from stock_calculator import calculate_price
-import jwt
-import datetime
-from functools import wraps
-import os
+
 
 app = Flask(__name__)
 secret_key = os.environ['secret_token_key']
