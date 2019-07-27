@@ -10,6 +10,7 @@ export class RulesRankingComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
       console.log('Logged in!');
       sessionStorage.setItem('Authorization', data['token']);
       this.router.navigate(['rulesRanking']);
+      
 
       // var promise1 = new Promise(function(resolve, reject) {
       //   resolve(this.router.navigate(['rulesRanking']));
@@ -45,25 +47,50 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  register() {
-    if (this.password === this.password2){
-      const content = {
-        'firstName': this.firstName,
-        'lastName': this.lastName,
-        'email': this.email,
-        'password': this.password
-      }
-      console.log(content)
-      this.data.register(content).subscribe((data: any) => {
-        console.log(data)
-      },
-      (error) => {
-        if (error.status ===401) {
-          this.registerEmailError = 'Email already exists';
+  // register() {
+  //   if (this.password === this.password2){
+  //     const content = {
+  //       'firstName': this.firstName,
+  //       'lastName': this.lastName,
+  //       'email': this.email,
+  //       'password': this.password
+  //     }
+  //     console.log(content)
+  //     this.data.register(content).subscribe((data: any) => {
+  //     console.log(data)
+  //     },
+  //     (error) => {
+  //       if (error.status === 401) {
+  //         this.registerEmailError = 'Email already exists';
+  //       }
+  //     });
+  //   }
+  // }
+
+    register() {
+    let myPromise = new Promise((resolve, reject) => {
+      if (this.password === this.password2){
+        const content = {
+          'firstName': this.firstName,
+          'lastName': this.lastName,
+          'email': this.email,
+          'password': this.password
         }
-      });
-    }
+        console.log(content)
+        resolve(this.data.register(content).subscribe((data: any) => {
+        console.log(data)
+        },
+        (error) => {
+          if (error.status === 401) {
+            this.registerEmailError = 'Email already exists';
+          }
+        }))} else {
+          reject(console.log('Bad request'));
+        }
+    });
+    myPromise.then(data => this.login()).catch(data => console.log('Bad Login'))
   }
+
 
   close() {
     this.ngbActiveModal.close();

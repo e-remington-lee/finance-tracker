@@ -1277,23 +1277,48 @@ let LoginComponent = class LoginComponent {
             }
         });
     }
+    // register() {
+    //   if (this.password === this.password2){
+    //     const content = {
+    //       'firstName': this.firstName,
+    //       'lastName': this.lastName,
+    //       'email': this.email,
+    //       'password': this.password
+    //     }
+    //     console.log(content)
+    //     this.data.register(content).subscribe((data: any) => {
+    //     console.log(data)
+    //     },
+    //     (error) => {
+    //       if (error.status === 401) {
+    //         this.registerEmailError = 'Email already exists';
+    //       }
+    //     });
+    //   }
+    // }
     register() {
-        if (this.password === this.password2) {
-            const content = {
-                'firstName': this.firstName,
-                'lastName': this.lastName,
-                'email': this.email,
-                'password': this.password
-            };
-            console.log(content);
-            this.data.register(content).subscribe((data) => {
-                console.log(data);
-            }, (error) => {
-                if (error.status === 401) {
-                    this.registerEmailError = 'Email already exists';
-                }
-            });
-        }
+        let myPromise = new Promise((resolve, reject) => {
+            if (this.password === this.password2) {
+                const content = {
+                    'firstName': this.firstName,
+                    'lastName': this.lastName,
+                    'email': this.email,
+                    'password': this.password
+                };
+                console.log(content);
+                resolve(this.data.register(content).subscribe((data) => {
+                    console.log(data);
+                }, (error) => {
+                    if (error.status === 401) {
+                        this.registerEmailError = 'Email already exists';
+                    }
+                }));
+            }
+            else {
+                reject(console.log('Bad request'));
+            }
+        });
+        myPromise.then(data => this.login()).catch(data => console.log('Bad Login'));
     }
     close() {
         this.ngbActiveModal.close();
@@ -1328,7 +1353,7 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "html {\n  height: 100%;\n}\n\nbody {\n  padding-bottom: 70px;\n}\n\n#header {\n  font-size: 30px;\n  font-style: bold;\n}\n\nnav a {\n  font-size: 20px;\n}\n\n#top-nav {\n  background-color: #2bb41f;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbmF2L0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxuYXZcXG5hdi5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbmF2L25hdi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQUE7QUNDSjs7QURFQTtFQUNJLG9CQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsZ0JBQUE7QUNDSjs7QURFQTtFQUNJLGVBQUE7QUNDSjs7QURFQTtFQUNJLHlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9uYXYvbmF2LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaHRtbCB7XHJcbiAgICBoZWlnaHQ6MTAwJTtcclxufVxyXG5cclxuYm9keSB7XHJcbiAgICBwYWRkaW5nLWJvdHRvbTogNzBweDtcclxufVxyXG5cclxuI2hlYWRlciB7XHJcbiAgICBmb250LXNpemU6IDMwcHg7XHJcbiAgICBmb250LXN0eWxlOiBib2xkO1xyXG59XHJcblxyXG5uYXYgYSB7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuXHJcbiN0b3AtbmF2IHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYig0MywgMTgwLCAzMSk7XHJcbn1cclxuXHJcbiIsImh0bWwge1xuICBoZWlnaHQ6IDEwMCU7XG59XG5cbmJvZHkge1xuICBwYWRkaW5nLWJvdHRvbTogNzBweDtcbn1cblxuI2hlYWRlciB7XG4gIGZvbnQtc2l6ZTogMzBweDtcbiAgZm9udC1zdHlsZTogYm9sZDtcbn1cblxubmF2IGEge1xuICBmb250LXNpemU6IDIwcHg7XG59XG5cbiN0b3AtbmF2IHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzJiYjQxZjtcbn0iXX0= */"
+module.exports = "html {\n  height: 100%;\n}\n\nbody {\n  padding-bottom: 70px;\n}\n\n#header {\n  font-size: 30px;\n  font-style: bold;\n}\n\nnav a {\n  font-size: 20px;\n}\n\n#top-nav {\n  background-color: #2bb41f;\n}\n\n.dropdown-menu {\n  background: white;\n  padding: 2px;\n  font-family: Arial, Helvetica, sans-serif;\n  font-size: 20px;\n  font-weight: 600;\n  color: #fff;\n  line-height: 1;\n  border: 0;\n  border-radius: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbmF2L0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxuYXZcXG5hdi5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvbmF2L25hdi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQUE7QUNDSjs7QURFQTtFQUNJLG9CQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsZ0JBQUE7QUNDSjs7QURFQTtFQUNJLGVBQUE7QUNDSjs7QURFQTtFQUNJLHlCQUFBO0FDQ0o7O0FERUE7RUFDSSxpQkFBQTtFQUNBLFlBQUE7RUFDQSx5Q0FBQTtFQUNBLGVBQUE7RUFDQSxnQkFBQTtFQUNBLFdBQUE7RUFDQSxjQUFBO0VBQ0EsU0FBQTtFQUNBLGdCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9uYXYvbmF2LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaHRtbCB7XHJcbiAgICBoZWlnaHQ6MTAwJTtcclxufVxyXG5cclxuYm9keSB7XHJcbiAgICBwYWRkaW5nLWJvdHRvbTogNzBweDtcclxufVxyXG5cclxuI2hlYWRlciB7XHJcbiAgICBmb250LXNpemU6IDMwcHg7XHJcbiAgICBmb250LXN0eWxlOiBib2xkO1xyXG59XHJcblxyXG5uYXYgYSB7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuXHJcbiN0b3AtbmF2IHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYig0MywgMTgwLCAzMSk7XHJcbn1cclxuXHJcbi5kcm9wZG93bi1tZW51IHtcclxuICAgIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgICBwYWRkaW5nOiAycHg7XHJcbiAgICBmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmO1xyXG4gICAgZm9udC1zaXplOjIwcHg7XHJcbiAgICBmb250LXdlaWdodDo2MDA7XHJcbiAgICBjb2xvcjojZmZmO1xyXG4gICAgbGluZS1oZWlnaHQ6IDE7XHJcbiAgICBib3JkZXI6IDA7XHJcbiAgICBib3JkZXItcmFkaXVzOiAwO1xyXG4gICBcclxufSIsImh0bWwge1xuICBoZWlnaHQ6IDEwMCU7XG59XG5cbmJvZHkge1xuICBwYWRkaW5nLWJvdHRvbTogNzBweDtcbn1cblxuI2hlYWRlciB7XG4gIGZvbnQtc2l6ZTogMzBweDtcbiAgZm9udC1zdHlsZTogYm9sZDtcbn1cblxubmF2IGEge1xuICBmb250LXNpemU6IDIwcHg7XG59XG5cbiN0b3AtbmF2IHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzJiYjQxZjtcbn1cblxuLmRyb3Bkb3duLW1lbnUge1xuICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgcGFkZGluZzogMnB4O1xuICBmb250LWZhbWlseTogQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjtcbiAgZm9udC1zaXplOiAyMHB4O1xuICBmb250LXdlaWdodDogNjAwO1xuICBjb2xvcjogI2ZmZjtcbiAgbGluZS1oZWlnaHQ6IDE7XG4gIGJvcmRlcjogMDtcbiAgYm9yZGVyLXJhZGl1czogMDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -1368,6 +1393,14 @@ let NavComponent = class NavComponent {
         console.log('Logged out');
         sessionStorage.removeItem('Authorization');
         location.reload();
+    }
+    renameAccount() {
+        try {
+            this.default = this.auth.decodeUser()['first_name'];
+        }
+        catch (error) {
+            return null;
+        }
     }
 };
 NavComponent.ctorParameters = () => [

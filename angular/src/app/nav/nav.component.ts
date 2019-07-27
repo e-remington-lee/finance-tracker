@@ -23,12 +23,17 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    console.log('Logged out');
+  console.log('Logged out');
    sessionStorage.removeItem('Authorization');
    location.reload();
- 
   }
 
-
-
+  renameAccount() {
+    try {
+      this.default = this.auth.decodeUser()['first_name'];
+    }
+    catch (error) {
+      return null
+    }
+  }
 }
