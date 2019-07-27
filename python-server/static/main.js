@@ -1265,12 +1265,6 @@ let LoginComponent = class LoginComponent {
             console.log('Logged in!');
             sessionStorage.setItem('Authorization', data['token']);
             this.router.navigate(['rulesRanking']);
-            // var promise1 = new Promise(function(resolve, reject) {
-            //   resolve(this.router.navigate(['rulesRanking']));
-            // });
-            // promise1.then(function() {
-            //   location.reload();
-            // });
         }, (error) => {
             if (error.status === 401) {
                 this.errorMessage = "Incorrect email or password";
@@ -1307,7 +1301,6 @@ let LoginComponent = class LoginComponent {
                 };
                 console.log(content);
                 resolve(this.data.register(content).subscribe((data) => {
-                    console.log(data);
                 }, (error) => {
                     if (error.status === 401) {
                         this.registerEmailError = 'Email already exists';
@@ -1318,7 +1311,7 @@ let LoginComponent = class LoginComponent {
                 reject(console.log('Bad request'));
             }
         });
-        myPromise.then(data => this.login()).catch(data => console.log('Bad Login'));
+        myPromise.then(() => this.login()).catch(() => console.log('Bad Login'));
     }
     close() {
         this.ngbActiveModal.close();

@@ -31,14 +31,6 @@ export class LoginComponent implements OnInit {
       console.log('Logged in!');
       sessionStorage.setItem('Authorization', data['token']);
       this.router.navigate(['rulesRanking']);
-      
-
-      // var promise1 = new Promise(function(resolve, reject) {
-      //   resolve(this.router.navigate(['rulesRanking']));
-      // });
-      // promise1.then(function() {
-      //   location.reload();
-      // });
     },
     (error: any) => {
       if (error.status === 401) {
@@ -78,7 +70,6 @@ export class LoginComponent implements OnInit {
         }
         console.log(content)
         resolve(this.data.register(content).subscribe((data: any) => {
-        console.log(data)
         },
         (error) => {
           if (error.status === 401) {
@@ -88,7 +79,7 @@ export class LoginComponent implements OnInit {
           reject(console.log('Bad request'));
         }
     });
-    myPromise.then(data => this.login()).catch(data => console.log('Bad Login'))
+    myPromise.then(() => this.login()).catch(() => console.log('Bad Login'))
   }
 
 
