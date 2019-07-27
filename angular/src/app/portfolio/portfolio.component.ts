@@ -15,6 +15,7 @@ export class PortfolioComponent implements OnInit {
   accountData: any[] = [];
   assetData: any[] = [];
   assetValues: any[] = [];
+  showSpinner: boolean = true;
 
   constructor(private stocks: StocksService, private data: DataService, private auth: AuthService) {
     this.accountId = this.auth.decodeUser()['account_id']
@@ -60,7 +61,10 @@ export class PortfolioComponent implements OnInit {
           }
         }
     });
-    });
+    this.showSpinner = false;
+  });
   }
+
+
 
 }

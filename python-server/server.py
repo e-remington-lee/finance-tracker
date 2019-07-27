@@ -69,7 +69,7 @@ def register_user():
     if create_user:
         return make_response('Registration failed', 401, {'WWW-Authentication.route' : 'Email already Registered'})
 
-    return jsonify('bob'), 201
+    return jsonify(create_user), 201
 
 
 @app.route('/api/stockData', methods=['GET'])

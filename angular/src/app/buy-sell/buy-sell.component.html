@@ -3,7 +3,7 @@
           <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' 
           placeholder="Search for your own stocks (symbol required)" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>
     </div>  
-              <!-- <app-portfolio-card (notify)='portfolioTrade()'></app-portfolio-card> -->
+        <app-spinner *ngIf='showSpinner'></app-spinner>
     <div class='row' id='searchStock'>
         <app-stock-card class='col-12'  [symbol]="searchStockData"></app-stock-card>
         <canvas id="myChart" ></canvas>

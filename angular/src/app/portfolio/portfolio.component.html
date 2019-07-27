@@ -3,6 +3,7 @@
           <div class ='card-header'>
             <h3>Account Data</h3>
           </div>
+          <app-spinner *ngIf='showSpinner'></app-spinner>
             <div class='card-body' *ngFor='let asset of assetValues'>
                 <ul class='list-group list-group-flush'>
                   <li class="list-group-item"><b>Account Balance: </b> ${{asset.total_cash}}</li>

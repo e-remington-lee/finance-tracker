@@ -21,6 +21,7 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RulesRankingComponent } from './rules-ranking/rules-ranking.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { RulesRankingComponent } from './rules-ranking/rules-ranking.component';
     
     LoginPageComponent,
     RulesRankingComponent,
+    SpinnerComponent,
   ],
   entryComponents: [
     BuyModalComponent,

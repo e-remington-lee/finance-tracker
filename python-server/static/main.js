@@ -326,7 +326,7 @@ module.exports = "<div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n              <!-- <app-portfolio-card (notify)='portfolioTrade()'></app-portfolio-card> -->\n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n    <app-stock-card class='col-12' [symbol]=\"SPY\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"DIA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"IWM\"></app-stock-card>\n  </div>\n</body>\n\n"
+module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n        <app-spinner *ngIf='showSpinner'></app-spinner>\n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n    <app-stock-card class='col-12' [symbol]=\"SPY\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"DIA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"IWM\"></app-stock-card>\n  </div>\n</body>\n\n"
 
 /***/ }),
 
@@ -392,7 +392,7 @@ module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div cl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container' id='container'>\n        <div class='card text-center' id='account'>\n          <div class ='card-header'>\n            <h3>Account Data</h3>\n          </div>\n            <div class='card-body' *ngFor='let asset of assetValues'>\n                <ul class='list-group list-group-flush'>\n                  <li class=\"list-group-item\"><b>Account Balance: </b> ${{asset.total_cash}}</li>\n                  <li class=\"list-group-item\"><b>Total Holding Value: </b>${{asset.total_holding_value}} </li>\n                  <li class=\"list-group-item\"><b>Total Asset Value: </b>${{asset.total_asset_value}}</li>                         \n                </ul>\n            </div>\n          </div>\n        <canvas id=\"myChart\" ></canvas>\n  <div class='row' id='portfolio'>\n    <app-portfolio-card *ngFor = 'let stock of assetData' class='col-12' [stock]=\"stock\"></app-portfolio-card>\n  </div>\n</body>\n"
+module.exports = "<body class='container' id='container'>\n        <div class='card text-center' id='account'>\n          <div class ='card-header'>\n            <h3>Account Data</h3>\n          </div>\n          <app-spinner *ngIf='showSpinner'></app-spinner>\n            <div class='card-body' *ngFor='let asset of assetValues'>\n                <ul class='list-group list-group-flush'>\n                  <li class=\"list-group-item\"><b>Account Balance: </b> ${{asset.total_cash}}</li>\n                  <li class=\"list-group-item\"><b>Total Holding Value: </b>${{asset.total_holding_value}} </li>\n                  <li class=\"list-group-item\"><b>Total Asset Value: </b>${{asset.total_asset_value}}</li>                         \n                </ul>\n            </div>\n          </div>\n        <canvas id=\"myChart\" ></canvas>\n  <div class='row' id='portfolio'>\n    <app-portfolio-card *ngFor = 'let stock of assetData' class='col-12' [stock]=\"stock\"></app-portfolio-card>\n  </div>\n</body>\n"
 
 /***/ }),
 
@@ -415,6 +415,17 @@ module.exports = "<div class=\"container\" id = 'heading'>\n        <!-- used fo
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"modal fade\" id=\"sellStock\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of symbol'>\n        <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)='closeModal()'>\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)='closeModal()'>Close</button>\n        <button type=\"button\" class=\"btn btn-primary\"  data-dismiss=\"modal\" (click)='sellStockButton()'>Sell</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/spinner/spinner.component.html":
+/*!**************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/spinner/spinner.component.html ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"sk-fading-circle\">\n    <div class=\"sk-circle1 sk-circle\"></div>\n    <div class=\"sk-circle2 sk-circle\"></div>\n    <div class=\"sk-circle3 sk-circle\"></div>\n    <div class=\"sk-circle4 sk-circle\"></div>\n    <div class=\"sk-circle5 sk-circle\"></div>\n    <div class=\"sk-circle6 sk-circle\"></div>\n    <div class=\"sk-circle7 sk-circle\"></div>\n    <div class=\"sk-circle8 sk-circle\"></div>\n    <div class=\"sk-circle9 sk-circle\"></div>\n    <div class=\"sk-circle10 sk-circle\"></div>\n    <div class=\"sk-circle11 sk-circle\"></div>\n    <div class=\"sk-circle12 sk-circle\"></div>\n  </div>"
 
 /***/ }),
 
@@ -635,6 +646,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
 /* harmony import */ var _login_page_login_page_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./login-page/login-page.component */ "./src/app/login-page/login-page.component.ts");
 /* harmony import */ var _rules_ranking_rules_ranking_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./rules-ranking/rules-ranking.component */ "./src/app/rules-ranking/rules-ranking.component.ts");
+/* harmony import */ var _spinner_spinner_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./spinner/spinner.component */ "./src/app/spinner/spinner.component.ts");
+
 
 
 
@@ -676,6 +689,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _portfolio_card_portfolio_card_component__WEBPACK_IMPORTED_MODULE_17__["PortfolioCardComponent"],
             _login_page_login_page_component__WEBPACK_IMPORTED_MODULE_21__["LoginPageComponent"],
             _rules_ranking_rules_ranking_component__WEBPACK_IMPORTED_MODULE_22__["RulesRankingComponent"],
+            _spinner_spinner_component__WEBPACK_IMPORTED_MODULE_23__["SpinnerComponent"],
         ],
         entryComponents: [
             _buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_15__["BuyModalComponent"],
@@ -958,6 +972,7 @@ let BuySellComponent = class BuySellComponent {
         this.chartInfo = [];
         this.lableList = [];
         this.priceList = [];
+        this.showSpinner = true;
         this.accountId = this.auth.decodeUser()['account_id'];
     }
     ngOnInit() {
@@ -971,6 +986,7 @@ let BuySellComponent = class BuySellComponent {
         });
         this.data.returnStocks('IWM').subscribe((data) => {
             this.IWM = data;
+            this.showSpinner = false;
         });
         chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"].defaults.line.spanGaps = true;
         this.chart = new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"]('myChart', {
@@ -1525,6 +1541,7 @@ let PortfolioComponent = class PortfolioComponent {
         this.accountData = [];
         this.assetData = [];
         this.assetValues = [];
+        this.showSpinner = true;
         this.accountId = this.auth.decodeUser()['account_id'];
     }
     ngOnInit() {
@@ -1563,6 +1580,7 @@ let PortfolioComponent = class PortfolioComponent {
                     }
                 }
             });
+            this.showSpinner = false;
         });
     }
 };
@@ -1723,6 +1741,49 @@ SellModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_stocks_service__WEBPACK_IMPORTED_MODULE_2__["StocksService"], _data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"],
         _auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
 ], SellModalComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/spinner/spinner.component.scss":
+/*!************************************************!*\
+  !*** ./src/app/spinner/spinner.component.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".sk-fading-circle {\n  margin: 100px auto;\n  width: 40px;\n  height: 40px;\n  position: relative;\n}\n\n.sk-fading-circle .sk-circle {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.sk-fading-circle .sk-circle:before {\n  content: \"\";\n  display: block;\n  margin: 0 auto;\n  width: 15%;\n  height: 15%;\n  background-color: #333;\n  border-radius: 100%;\n  -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;\n  animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;\n}\n\n.sk-fading-circle .sk-circle2 {\n  -webkit-transform: rotate(30deg);\n  transform: rotate(30deg);\n}\n\n.sk-fading-circle .sk-circle3 {\n  -webkit-transform: rotate(60deg);\n  transform: rotate(60deg);\n}\n\n.sk-fading-circle .sk-circle4 {\n  -webkit-transform: rotate(90deg);\n  transform: rotate(90deg);\n}\n\n.sk-fading-circle .sk-circle5 {\n  -webkit-transform: rotate(120deg);\n  transform: rotate(120deg);\n}\n\n.sk-fading-circle .sk-circle6 {\n  -webkit-transform: rotate(150deg);\n  transform: rotate(150deg);\n}\n\n.sk-fading-circle .sk-circle7 {\n  -webkit-transform: rotate(180deg);\n  transform: rotate(180deg);\n}\n\n.sk-fading-circle .sk-circle8 {\n  -webkit-transform: rotate(210deg);\n  transform: rotate(210deg);\n}\n\n.sk-fading-circle .sk-circle9 {\n  -webkit-transform: rotate(240deg);\n  transform: rotate(240deg);\n}\n\n.sk-fading-circle .sk-circle10 {\n  -webkit-transform: rotate(270deg);\n  transform: rotate(270deg);\n}\n\n.sk-fading-circle .sk-circle11 {\n  -webkit-transform: rotate(300deg);\n  transform: rotate(300deg);\n}\n\n.sk-fading-circle .sk-circle12 {\n  -webkit-transform: rotate(330deg);\n  transform: rotate(330deg);\n}\n\n.sk-fading-circle .sk-circle2:before {\n  -webkit-animation-delay: -1.1s;\n  animation-delay: -1.1s;\n}\n\n.sk-fading-circle .sk-circle3:before {\n  -webkit-animation-delay: -1s;\n  animation-delay: -1s;\n}\n\n.sk-fading-circle .sk-circle4:before {\n  -webkit-animation-delay: -0.9s;\n  animation-delay: -0.9s;\n}\n\n.sk-fading-circle .sk-circle5:before {\n  -webkit-animation-delay: -0.8s;\n  animation-delay: -0.8s;\n}\n\n.sk-fading-circle .sk-circle6:before {\n  -webkit-animation-delay: -0.7s;\n  animation-delay: -0.7s;\n}\n\n.sk-fading-circle .sk-circle7:before {\n  -webkit-animation-delay: -0.6s;\n  animation-delay: -0.6s;\n}\n\n.sk-fading-circle .sk-circle8:before {\n  -webkit-animation-delay: -0.5s;\n  animation-delay: -0.5s;\n}\n\n.sk-fading-circle .sk-circle9:before {\n  -webkit-animation-delay: -0.4s;\n  animation-delay: -0.4s;\n}\n\n.sk-fading-circle .sk-circle10:before {\n  -webkit-animation-delay: -0.3s;\n  animation-delay: -0.3s;\n}\n\n.sk-fading-circle .sk-circle11:before {\n  -webkit-animation-delay: -0.2s;\n  animation-delay: -0.2s;\n}\n\n.sk-fading-circle .sk-circle12:before {\n  -webkit-animation-delay: -0.1s;\n  animation-delay: -0.1s;\n}\n\n@-webkit-keyframes sk-circleFadeDelay {\n  0%, 39%, 100% {\n    opacity: 0;\n  }\n  40% {\n    opacity: 1;\n  }\n}\n\n@keyframes sk-circleFadeDelay {\n  0%, 39%, 100% {\n    opacity: 0;\n  }\n  40% {\n    opacity: 1;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3Bpbm5lci9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcc3Bpbm5lclxcc3Bpbm5lci5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvc3Bpbm5lci9zcGlubmVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0FDQ0o7O0FERUU7RUFDRSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsT0FBQTtFQUNBLE1BQUE7QUNDSjs7QURFRTtFQUNFLFdBQUE7RUFDQSxjQUFBO0VBQ0EsY0FBQTtFQUNBLFVBQUE7RUFDQSxXQUFBO0VBQ0Esc0JBQUE7RUFDQSxtQkFBQTtFQUNBLG9FQUFBO0VBQ1EsNERBQUE7QUNDWjs7QURDRTtFQUNFLGdDQUFBO0VBRVEsd0JBQUE7QUNFWjs7QURBRTtFQUNFLGdDQUFBO0VBRVEsd0JBQUE7QUNHWjs7QURERTtFQUNFLGdDQUFBO0VBRVEsd0JBQUE7QUNJWjs7QURGRTtFQUNFLGlDQUFBO0VBRVEseUJBQUE7QUNLWjs7QURIRTtFQUNFLGlDQUFBO0VBRVEseUJBQUE7QUNNWjs7QURKRTtFQUNFLGlDQUFBO0VBRVEseUJBQUE7QUNPWjs7QURMRTtFQUNFLGlDQUFBO0VBRVEseUJBQUE7QUNRWjs7QURORTtFQUNFLGlDQUFBO0VBRVEseUJBQUE7QUNTWjs7QURQRTtFQUNFLGlDQUFBO0VBRVEseUJBQUE7QUNVWjs7QURSRTtFQUNFLGlDQUFBO0VBRVEseUJBQUE7QUNXWjs7QURURTtFQUNFLGlDQUFBO0VBRVEseUJBQUE7QUNZWjs7QURWRTtFQUNFLDhCQUFBO0VBQ1Esc0JBQUE7QUNhWjs7QURYRTtFQUNFLDRCQUFBO0VBQ1Esb0JBQUE7QUNjWjs7QURaRTtFQUNFLDhCQUFBO0VBQ1Esc0JBQUE7QUNlWjs7QURiRTtFQUNFLDhCQUFBO0VBQ1Esc0JBQUE7QUNnQlo7O0FEZEU7RUFDRSw4QkFBQTtFQUNRLHNCQUFBO0FDaUJaOztBRGZFO0VBQ0UsOEJBQUE7RUFDUSxzQkFBQTtBQ2tCWjs7QURoQkU7RUFDRSw4QkFBQTtFQUNRLHNCQUFBO0FDbUJaOztBRGpCRTtFQUNFLDhCQUFBO0VBQ1Esc0JBQUE7QUNvQlo7O0FEbEJFO0VBQ0UsOEJBQUE7RUFDUSxzQkFBQTtBQ3FCWjs7QURuQkU7RUFDRSw4QkFBQTtFQUNRLHNCQUFBO0FDc0JaOztBRHBCRTtFQUNFLDhCQUFBO0VBQ1Esc0JBQUE7QUN1Qlo7O0FEcEJFO0VBQ0U7SUFBZ0IsVUFBQTtFQ3dCbEI7RUR2QkU7SUFBTSxVQUFBO0VDMEJSO0FBQ0Y7O0FEeEJFO0VBQ0U7SUFBZ0IsVUFBQTtFQzJCbEI7RUQxQkU7SUFBTSxVQUFBO0VDNkJSO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9zcGlubmVyL3NwaW5uZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc2stZmFkaW5nLWNpcmNsZSB7XHJcbiAgICBtYXJnaW46IDEwMHB4IGF1dG87XHJcbiAgICB3aWR0aDogNDBweDtcclxuICAgIGhlaWdodDogNDBweDtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICB9XHJcbiAgXHJcbiAgLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGhlaWdodDogMTAwJTtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIGxlZnQ6IDA7XHJcbiAgICB0b3A6IDA7XHJcbiAgfVxyXG4gIFxyXG4gIC5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGU6YmVmb3JlIHtcclxuICAgIGNvbnRlbnQ6ICcnO1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICBtYXJnaW46IDAgYXV0bztcclxuICAgIHdpZHRoOiAxNSU7XHJcbiAgICBoZWlnaHQ6IDE1JTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMzMzM7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMDAlO1xyXG4gICAgLXdlYmtpdC1hbmltYXRpb246IHNrLWNpcmNsZUZhZGVEZWxheSAxLjJzIGluZmluaXRlIGVhc2UtaW4tb3V0IGJvdGg7XHJcbiAgICAgICAgICAgIGFuaW1hdGlvbjogc2stY2lyY2xlRmFkZURlbGF5IDEuMnMgaW5maW5pdGUgZWFzZS1pbi1vdXQgYm90aDtcclxuICB9XHJcbiAgLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTIge1xyXG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgzMGRlZyk7XHJcbiAgICAgICAgLW1zLXRyYW5zZm9ybTogcm90YXRlKDMwZGVnKTtcclxuICAgICAgICAgICAgdHJhbnNmb3JtOiByb3RhdGUoMzBkZWcpO1xyXG4gIH1cclxuICAuc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlMyB7XHJcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDYwZGVnKTtcclxuICAgICAgICAtbXMtdHJhbnNmb3JtOiByb3RhdGUoNjBkZWcpO1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSg2MGRlZyk7XHJcbiAgfVxyXG4gIC5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGU0IHtcclxuICAgIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoOTBkZWcpO1xyXG4gICAgICAgIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSg5MGRlZyk7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDkwZGVnKTtcclxuICB9XHJcbiAgLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTUge1xyXG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgxMjBkZWcpO1xyXG4gICAgICAgIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgxMjBkZWcpO1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgxMjBkZWcpO1xyXG4gIH1cclxuICAuc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlNiB7XHJcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDE1MGRlZyk7XHJcbiAgICAgICAgLW1zLXRyYW5zZm9ybTogcm90YXRlKDE1MGRlZyk7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDE1MGRlZyk7XHJcbiAgfVxyXG4gIC5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGU3IHtcclxuICAgIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoMTgwZGVnKTtcclxuICAgICAgICAtbXMtdHJhbnNmb3JtOiByb3RhdGUoMTgwZGVnKTtcclxuICAgICAgICAgICAgdHJhbnNmb3JtOiByb3RhdGUoMTgwZGVnKTtcclxuICB9XHJcbiAgLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTgge1xyXG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgyMTBkZWcpO1xyXG4gICAgICAgIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgyMTBkZWcpO1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgyMTBkZWcpO1xyXG4gIH1cclxuICAuc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlOSB7XHJcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDI0MGRlZyk7XHJcbiAgICAgICAgLW1zLXRyYW5zZm9ybTogcm90YXRlKDI0MGRlZyk7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDI0MGRlZyk7XHJcbiAgfVxyXG4gIC5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGUxMCB7XHJcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDI3MGRlZyk7XHJcbiAgICAgICAgLW1zLXRyYW5zZm9ybTogcm90YXRlKDI3MGRlZyk7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDI3MGRlZyk7XHJcbiAgfVxyXG4gIC5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGUxMSB7XHJcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDMwMGRlZyk7XHJcbiAgICAgICAgLW1zLXRyYW5zZm9ybTogcm90YXRlKDMwMGRlZyk7XHJcbiAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDMwMGRlZyk7IFxyXG4gIH1cclxuICAuc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlMTIge1xyXG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgzMzBkZWcpO1xyXG4gICAgICAgIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgzMzBkZWcpO1xyXG4gICAgICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgzMzBkZWcpOyBcclxuICB9XHJcbiAgLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTI6YmVmb3JlIHtcclxuICAgIC13ZWJraXQtYW5pbWF0aW9uLWRlbGF5OiAtMS4xcztcclxuICAgICAgICAgICAgYW5pbWF0aW9uLWRlbGF5OiAtMS4xczsgXHJcbiAgfVxyXG4gIC5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGUzOmJlZm9yZSB7XHJcbiAgICAtd2Via2l0LWFuaW1hdGlvbi1kZWxheTogLTFzO1xyXG4gICAgICAgICAgICBhbmltYXRpb24tZGVsYXk6IC0xczsgXHJcbiAgfVxyXG4gIC5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGU0OmJlZm9yZSB7XHJcbiAgICAtd2Via2l0LWFuaW1hdGlvbi1kZWxheTogLTAuOXM7XHJcbiAgICAgICAgICAgIGFuaW1hdGlvbi1kZWxheTogLTAuOXM7IFxyXG4gIH1cclxuICAuc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlNTpiZWZvcmUge1xyXG4gICAgLXdlYmtpdC1hbmltYXRpb24tZGVsYXk6IC0wLjhzO1xyXG4gICAgICAgICAgICBhbmltYXRpb24tZGVsYXk6IC0wLjhzOyBcclxuICB9XHJcbiAgLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTY6YmVmb3JlIHtcclxuICAgIC13ZWJraXQtYW5pbWF0aW9uLWRlbGF5OiAtMC43cztcclxuICAgICAgICAgICAgYW5pbWF0aW9uLWRlbGF5OiAtMC43czsgXHJcbiAgfVxyXG4gIC5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGU3OmJlZm9yZSB7XHJcbiAgICAtd2Via2l0LWFuaW1hdGlvbi1kZWxheTogLTAuNnM7XHJcbiAgICAgICAgICAgIGFuaW1hdGlvbi1kZWxheTogLTAuNnM7IFxyXG4gIH1cclxuICAuc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlODpiZWZvcmUge1xyXG4gICAgLXdlYmtpdC1hbmltYXRpb24tZGVsYXk6IC0wLjVzO1xyXG4gICAgICAgICAgICBhbmltYXRpb24tZGVsYXk6IC0wLjVzOyBcclxuICB9XHJcbiAgLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTk6YmVmb3JlIHtcclxuICAgIC13ZWJraXQtYW5pbWF0aW9uLWRlbGF5OiAtMC40cztcclxuICAgICAgICAgICAgYW5pbWF0aW9uLWRlbGF5OiAtMC40cztcclxuICB9XHJcbiAgLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTEwOmJlZm9yZSB7XHJcbiAgICAtd2Via2l0LWFuaW1hdGlvbi1kZWxheTogLTAuM3M7XHJcbiAgICAgICAgICAgIGFuaW1hdGlvbi1kZWxheTogLTAuM3M7XHJcbiAgfVxyXG4gIC5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGUxMTpiZWZvcmUge1xyXG4gICAgLXdlYmtpdC1hbmltYXRpb24tZGVsYXk6IC0wLjJzO1xyXG4gICAgICAgICAgICBhbmltYXRpb24tZGVsYXk6IC0wLjJzO1xyXG4gIH1cclxuICAuc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlMTI6YmVmb3JlIHtcclxuICAgIC13ZWJraXQtYW5pbWF0aW9uLWRlbGF5OiAtMC4xcztcclxuICAgICAgICAgICAgYW5pbWF0aW9uLWRlbGF5OiAtMC4xcztcclxuICB9XHJcbiAgXHJcbiAgQC13ZWJraXQta2V5ZnJhbWVzIHNrLWNpcmNsZUZhZGVEZWxheSB7XHJcbiAgICAwJSwgMzklLCAxMDAlIHsgb3BhY2l0eTogMDsgfVxyXG4gICAgNDAlIHsgb3BhY2l0eTogMTsgfVxyXG4gIH1cclxuICBcclxuICBAa2V5ZnJhbWVzIHNrLWNpcmNsZUZhZGVEZWxheSB7XHJcbiAgICAwJSwgMzklLCAxMDAlIHsgb3BhY2l0eTogMDsgfVxyXG4gICAgNDAlIHsgb3BhY2l0eTogMTsgfSBcclxuICB9IiwiLnNrLWZhZGluZy1jaXJjbGUge1xuICBtYXJnaW46IDEwMHB4IGF1dG87XG4gIHdpZHRoOiA0MHB4O1xuICBoZWlnaHQ6IDQwcHg7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZSB7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlOmJlZm9yZSB7XG4gIGNvbnRlbnQ6IFwiXCI7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBtYXJnaW46IDAgYXV0bztcbiAgd2lkdGg6IDE1JTtcbiAgaGVpZ2h0OiAxNSU7XG4gIGJhY2tncm91bmQtY29sb3I6ICMzMzM7XG4gIGJvcmRlci1yYWRpdXM6IDEwMCU7XG4gIC13ZWJraXQtYW5pbWF0aW9uOiBzay1jaXJjbGVGYWRlRGVsYXkgMS4ycyBpbmZpbml0ZSBlYXNlLWluLW91dCBib3RoO1xuICBhbmltYXRpb246IHNrLWNpcmNsZUZhZGVEZWxheSAxLjJzIGluZmluaXRlIGVhc2UtaW4tb3V0IGJvdGg7XG59XG5cbi5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGUyIHtcbiAgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgzMGRlZyk7XG4gIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgzMGRlZyk7XG4gIHRyYW5zZm9ybTogcm90YXRlKDMwZGVnKTtcbn1cblxuLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTMge1xuICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDYwZGVnKTtcbiAgLW1zLXRyYW5zZm9ybTogcm90YXRlKDYwZGVnKTtcbiAgdHJhbnNmb3JtOiByb3RhdGUoNjBkZWcpO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlNCB7XG4gIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoOTBkZWcpO1xuICAtbXMtdHJhbnNmb3JtOiByb3RhdGUoOTBkZWcpO1xuICB0cmFuc2Zvcm06IHJvdGF0ZSg5MGRlZyk7XG59XG5cbi5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGU1IHtcbiAgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgxMjBkZWcpO1xuICAtbXMtdHJhbnNmb3JtOiByb3RhdGUoMTIwZGVnKTtcbiAgdHJhbnNmb3JtOiByb3RhdGUoMTIwZGVnKTtcbn1cblxuLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTYge1xuICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDE1MGRlZyk7XG4gIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgxNTBkZWcpO1xuICB0cmFuc2Zvcm06IHJvdGF0ZSgxNTBkZWcpO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlNyB7XG4gIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoMTgwZGVnKTtcbiAgLW1zLXRyYW5zZm9ybTogcm90YXRlKDE4MGRlZyk7XG4gIHRyYW5zZm9ybTogcm90YXRlKDE4MGRlZyk7XG59XG5cbi5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGU4IHtcbiAgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgyMTBkZWcpO1xuICAtbXMtdHJhbnNmb3JtOiByb3RhdGUoMjEwZGVnKTtcbiAgdHJhbnNmb3JtOiByb3RhdGUoMjEwZGVnKTtcbn1cblxuLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTkge1xuICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDI0MGRlZyk7XG4gIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgyNDBkZWcpO1xuICB0cmFuc2Zvcm06IHJvdGF0ZSgyNDBkZWcpO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlMTAge1xuICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDI3MGRlZyk7XG4gIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgyNzBkZWcpO1xuICB0cmFuc2Zvcm06IHJvdGF0ZSgyNzBkZWcpO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlMTEge1xuICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDMwMGRlZyk7XG4gIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgzMDBkZWcpO1xuICB0cmFuc2Zvcm06IHJvdGF0ZSgzMDBkZWcpO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlMTIge1xuICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDMzMGRlZyk7XG4gIC1tcy10cmFuc2Zvcm06IHJvdGF0ZSgzMzBkZWcpO1xuICB0cmFuc2Zvcm06IHJvdGF0ZSgzMzBkZWcpO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlMjpiZWZvcmUge1xuICAtd2Via2l0LWFuaW1hdGlvbi1kZWxheTogLTEuMXM7XG4gIGFuaW1hdGlvbi1kZWxheTogLTEuMXM7XG59XG5cbi5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGUzOmJlZm9yZSB7XG4gIC13ZWJraXQtYW5pbWF0aW9uLWRlbGF5OiAtMXM7XG4gIGFuaW1hdGlvbi1kZWxheTogLTFzO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlNDpiZWZvcmUge1xuICAtd2Via2l0LWFuaW1hdGlvbi1kZWxheTogLTAuOXM7XG4gIGFuaW1hdGlvbi1kZWxheTogLTAuOXM7XG59XG5cbi5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGU1OmJlZm9yZSB7XG4gIC13ZWJraXQtYW5pbWF0aW9uLWRlbGF5OiAtMC44cztcbiAgYW5pbWF0aW9uLWRlbGF5OiAtMC44cztcbn1cblxuLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTY6YmVmb3JlIHtcbiAgLXdlYmtpdC1hbmltYXRpb24tZGVsYXk6IC0wLjdzO1xuICBhbmltYXRpb24tZGVsYXk6IC0wLjdzO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlNzpiZWZvcmUge1xuICAtd2Via2l0LWFuaW1hdGlvbi1kZWxheTogLTAuNnM7XG4gIGFuaW1hdGlvbi1kZWxheTogLTAuNnM7XG59XG5cbi5zay1mYWRpbmctY2lyY2xlIC5zay1jaXJjbGU4OmJlZm9yZSB7XG4gIC13ZWJraXQtYW5pbWF0aW9uLWRlbGF5OiAtMC41cztcbiAgYW5pbWF0aW9uLWRlbGF5OiAtMC41cztcbn1cblxuLnNrLWZhZGluZy1jaXJjbGUgLnNrLWNpcmNsZTk6YmVmb3JlIHtcbiAgLXdlYmtpdC1hbmltYXRpb24tZGVsYXk6IC0wLjRzO1xuICBhbmltYXRpb24tZGVsYXk6IC0wLjRzO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlMTA6YmVmb3JlIHtcbiAgLXdlYmtpdC1hbmltYXRpb24tZGVsYXk6IC0wLjNzO1xuICBhbmltYXRpb24tZGVsYXk6IC0wLjNzO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlMTE6YmVmb3JlIHtcbiAgLXdlYmtpdC1hbmltYXRpb24tZGVsYXk6IC0wLjJzO1xuICBhbmltYXRpb24tZGVsYXk6IC0wLjJzO1xufVxuXG4uc2stZmFkaW5nLWNpcmNsZSAuc2stY2lyY2xlMTI6YmVmb3JlIHtcbiAgLXdlYmtpdC1hbmltYXRpb24tZGVsYXk6IC0wLjFzO1xuICBhbmltYXRpb24tZGVsYXk6IC0wLjFzO1xufVxuXG5ALXdlYmtpdC1rZXlmcmFtZXMgc2stY2lyY2xlRmFkZURlbGF5IHtcbiAgMCUsIDM5JSwgMTAwJSB7XG4gICAgb3BhY2l0eTogMDtcbiAgfVxuICA0MCUge1xuICAgIG9wYWNpdHk6IDE7XG4gIH1cbn1cbkBrZXlmcmFtZXMgc2stY2lyY2xlRmFkZURlbGF5IHtcbiAgMCUsIDM5JSwgMTAwJSB7XG4gICAgb3BhY2l0eTogMDtcbiAgfVxuICA0MCUge1xuICAgIG9wYWNpdHk6IDE7XG4gIH1cbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/spinner/spinner.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/spinner/spinner.component.ts ***!
+  \**********************************************/
+/*! exports provided: SpinnerComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinnerComponent", function() { return SpinnerComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let SpinnerComponent = class SpinnerComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+};
+SpinnerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-spinner',
+        template: __webpack_require__(/*! raw-loader!./spinner.component.html */ "./node_modules/raw-loader/index.js!./src/app/spinner/spinner.component.html"),
+        styles: [__webpack_require__(/*! ./spinner.component.scss */ "./src/app/spinner/spinner.component.scss")]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], SpinnerComponent);
 
 
 

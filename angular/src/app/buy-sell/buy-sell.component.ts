@@ -22,6 +22,7 @@ export class BuySellComponent implements OnInit {
   accountId: number;
   searchStockSymbol: string;
   chart: Chart;
+  showSpinner: boolean = true;
 
   constructor(private stocks: StocksService, private data: DataService, private auth: AuthService) {
     this.accountId = this.auth.decodeUser()['account_id']
@@ -41,6 +42,7 @@ export class BuySellComponent implements OnInit {
 
     this.data.returnStocks('IWM').subscribe((data: any[]) => {
       this.IWM =  data;
+      this.showSpinner = false;
     });
     
     Chart.defaults.line.spanGaps = true;
