@@ -43,6 +43,7 @@ def login_user():
     login_response = login_account(email, password)
 
     if login_response == None:
+        print('login failed')
         return make_response('Login failed', 401, {'WWW-Authentication.route' : 'Login required!'})
 
     user = {'user_id': login_response['user_id'],

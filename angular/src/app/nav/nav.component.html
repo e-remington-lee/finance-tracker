@@ -10,13 +10,12 @@
       <li class='navbar-item'><a class='nav-link' routerLink='/buySell'>Trade</a></li>
       <li class='navbar-item'><a class='nav-link' routerLink='/portfolio'>Portfolio</a></li>
       <li class='navbar-item'><a class='nav-link' routerLink='/rulesRanking'>Rules</a></li>
-      <!-- <li class='navbar-item'><a class='nav-link' routerLink='/account'>{{default}}</a></li> -->
     </ul>
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">{{default}}
      </button>
       <ul class="dropdown-menu">
-        <li ><button (click)='logout()'>Logout </button></li>
+        <li ><a (click)='logout()' id='logout'>Logout</a></li>
       </ul>
     </div>
   </div>

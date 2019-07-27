@@ -33,7 +33,7 @@
           </div>
           <div class="modal-footer justify-content-center">
               <div class="options">
-                  <p>Not a member? <a (click)='rulesPage()'>Sign Up</a></p>
+                  <p>Not a member? <a (click)='rulesPage()' id='register'>Sign Up</a></p>
                 </div>
             <button type="button" class="btn btn-secondary ml-auto" (click)="close()">Close</button>
           </div>
@@ -42,7 +42,7 @@
             <div class="modal-body">
                 <form>
                     <div id='error-div'>
-                        <p class='text-danger'>{{registerEmailError}}</p>
+                        <p class='text-danger'>{{registerError}}</p>
                       </div>
                     <div class="form-group">
                       <label class="col-form-label">Email</label>
@@ -82,7 +82,7 @@
             </div>
             <div class="modal-footer justify-content-center">
                 <div class="options">
-                    <p>Already have an account? <a (click)='rulesPage()'>Log In</a></p>
+                    <p>Already have an account? <a (click)='rulesPage()' id='loginRoute'>Log In</a></p>
                   </div>
               <button type="button" class="btn btn-secondary ml-auto" (click)="close()">Close</button>
             </div>
