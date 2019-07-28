@@ -29,9 +29,7 @@ export class BuyModalComponent implements OnInit {
   buyStockButton() {
     if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
       this.errorMessage = 'Must be a positive whole number';
-      alert(`bad`)
       this.shares=0;
-      this.ngbActiveModal.close();
       return false
     } else {
       // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
