@@ -14,6 +14,8 @@ export class BuyModalComponent implements OnInit {
   symbol: any[]=[];
   accountId: number;
   shares: number;
+  errorMessage: string;
+  element: HTMLElement
   
   constructor(private stocks: StocksService, private data: DataService, private ngbActiveModal: NgbActiveModal,
      private auth: AuthService) {
@@ -26,11 +28,14 @@ export class BuyModalComponent implements OnInit {
 
   buyStockButton() {
     if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-      alert('Must be a positive whole number');
-      this.ngbActiveModal.close();
+      this.errorMessage = 'Must be a positive whole number';
+      alert(`bad`)
       this.shares=0;
+      this.ngbActiveModal.close();
       return false
     } else {
+      // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
+
       this.data.checkBalance(this.symbol[0]['symbol'], this.accountId, this.shares).subscribe(resp => {
         if (resp.status == 200) {
           this.symbol[0]['type'] = 'buy'
@@ -43,6 +48,7 @@ export class BuyModalComponent implements OnInit {
           this.stocks.transactions(this.symbol).subscribe();
           this.shares=0;  
           alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`)
+          this.ngbActiveModal.close();
         }
       },
       error => {
@@ -52,7 +58,6 @@ export class BuyModalComponent implements OnInit {
         }
       });
   }
-  this.ngbActiveModal.close();
 }
 
   closeModal() {

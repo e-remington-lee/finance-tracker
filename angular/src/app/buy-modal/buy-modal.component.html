@@ -8,6 +8,9 @@
           </button>
         </div>
         <div class="modal-body">
+          <div>
+            <p class='text-danger'> {{errorMessage}}</p>
+          </div>
             <form>
                 <div class="form-group">
                   <label for="email" class="col-form-label" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>
@@ -17,7 +20,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)='closeModal()'>Close</button>
-          <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)='buyStockButton()'>Buy</button>
+          <button id='closeBuyButton' type="button" class="btn btn-primary" data-dismiss="modal"  (click)='buyStockButton()'>Buy</button>
         </div>
       </div>
     </div>

@@ -315,7 +315,7 @@ module.exports = "<app-nav>\n</app-nav>\n\n\n<section>\n<router-outlet></router-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of symbol'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)='closeModal()'>\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)='closeModal()'>Close</button>\n          <button type=\"button\" class=\"btn btn-primary\"  data-dismiss=\"modal\" (click)='buyStockButton()'>Buy</button>\n        </div>\n      </div>\n    </div>\n  </div>\n"
+module.exports = "<div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of symbol'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)='closeModal()'>\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n          <div>\n            <p class='text-danger'> {{errorMessage}}</p>\n          </div>\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)='closeModal()'>Close</button>\n          <button id='closeBuyButton' type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\"  (click)='buyStockButton()'>Buy</button>\n        </div>\n      </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -875,12 +875,14 @@ let BuyModalComponent = class BuyModalComponent {
     }
     buyStockButton() {
         if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-            alert('Must be a positive whole number');
-            this.ngbActiveModal.close();
+            this.errorMessage = 'Must be a positive whole number';
+            alert(`bad`);
             this.shares = 0;
+            this.ngbActiveModal.close();
             return false;
         }
         else {
+            // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
             this.data.checkBalance(this.symbol[0]['symbol'], this.accountId, this.shares).subscribe(resp => {
                 if (resp.status == 200) {
                     this.symbol[0]['type'] = 'buy';
@@ -892,6 +894,7 @@ let BuyModalComponent = class BuyModalComponent {
                     this.stocks.transactions(this.symbol).subscribe();
                     this.shares = 0;
                     alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`);
+                    this.ngbActiveModal.close();
                 }
             }, error => {
                 if (error.status == 404 || error.status === 500) {
@@ -900,7 +903,6 @@ let BuyModalComponent = class BuyModalComponent {
                 }
             });
         }
-        this.ngbActiveModal.close();
     }
     closeModal() {
         this.ngbActiveModal.close();
