@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
 
       };
       
-      document.getElementById('closeLogin').setAttribute('data-dismiss','modal')
+      // document.getElementById('closeLogin').setAttribute('data-dismiss','modal')
       this.ngbActiveModal.close();
       console.log('Logged in!');
       sessionStorage.setItem('Authorization', data['token']);

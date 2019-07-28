@@ -868,6 +868,7 @@ let BuyModalComponent = class BuyModalComponent {
         this.ngbActiveModal = ngbActiveModal;
         this.auth = auth;
         this.symbol = [];
+        this.close = false;
         this.accountId = this.auth.decodeUser()['account_id'];
     }
     ngOnInit() {
@@ -881,18 +882,33 @@ let BuyModalComponent = class BuyModalComponent {
         }
         else {
             // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
+            // this.ngbActiveModal.close();
+            // alert(`Success`)
             this.data.checkBalance(this.symbol[0]['symbol'], this.accountId, this.shares).subscribe(resp => {
                 if (resp.status == 200) {
                     this.symbol[0]['type'] = 'buy';
                     this.symbol[0]['accountId'] = this.accountId;
                     this.symbol[0]['shares'] = this.shares;
+                    // let x = function() {
+                    //   console.log('ngbactive close')
+                    //   this.ngbActiveModal.close();
+                    // }
+                    // let y = function(callback) {
+                    //   document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
+                    //   callback()
+                    // }
+                    // y(x)
+                    this.close = true;
                     console.log(this.symbol);
                     this.stocks.buyStock2(this.symbol).subscribe();
                     this.stocks.updateBalanceBuy(this.symbol).subscribe();
                     this.stocks.transactions(this.symbol).subscribe();
                     this.shares = 0;
                     alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`);
-                    this.ngbActiveModal.close();
+                    // if (this.close) {
+                    //   document.getElementById('closeBuyButton').getAttribute('data-dismiss')
+                    //   this.ngbActiveModal.close();
+                    // }
                 }
             }, error => {
                 if (error.status == 404 || error.status === 500) {
@@ -1313,7 +1329,7 @@ let LoginComponent = class LoginComponent {
             function dataDismiss() {
             }
             ;
-            document.getElementById('closeLogin').setAttribute('data-dismiss', 'modal');
+            // document.getElementById('closeLogin').setAttribute('data-dismiss','modal')
             this.ngbActiveModal.close();
             console.log('Logged in!');
             sessionStorage.setItem('Authorization', data['token']);
