@@ -236,5 +236,8 @@ def portfolio_data():
     return jsonify(portfolio_information), 200
 
 
+# if __name__ == '__main__':
+#     app.run(debug=True, port=7000)
+
 if __name__ == '__main__':
-    app.run(debug=True, port=7000)
+    app.run()
