@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
       console.log('Logged in!');
       sessionStorage.setItem('Authorization', data['token']);
       this.router.navigate(['rulesRanking']);
-      location.reload()
+      // location.reload()
     },
     (error: any) => {
       if (error.status === 401) {
