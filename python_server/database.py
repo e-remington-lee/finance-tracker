@@ -14,7 +14,6 @@ def create_connection():
             password = os.environ['db_password'])
 
 
-
 def buy_stock(symbol, shares, account_id, company_name, latest_price):
      connection = create_connection()
      cur = connection.cursor()
