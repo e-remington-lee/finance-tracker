@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
 
   openLoginModal() {
    const modal = this.modalService.open(LoginComponent);
-   modal.componentInstance.symbol = 'bob';
    console.log('open') 
   }
 }

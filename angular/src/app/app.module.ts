@@ -36,8 +36,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
     BuyModalComponent,
     SellModalComponent,
     PortfolioCardComponent,
-
-    
     LoginPageComponent,
     RulesRankingComponent,
     SpinnerComponent,
