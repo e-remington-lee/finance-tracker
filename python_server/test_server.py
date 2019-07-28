@@ -1,14 +1,33 @@
 import unittest
-import server
-import stock_calculator
-import money
-import iex_connect
 import decimal
 from flask import jsonify
 from unittest.mock import Mock, patch
 
+import server
+import stock_calculator
+import money
+import iex_connect
 
-#use nose.tools to test iex_connect endpoints?
+class Test_iex(unittest.TestCase):
+    @patch("server.requests.get")
+    @patch("server.os")
+    def test_stock_data(self, mock_os, mock_requests):
+        mock_os.environ.return_value = 'public_key'
+        iex_connect.iex_stock_data('bynd')
+        mock_requests.assert_called_once()
+
+    @patch("server.requests.get")
+    @patch("server.os")
+    def test_chart_data(self, mock_os, mock_requests):
+        mock_os.environ.return_value = 'public_key'
+        iex_connect.iex_chart_data('bynd')
+        mock_requests.assert_called_once()
+
+    @patch("server.os")
+    def test_latest_price(self, mock_os):
+        mock_os.environ.return_value = 'public_key'
+        result = iex_connect.iex_latest_price('bynd')
+        self.assertEqual(type(result), float)
 
 class Test_money(unittest.TestCase):
     def test_money(self):

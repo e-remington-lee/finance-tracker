@@ -1,5 +1,7 @@
-import requests
 import os 
+
+import requests
+
 
 def iex_stock_data(symbol):
     payload = {
