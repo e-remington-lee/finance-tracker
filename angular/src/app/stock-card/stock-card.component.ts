@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { BuyModalComponent } from '../buy-modal/buy-modal.component';
 import { SellModalComponent } from '../sell-modal/sell-modal.component';
 
@@ -18,12 +18,18 @@ export class StockCardComponent implements OnInit {
   }
 
   openBuyModal() {
-    const modal = this.modalService.open(BuyModalComponent);
+    let modalOptions: NgbModalOptions = {
+      backdrop: 'static'
+    }
+    const modal = this.modalService.open(BuyModalComponent, modalOptions);
     modal.componentInstance.symbol = this.symbol;
   }
 
   openSellModal() {
-    const modal = this.modalService.open(SellModalComponent);
+    let modalOptions: NgbModalOptions = {
+      backdrop: 'static'
+    }
+    const modal = this.modalService.open(SellModalComponent, modalOptions);
     modal.componentInstance.symbol = this.symbol;
   }
 

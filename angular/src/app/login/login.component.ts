@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   }
 
   register() {
-    let myPromise = new Promise((resolve, reject) => {
       if (this.password === this.password2 && this.password.length >=6 && this.email !== undefined && this.email.includes("@")
           && this.firstName !== undefined && this.lastName !== undefined){
         const content = {
@@ -33,39 +32,39 @@ export class LoginComponent implements OnInit {
           'email': this.email,
           'password': this.password
         }
-        resolve(this.data.register(content).subscribe((data: any) => {
-          console.log("Registering..." + data)
-          this.login()
+        this.data.register(content).subscribe((data: any) => {
+          console.log('Registering...');
+          this.login();
         },
         (error) => {
           if (error.status === 401) {
             this.registerError = 'Email already exists';
           }
-        }))
-        } else if (this.email.includes("@") === false) {
-          reject(this.registerError = "Email required");
+        });
+        } else if (this.email.includes('@') === false) {
+          this.registerError = 'Email required';
         } else if (this.password !== this.password2) {
-          reject(this.registerError = 'Passwords do not match');
+          this.registerError = 'Passwords do not match';
         } else if (this.password.length < 6) {
-          reject(this.registerError = 'Password must be at least 6 characters long');
+          this.registerError = 'Password must be at least 6 characters long';
         } else { 
-          reject(this.registerError = 'All inputs required');
+          this.registerError = 'All inputs required';
         }
-    });
-    myPromise.then(() => this.login()).catch(() => console.log('Bad Login'))
-  }
+    }
+
 
   login() {
     this.data.login(this.email, this.password).subscribe((data: any) => {
+      // location.reload()
       this.ngbActiveModal.close();
       console.log('Logged in!');
       sessionStorage.setItem('Authorization', data['token']);
       this.router.navigate(['rulesRanking']);
-      // location.reload()
+      
     },
     (error: any) => {
       if (error.status === 401) {
-          this.errorMessage = "Incorrect email or password";
+          this.errorMessage = 'Incorrect email or password';
       }
     });
   }

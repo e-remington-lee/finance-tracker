@@ -1,5 +1,5 @@
  import { Component, OnInit } from '@angular/core';
- import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
@@ -15,7 +15,10 @@ export class HomeComponent implements OnInit {
   }
 
   openLoginModal() {
-   const modal = this.modalService.open(LoginComponent);
+    let modalOptions: NgbModalOptions = {
+      backdrop: 'static'
+    }
+   const modal = this.modalService.open(LoginComponent, modalOptions);
    console.log('open') 
   }
 }

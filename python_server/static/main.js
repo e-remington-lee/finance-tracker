@@ -315,7 +315,7 @@ module.exports = "<app-nav>\n</app-nav>\n\n\n<section>\n<router-outlet></router-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">    \n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of symbol'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)='closeModal()'>\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n          <div>\n            <p class='text-danger'> {{errorMessage}}</p>\n          </div>\n            <form>\n                <div class=\"form-group\">\n                  <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)='closeModal()'>Close</button>\n          <button id='closeBuyButton' type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\"  (click)='buyStockButton()'>Buy</button>\n        </div>\n      </div>\n    </div>\n  </div>\n"
+module.exports = "<!-- <div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\n    <div class=\"modal-dialog\" role=\"document\">     -->\n      <div class=\"modal-content\">\n        <div class=\"modal-header\" *ngFor='let stocks of symbol'>\n          <h5 class=\"modal-title\" >Buy {{stocks.company}}</h5>\n        </div>\n        <div class=\"modal-body\">\n          <div>\n            <p class='text-danger'> {{errorMessage}}</p>\n          </div>\n            <form>\n                <div class=\"form-group\">\n                  <label class=\"col-form-label\" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>\n                  <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n                </div>\n              </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)='closeModal()'>Close</button>\n          <button id='closeBuyButton' type=\"button\" class=\"btn btn-primary\" (click)='buyStockButton()'>Buy</button>\n        </div>\n      </div>\n    <!-- </div>\n  </div> -->\n"
 
 /***/ }),
 
@@ -337,7 +337,7 @@ module.exports = "<body class='container'>\n      <div class='form-group' id='se
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#login' (click)='openLoginModal()'>Login/Register</button>\n    </div>\n</header>\n\n<hr>\n<footer>\n  <h3>GitHub Repository</h3>\n  <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</footer>\n\n"
+module.exports = "\n<header id='showcase'>\n  <div class='card'>\n      <h1>Fantasy Stock Trading App</h1>\n      <p>Create an account to test your trading skills on the live market</p>\n        <button type='button' class='btn btn-primary' data-toggle='modal' (click)='openLoginModal()'>Login/Register</button>\n    </div>\n</header>\n\n<hr>\n<footer>\n  <h3>GitHub Repository</h3>\n  <p><a class=\"blue-text\" href=\"https://github.com/e-remington-lee/finance-tracker\">Link to Repository</a></p>\n</footer>\n\n"
 
 /***/ }),
 
@@ -359,7 +359,7 @@ module.exports = "<body>\n\t<div class=\"container-fluid\">\n\t\t<div class=\"co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <!-- <div class=\"modal fade\" id=\"login\" tabindex=\"-1\">\n    <div class=\"modal-dialog\" role=\"document\"> -->\n  <div class=\"modal-content\">\n        <div class=\"modal-c-tabs\">\n            <ul class=\"nav nav-tabs tabs-2\" role=\"tablist\">\n                <li class=\"nav-item\">\n                  <a class=\"nav-link active\" data-toggle=\"tab\" href=\"#loginTab\" role=\"tab\">Login</a>\n                </li>\n                <li class=\"nav-item\">\n                  <a class=\"nav-link\" data-toggle=\"tab\" href=\"#registerTab\" role=\"tab\">Register</a>\n                </li>\n              </ul>\n        <div class='tab-content'>\n\n        <div class='tab-pane fad-in show active' id='loginTab' role='tabpanel'>\n          <div class=\"modal-body\">\n              <form>\n                  <div id='error-div'>\n                    <p class='text-danger'>{{errorMessage}}</p>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\">Email</label>\n                    <input type=\"email\" [(ngModel)]='email' class=\"form-control\" id=\"emailLogin\" name='emailLogin' \n                    maxlength=\"34\" required>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"password\" class=\"col-form-label\">Password</label>\n                    <input type='password' [(ngModel)]='password' class=\"form-control\" id=\"passwordLogin\" \n                        name='passwordLogin' minlength=\"8\" maxlength=\"24\" required>\n                  </div>\n                </form>\n                <div class=\"text-center mt-2\">\n                    <button type=\"button\" class=\"btn btn-primary\" (click)='login()'>Login</button>\n                  </div>\n          </div>\n          <div class=\"modal-footer justify-content-center\">\n              <div class=\"options\">\n                  <p>Not a member? <a (click)='rulesPage()' id='register'>Sign Up</a></p>\n                </div>\n            <button type=\"button\" class=\"btn btn-secondary ml-auto\" (click)=\"close()\">Close</button>\n          </div>\n      </div>\n        <div class='tab-pane fade' id='registerTab' role='tabpanel'>\n            <div class=\"modal-body\">\n                <form>\n                    <div id='error-div'>\n                        <p class='text-danger'>{{registerError}}</p>\n                      </div>\n                    <div class=\"form-group\">\n                      <label class=\"col-form-label\">Email</label>\n                      <input type=\"text\" class=\"form-control\" id=\"emailRegister\" name='emailRegister'\n                      [(ngModel)]='email' maxlength=\"34\" required>\n                    </div>\n                    <div class=\"form-group\">\n                      <label class=\"col-form-label\">First Name</label>\n                      <input type=\"text\" class=\"form-control\" id=\"firstNameRegister\" name ='firstNameRegister'\n                       [(ngModel)]='firstName' maxlength=\"24\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label class=\"col-form-label\">Last Name</label>\n                        <input type=\"text\" class=\"form-control\" id=\"lastNameRegister\" name ='lastNameRegister' \n                        [(ngModel)]='lastName' maxlength=\"24\" required ='true'>\n                      </div>\n                    <div class=\"form-group\">\n                      <label class=\"col-form-label\">Password</label>\n                      <input type='password' class=\"form-control\" id=\"passwordRegister\" name='passwordRegister'\n                      [(ngModel)]='password' minlength=\"8\" maxlength=\"24\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label class=\"col-form-label\">Retype Password</label>\n                        <input type='password' class=\"form-control\" id=\"passwordRegisterCheck\" name = 'passwordRegisterCheck'\n                        [(ngModel)]='password2' minlength=\"8\" maxlength=\"24\" required>\n                      </div>\n                  </form>\n                  <div class=\"form-check\">\n                    <label class=\"form-check-label\">\n                      <input type=\"checkbox\" class=\"form-check-input\">\n                      By Clicking register you're agree to our policy & terms\n                    </label>\n                    </div>\n                  <div class=\"text-center mt-2\">\n                      <button type=\"submit\" class=\"btn btn-primary\" (click)='register()'>Register</button>\n                  </div>\n            </div>\n            <div class=\"modal-footer justify-content-center\">\n                <div class=\"options\">\n                    <p>Already have an account? <a (click)='rulesPage()' id='loginRoute'>Log In</a></p>\n                  </div>\n              <button type=\"button\" class=\"btn btn-secondary ml-auto\" (click)=\"close()\">Close</button>\n            </div>\n          </div>\n      </div>\n      </div>\n    </div>\n\n  <!-- </div>\n</div> -->\n\n\n<!-- <div class=\"modal fade\" id=\"login\" tabindex=\"-1\">\n    <div class=\"modal-dialog\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-c-tabs\">\n          <ul class=\"nav nav-tabs md-tabs tabs-2 light-blue darken-3\" role=\"tablist\">\n            <li class=\"nav-item\">\n              <a class=\"nav-link active\" data-toggle=\"tab\" href=\"#loginTab\" role=\"tab\"><i class=\"fas fa-user mr-1\"></i>\n                Login</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" data-toggle=\"tab\" href=\"#registerTab\" role=\"tab\"><i class=\"fas fa-user-plus mr-1\"></i>\n                Register</a>\n            </li>\n          </ul>\n  \n          <div class=\"tab-content\">\n            <div class=\"tab-pane fade in show active\" id=\"loginTab\" role=\"tabpanel\">\n                <div class=\"modal-body\">\n              <form>\n                  <div id='error-div'>\n                    <p class='text-danger'>{{errorMessage}}</p>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\">Email</label>\n                    <input type=\"email\" [(ngModel)]='email' class=\"form-control\" id=\"emailLogin\" name='emailLogin' \n                    maxlength=\"34\" required>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"password\" class=\"col-form-label\">Password</label>\n                    <input type='password' [(ngModel)]='password' class=\"form-control\" id=\"passwordLogin\" \n                        name='passwordLogin' minlength=\"8\" maxlength=\"24\" required>\n                  </div>\n                </form>\n                <div class=\"text-center mt-2\">\n                    <button type=\"button\" class=\"btn btn-primary\" (click)='login()' data-dismiss=\"modal\">Login</button>\n                  </div>\n              <div class=\"modal-footer justify-content-center\">\n                  <div class=\"options\">\n                      <p>Not a member? <a data-dismiss=\"modal\" (click)='rulesPage()' id='register'>Sign Up</a></p>\n                    </div>\n                <button type=\"button\" class=\"btn btn-secondary ml-auto\"  data-dismiss=\"modal\" (click)='close()'>Close</button>\n              </div>\n          \n            </div>\n            </div>\n  \n            <div class=\"tab-pane fade\" id=\"registerTab\" role=\"tabpanel\">\n  \n         \n              <div class=\"modal-body\">\n              <form>\n                  <div id='error-div'>\n                      <p class='text-danger'>{{registerError}}</p>\n                    </div>\n                  <div class=\"form-group\">\n                    <label class=\"col-form-label\">Email</label>\n                    <input type=\"text\" class=\"form-control\" id=\"emailRegister\" name='emailRegister'\n                    [(ngModel)]='email' maxlength=\"34\" required>\n                  </div>\n                  <div class=\"form-group\">\n                    <label class=\"col-form-label\">First Name</label>\n                    <input type=\"text\" class=\"form-control\" id=\"firstNameRegister\" name ='firstNameRegister'\n                     [(ngModel)]='firstName' maxlength=\"24\" required>\n                  </div>\n                  <div class=\"form-group\">\n                      <label class=\"col-form-label\">Last Name</label>\n                      <input type=\"text\" class=\"form-control\" id=\"lastNameRegister\" name ='lastNameRegister' \n                      [(ngModel)]='lastName' maxlength=\"24\" required ='true'>\n                    </div>\n                  <div class=\"form-group\">\n                    <label class=\"col-form-label\">Password</label>\n                    <input type='password' class=\"form-control\" id=\"passwordRegister\" name='passwordRegister'\n                    [(ngModel)]='password' minlength=\"8\" maxlength=\"24\" required>\n                  </div>\n                  <div class=\"form-group\">\n                      <label class=\"col-form-label\">Retype Password</label>\n                      <input type='password' class=\"form-control\" id=\"passwordRegisterCheck\" name = 'passwordRegisterCheck'\n                      [(ngModel)]='password2' minlength=\"8\" maxlength=\"24\" required>\n                    </div>\n                </form>\n                <div class=\"form-check\">\n                  <label class=\"form-check-label\">\n                    <input type=\"checkbox\" class=\"form-check-input\">\n                    By Clicking register you're agree to our policy & terms\n                  </label>\n                  </div>\n                <div class=\"text-center mt-2\">\n                    <button type=\"submit\" class=\"btn btn-primary\" (click)='register()' data-dismiss=\"modal\" >Register</button>\n                </div>\n          </div>\n        \n              <div class=\"modal-footer justify-content-center\">\n                  <div class=\"options\">\n                      <p>Already have an account? <a data-dismiss=\"modal\" (click)='rulesPage()' id='loginRoute'>Log In</a></p>\n                    </div>\n                <button type=\"button\" class=\"btn btn-secondary ml-auto\" data-dismiss=\"modal\" (click)=\"close()\">Close</button>\n              </div>\n            </div>\n          </div> \n        </div>\n      </div>\n    </div>\n  </div> -->\n \n  \n\n\n"
+module.exports = "  <div class=\"modal-content\">\n        <div class=\"modal-c-tabs\">\n            <ul class=\"nav nav-tabs tabs-2\" role=\"tablist\">\n                <li class=\"nav-item\">\n                  <a class=\"nav-link active\" data-toggle=\"tab\" href=\"#loginTab\" role=\"tab\">Login</a>\n                </li>\n                <li class=\"nav-item\">\n                  <a class=\"nav-link\" data-toggle=\"tab\" href=\"#registerTab\" role=\"tab\">Register</a>\n                </li>\n              </ul>\n        <div class='tab-content'>\n\n\n        <div class='tab-pane fad-in show active' id='loginTab' role='tabpanel'>\n          <div class=\"modal-body\">\n              <form>\n                  <div id='error-div'>\n                    <p class='text-danger'>{{errorMessage}}</p>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"email\" class=\"col-form-label\">Email</label>\n                    <input type=\"email\" [(ngModel)]='email' class=\"form-control\" id=\"emailLogin\" name='emailLogin' \n                    maxlength=\"34\" required>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"password\" class=\"col-form-label\">Password</label>\n                    <input type='password' [(ngModel)]='password' class=\"form-control\" id=\"passwordLogin\" \n                        name='passwordLogin' minlength=\"8\" maxlength=\"24\" required>\n                  </div>\n                </form>\n                <div class=\"text-center mt-2\">\n                    <button type=\"button\" class=\"btn btn-primary\" (click)='login()'>Login</button>\n                  </div>\n          </div>\n          <div class=\"modal-footer justify-content-center\">\n              <div class=\"options\">\n                  <p>Not a member? <a (click)='rulesPage()' id='register'>Sign Up</a></p>\n                </div>\n            <button type=\"button\" class=\"btn btn-secondary ml-auto\" (click)=\"close()\">Close</button>\n          </div>\n      </div>\n        <div class='tab-pane fade' id='registerTab' role='tabpanel'>\n            <div class=\"modal-body\">\n                <form>\n                    <div id='error-div'>\n                        <p class='text-danger'>{{registerError}}</p>\n                      </div>\n                    <div class=\"form-group\">\n                      <label class=\"col-form-label\">Email</label>\n                      <input type=\"text\" class=\"form-control\" id=\"emailRegister\" name='emailRegister'\n                      [(ngModel)]='email' maxlength=\"34\" required>\n                    </div>\n                    <div class=\"form-group\">\n                      <label class=\"col-form-label\">First Name</label>\n                      <input type=\"text\" class=\"form-control\" id=\"firstNameRegister\" name ='firstNameRegister'\n                       [(ngModel)]='firstName' maxlength=\"24\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label class=\"col-form-label\">Last Name</label>\n                        <input type=\"text\" class=\"form-control\" id=\"lastNameRegister\" name ='lastNameRegister' \n                        [(ngModel)]='lastName' maxlength=\"24\" required ='true'>\n                      </div>\n                    <div class=\"form-group\">\n                      <label class=\"col-form-label\">Password</label>\n                      <input type='password' class=\"form-control\" id=\"passwordRegister\" name='passwordRegister'\n                      [(ngModel)]='password' minlength=\"8\" maxlength=\"24\" required>\n                    </div>\n                    <div class=\"form-group\">\n                        <label class=\"col-form-label\">Retype Password</label>\n                        <input type='password' class=\"form-control\" id=\"passwordRegisterCheck\" name = 'passwordRegisterCheck'\n                        [(ngModel)]='password2' minlength=\"8\" maxlength=\"24\" required>\n                      </div>\n                  </form>\n                  <div class=\"form-check\">\n                    <label class=\"form-check-label\">\n                      <input type=\"checkbox\" class=\"form-check-input\">\n                      By Clicking register you're agree to our policy & terms\n                    </label>\n                    </div>\n                  <div class=\"text-center mt-2\">\n                      <button type=\"submit\" class=\"btn btn-primary\" (click)='register()'>Register</button>\n                  </div>\n            </div>\n            <div class=\"modal-footer justify-content-center\">\n                <div class=\"options\">\n                    <p>Already have an account? <a (click)='rulesPage()' id='loginRoute'>Log In</a></p>\n                  </div>\n              <button type=\"button\" class=\"btn btn-secondary ml-auto\" (click)=\"close()\">Close</button>\n            </div>\n          </div>\n      </div>\n      </div>\n    </div>\n"
 
 /***/ }),
 
@@ -414,7 +414,7 @@ module.exports = "<div class=\"container\" id = 'heading'>\n        <!-- used fo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"sellStock\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">    \n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of symbol'>\n        <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)='closeModal()'>\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <form>\n              <div class=\"form-group\">\n                <label for=\"email\" class=\"col-form-label\" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)='closeModal()'>Close</button>\n        <button type=\"button\" class=\"btn btn-primary\"  data-dismiss=\"modal\" (click)='sellStockButton()'>Sell</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<!-- <div class=\"modal fade\" id=\"sellStock\" tabindex='-1'>\n  <div class=\"modal-dialog\" role=\"document\">     -->\n    <div class=\"modal-content\">\n      <div class=\"modal-header\" *ngFor='let stocks of symbol'>\n        <h5 class=\"modal-title\" >Sell {{stocks.company}}</h5>\n      </div>\n      <div class=\"modal-body\">\n          <div>\n              <p class='text-danger'> {{errorMessage}}</p>\n            </div>\n          <form>\n              <div class=\"form-group\">\n                <label class=\"col-form-label\" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>\n                <input id='buyForm' type=\"number\" [(ngModel)]='shares' class=\"form-control\" name='bob' required>\n              </div>\n            </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)='closeModal()'>Close</button>\n        <button type=\"button\" class=\"btn btn-primary\" (click)='sellStockButton()'>Sell</button>\n      </div>\n    </div>\n  <!-- </div>\n</div> -->\n"
 
 /***/ }),
 
@@ -876,13 +876,10 @@ let BuyModalComponent = class BuyModalComponent {
     buyStockButton() {
         if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
             this.errorMessage = 'Must be a positive whole number';
-            alert(`bad`);
             this.shares = 0;
-            this.ngbActiveModal.close();
             return false;
         }
         else {
-            // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
             this.data.checkBalance(this.symbol[0]['symbol'], this.accountId, this.shares).subscribe(resp => {
                 if (resp.status == 200) {
                     this.symbol[0]['type'] = 'buy';
@@ -893,14 +890,16 @@ let BuyModalComponent = class BuyModalComponent {
                     this.stocks.updateBalanceBuy(this.symbol).subscribe();
                     this.stocks.transactions(this.symbol).subscribe();
                     this.shares = 0;
-                    alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`);
                     this.ngbActiveModal.close();
                 }
             }, error => {
                 if (error.status == 404 || error.status === 500) {
-                    alert('Purchase Failed: Insufficient Funds');
+                    this.errorMessage = 'Purchase failed: Insufficient funds for purchase';
                     this.shares = 0;
+                    return false;
                 }
+            }, () => {
+                alert(`Successful Purchase of ${this.symbol[0]['shares']} shares(s) of ${this.symbol[0]['company']}`);
             });
         }
     }
@@ -1174,7 +1173,10 @@ let HomeComponent = class HomeComponent {
     ngOnInit() {
     }
     openLoginModal() {
-        const modal = this.modalService.open(_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]);
+        let modalOptions = {
+            backdrop: 'static'
+        };
+        const modal = this.modalService.open(_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"], modalOptions);
         console.log('open');
     }
 };
@@ -1277,49 +1279,46 @@ let LoginComponent = class LoginComponent {
     ngOnInit() {
     }
     register() {
-        let myPromise = new Promise((resolve, reject) => {
-            if (this.password === this.password2 && this.password.length >= 6 && this.email !== undefined && this.email.includes("@")
-                && this.firstName !== undefined && this.lastName !== undefined) {
-                const content = {
-                    'firstName': this.firstName,
-                    'lastName': this.lastName,
-                    'email': this.email,
-                    'password': this.password
-                };
-                resolve(this.data.register(content).subscribe((data) => {
-                    console.log("Registering..." + data);
-                    this.login();
-                }, (error) => {
-                    if (error.status === 401) {
-                        this.registerError = 'Email already exists';
-                    }
-                }));
-            }
-            else if (this.email.includes("@") === false) {
-                reject(this.registerError = "Email required");
-            }
-            else if (this.password !== this.password2) {
-                reject(this.registerError = 'Passwords do not match');
-            }
-            else if (this.password.length < 6) {
-                reject(this.registerError = 'Password must be at least 6 characters long');
-            }
-            else {
-                reject(this.registerError = 'All inputs required');
-            }
-        });
-        myPromise.then(() => this.login()).catch(() => console.log('Bad Login'));
+        if (this.password === this.password2 && this.password.length >= 6 && this.email !== undefined && this.email.includes("@")
+            && this.firstName !== undefined && this.lastName !== undefined) {
+            const content = {
+                'firstName': this.firstName,
+                'lastName': this.lastName,
+                'email': this.email,
+                'password': this.password
+            };
+            this.data.register(content).subscribe((data) => {
+                console.log('Registering...');
+                this.login();
+            }, (error) => {
+                if (error.status === 401) {
+                    this.registerError = 'Email already exists';
+                }
+            });
+        }
+        else if (this.email.includes('@') === false) {
+            this.registerError = 'Email required';
+        }
+        else if (this.password !== this.password2) {
+            this.registerError = 'Passwords do not match';
+        }
+        else if (this.password.length < 6) {
+            this.registerError = 'Password must be at least 6 characters long';
+        }
+        else {
+            this.registerError = 'All inputs required';
+        }
     }
     login() {
         this.data.login(this.email, this.password).subscribe((data) => {
+            // location.reload()
             this.ngbActiveModal.close();
             console.log('Logged in!');
             sessionStorage.setItem('Authorization', data['token']);
             this.router.navigate(['rulesRanking']);
-            // location.reload()
         }, (error) => {
             if (error.status === 401) {
-                this.errorMessage = "Incorrect email or password";
+                this.errorMessage = 'Incorrect email or password';
             }
         });
     }
@@ -1500,7 +1499,7 @@ PortfolioCardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#account {\n  margin: 20px 0 0 0;\n}\n\nbody {\n  background-color: white;\n  padding: 10px;\n  height: 100%;\n}\n\n#portfolio {\n  margin: 10px 0 10px 0;\n  display: flex;\n}\n\nbody div a {\n  margin: 0 5px 0 0;\n  justify-content: right;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvL0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxwb3J0Zm9saW9cXHBvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0FDQ0o7O0FEQ0E7RUFBTSx1QkFBQTtFQUF1QixhQUFBO0VBQWEsWUFBQTtBQ0sxQzs7QURKQTtFQUNJLHFCQUFBO0VBQ0EsYUFBQTtBQ09KOztBREpBO0VBQ0ksaUJBQUE7RUFDQSxzQkFBQTtBQ09KIiwiZmlsZSI6InNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNhY2NvdW50IHtcclxuICAgIG1hcmdpbjogMjBweCAwIDAgMDtcclxufVxyXG5ib2R5IHtiYWNrZ3JvdW5kLWNvbG9yOndoaXRlO3BhZGRpbmc6MTBweDtoZWlnaHQ6MTAwJX1cclxuI3BvcnRmb2xpbyB7XHJcbiAgICBtYXJnaW46IDEwcHggMCAxMHB4IDA7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG59XHJcblxyXG5ib2R5IGRpdiBhIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG4gICAganVzdGlmeS1jb250ZW50OiByaWdodDtcclxufSIsIiNhY2NvdW50IHtcbiAgbWFyZ2luOiAyMHB4IDAgMCAwO1xufVxuXG5ib2R5IHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIGhlaWdodDogMTAwJTtcbn1cblxuI3BvcnRmb2xpbyB7XG4gIG1hcmdpbjogMTBweCAwIDEwcHggMDtcbiAgZGlzcGxheTogZmxleDtcbn1cblxuYm9keSBkaXYgYSB7XG4gIG1hcmdpbjogMCA1cHggMCAwO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHJpZ2h0O1xufSJdfQ== */"
+module.exports = "#account {\n  margin: 20px 0 0 0;\n}\n\nbody {\n  background-color: white;\n  padding: 10px;\n  height: 100%;\n}\n\n#portfolio {\n  margin: 10px 0;\n  display: flex;\n}\n\nbody div a {\n  margin: 0 5px 0 0;\n  justify-content: right;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9ydGZvbGlvL0Q6XFxNYXN0ZXJtaW5kXFxGaW5hbmNlLXRyYWNraW5nXFxhbmd1bGFyL3NyY1xcYXBwXFxwb3J0Zm9saW9cXHBvcnRmb2xpby5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvcG9ydGZvbGlvL3BvcnRmb2xpby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0FDQ0o7O0FEQ0E7RUFBTSx1QkFBQTtFQUF1QixhQUFBO0VBQWEsWUFBQTtBQ0sxQzs7QURIQTtFQUNJLGNBQUE7RUFDQSxhQUFBO0FDTUo7O0FESEE7RUFDSSxpQkFBQTtFQUNBLHNCQUFBO0FDTUoiLCJmaWxlIjoic3JjL2FwcC9wb3J0Zm9saW8vcG9ydGZvbGlvLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2FjY291bnQge1xyXG4gICAgbWFyZ2luOiAyMHB4IDAgMCAwO1xyXG59XHJcbmJvZHkge2JhY2tncm91bmQtY29sb3I6d2hpdGU7cGFkZGluZzoxMHB4O2hlaWdodDoxMDAlfVxyXG5cclxuI3BvcnRmb2xpbyB7XHJcbiAgICBtYXJnaW46IDEwcHggMCA7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG59XHJcblxyXG5ib2R5IGRpdiBhIHtcclxuICAgIG1hcmdpbjogMCA1cHggMCAwO1xyXG4gICAganVzdGlmeS1jb250ZW50OiByaWdodDtcclxufSIsIiNhY2NvdW50IHtcbiAgbWFyZ2luOiAyMHB4IDAgMCAwO1xufVxuXG5ib2R5IHtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIGhlaWdodDogMTAwJTtcbn1cblxuI3BvcnRmb2xpbyB7XG4gIG1hcmdpbjogMTBweCAwO1xuICBkaXNwbGF5OiBmbGV4O1xufVxuXG5ib2R5IGRpdiBhIHtcbiAgbWFyZ2luOiAwIDVweCAwIDA7XG4gIGp1c3RpZnktY29udGVudDogcmlnaHQ7XG59Il19 */"
 
 /***/ }),
 
@@ -1567,6 +1566,11 @@ let PortfolioComponent = class PortfolioComponent {
                     ]
                 },
                 options: {
+                    layout: {
+                        padding: {
+                            bottom: 10
+                        },
+                    },
                     legend: { display: true },
                     title: {
                         display: true,
@@ -1691,8 +1695,7 @@ let SellModalComponent = class SellModalComponent {
     }
     sellStockButton() {
         if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
-            alert('Must be a positive whole number');
-            this.ngbActiveModal.close();
+            this.errorMessage = 'Must be a positive whole number';
             return false;
         }
         else {
@@ -1705,16 +1708,18 @@ let SellModalComponent = class SellModalComponent {
                     this.stocks.updateBalanceSell(this.symbol).subscribe();
                     this.stocks.transactions(this.symbol).subscribe();
                     this.shares = 0;
-                    alert(`Successfully sold ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`);
+                    this.ngbActiveModal.close();
                 }
             }, error => {
                 if (error.status == 404 || error.status === 500) {
-                    alert('Sell Failed: Insufficient Share Quantity');
+                    this.errorMessage = 'Sell failed: Insufficient share quantity';
                     this.shares = 0;
+                    return false;
                 }
+            }, () => {
+                alert(`Successfully sold ${this.symbol[0]['shares']} shares(s) of ${this.symbol[0]['company']}`);
             });
         }
-        this.ngbActiveModal.close();
     }
     closeModal() {
         this.ngbActiveModal.close();
@@ -1822,11 +1827,17 @@ let StockCardComponent = class StockCardComponent {
     ngOnInit() {
     }
     openBuyModal() {
-        const modal = this.modalService.open(_buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_3__["BuyModalComponent"]);
+        let modalOptions = {
+            backdrop: 'static'
+        };
+        const modal = this.modalService.open(_buy_modal_buy_modal_component__WEBPACK_IMPORTED_MODULE_3__["BuyModalComponent"], modalOptions);
         modal.componentInstance.symbol = this.symbol;
     }
     openSellModal() {
-        const modal = this.modalService.open(_sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_4__["SellModalComponent"]);
+        let modalOptions = {
+            backdrop: 'static'
+        };
+        const modal = this.modalService.open(_sell_modal_sell_modal_component__WEBPACK_IMPORTED_MODULE_4__["SellModalComponent"], modalOptions);
         modal.componentInstance.symbol = this.symbol;
     }
 };

@@ -1,5 +1,3 @@
-  <!-- <div class="modal fade" id="login" tabindex="-1">
-    <div class="modal-dialog" role="document"> -->
   <div class="modal-content">
         <div class="modal-c-tabs">
             <ul class="nav nav-tabs tabs-2" role="tablist">
@@ -11,6 +9,7 @@
                 </li>
               </ul>
         <div class='tab-content'>
+
 
         <div class='tab-pane fad-in show active' id='loginTab' role='tabpanel'>
           <div class="modal-body">
@@ -92,115 +91,3 @@
       </div>
       </div>
     </div>
-
-  <!-- </div>
-</div> -->
-
-
-<!-- <div class="modal fade" id="login" tabindex="-1">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-c-tabs">
-          <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#loginTab" role="tab"><i class="fas fa-user mr-1"></i>
-                Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#registerTab" role="tab"><i class="fas fa-user-plus mr-1"></i>
-                Register</a>
-            </li>
-          </ul>
-  
-          <div class="tab-content">
-            <div class="tab-pane fade in show active" id="loginTab" role="tabpanel">
-                <div class="modal-body">
-              <form>
-                  <div id='error-div'>
-                    <p class='text-danger'>{{errorMessage}}</p>
-                  </div>
-                  <div class="form-group">
-                    <label for="email" class="col-form-label">Email</label>
-                    <input type="email" [(ngModel)]='email' class="form-control" id="emailLogin" name='emailLogin' 
-                    maxlength="34" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="password" class="col-form-label">Password</label>
-                    <input type='password' [(ngModel)]='password' class="form-control" id="passwordLogin" 
-                        name='passwordLogin' minlength="8" maxlength="24" required>
-                  </div>
-                </form>
-                <div class="text-center mt-2">
-                    <button type="button" class="btn btn-primary" (click)='login()' data-dismiss="modal">Login</button>
-                  </div>
-              <div class="modal-footer justify-content-center">
-                  <div class="options">
-                      <p>Not a member? <a data-dismiss="modal" (click)='rulesPage()' id='register'>Sign Up</a></p>
-                    </div>
-                <button type="button" class="btn btn-secondary ml-auto"  data-dismiss="modal" (click)='close()'>Close</button>
-              </div>
-          
-            </div>
-            </div>
-  
-            <div class="tab-pane fade" id="registerTab" role="tabpanel">
-  
-         
-              <div class="modal-body">
-              <form>
-                  <div id='error-div'>
-                      <p class='text-danger'>{{registerError}}</p>
-                    </div>
-                  <div class="form-group">
-                    <label class="col-form-label">Email</label>
-                    <input type="text" class="form-control" id="emailRegister" name='emailRegister'
-                    [(ngModel)]='email' maxlength="34" required>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-form-label">First Name</label>
-                    <input type="text" class="form-control" id="firstNameRegister" name ='firstNameRegister'
-                     [(ngModel)]='firstName' maxlength="24" required>
-                  </div>
-                  <div class="form-group">
-                      <label class="col-form-label">Last Name</label>
-                      <input type="text" class="form-control" id="lastNameRegister" name ='lastNameRegister' 
-                      [(ngModel)]='lastName' maxlength="24" required ='true'>
-                    </div>
-                  <div class="form-group">
-                    <label class="col-form-label">Password</label>
-                    <input type='password' class="form-control" id="passwordRegister" name='passwordRegister'
-                    [(ngModel)]='password' minlength="8" maxlength="24" required>
-                  </div>
-                  <div class="form-group">
-                      <label class="col-form-label">Retype Password</label>
-                      <input type='password' class="form-control" id="passwordRegisterCheck" name = 'passwordRegisterCheck'
-                      [(ngModel)]='password2' minlength="8" maxlength="24" required>
-                    </div>
-                </form>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input">
-                    By Clicking register you're agree to our policy & terms
-                  </label>
-                  </div>
-                <div class="text-center mt-2">
-                    <button type="submit" class="btn btn-primary" (click)='register()' data-dismiss="modal" >Register</button>
-                </div>
-          </div>
-        
-              <div class="modal-footer justify-content-center">
-                  <div class="options">
-                      <p>Already have an account? <a data-dismiss="modal" (click)='rulesPage()' id='loginRoute'>Log In</a></p>
-                    </div>
-                <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal" (click)="close()">Close</button>
-              </div>
-            </div>
-          </div> 
-        </div>
-      </div>
-    </div>
-  </div> -->
- 
-  
-
-

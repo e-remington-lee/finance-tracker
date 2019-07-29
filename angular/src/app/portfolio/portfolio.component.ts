@@ -54,6 +54,11 @@ export class PortfolioComponent implements OnInit {
           ]
         },
         options: {
+          layout: {
+            padding: {
+              bottom: 10
+            },
+          },
           legend: { display: true },
           title: {
             display: true,

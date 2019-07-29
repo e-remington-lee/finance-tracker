@@ -29,34 +29,36 @@ export class BuyModalComponent implements OnInit {
   buyStockButton() {
     if (Number.isInteger(this.shares) != true || this.shares == 0 || Math.sign(this.shares) == -1) {
       this.errorMessage = 'Must be a positive whole number';
-      alert(`bad`)
       this.shares=0;
-      this.ngbActiveModal.close();
       return false
     } else {
-      // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
-
       this.data.checkBalance(this.symbol[0]['symbol'], this.accountId, this.shares).subscribe(resp => {
         if (resp.status == 200) {
           this.symbol[0]['type'] = 'buy'
           this.symbol[0]['accountId'] = this.accountId
           this.symbol[0]['shares'] = this.shares
-
           console.log(this.symbol)
           this.stocks.buyStock2(this.symbol).subscribe();
           this.stocks.updateBalanceBuy(this.symbol).subscribe();
           this.stocks.transactions(this.symbol).subscribe();
-          this.shares=0;  
-          alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`)
+          this.shares=0;
           this.ngbActiveModal.close();
         }
       },
       error => {
         if (error.status == 404 || error.status === 500) {
-          alert('Purchase Failed: Insufficient Funds')
+          this.errorMessage = 'Purchase failed: Insufficient funds for purchase'
           this.shares = 0;
+          return false
         }
-      });
+      },
+      () => {
+        alert(`Successful Purchase of ${this.symbol[0]['shares']} shares(s) of ${this.symbol[0]['company']}`)
+
+      }
+      );
+      
+
   }
 }
 
