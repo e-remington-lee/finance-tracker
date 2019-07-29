@@ -58,9 +58,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.data.login(this.email, this.password).subscribe((data: any) => {
       function dataDismiss() {
-
       };
-      
       // document.getElementById('closeLogin').setAttribute('data-dismiss','modal')
       this.ngbActiveModal.close();
       console.log('Logged in!');

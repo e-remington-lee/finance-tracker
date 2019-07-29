@@ -15,7 +15,7 @@ export class BuyModalComponent implements OnInit {
   accountId: number;
   shares: number;
   errorMessage: string;
-  close: boolean = false;
+  responseStatus: number;
   
   constructor(private stocks: StocksService, private data: DataService, private ngbActiveModal: NgbActiveModal,
      private auth: AuthService) {
@@ -31,13 +31,43 @@ export class BuyModalComponent implements OnInit {
       this.errorMessage = 'Must be a positive whole number';
       this.shares=0;
       return false
-    } else {
-          // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
-          // this.ngbActiveModal.close();
+    } 
+    // this.data.checkBalance(this.symbol[0]['symbol'], this.accountId, this.shares).subscribe(resp => {
+    //     if (resp.status == 200) {
+    //       this.symbol[0]['type'] = 'buy'
+    //       this.symbol[0]['accountId'] = this.accountId
+    //       this.symbol[0]['shares'] = this.shares
+    //       document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
+    //       this.ngbActiveModal.close();
+    //       // let x = function() {
+    //       //   console.log('ngbactive close')
+    //       //   this.ngbActiveModal.close();
+    //       // }
+    //       // let y = function(callback) {
+    //       //   document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
+    //       //   callback()
+    //       // }
+
+    //       // y(x)
+    //       console.log(this.symbol)
+    //       this.stocks.buyStock2(this.symbol).subscribe();
+    //       this.stocks.updateBalanceBuy(this.symbol).subscribe();
+    //       this.stocks.transactions(this.symbol).subscribe();
+    //       this.shares=0;  
+    //       alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`)
+    //     } else if (resp.status == 404){
+    //       alert('Purchase Failed: Insufficient Funds')
+    //       this.shares = 0;
+    //     }
+    //   });
+
+     
+          document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
+          this.ngbActiveModal.close();
           // alert(`Success`)
 
       this.data.checkBalance(this.symbol[0]['symbol'], this.accountId, this.shares).subscribe(resp => {
-        if (resp.status == 200) {
+        if (resp.status === 200) {
           this.symbol[0]['type'] = 'buy'
           this.symbol[0]['accountId'] = this.accountId
           this.symbol[0]['shares'] = this.shares
@@ -46,34 +76,37 @@ export class BuyModalComponent implements OnInit {
           //   this.ngbActiveModal.close();
           // }
           // let y = function(callback) {
-          //   document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
+            // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
           //   callback()
           // }
-
           // y(x)
 
-          this.close = true;
           console.log(this.symbol)
           this.stocks.buyStock2(this.symbol).subscribe();
           this.stocks.updateBalanceBuy(this.symbol).subscribe();
           this.stocks.transactions(this.symbol).subscribe();
           this.shares=0;  
+          // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
+          // this.ngbActiveModal.close();
           alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`)
-    
-          // if (this.close) {
-          //   document.getElementById('closeBuyButton').getAttribute('data-dismiss')
-          //   this.ngbActiveModal.close();
-          // }
         } 
       },
       error => {
-        if (error.status == 404 || error.status === 500) {
+        if (error.status === 404 || error.status === 500) {
           alert('Purchase Failed: Insufficient Funds')
           this.shares = 0;
+          return false
         }
-      });
+      });      
+
+
   } 
-}
+
+  xyz() {
+          document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
+          this.ngbActiveModal.close();
+          alert(`Success`)
+  }
 
   closeModal() {
     this.ngbActiveModal.close();
