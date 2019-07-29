@@ -71,24 +71,13 @@ export class BuyModalComponent implements OnInit {
           this.symbol[0]['type'] = 'buy'
           this.symbol[0]['accountId'] = this.accountId
           this.symbol[0]['shares'] = this.shares
-          // let x = function() {
-          //   console.log('ngbactive close')
-          //   this.ngbActiveModal.close();
-          // }
-          // let y = function(callback) {
-            // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
-          //   callback()
-          // }
-          // y(x)
 
           console.log(this.symbol)
           this.stocks.buyStock2(this.symbol).subscribe();
           this.stocks.updateBalanceBuy(this.symbol).subscribe();
           this.stocks.transactions(this.symbol).subscribe();
           this.shares=0;  
-          // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
-          // this.ngbActiveModal.close();
-          alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`)
+
         } 
       },
       error => {
@@ -97,16 +86,15 @@ export class BuyModalComponent implements OnInit {
           this.shares = 0;
           return false
         }
-      });      
-
-
+      },
+      () => {
+        console.log('complete')
+        // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
+        // this.ngbActiveModal.close();
+        alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`)
+      }
+      );      
   } 
-
-  xyz() {
-          document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
-          this.ngbActiveModal.close();
-          alert(`Success`)
-  }
 
   closeModal() {
     this.ngbActiveModal.close();

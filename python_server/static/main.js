@@ -914,23 +914,11 @@ let BuyModalComponent = class BuyModalComponent {
                 this.symbol[0]['type'] = 'buy';
                 this.symbol[0]['accountId'] = this.accountId;
                 this.symbol[0]['shares'] = this.shares;
-                // let x = function() {
-                //   console.log('ngbactive close')
-                //   this.ngbActiveModal.close();
-                // }
-                // let y = function(callback) {
-                // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
-                //   callback()
-                // }
-                // y(x)
                 console.log(this.symbol);
                 this.stocks.buyStock2(this.symbol).subscribe();
                 this.stocks.updateBalanceBuy(this.symbol).subscribe();
                 this.stocks.transactions(this.symbol).subscribe();
                 this.shares = 0;
-                // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
-                // this.ngbActiveModal.close();
-                alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`);
             }
         }, error => {
             if (error.status === 404 || error.status === 500) {
@@ -938,12 +926,12 @@ let BuyModalComponent = class BuyModalComponent {
                 this.shares = 0;
                 return false;
             }
+        }, () => {
+            console.log('complete');
+            // document.getElementById('closeBuyButton').setAttribute('data-dismiss','modal')
+            // this.ngbActiveModal.close();
+            alert(`Successful Purchase of ${this.symbol[0]['shares']} Shares(s) of ${this.symbol[0]['company']}`);
         });
-    }
-    xyz() {
-        document.getElementById('closeBuyButton').setAttribute('data-dismiss', 'modal');
-        this.ngbActiveModal.close();
-        alert(`Success`);
     }
     closeModal() {
         this.ngbActiveModal.close();
@@ -1351,21 +1339,34 @@ let LoginComponent = class LoginComponent {
         });
         myPromise.then(() => this.login()).catch(() => console.log('Bad Login'));
     }
+    // login() {
+    //   this.data.login(this.email, this.password).subscribe((data: any) => {
+    //     document.getElementById('closeLogin').setAttribute('data-dismiss','modal')
+    //     this.ngbActiveModal.close();
+    //     console.log('Logged in!');
+    //     sessionStorage.setItem('Authorization', data['token']);
+    //     this.router.navigate(['rulesRanking']);
+    //     // location.reload()
+    //   },
+    //   (error: any) => {
+    //     if (error.status === 401) {
+    //         this.errorMessage = "Incorrect email or password";
+    //     }
+    //   });
+    // }
     login() {
+        document.getElementById('closeLogin').setAttribute('data-dismiss', 'modal');
         this.data.login(this.email, this.password).subscribe((data) => {
-            function dataDismiss() {
-            }
-            ;
-            // document.getElementById('closeLogin').setAttribute('data-dismiss','modal')
             this.ngbActiveModal.close();
             console.log('Logged in!');
             sessionStorage.setItem('Authorization', data['token']);
             this.router.navigate(['rulesRanking']);
-            // location.reload()
         }, (error) => {
             if (error.status === 401) {
                 this.errorMessage = "Incorrect email or password";
             }
+        }, () => {
+            // location.reload(true)
         });
     }
     close() {
