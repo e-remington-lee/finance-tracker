@@ -44,7 +44,7 @@ export class LoginPageComponent implements OnInit {
         this.errorMessageRegister = 'Email required';
       } else if (this.password !== this.password2) {
         this.errorMessageRegister = 'Passwords do not match';
-      } else if (this.password.length < 6) {
+      } else if (this.password.length < 6 || this.password.length === null) {
         this.errorMessageRegister = 'Password must be at least 6 characters long';
       } else { 
         this.errorMessageRegister = 'All inputs required';
