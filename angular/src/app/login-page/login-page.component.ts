@@ -54,11 +54,9 @@ export class LoginPageComponent implements OnInit {
 
   login() {
     this.data.login(this.email, this.password).subscribe((data: any) => {
-      
       console.log('Logged in!');
       sessionStorage.setItem('Authorization', data['token']);
       this.router.navigate(['rulesRanking']);
-      
     },
     (error: any) => {
       if (error.status === 401) {
