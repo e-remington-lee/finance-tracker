@@ -16,7 +16,7 @@ export class LoginPageComponent implements OnInit {
   lastName:string;
   errorMessageLogin: string;
   errorMessageRegister: string;
-
+  
 
   constructor(private data: DataService, private router: Router) { }
 

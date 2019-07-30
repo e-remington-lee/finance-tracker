@@ -1,6 +1,7 @@
-// #singleCard {
-//     margin: 10px 0 0 0;
-// }
+.rightBorder {
+    padding-right:10px; 
+    border-right: 1px solid #ccc;
+}
 
 div {
     display: flex;
@@ -13,4 +14,15 @@ div p {
 
 button {
     margin: 0 5px 0 0;
+}
+
+@media only screen and (max-width: 992px) {
+
+    #stockHeader {
+        border-right: 0px;
+    }
+    .marginSpace {
+        justify-content: center;
+        margin: 10px 0;
+    }
 }
