@@ -1087,26 +1087,60 @@ let DataService = class DataService {
     constructor(http) {
         this.http = http;
     }
+    // returnStocks(symbol) {
+    //   const params = { params: new HttpParams().set('symbol', symbol) };
+    //   return this.http.get('http://localhost:7000/api/stockData', params);
+    // };
+    // getAccountData(accountId) {
+    //   const params = { params: new HttpParams().set('accountId', accountId)} ;
+    //   return this.http.get('http://localhost:7000/api/portfolioData', params);
+    // }
+    // chartData(symbol) {
+    //   const params = { params: new HttpParams().set('symbol', symbol) };
+    //   return this.http.get('http://localhost:7000/api/intraDayData', params);
+    // }
+    // checkBalance(symbol, accountId, shares) {
+    //   const params = new HttpParams().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
+    //   return this.http.get('http://localhost:7000/api/checkBalance', {observe: 'response', params});
+    // }
+    // checkStock(symbol, accountId, shares) {
+    //  const params = new HttpParams().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
+    //  return this.http.get('http://localhost:7000/api/checkStock', {observe: 'response', params});
+    // }
+    // login(email, password) {
+    //   const content = {
+    //     'Content-Type': 'application/json',
+    //     'Accept': 'application/json',
+    //     'Access-Control-Allow-Headers': 'Content-Type',
+    //     'x-email': email,
+    //     'x-password': password
+    //   }
+    //   const options = {headers: new HttpHeaders(content)}
+    //   return this.http.get('http://localhost:7000/api/login', options)
+    // }
+    // register(content) {
+    //   return this.http.post('http://localhost:7000/api/register', content)    
+    // }
     returnStocks(symbol) {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
-        return this.http.get('http://localhost:7000/api/stockData', params);
+        return this.http.get('/api/stockData', params);
     }
     ;
     getAccountData(accountId) {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('accountId', accountId) };
-        return this.http.get('http://localhost:7000/api/portfolioData', params);
+        return this.http.get('/api/portfolioData', params);
     }
     chartData(symbol) {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
-        return this.http.get('http://localhost:7000/api/intraDayData', params);
+        return this.http.get('/api/intraDayData', params);
     }
     checkBalance(symbol, accountId, shares) {
         const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
-        return this.http.get('http://localhost:7000/api/checkBalance', { observe: 'response', params });
+        return this.http.get('/api/checkBalance', { observe: 'response', params });
     }
     checkStock(symbol, accountId, shares) {
         const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
-        return this.http.get('http://localhost:7000/api/checkStock', { observe: 'response', params });
+        return this.http.get('/api/checkStock', { observe: 'response', params });
     }
     login(email, password) {
         const content = {
@@ -1117,10 +1151,10 @@ let DataService = class DataService {
             'x-password': password
         };
         const options = { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"](content) };
-        return this.http.get('http://localhost:7000/api/login', options);
+        return this.http.get('/api/login', options);
     }
     register(content) {
-        return this.http.post('http://localhost:7000/api/register', content);
+        return this.http.post('/api/register', content);
     }
 };
 DataService.ctorParameters = () => [
@@ -1144,7 +1178,7 @@ DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#showcase {\n  background: url(\"https://images.unsplash.com/photo-1535320903710-d993d3d77d29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: 100vh;\n  justify-content: center;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\nheader div {\n  width: 50%;\n  background-color: rgba(137, 137, 146, 0.5);\n  align-items: center;\n  justify-content: center;\n  font-size: 20px;\n}\n\ndiv button {\n  font-size: 20px;\n  margin: 0 5px 5px 5px;\n}\n\nfooter {\n  margin: 0 0 0 30px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcaG9tZVxcaG9tZS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksd0pBQUE7RUFFQSw0QkFBQTtFQUNBLHNCQUFBO0VBQ0EsMkJBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0FDQUo7O0FER0E7RUFDSSxVQUFBO0VBQ0EsMENBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtBQ0FKOztBREdBO0VBQ0ksZUFBQTtFQUNBLHFCQUFBO0FDQUo7O0FER0E7RUFDSSxrQkFBQTtBQ0FKIiwiZmlsZSI6InNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3Nob3djYXNlIHtcclxuICAgIGJhY2tncm91bmQ6IHVybCgnaHR0cHM6Ly9pbWFnZXMudW5zcGxhc2guY29tL3Bob3RvLTE1MzUzMjA5MDM3MTAtZDk5M2QzZDc3ZDI5P2l4bGliPXJiLTEuMi4xJml4aWQ9ZXlKaGNIQmZhV1FpT2pFeU1EZDkmYXV0bz1mb3JtYXQmZml0PWNyb3Amdz03NTAmcT04MCcpO1xyXG4gICAgLy8gYmFja2dyb3VuZDogdXJsKCcuLi8uLi9sYW5kaW5nSW1hZ2UuanBnJyk7XHJcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xyXG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcclxuICAgIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG5oZWFkZXIgZGl2IHtcclxuICAgIHdpZHRoOiA1MCU7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEzNywgMTM3LCAxNDYsIDAuNSk7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuXHJcbmRpdiBidXR0b24ge1xyXG4gICAgZm9udC1zaXplOjIwcHg7XHJcbiAgICBtYXJnaW46IDAgNXB4IDVweCA1cHg7XHJcbn1cclxuXHJcbmZvb3RlciB7XHJcbiAgICBtYXJnaW46IDAgMCAwIDMwcHggO1xyXG59IiwiI3Nob3djYXNlIHtcbiAgYmFja2dyb3VuZDogdXJsKFwiaHR0cHM6Ly9pbWFnZXMudW5zcGxhc2guY29tL3Bob3RvLTE1MzUzMjA5MDM3MTAtZDk5M2QzZDc3ZDI5P2l4bGliPXJiLTEuMi4xJml4aWQ9ZXlKaGNIQmZhV1FpT2pFeU1EZDkmYXV0bz1mb3JtYXQmZml0PWNyb3Amdz03NTAmcT04MFwiKTtcbiAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xuICBoZWlnaHQ6IDEwMHZoO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5cbmhlYWRlciBkaXYge1xuICB3aWR0aDogNTAlO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEzNywgMTM3LCAxNDYsIDAuNSk7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBmb250LXNpemU6IDIwcHg7XG59XG5cbmRpdiBidXR0b24ge1xuICBmb250LXNpemU6IDIwcHg7XG4gIG1hcmdpbjogMCA1cHggNXB4IDVweDtcbn1cblxuZm9vdGVyIHtcbiAgbWFyZ2luOiAwIDAgMCAzMHB4O1xufSJdfQ== */"
+module.exports = "#showcase {\n  background: url(\"https://images.unsplash.com/photo-1535320903710-d993d3d77d29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80\");\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: 100vh;\n  justify-content: center;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\nheader div {\n  width: 50%;\n  background-color: rgba(137, 137, 146, 0.5);\n  align-items: center;\n  justify-content: center;\n  font-size: 20px;\n}\n\ndiv button {\n  font-size: 20px;\n  margin: 0 5px 5px 5px;\n}\n\nfooter {\n  margin: 0 0 0 30px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9EOlxcTWFzdGVybWluZFxcRmluYW5jZS10cmFja2luZ1xcYW5ndWxhci9zcmNcXGFwcFxcaG9tZVxcaG9tZS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksd0pBQUE7RUFFQSw0QkFBQTtFQUNBLHNCQUFBO0VBQ0EsMkJBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0FDQUo7O0FESUE7RUFDSSxVQUFBO0VBQ0EsMENBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtBQ0RKOztBRElBO0VBQ0ksZUFBQTtFQUNBLHFCQUFBO0FDREo7O0FESUE7RUFDSSxrQkFBQTtBQ0RKIiwiZmlsZSI6InNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3Nob3djYXNlIHtcclxuICAgIGJhY2tncm91bmQ6IHVybCgnaHR0cHM6Ly9pbWFnZXMudW5zcGxhc2guY29tL3Bob3RvLTE1MzUzMjA5MDM3MTAtZDk5M2QzZDc3ZDI5P2l4bGliPXJiLTEuMi4xJml4aWQ9ZXlKaGNIQmZhV1FpT2pFeU1EZDkmYXV0bz1mb3JtYXQmZml0PWNyb3Amdz03NTAmcT04MCcpO1xyXG4gICAgLy8gYmFja2dyb3VuZDogdXJsKCcuLi8uLi9sYW5kaW5nSW1hZ2UuanBnJyk7XHJcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xyXG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcclxuICAgIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG5cclxuaGVhZGVyIGRpdiB7XHJcbiAgICB3aWR0aDogNTAlO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgxMzcsIDEzNywgMTQ2LCAwLjUpO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgZm9udC1zaXplOiAyMHB4O1xyXG59XHJcblxyXG5kaXYgYnV0dG9uIHtcclxuICAgIGZvbnQtc2l6ZToyMHB4O1xyXG4gICAgbWFyZ2luOiAwIDVweCA1cHggNXB4O1xyXG59XHJcblxyXG5mb290ZXIge1xyXG4gICAgbWFyZ2luOiAwIDAgMCAzMHB4IDtcclxufSIsIiNzaG93Y2FzZSB7XG4gIGJhY2tncm91bmQ6IHVybChcImh0dHBzOi8vaW1hZ2VzLnVuc3BsYXNoLmNvbS9waG90by0xNTM1MzIwOTAzNzEwLWQ5OTNkM2Q3N2QyOT9peGxpYj1yYi0xLjIuMSZpeGlkPWV5SmhjSEJmYVdRaU9qRXlNRGQ5JmF1dG89Zm9ybWF0JmZpdD1jcm9wJnc9NzUwJnE9ODBcIik7XG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcbiAgaGVpZ2h0OiAxMDB2aDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG5oZWFkZXIgZGl2IHtcbiAgd2lkdGg6IDUwJTtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgxMzcsIDEzNywgMTQ2LCAwLjUpO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgZm9udC1zaXplOiAyMHB4O1xufVxuXG5kaXYgYnV0dG9uIHtcbiAgZm9udC1zaXplOiAyMHB4O1xuICBtYXJnaW46IDAgNXB4IDVweCA1cHg7XG59XG5cbmZvb3RlciB7XG4gIG1hcmdpbjogMCAwIDAgMzBweDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -1311,7 +1345,6 @@ let LoginComponent = class LoginComponent {
     }
     login() {
         this.data.login(this.email, this.password).subscribe((data) => {
-            // location.reload()
             this.ngbActiveModal.close();
             console.log('Logged in!');
             sessionStorage.setItem('Authorization', data['token']);
@@ -1320,6 +1353,8 @@ let LoginComponent = class LoginComponent {
             if (error.status === 401) {
                 this.errorMessage = 'Incorrect email or password';
             }
+        }, () => {
+            // window.location.reload()
         });
     }
     close() {
@@ -1881,20 +1916,35 @@ let StocksService = class StocksService {
     constructor(http) {
         this.http = http;
     }
+    // buyStock2(stockData) {
+    //   return this.http.post('http://localhost:7000/api/buyStock', stockData);
+    // }
+    // sellStock(stockData) {
+    //   return this.http.post('http://localhost:7000/api/sellStock', stockData);
+    // }
+    // updateBalanceBuy(stockData) {
+    //   return this.http.post('http://localhost:7000/api/updateBalanceBuy', stockData);
+    // }
+    // updateBalanceSell(stockData) {
+    //   return this.http.post('http://localhost:7000/api/updateBalanceSell', stockData);
+    // }
+    // transactions(stockData) {
+    //   return this.http.post('http://localhost:7000/api/transactions', stockData);
+    // }
     buyStock2(stockData) {
-        return this.http.post('http://localhost:7000/api/buyStock', stockData);
+        return this.http.post('/api/buyStock', stockData);
     }
     sellStock(stockData) {
-        return this.http.post('http://localhost:7000/api/sellStock', stockData);
+        return this.http.post('/api/sellStock', stockData);
     }
     updateBalanceBuy(stockData) {
-        return this.http.post('http://localhost:7000/api/updateBalanceBuy', stockData);
+        return this.http.post('/api/updateBalanceBuy', stockData);
     }
     updateBalanceSell(stockData) {
-        return this.http.post('http://localhost:7000/api/updateBalanceSell', stockData);
+        return this.http.post('/api/updateBalanceSell', stockData);
     }
     transactions(stockData) {
-        return this.http.post('http://localhost:7000/api/transactions', stockData);
+        return this.http.post('/api/transactions', stockData);
     }
 };
 StocksService.ctorParameters = () => [

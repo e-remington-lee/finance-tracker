@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.data.login(this.email, this.password).subscribe((data: any) => {
-      // location.reload()
+      
       this.ngbActiveModal.close();
       console.log('Logged in!');
       sessionStorage.setItem('Authorization', data['token']);
@@ -66,6 +66,9 @@ export class LoginComponent implements OnInit {
       if (error.status === 401) {
           this.errorMessage = 'Incorrect email or password';
       }
+    },
+    ()=>{
+      // window.location.reload()
     });
   }
 
