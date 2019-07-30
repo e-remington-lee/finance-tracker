@@ -348,7 +348,7 @@ module.exports = "\n<header id='showcase'>\n  <div class='card'>\n      <h1>Fant
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\n\t<div class=\"container-fluid\">\n\t\t<div class=\"container\">\n\t\t\t<h2 class=\"text-center\" id=\"title\">Login or Register</h2>\n \t\t\t<hr>\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-md-5\">\n \t\t\t\t\t<form role=\"form\">\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<p><b>Register</b></p>\t\n \t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"text\" name=\"username1\" id=\"username1\" class=\"form-control input-lg\" placeholder=\"Username\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"email\" name=\"email1\" id=\"email1\" class=\"form-control input-lg\" placeholder=\"Email Address\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"password\" name=\"password1\" id=\"password1\" class=\"form-control input-lg\" placeholder=\"Password\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"password\" name=\"password2\" id=\"password2\" class=\"form-control input-lg\" placeholder=\"Retype Password\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"form-check\">\n\t\t\t\t\t\t\t\t<label class=\"form-check-label\" id='checkLabel'>\n\t\t\t\t\t\t\t\t  <input type=\"checkbox\" class=\"form-check-input\">\n\t\t\t\t\t\t\t\t  By Clicking register you're agree to our policy & terms\n\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t  </div>\n \t\t\t\t\t\t\t<div>\n \t\t\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn btn-primary\">Register</button>\n \t\t\t\t\t\t\t</div>\n\t\t\t\t\t</form>\n                </div>\n                <div class=\"col-md-2\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-md-5\">\n \t\t\t\t \t\t<form role=\"form\">\n\t\t\t\t\t\t\t<p><b> Login using your account</b> </p> \t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"email\" name=\"username\" id=\"username\" class=\"form-control input-lg\" placeholder=\"username\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"password\" name=\"password\" id=\"password\" class=\"form-control input-lg\" placeholder=\"Password\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn btn-primary\">Login</button>\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t</form>\t\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t</body>\n\t \n"
+module.exports = "<body>\n\t<div class=\"container-fluid\">\n\t\t<div class=\"container\">\n\t\t\t<h2 class=\"text-center\" id=\"title\">Login or Register</h2>\n \t\t\t<hr>\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-md-5\">\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<p class='text-danger'>{{errorMessageRegister}}</p>\n\t\t\t\t\t</div>\n \t\t\t\t\t<form role=\"form\">\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<p><b>Register</b></p>\t\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t\t<input type=\"email\" [(ngModel)]='email' name=\"email1\" id=\"email1\" class=\"form-control input-lg\" placeholder=\"Email Address\">\n\t\t\t\t\t\t\t\t</div>\n \t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"text\" [(ngModel)]='firstName' name=\"firstName\" id=\"firstName\" class=\"form-control input-lg\" placeholder=\"First Name\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t\t<input type=\"text\" [(ngModel)]='lastName' name=\"lastName\" id=\"lastName\" class=\"form-control input-lg\" placeholder=\"Last Name\">\n\t\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"password\" [(ngModel)]='password' name=\"password\" id=\"password1\" class=\"form-control input-lg\" placeholder=\"Password\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"password\" [(ngModel)]='password2' name=\"password2\" id=\"password2\" class=\"form-control input-lg\" placeholder=\"Retype Password\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"form-check\">\n\t\t\t\t\t\t\t\t<label class=\"form-check-label\" id='checkLabel'>\n\t\t\t\t\t\t\t\t  <input type=\"checkbox\" class=\"form-check-input\">\n\t\t\t\t\t\t\t\t  By Clicking register you're agree to our policy & terms\n\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t  </div>\n \t\t\t\t\t\t\t<div>\n \t\t\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn btn-primary\" (click)='register()'>Register</button>\n \t\t\t\t\t\t\t</div>\n\t\t\t\t\t</form>\n                </div>\n                <div class=\"col-md-2\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-md-5\">\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<p class='text-danger'>{{errorMessageLogin}}</p>\n\t\t\t\t\t\t\t</div>\n \t\t\t\t \t\t<form role=\"form\">\n\t\t\t\t\t\t\t<p><b> Login using your account</b> </p> \t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"email\" [(ngModel)]='email' name=\"email\" id=\"email\" class=\"form-control input-lg\" placeholder=\"username\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t\t\t<input type=\"password\" [(ngModel)]='password' name=\"password\" id=\"password\" class=\"form-control input-lg\" placeholder=\"Password\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn btn-primary\" (click)='login()'>Login</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t</form>\t\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t</body>\n\t \n"
 
 /***/ }),
 
@@ -1087,40 +1087,6 @@ let DataService = class DataService {
     constructor(http) {
         this.http = http;
     }
-    // returnStocks(symbol) {
-    //   const params = { params: new HttpParams().set('symbol', symbol) };
-    //   return this.http.get('http://localhost:7000/api/stockData', params);
-    // };
-    // getAccountData(accountId) {
-    //   const params = { params: new HttpParams().set('accountId', accountId)} ;
-    //   return this.http.get('http://localhost:7000/api/portfolioData', params);
-    // }
-    // chartData(symbol) {
-    //   const params = { params: new HttpParams().set('symbol', symbol) };
-    //   return this.http.get('http://localhost:7000/api/intraDayData', params);
-    // }
-    // checkBalance(symbol, accountId, shares) {
-    //   const params = new HttpParams().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
-    //   return this.http.get('http://localhost:7000/api/checkBalance', {observe: 'response', params});
-    // }
-    // checkStock(symbol, accountId, shares) {
-    //  const params = new HttpParams().set('symbol', symbol).set('accountId', accountId).set('shares', shares);
-    //  return this.http.get('http://localhost:7000/api/checkStock', {observe: 'response', params});
-    // }
-    // login(email, password) {
-    //   const content = {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //     'Access-Control-Allow-Headers': 'Content-Type',
-    //     'x-email': email,
-    //     'x-password': password
-    //   }
-    //   const options = {headers: new HttpHeaders(content)}
-    //   return this.http.get('http://localhost:7000/api/login', options)
-    // }
-    // register(content) {
-    //   return this.http.post('http://localhost:7000/api/register', content)    
-    // }
     returnStocks(symbol) {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
         return this.http.get('/api/stockData', params);
@@ -1253,20 +1219,78 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageComponent", function() { return LoginPageComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
 
 
 let LoginPageComponent = class LoginPageComponent {
-    constructor() { }
+    constructor(data, router) {
+        this.data = data;
+        this.router = router;
+    }
     ngOnInit() {
     }
+    register() {
+        if (this.password === this.password2 && this.password.length >= 6 && this.email !== undefined && this.email.includes("@")
+            && this.firstName !== undefined && this.lastName !== undefined) {
+            const content = {
+                'firstName': this.firstName,
+                'lastName': this.lastName,
+                'email': this.email,
+                'password': this.password
+            };
+            this.data.register(content).subscribe((data) => {
+                console.log('Registering...');
+                this.login();
+            }, (error) => {
+                if (error.status === 401) {
+                    this.errorMessageRegister = 'Email already exists';
+                }
+            });
+        }
+        else if (this.email.includes('@') === false) {
+            this.errorMessageRegister = 'Email required';
+        }
+        else if (this.password !== this.password2) {
+            this.errorMessageRegister = 'Passwords do not match';
+        }
+        else if (this.password.length < 6) {
+            this.errorMessageRegister = 'Password must be at least 6 characters long';
+        }
+        else {
+            this.errorMessageRegister = 'All inputs required';
+        }
+    }
+    login() {
+        this.data.login(this.email, this.password).subscribe((data) => {
+            console.log('Logged in!');
+            sessionStorage.setItem('Authorization', data['token']);
+            this.router.navigate(['rulesRanking']);
+        }, (error) => {
+            if (error.status === 401) {
+                this.errorMessageLogin = 'Incorrect email or password';
+            }
+        }, () => {
+            // window.location.reload()
+        });
+    }
+    rulesPage() {
+        this.router.navigate(['rulesRanking']);
+    }
 };
+LoginPageComponent.ctorParameters = () => [
+    { type: _data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+];
 LoginPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-login-page',
         template: __webpack_require__(/*! raw-loader!./login-page.component.html */ "./node_modules/raw-loader/index.js!./src/app/login-page/login-page.component.html"),
         styles: [__webpack_require__(/*! ./login-page.component.scss */ "./src/app/login-page/login-page.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
 ], LoginPageComponent);
 
 
@@ -1916,21 +1940,6 @@ let StocksService = class StocksService {
     constructor(http) {
         this.http = http;
     }
-    // buyStock2(stockData) {
-    //   return this.http.post('http://localhost:7000/api/buyStock', stockData);
-    // }
-    // sellStock(stockData) {
-    //   return this.http.post('http://localhost:7000/api/sellStock', stockData);
-    // }
-    // updateBalanceBuy(stockData) {
-    //   return this.http.post('http://localhost:7000/api/updateBalanceBuy', stockData);
-    // }
-    // updateBalanceSell(stockData) {
-    //   return this.http.post('http://localhost:7000/api/updateBalanceSell', stockData);
-    // }
-    // transactions(stockData) {
-    //   return this.http.post('http://localhost:7000/api/transactions', stockData);
-    // }
     buyStock2(stockData) {
         return this.http.post('/api/buyStock', stockData);
     }
