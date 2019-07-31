@@ -11,7 +11,7 @@
           <form>
               <div class="form-group">
                 <label class="col-form-label" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>
-                <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
+                <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' (keyup.enter)='sellStockButton()'>
               </div>
             </form>
       </div>

@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   lastName:string;
   errorMessage: string;
   registerError: string;
+  isChecked: boolean = false;
+  termsAndConditions: string;
 
   constructor(private data: DataService, private router: Router, private ngbActiveModal: NgbActiveModal) { }
 
@@ -43,10 +45,12 @@ export class LoginComponent implements OnInit {
         });
         } else if (this.email.includes('@') === false) {
           this.registerError = 'Email required';
-        } else if (this.password !== this.password2) {
+        }  else if (this.password !== this.password2) {
           this.registerError = 'Passwords do not match';
         } else if (this.password.length < 6) {
           this.registerError = 'Password must be at least 6 characters long';
+        } else if (this.isChecked === false) {
+          this.termsAndConditions = 'You must agree to our policy & terms';
         } else { 
           this.registerError = 'All inputs required';
         }

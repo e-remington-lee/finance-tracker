@@ -26,10 +26,13 @@
 								<div class="form-group">
 								<input type="password" [(ngModel)]='password2' name="password2" id="password2" class="form-control input-lg" placeholder="Retype Password">
 							</div>
+							<div>
+								<p class='text-danger'>{{termsAndConditions}}</p>
+							</div>
 							<div class="form-check">
 								<label class="form-check-label" id='checkLabel'>
-								  <input type="checkbox" class="form-check-input">
-								  By Clicking register you're agree to our policy & terms
+								  <input type="checkbox" class="form-check-input" name='isChecked' [(ngModel)]='isChecked'>
+								  By clicking register you're agree to our policy & terms
 								</label>
 							  </div>
  							<div>

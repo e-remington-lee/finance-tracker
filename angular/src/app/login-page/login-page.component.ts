@@ -16,7 +16,8 @@ export class LoginPageComponent implements OnInit {
   lastName:string;
   errorMessageLogin: string;
   errorMessageRegister: string;
-  
+  termsAndConditions: string;
+  isChecked: boolean = false;
 
   constructor(private data: DataService, private router: Router) { }
 
@@ -46,6 +47,8 @@ export class LoginPageComponent implements OnInit {
         this.errorMessageRegister = 'Passwords do not match';
       } else if (this.password.length < 6 || this.password.length === null) {
         this.errorMessageRegister = 'Password must be at least 6 characters long';
+      } else if (this.isChecked === false) {
+        this.termsAndConditions = 'You must agree to our policy & terms';
       } else { 
         this.errorMessageRegister = 'All inputs required';
       }

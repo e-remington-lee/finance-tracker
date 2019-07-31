@@ -11,13 +11,13 @@
             <form>
                 <div class="form-group">
                   <label class="col-form-label" *ngFor='let stocks of symbol'>Number of shares at: ${{stocks.price}}</label>
-                  <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' required>
+                  <input id='buyForm' type="number" [(ngModel)]='shares' class="form-control" name='bob' (keyup.enter)='buyStockButton()'>
                 </div>
               </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)='closeModal()'>Close</button>
-          <button id='closeBuyButton' type="button" class="btn btn-primary" (click)='buyStockButton()'>Buy</button>
+          <button type="button" class="btn btn-primary" (click)='buyStockButton()'>Buy</button>
         </div>
       </div>
     <!-- </div>

@@ -53,7 +53,7 @@ export class BuyModalComponent implements OnInit {
         }
       },
       () => {
-        alert(`Successful Purchase of ${this.symbol[0]['shares']} shares(s) of ${this.symbol[0]['company']}`)
+        alert(`Successful purchase of ${this.symbol[0]['shares']} shares(s) of ${this.symbol[0]['company']}`)
 
       }
       );

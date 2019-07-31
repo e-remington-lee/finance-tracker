@@ -71,10 +71,13 @@
                         [(ngModel)]='password2' minlength="8" maxlength="24" required>
                       </div>
                   </form>
+                  <div>
+                      <p class='text-danger'>{{termsAndConditions}}</p>
+                    </div>
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input" id='checkBoxInput'>
-                      By Clicking register you're agree to our policy & terms
+                      <input type="checkbox" class="form-check-input" name='isChecked' [(ngModel)]='isChecked'>
+                      By clicking register you're agree to our policy & terms
                     </label>
                     </div>
                   <div class="text-center mt-2">
