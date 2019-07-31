@@ -39,7 +39,7 @@ def token_required(f):
 
 @app.route('/api/login', methods=['GET'])
 def login_user():
-    email = request.headers['x-email']
+    email = request.headers['x-email'].lower()
     password = request.headers['x-password']
 
     login_response = login_account(email, password)

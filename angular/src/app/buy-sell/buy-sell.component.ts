@@ -23,6 +23,7 @@ export class BuySellComponent implements OnInit {
   searchStockSymbol: string;
   chart: Chart;
   showSpinner: boolean = true;
+  showSpinnerSearch: boolean = false;
 
   constructor(private stocks: StocksService, private data: DataService, private auth: AuthService) {
     this.accountId = this.auth.decodeUser()['account_id']
@@ -75,6 +76,7 @@ export class BuySellComponent implements OnInit {
   // }
 
   searchStocks() {
+    this.showSpinnerSearch = true;
     var searchStockBox = document.getElementById('searchStock');
     if (searchStockBox.style.display === "none") {
       searchStockBox.style.display = "flex";
@@ -84,10 +86,12 @@ export class BuySellComponent implements OnInit {
 
     this.data.returnStocks(this.searchStockSymbol).subscribe((data: any[]) => {   
       this.searchStockData = data;
+      this.showSpinnerSearch = false;
     },
     (error: any) => {
       if (error.status === 500 || error.status === 404) {
         alert(`${this.searchStockSymbol} was not found`);
+        this.showSpinnerSearch = false;
       }
     }
     );

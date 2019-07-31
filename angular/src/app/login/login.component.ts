@@ -55,12 +55,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.data.login(this.email, this.password).subscribe((data: any) => {
-      
       this.ngbActiveModal.close();
       console.log('Logged in!');
       sessionStorage.setItem('Authorization', data['token']);
       this.router.navigate(['rulesRanking']);
-      
     },
     (error: any) => {
       if (error.status === 401) {
@@ -68,7 +66,7 @@ export class LoginComponent implements OnInit {
       }
     },
     ()=>{
-      window.location.reload()
+      // window.location.reload()
     });
   }
 

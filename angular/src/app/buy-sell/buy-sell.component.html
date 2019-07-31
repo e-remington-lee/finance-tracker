@@ -5,6 +5,7 @@
     </div>  
         <app-spinner *ngIf='showSpinner'></app-spinner>
     <div class='row' id='searchStock'>
+        <app-spinner class='col-12'*ngIf='showSpinnerSearch'></app-spinner>
         <app-stock-card class='col-12'  [symbol]="searchStockData"></app-stock-card>
         <canvas id="myChart" ></canvas>
     </div>

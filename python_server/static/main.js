@@ -326,7 +326,7 @@ module.exports = "<!-- <div class=\"modal fade\" id=\"buyStock\" tabindex='-1'>\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n        <app-spinner *ngIf='showSpinner'></app-spinner>\n    <div class='row' id='searchStock'>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n    <app-stock-card class='col-12' [symbol]=\"SPY\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"DIA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"IWM\"></app-stock-card>\n  </div>\n</body>\n\n"
+module.exports = "<body class='container'>\n      <div class='form-group' id='searchBar'>\n          <input type='text' [(ngModel)]='searchStockSymbol' class='form-control' \n          placeholder=\"Search for your own stocks (symbol required)\" (keyup.enter)='searchStocks()' (keyup.enter)='updateChart()'>\n    </div>  \n        <app-spinner *ngIf='showSpinner'></app-spinner>\n    <div class='row' id='searchStock'>\n        <app-spinner class='col-12'*ngIf='showSpinnerSearch'></app-spinner>\n        <app-stock-card class='col-12'  [symbol]=\"searchStockData\"></app-stock-card>\n        <canvas id=\"myChart\" ></canvas>\n    </div>\n\n  <div class='row' id='stocks'>\n    <app-stock-card class='col-12' [symbol]=\"SPY\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"DIA\"></app-stock-card>\n    <app-stock-card class='col-12' [symbol]=\"IWM\"></app-stock-card>\n  </div>\n</body>\n\n"
 
 /***/ }),
 
@@ -974,6 +974,7 @@ let BuySellComponent = class BuySellComponent {
         this.lableList = [];
         this.priceList = [];
         this.showSpinner = true;
+        this.showSpinnerSearch = false;
         this.accountId = this.auth.decodeUser()['account_id'];
     }
     ngOnInit() {
@@ -1016,6 +1017,7 @@ let BuySellComponent = class BuySellComponent {
     //   this.searchStocks();
     // }
     searchStocks() {
+        this.showSpinnerSearch = true;
         var searchStockBox = document.getElementById('searchStock');
         if (searchStockBox.style.display === "none") {
             searchStockBox.style.display = "flex";
@@ -1023,9 +1025,11 @@ let BuySellComponent = class BuySellComponent {
         this.searchStockSymbol = this.searchStockSymbol.toUpperCase();
         this.data.returnStocks(this.searchStockSymbol).subscribe((data) => {
             this.searchStockData = data;
+            this.showSpinnerSearch = false;
         }, (error) => {
             if (error.status === 500 || error.status === 404) {
                 alert(`${this.searchStockSymbol} was not found`);
+                this.showSpinnerSearch = false;
             }
         });
     }
@@ -1378,7 +1382,7 @@ let LoginComponent = class LoginComponent {
                 this.errorMessage = 'Incorrect email or password';
             }
         }, () => {
-            window.location.reload();
+            // window.location.reload()
         });
     }
     close() {
