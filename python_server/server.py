@@ -26,12 +26,10 @@ def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = None
-
         try:
             token = request.headers['Authorization']
         except: 
             return make_response('Token Error', 401, {'WWW-Authentication.route' : 'Valid Token Required'})
-
         print('decorator works!')
         return f(*args, **kwargs)
     return decorated
@@ -49,7 +47,7 @@ def login_user():
 
     user = {'user_id': login_response['user_id'],
             'account_id': login_response['account_id'],
-            'first_name': login_response['first_name'],
+            'first_name': login_response['first_name'].capitalize(),
             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=40)  
             }   
 
@@ -235,9 +233,6 @@ def portfolio_data():
     portfolio_information = portfolio_holdings(account_id, latest_price_list)
     return jsonify(portfolio_information), 200
 
-
-# if __name__ == '__main__':
-#     app.run(debug=True, port=7000)
 
 if __name__ == '__main__':
     app.run(port=7000)

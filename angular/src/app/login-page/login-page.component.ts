@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit {
   }
   register() {
     if (this.password === this.password2 && this.password.length >=6 && this.email !== undefined && this.email.includes("@")
-        && this.firstName !== undefined && this.lastName !== undefined){
+        && this.firstName !== undefined && this.lastName !== undefined && this.isChecked === true){
       const content = {
         'firstName': this.firstName,
         'lastName': this.lastName,

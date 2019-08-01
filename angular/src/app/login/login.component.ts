@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   register() {
       if (this.password === this.password2 && this.password.length >=6 && this.email !== undefined && this.email.includes("@")
-          && this.firstName !== undefined && this.lastName !== undefined){
+          && this.firstName !== undefined && this.lastName !== undefined && this.isChecked === true){
         const content = {
           'firstName': this.firstName,
           'lastName': this.lastName,
@@ -51,8 +51,7 @@ export class LoginComponent implements OnInit {
           this.registerError = 'Password must be at least 6 characters long';
         } else if (this.isChecked === false) {
           this.termsAndConditions = 'You must agree to our policy & terms';
-        } else { 
-          this.registerError = 'All inputs required';
+        } else { this.registerError = 'All inputs required';
         }
     }
 
