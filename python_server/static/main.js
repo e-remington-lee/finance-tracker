@@ -1010,6 +1010,11 @@ let BuySellComponent = class BuySellComponent {
                 }
             }
         });
+        if (sessionStorage.getItem('symbol') !== null) {
+            this.searchStockSymbol = sessionStorage.getItem('symbol');
+            this.searchStocks();
+            this.updateChart();
+        }
     }
     // portfolioTrade(stock) {
     //   console.log('booobbbbb')
@@ -1032,6 +1037,7 @@ let BuySellComponent = class BuySellComponent {
                 this.showSpinnerSearch = false;
             }
         });
+        sessionStorage.removeItem('symbol');
     }
     updateChart() {
         this.data.chartData(this.searchStockSymbol).subscribe((data) => {
@@ -1532,10 +1538,9 @@ let PortfolioCardComponent = class PortfolioCardComponent {
     ngOnInit() {
     }
     trade() {
+        sessionStorage.setItem('symbol', this.stock['symbol']);
         this.notify.emit(this.stock['symbol']);
         this.router.navigate(['/buySell']);
-        // this.buySell.portfolioTrade(this.stock['symbol']).subscribe();
-        console.log(this.stock['symbol']);
     }
 };
 PortfolioCardComponent.ctorParameters = () => [

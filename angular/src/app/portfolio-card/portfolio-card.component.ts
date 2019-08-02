@@ -20,10 +20,9 @@ export class PortfolioCardComponent implements OnInit {
   }
 
   trade(): void {
+    sessionStorage.setItem('symbol', this.stock['symbol'])
     this.notify.emit(this.stock['symbol'])
     this.router.navigate(['/buySell']);
-    // this.buySell.portfolioTrade(this.stock['symbol']).subscribe();
-    console.log(this.stock['symbol']);
   }
 
 }

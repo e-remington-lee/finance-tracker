@@ -67,6 +67,12 @@ export class BuySellComponent implements OnInit {
       }
     });
 
+    if (sessionStorage.getItem('symbol') !== null) {
+      this.searchStockSymbol = sessionStorage.getItem('symbol')
+      this.searchStocks()
+      this.updateChart()
+    }
+
   }
 
   // portfolioTrade(stock) {
@@ -95,6 +101,7 @@ export class BuySellComponent implements OnInit {
       }
     }
     );
+    sessionStorage.removeItem('symbol')
   }
 
   updateChart() {
