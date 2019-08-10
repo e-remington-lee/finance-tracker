@@ -71,10 +71,7 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-
   rulesPage() {
     this.router.navigate(['rulesRanking']);
   }
-  
-
 }

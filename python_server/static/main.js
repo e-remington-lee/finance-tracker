@@ -1187,7 +1187,6 @@ let HomeComponent = class HomeComponent {
             backdrop: 'static'
         };
         const modal = this.modalService.open(_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"], modalOptions);
-        console.log('open');
     }
 };
 HomeComponent.ctorParameters = () => [

@@ -30,7 +30,6 @@ def token_required(f):
             token = request.headers['Authorization']
         except: 
             return make_response('Token Error', 401, {'WWW-Authentication.route' : 'Valid Token Required'})
-        print('decorator works!')
         return f(*args, **kwargs)
     return decorated
 
@@ -235,4 +234,4 @@ def portfolio_data():
 
 
 if __name__ == '__main__':
-    app.run(port=7000)
+    app.run(debug=True, port=7000)
