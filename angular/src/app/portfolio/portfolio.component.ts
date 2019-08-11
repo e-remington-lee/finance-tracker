@@ -15,6 +15,9 @@ export class PortfolioComponent implements OnInit {
   accountData: any[] = [];
   assetData: any[] = [];
   assetValues: any[] = [];
+  historicalData: any[] = [];
+  historicalPrice: any[] = [];
+  historicalDate: any[] = [];
   showSpinner: boolean = true;
   chart: Chart;
   companyName: any[] = [];
@@ -69,14 +72,24 @@ export class PortfolioComponent implements OnInit {
     });
     this.showSpinner = false;
   });
+
+  this.data.getHistoricalData(this.accountId).subscribe((data: any[])=> {
+    this.historicalData = data['daily_info'];
+    console.log(this.historicalData);
+
+    for (let x=0; x < this.historicalData.length; x++) {
+        this.historicalPrice.push(this.historicalData[x]['date_price'])
+        this.historicalDate.push(this.historicalData[x]['date'])
+    }
+  });
   }
 
   changeGraph () {
     if (this.showGraph === true) {
       this.chart.config.type = 'line';
       this.chart.config.data.datasets[0].label = 'Portfolio Price History';
-      this.chart.config.data.labels = [1, 2, 3, 4, 5];
-      this.chart.config.data.datasets[0].data = [500, 200, 300, 150 , 600];
+      this.chart.config.data.labels = this.historicalDate;
+      this.chart.config.data.datasets[0].data = this.historicalPrice;
       this.chart.config.data.datasets[0].pointHitRadius = 20;
       this.chart.config.data.datasets[0].borderColor = '#3e95cd'
       this.chart.config.data.datasets[0].pointBackgroundColor = '#3e95cd'

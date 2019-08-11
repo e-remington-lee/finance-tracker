@@ -1101,6 +1101,10 @@ let DataService = class DataService {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('accountId', accountId) };
         return this.http.get('/api/portfolioData', params);
     }
+    getHistoricalData(accountId) {
+        const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('accountId', accountId) };
+        return this.http.get('/api/dailyData', params);
+    }
     chartData(symbol) {
         const params = { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('symbol', symbol) };
         return this.http.get('/api/intraDayData', params);
@@ -1604,6 +1608,9 @@ let PortfolioComponent = class PortfolioComponent {
         this.accountData = [];
         this.assetData = [];
         this.assetValues = [];
+        this.historicalData = [];
+        this.historicalPrice = [];
+        this.historicalDate = [];
         this.showSpinner = true;
         this.companyName = [];
         this.holdingValue = [];
@@ -1651,13 +1658,21 @@ let PortfolioComponent = class PortfolioComponent {
             });
             this.showSpinner = false;
         });
+        this.data.getHistoricalData(this.accountId).subscribe((data) => {
+            this.historicalData = data['daily_info'];
+            console.log(this.historicalData);
+            for (let x = 0; x < this.historicalData.length; x++) {
+                this.historicalPrice.push(this.historicalData[x]['date_price']);
+                this.historicalDate.push(this.historicalData[x]['date']);
+            }
+        });
     }
     changeGraph() {
         if (this.showGraph === true) {
             this.chart.config.type = 'line';
             this.chart.config.data.datasets[0].label = 'Portfolio Price History';
-            this.chart.config.data.labels = [1, 2, 3, 4, 5];
-            this.chart.config.data.datasets[0].data = [500, 200, 300, 150, 600];
+            this.chart.config.data.labels = this.historicalDate;
+            this.chart.config.data.datasets[0].data = this.historicalPrice;
             this.chart.config.data.datasets[0].pointHitRadius = 20;
             this.chart.config.data.datasets[0].borderColor = '#3e95cd';
             this.chart.config.data.datasets[0].pointBackgroundColor = '#3e95cd';

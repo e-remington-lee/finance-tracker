@@ -189,24 +189,63 @@ def portfolio_holdings(account_id):
      return {'asset_data': asset_data, 'asset_values': asset_values}
 
 
-def portfolio_symbols(account_id):
+def historical_data(account_id):
      connection = create_connection()
      cur = connection.cursor()
 
      cur.execute('''SELECT * FROM holdings 
-                    WHERE account_id = %(account_id)s 
-                    ORDER BY holding_id ASC''', 
-                    {'account_id': account_id})
+                    INNER JOIN account_balance on holdings.account_id = account_balance.account_id
+                    WHERE holdings.account_id = %(account_id)s ORDER BY holdings.holding_id ASC''', {'account_id': account_id})  
 
      rows = cur.fetchall()
 
-     stock_symbol = []
+     latest_price_list = []
      for row in rows:
-          stock_symbol.append(row[2])
+         latest_price = iex_latest_price(row[2])
+         latest_price_list.append(latest_price)
 
+     holding_value = [round(row[3]*x,2) for row,x in zip(rows,latest_price_list)]
+     total_holding_value = round(sum(holding_value),2)
+       
+     try:     
+          total_cash = float(rows[0][9])
+     except IndexError:
+          cur.execute('''SELECT * FROM account_balance
+                         WHERE account_id = %(account_id)s''', 
+                         {'account_id': account_id})
+          row = cur.fetchone()
+          total_cash = row[2]
+
+     total_asset = round(total_cash + total_holding_value,2)
+
+     cur.execute('''INSERT INTO historical_data (account_id, holding_value) 
+                    VALUES (%(account_id)s, %(total_asset)s)''',
+                    {'account_id': account_id, 'total_asset': total_asset})
+
+     connection.commit()
      cur.close()
      connection.close()
-     return stock_symbol
+     return None
+
+
+# def portfolio_symbols(account_id):
+#      connection = create_connection()
+#      cur = connection.cursor()
+
+#      cur.execute('''SELECT * FROM holdings 
+#                     WHERE account_id = %(account_id)s 
+#                     ORDER BY holding_id ASC''', 
+#                     {'account_id': account_id})
+
+#      rows = cur.fetchall()
+
+#      stock_symbol = []
+#      for row in rows:
+#           stock_symbol.append(row[2])
+
+#      cur.close()
+#      connection.close()
+#      return stock_symbol
 
 def login_account(email, password):
      connection = create_connection()
@@ -255,7 +294,7 @@ def get_all_users():
      cur = connection.cursor()
 
    
-     cur.execute('''SELECT user_id FROM user_accounts''')
+     cur.execute('''SELECT user_id FROM user_accounts ORDER BY user_id ASC''')
     
      rows = cur.fetchall()
 
@@ -266,3 +305,23 @@ def get_all_users():
      cur.close()
      connection.close()
      return user_ids
+
+def get_daily_data(account_id):
+     connection = create_connection()
+     cur = connection.cursor()
+
+     cur.execute('''SELECT * FROM historical_data WHERE
+                    account_id = %(account_id)s ORDER BY history_id ASC''',
+                    {'account_id': account_id})
+    
+     rows = cur.fetchall()
+
+     daily_info = []
+     for row in rows:
+          daily_info.append({'date_price': float(row[2]),
+                              'date': row[3]
+                              })
+
+     cur.close()
+     connection.close()
+     return {'daily_info': daily_info}
