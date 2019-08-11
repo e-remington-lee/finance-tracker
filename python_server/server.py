@@ -223,7 +223,7 @@ def portfolio_data():
     account_id  = request.args.get('accountId')
 
     portfolio_information = portfolio_holdings(account_id)
-    print(portfolio_information)
+    
     return jsonify(portfolio_information), 200
 
 

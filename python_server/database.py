@@ -310,18 +310,23 @@ def get_daily_data(account_id):
      connection = create_connection()
      cur = connection.cursor()
 
-     cur.execute('''SELECT * FROM historical_data WHERE
-                    account_id = %(account_id)s ORDER BY history_id ASC''',
+     cur.execute('''SELECT * FROM (SELECT * FROM historical_data WHERE
+                    account_id = %(account_id)s ORDER BY history_id DESC LIMIT 30) AS foo
+                    ORDER BY history_id asc''',
                     {'account_id': account_id})
     
      rows = cur.fetchall()
 
      daily_info = []
-     for row in rows:
-          daily_info.append({'date_price': float(row[2]),
-                              'date': row[3]
-                              })
-
+     i = 0
+     print(len(rows))
+     while i < len(rows):
+          for row in rows:
+               daily_info.append({'date_price': float(row[2]),
+                                   'date': row[3]
+                                   })
+               i+=1
+     # change order by to dsc, then 
      cur.close()
      connection.close()
      return {'daily_info': daily_info}
