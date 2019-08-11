@@ -12,7 +12,10 @@
                 </ul>
             </div>
           </div>
-        <canvas id="myChart" ></canvas>
+            <canvas id="myChart" ></canvas>       
+        <div class='row justify-content-center'>
+          <button type='button' class='btn btn-primary' (click)="changeGraph()">Portfolio History</button>
+        </div>
   <div class='row' id='portfolio'>
     <app-portfolio-card *ngFor = 'let stock of assetData' class='col-12' [stock]="stock"></app-portfolio-card>
   </div>

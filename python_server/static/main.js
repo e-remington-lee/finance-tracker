@@ -392,7 +392,7 @@ module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div cl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container' id='container'>\n        <div class='card text-center' id='account'>\n          <div class ='card-header'>\n            <h3>Account Data</h3>\n          </div>\n          <app-spinner *ngIf='showSpinner'></app-spinner>\n            <div class='card-body' *ngFor='let asset of assetValues'>\n                <ul class='list-group list-group-flush'>\n                  <li class=\"list-group-item\"><b>Account Balance: </b> ${{asset.total_cash}}</li>\n                  <li class=\"list-group-item\"><b>Total Holding Value: </b>${{asset.total_holding_value}} </li>\n                  <li class=\"list-group-item\"><b>Total Asset Value: </b>${{asset.total_asset_value}}</li>                         \n                </ul>\n            </div>\n          </div>\n        <canvas id=\"myChart\" ></canvas>\n  <div class='row' id='portfolio'>\n    <app-portfolio-card *ngFor = 'let stock of assetData' class='col-12' [stock]=\"stock\"></app-portfolio-card>\n  </div>\n</body>\n"
+module.exports = "<body class='container' id='container'>\n        <div class='card text-center' id='account'>\n          <div class ='card-header'>\n            <h3>Account Data</h3>\n          </div>\n          <app-spinner *ngIf='showSpinner'></app-spinner>\n            <div class='card-body' *ngFor='let asset of assetValues'>\n                <ul class='list-group list-group-flush'>\n                  <li class=\"list-group-item\"><b>Account Balance: </b> ${{asset.total_cash}}</li>\n                  <li class=\"list-group-item\"><b>Total Holding Value: </b>${{asset.total_holding_value}} </li>\n                  <li class=\"list-group-item\"><b>Total Asset Value: </b>${{asset.total_asset_value}}</li>                         \n                </ul>\n            </div>\n          </div>\n            <canvas id=\"myChart\" ></canvas>       \n        <div class='row justify-content-center'>\n          <button type='button' class='btn btn-primary' (click)=\"changeGraph()\">Portfolio History</button>\n        </div>\n  <div class='row' id='portfolio'>\n    <app-portfolio-card *ngFor = 'let stock of assetData' class='col-12' [stock]=\"stock\"></app-portfolio-card>\n  </div>\n</body>\n"
 
 /***/ }),
 
@@ -1016,11 +1016,6 @@ let BuySellComponent = class BuySellComponent {
             this.updateChart();
         }
     }
-    // portfolioTrade(stock) {
-    //   console.log('booobbbbb')
-    //   this.searchStockSymbol = stock;
-    //   this.searchStocks();
-    // }
     searchStocks() {
         this.showSpinnerSearch = true;
         var searchStockBox = document.getElementById('searchStock');
@@ -1610,6 +1605,10 @@ let PortfolioComponent = class PortfolioComponent {
         this.assetData = [];
         this.assetValues = [];
         this.showSpinner = true;
+        this.companyName = [];
+        this.holdingValue = [];
+        this.color = [];
+        this.showGraph = true;
         this.accountId = this.auth.decodeUser()['account_id'];
     }
     ngOnInit() {
@@ -1620,23 +1619,20 @@ let PortfolioComponent = class PortfolioComponent {
             console.log(this.accountData);
             this.assetData = this.accountData['asset_data'];
             this.assetValues = this.accountData['asset_values'];
-            var companyName = [];
-            var holdingValue = [];
-            var color = [];
             for (let x = 0; x < this.assetData.length; x++) {
-                companyName.push(this.assetData[x]['company']);
-                holdingValue.push(this.assetData[x]['holding_value_float']);
-                color.push("#3e95cd");
+                this.companyName.push(this.assetData[x]['company']);
+                this.holdingValue.push(this.assetData[x]['holding_value_float']);
+                this.color.push("#3e95cd");
             }
-            new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"](document.getElementById("myChart"), {
+            this.chart = new chart_js__WEBPACK_IMPORTED_MODULE_4__["Chart"](document.getElementById("myChart"), {
                 type: 'bar',
                 data: {
-                    labels: companyName,
+                    labels: this.companyName,
                     datasets: [
                         {
                             label: "Current Stock Value",
-                            backgroundColor: color,
-                            data: holdingValue
+                            backgroundColor: this.color,
+                            data: this.holdingValue
                         }
                     ]
                 },
@@ -1655,6 +1651,29 @@ let PortfolioComponent = class PortfolioComponent {
             });
             this.showSpinner = false;
         });
+    }
+    changeGraph() {
+        if (this.showGraph === true) {
+            this.chart.config.type = 'line';
+            this.chart.config.data.datasets[0].label = 'Portfolio Price History';
+            this.chart.config.data.labels = [1, 2, 3, 4, 5];
+            this.chart.config.data.datasets[0].data = [500, 200, 300, 150, 600];
+            this.chart.config.data.datasets[0].pointHitRadius = 20;
+            this.chart.config.data.datasets[0].borderColor = '#3e95cd';
+            this.chart.config.data.datasets[0].pointBackgroundColor = '#3e95cd';
+            this.chart.config.data.datasets[0].backgroundColor = 'rgba(62, 149, 205, 0.4)';
+            this.chart.update();
+            this.showGraph = false;
+        }
+        else if (this.showGraph === false) {
+            this.chart.config.type = 'bar';
+            this.chart.data.datasets[0].label = 'Current Stock Value';
+            this.chart.config.data.labels = this.companyName;
+            this.chart.config.data.datasets[0].data = this.holdingValue;
+            this.chart.config.data.datasets[0].backgroundColor = this.color;
+            this.chart.update();
+            this.showGraph = true;
+        }
     }
 };
 PortfolioComponent.ctorParameters = () => [

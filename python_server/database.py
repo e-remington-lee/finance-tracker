@@ -194,13 +194,13 @@ def portfolio_symbols(account_id):
 
      rows = cur.fetchall()
 
-     price_data = []
+     stock_symbol = []
      for row in rows:
-          price_data.append(row[2])
+          stock_symbol.append(row[2])
 
      cur.close()
      connection.close()
-     return price_data
+     return stock_symbol
 
 def login_account(email, password):
      connection = create_connection()
@@ -243,3 +243,20 @@ def register_user_database(first_name, last_name, email, password):
      cur.close()
      connection.close()
      return None
+
+def get_all_users():
+     connection = create_connection()
+     cur = connection.cursor()
+
+   
+     cur.execute('''SELECT user_id FROM user_accounts''')
+    
+     rows = cur.fetchall()
+
+     user_ids = []
+     for row in rows:
+          user_ids.append(row[0])
+
+     cur.close()
+     connection.close()
+     return user_ids
