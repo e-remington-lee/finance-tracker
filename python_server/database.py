@@ -4,6 +4,7 @@ import psycopg2
 import sqlalchemy
 
 from money import *
+from iex_connect import *
 
 
 def create_connection():
@@ -131,7 +132,7 @@ def check_stock_holdings(account_id, symbol):
      return {'shares': row[3]}
 
 
-def portfolio_holdings(account_id, latest_price_list):
+def portfolio_holdings(account_id):
      connection = create_connection()
      cur = connection.cursor()
 
@@ -140,6 +141,11 @@ def portfolio_holdings(account_id, latest_price_list):
                     WHERE holdings.account_id = %(account_id)s ORDER BY holdings.holding_id ASC''', {'account_id': account_id})
      
      rows = cur.fetchall()
+
+     latest_price_list = []
+     for row in rows:
+         latest_price = iex_latest_price(row[2])
+         latest_price_list.append(latest_price)
 
      holding_value = [round(row[3]*x,2) for row,x in zip(rows,latest_price_list)]
      percent_change = [round(((float(x)-float(row[5]))/float(row[5]))*100,3) for row,x in zip(rows, latest_price_list)]
