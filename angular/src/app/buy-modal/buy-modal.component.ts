@@ -57,8 +57,6 @@ export class BuyModalComponent implements OnInit {
 
       }
       );
-      
-
   }
 }
 

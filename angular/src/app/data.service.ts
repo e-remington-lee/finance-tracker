@@ -19,6 +19,11 @@ export class DataService {
     return this.http.get('/api/portfolioData', params);
   }
 
+  getHistoricalData(accountId) {
+    const params = { params: new HttpParams().set('accountId', accountId)} ;
+    return this.http.get('/api/dailyData', params);
+  }
+
   chartData(symbol) {
     const params = { params: new HttpParams().set('symbol', symbol) };
     return this.http.get('/api/intraDayData', params);

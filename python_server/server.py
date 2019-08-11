@@ -222,15 +222,17 @@ def sell_stock_endpoint():
 def portfolio_data():
     account_id  = request.args.get('accountId')
 
-    symbol_list = portfolio_symbols(account_id)
-
-    latest_price_list = []
-    for symbol in symbol_list:
-        latest_price = iex_latest_price(symbol)
-        latest_price_list.append(latest_price)
-
-    portfolio_information = portfolio_holdings(account_id, latest_price_list)
+    portfolio_information = portfolio_holdings(account_id)
+    print(portfolio_information)
     return jsonify(portfolio_information), 200
+
+
+@app.route('/api/dailyData', methods=['GET'])
+@token_required
+def daily_data():
+    account_id  = request.args.get('accountId')
+    daily_info = get_daily_data(account_id)
+    return jsonify(daily_info), 200
 
 
 if __name__ == '__main__':

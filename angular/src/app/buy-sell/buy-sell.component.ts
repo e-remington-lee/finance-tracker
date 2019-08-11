@@ -75,12 +75,6 @@ export class BuySellComponent implements OnInit {
 
   }
 
-  // portfolioTrade(stock) {
-  //   console.log('booobbbbb')
-  //   this.searchStockSymbol = stock;
-  //   this.searchStocks();
-  // }
-
   searchStocks() {
     this.showSpinnerSearch = true;
     var searchStockBox = document.getElementById('searchStock');
