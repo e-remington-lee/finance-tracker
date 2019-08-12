@@ -326,7 +326,6 @@ def get_daily_data(account_id):
                                    'date': row[3]
                                    })
                i+=1
-     # change order by to dsc, then 
      cur.close()
      connection.close()
      return {'daily_info': daily_info}
