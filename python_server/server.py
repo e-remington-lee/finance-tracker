@@ -1,13 +1,11 @@
 import datetime
 from datetime import datetime
-import time
 import os
 from functools import wraps
 
 from flask import Flask, render_template, request, jsonify, make_response
 import requests
 import jwt
-from apscheduler.schedulers.background import BackgroundScheduler
 
 from database import *
 from iex_connect import *
@@ -237,15 +235,6 @@ def daily_data():
     daily_info = get_daily_data(account_id)
     return jsonify(daily_info), 200
 
-
-def job():
-    return print(f'works {datetime.now()}')
-
-
-sch = BackgroundScheduler(daemon=True)
-job1 = sch.add_job(job, 'interval', seconds=10, replace_existing=True, id='record_price')
-job1.remove()
-# sch.start()
 
 if __name__ == '__main__':
     app.run(debug=True, port=7000)
