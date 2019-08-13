@@ -2,10 +2,12 @@ import datetime
 from datetime import datetime
 import os
 from functools import wraps
+import atexit
 
 from flask import Flask, render_template, request, jsonify, make_response
 import requests
 import jwt
+from apscheduler.schedulers.background import BackgroundScheduler
 
 from database import *
 from iex_connect import *
@@ -235,6 +237,18 @@ def daily_data():
     daily_info = get_daily_data(account_id)
     return jsonify(daily_info), 200
 
+sch = BackgroundScheduler(daemon=True)
+
+@sch.scheduled_job('interval', seconds=10, id='blue42')
+def timed_job():
+    print(datetime.now())
+
+sch.start()
+
+@atexit.register
+def shutdown_backround():
+    sch.remove_all_jobs()
+    sch.shutdown()
 
 if __name__ == '__main__':
     # app.run(debug=True, port=7000)
