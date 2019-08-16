@@ -1276,17 +1276,22 @@ let LoginPageComponent = class LoginPageComponent {
         }
     }
     login() {
-        this.data.login(this.email, this.password).subscribe((data) => {
-            console.log('Logged in!');
-            sessionStorage.setItem('Authorization', data['token']);
-            this.router.navigate(['rulesRanking']);
-        }, (error) => {
-            if (error.status === 401) {
-                this.errorMessageLogin = 'Incorrect email or password';
-            }
-        }, () => {
-            // window.location.reload()
-        });
+        if (this.email == null || this.password == null) {
+            this.errorMessageLogin = "Email and password required";
+        }
+        else {
+            this.data.login(this.email, this.password).subscribe((data) => {
+                console.log('Logged in!');
+                sessionStorage.setItem('Authorization', data['token']);
+                this.router.navigate(['rulesRanking']);
+            }, (error) => {
+                if (error.status === 401) {
+                    this.errorMessageLogin = 'Incorrect email or password';
+                }
+            }, () => {
+                // window.location.reload()
+            });
+        }
     }
     rulesPage() {
         this.router.navigate(['rulesRanking']);
@@ -1384,18 +1389,23 @@ let LoginComponent = class LoginComponent {
         }
     }
     login() {
-        this.data.login(this.email, this.password).subscribe((data) => {
-            this.ngbActiveModal.close();
-            console.log('Logged in!');
-            sessionStorage.setItem('Authorization', data['token']);
-            this.router.navigate(['rulesRanking']);
-        }, (error) => {
-            if (error.status === 401) {
-                this.errorMessage = 'Incorrect email or password';
-            }
-        }, () => {
-            // window.location.reload()
-        });
+        if (this.email == null || this.password == null) {
+            this.errorMessage = 'Email and password required';
+        }
+        else {
+            this.data.login(this.email, this.password).subscribe((data) => {
+                this.ngbActiveModal.close();
+                console.log('Logged in!');
+                sessionStorage.setItem('Authorization', data['token']);
+                this.router.navigate(['rulesRanking']);
+            }, (error) => {
+                if (error.status === 401) {
+                    this.errorMessage = 'Incorrect email or password';
+                }
+            }, () => {
+                // window.location.reload()
+            });
+        }
     }
     close() {
         this.ngbActiveModal.close();

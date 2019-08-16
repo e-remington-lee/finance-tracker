@@ -57,20 +57,25 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    this.data.login(this.email, this.password).subscribe((data: any) => {
-      this.ngbActiveModal.close();
-      console.log('Logged in!');
-      sessionStorage.setItem('Authorization', data['token']);
-      this.router.navigate(['rulesRanking']);
-    },
-    (error: any) => {
-      if (error.status === 401) {
-          this.errorMessage = 'Incorrect email or password';
-      }
-    },
-    ()=>{
-      // window.location.reload()
-    });
+    if (this.email == null || this.password == null) {
+      this.errorMessage = 'Email and password required';
+    } else {
+      this.data.login(this.email, this.password).subscribe((data: any) => {
+        this.ngbActiveModal.close();
+        console.log('Logged in!');
+        sessionStorage.setItem('Authorization', data['token']);
+        this.router.navigate(['rulesRanking']);
+      },
+      (error: any) => {
+        if (error.status === 401) {
+            this.errorMessage = 'Incorrect email or password';
+        }
+      },
+      ()=>{
+        // window.location.reload()
+      });
+    }
+
   }
 
   close() {

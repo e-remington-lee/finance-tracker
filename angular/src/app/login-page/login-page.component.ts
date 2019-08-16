@@ -56,19 +56,23 @@ export class LoginPageComponent implements OnInit {
 
 
   login() {
-    this.data.login(this.email, this.password).subscribe((data: any) => {
-      console.log('Logged in!');
-      sessionStorage.setItem('Authorization', data['token']);
-      this.router.navigate(['rulesRanking']);
-    },
-    (error: any) => {
-      if (error.status === 401) {
-          this.errorMessageLogin = 'Incorrect email or password';
-      }
-    },
-    ()=>{
-      // window.location.reload()
-    });
+    if (this.email == null || this.password == null) {
+      this.errorMessageLogin = "Email and password required";
+    } else {
+      this.data.login(this.email, this.password).subscribe((data: any) => {
+        console.log('Logged in!');
+        sessionStorage.setItem('Authorization', data['token']);
+        this.router.navigate(['rulesRanking']);
+      },
+      (error: any) => {
+        if (error.status === 401) {
+            this.errorMessageLogin = 'Incorrect email or password';
+        }
+      },
+      ()=>{
+        // window.location.reload()
+      });
+    }
   }
 
   rulesPage() {
