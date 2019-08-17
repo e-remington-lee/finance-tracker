@@ -83,7 +83,7 @@ export class PortfolioComponent implements OnInit {
   changeGraph () {
     if (this.showGraph === true) {
       this.chart.config.type = 'line';
-      this.chart.config.data.datasets[0].label = 'Portfolio Price History';
+      this.chart.config.data.datasets[0].label = 'COMING SOON--Portfolio Price History';
       this.chart.config.data.labels = this.historicalDate;
       this.chart.config.data.datasets[0].data = this.historicalPrice;
       this.chart.config.data.datasets[0].pointHitRadius = 20;

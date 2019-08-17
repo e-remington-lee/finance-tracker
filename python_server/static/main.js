@@ -392,7 +392,7 @@ module.exports = "<div class='card'>\n    <div class='card-body'>\n      <div cl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body class='container' id='container'>\n        <div class='card text-center' id='account'>\n          <div class ='card-header'>\n            <h3>Account Data</h3>\n          </div>\n          <app-spinner *ngIf='showSpinner'></app-spinner>\n            <div class='card-body' *ngFor='let asset of assetValues'>\n                <ul class='list-group list-group-flush'>\n                  <li class=\"list-group-item\"><b>Account Balance: </b> ${{asset.total_cash}}</li>\n                  <li class=\"list-group-item\"><b>Total Holding Value: </b>${{asset.total_holding_value}} </li>\n                  <li class=\"list-group-item\"><b>Total Asset Value: </b>${{asset.total_asset_value}}</li>                         \n                </ul>\n            </div>\n          </div>\n            <canvas id=\"myChart\" ></canvas>       \n        <div class='row justify-content-center'>\n          <button type='button' class='btn btn-primary' (click)=\"changeGraph()\">Portfolio History</button>\n        </div>\n  <div class='row' id='portfolio'>\n    <app-portfolio-card *ngFor = 'let stock of assetData' class='col-12' [stock]=\"stock\"></app-portfolio-card>\n  </div>\n</body>\n"
+module.exports = "<body class='container' id='container'>\n        <div class='card text-center' id='account'>\n          <div class ='card-header'>\n            <h3>Account Data</h3>\n          </div>\n          <app-spinner *ngIf='showSpinner'></app-spinner>\n            <div class='card-body' *ngFor='let asset of assetValues'>\n                <ul class='list-group list-group-flush'>\n                  <li class=\"list-group-item\"><b>Account Balance: </b> ${{asset.total_cash}}</li>\n                  <li class=\"list-group-item\"><b>Total Holding Value: </b>${{asset.total_holding_value}} </li>\n                  <li class=\"list-group-item\"><b>Total Asset Value: </b>${{asset.total_asset_value}}</li>                         \n                </ul>\n            </div>\n          </div>\n            <canvas id=\"myChart\" ></canvas>       \n        <!-- <div class='row justify-content-center'>\n          <button type='button' class='btn btn-primary' (click)=\"changeGraph()\">Portfolio History</button>\n        </div> -->\n  <div class='row' id='portfolio'>\n    <app-portfolio-card *ngFor = 'let stock of assetData' class='col-12' [stock]=\"stock\"></app-portfolio-card>\n  </div>\n</body>\n"
 
 /***/ }),
 
@@ -1676,7 +1676,7 @@ let PortfolioComponent = class PortfolioComponent {
     changeGraph() {
         if (this.showGraph === true) {
             this.chart.config.type = 'line';
-            this.chart.config.data.datasets[0].label = 'Portfolio Price History';
+            this.chart.config.data.datasets[0].label = 'COMING SOON--Portfolio Price History';
             this.chart.config.data.labels = this.historicalDate;
             this.chart.config.data.datasets[0].data = this.historicalPrice;
             this.chart.config.data.datasets[0].pointHitRadius = 20;
