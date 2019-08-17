@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
           'password': this.password
         }
         this.data.register(content).subscribe((data: any) => {
-          console.log('Registering...');
           this.login();
         },
         (error) => {
@@ -62,7 +61,6 @@ export class LoginComponent implements OnInit {
     } else {
       this.data.login(this.email, this.password).subscribe((data: any) => {
         this.ngbActiveModal.close();
-        console.log('Logged in!');
         sessionStorage.setItem('Authorization', data['token']);
         this.router.navigate(['rulesRanking']);
       },
@@ -83,7 +81,7 @@ export class LoginComponent implements OnInit {
   }
 
   rulesPage() {
-    this.router.navigate(['rulesRanking']);
+    this.router.navigate(['login']);
     this.ngbActiveModal.close();
   }
     

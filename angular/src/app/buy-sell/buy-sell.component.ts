@@ -100,7 +100,6 @@ export class BuySellComponent implements OnInit {
 
   updateChart() {
     this.data.chartData(this.searchStockSymbol).subscribe((data: any[]) => {
-      console.log(data)
       this.chartInfo = data;
       this.lableList = [];
       this.priceList =[];

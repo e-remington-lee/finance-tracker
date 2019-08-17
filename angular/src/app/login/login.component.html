@@ -25,12 +25,12 @@
                   <div class="form-group">
                     <label for="password" class="col-form-label">Password</label>
                     <input type='password' [(ngModel)]='password' class="form-control" id="passwordLogin" 
-                        name='passwordLogin' minlength="8" maxlength="24" required>
+                        name='passwordLogin' minlength="8" maxlength="24" (keyup.enter)='login()' required>
                   </div>
                 </form>
                 <div class="text-center mt-2">
                     <button type="button" class="btn btn-primary" (click)='login()'>Login</button>
-                  </div>
+                </div>
           </div>
           <div class="modal-footer justify-content-center">
               <div class="options">
@@ -68,7 +68,7 @@
                     <div class="form-group">
                         <label class="col-form-label">Retype Password</label>
                         <input type='password' class="form-control" id="passwordRegisterCheck" name = 'passwordRegisterCheck'
-                        [(ngModel)]='password2' minlength="8" maxlength="24" required>
+                        [(ngModel)]='password2' minlength="8" maxlength="24" (keyup.enter)='register()' required>
                       </div>
                   </form>
                   <div>

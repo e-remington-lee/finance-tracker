@@ -33,7 +33,6 @@ export class LoginPageComponent implements OnInit {
         'password': this.password
       }
       this.data.register(content).subscribe((data: any) => {
-        console.log('Registering...');
         this.login();
       },
       (error) => {
@@ -60,7 +59,6 @@ export class LoginPageComponent implements OnInit {
       this.errorMessageLogin = "Email and password required";
     } else {
       this.data.login(this.email, this.password).subscribe((data: any) => {
-        console.log('Logged in!');
         sessionStorage.setItem('Authorization', data['token']);
         this.router.navigate(['rulesRanking']);
       },
