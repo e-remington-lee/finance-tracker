@@ -23,7 +23,6 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-  console.log('Logged out');
    sessionStorage.removeItem('Authorization');
    location.reload();
   }

@@ -28,7 +28,6 @@ export class SellModalComponent implements OnInit {
       }
 
   ngOnInit() {
-    console.log(this.symbol);
   }
 
   sellStockButton() {

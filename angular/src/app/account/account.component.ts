@@ -12,8 +12,6 @@ import { AuthService } from '../auth.service';
 export class AccountComponent implements OnInit {
   
   constructor(private data: DataService, private auth: AuthService) {
-    // this.data.checkLogin(sessionStorage.getItem('Authorization')).subscribe()
-    // console.log(this.auth.accessRoute)
   }
 
 

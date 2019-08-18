@@ -20,15 +20,15 @@ SET row_security = off;
 
 --
 -- TOC entry 2967 (class 1262 OID 16485)
--- Name: stock_tracking_app; Type: DATABASE; Schema: -; Owner: postgres
+-- Name: dadm6n51qbgptr; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE stock_tracking_app WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'English_United States.1252' LC_CTYPE = 'English_United States.1252';
+CREATE DATABASE dadm6n51qbgptr WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'English_United States.1252' LC_CTYPE = 'English_United States.1252';
 
 
-ALTER DATABASE stock_tracking_app OWNER TO postgres;
+ALTER DATABASE dadm6n51qbgptr OWNER TO postgres;
 
-\connect stock_tracking_app
+\connect dadm6n51qbgptr
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
