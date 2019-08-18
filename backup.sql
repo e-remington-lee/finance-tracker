@@ -5,7 +5,7 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 11.3
 
--- Started on 2019-08-10 21:06:34
+-- Started on 2019-08-18 15:08:17
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -451,12 +451,12 @@ ALTER TABLE ONLY public.transactions
 
 
 --
--- TOC entry 2839 (class 2606 OID 16777)
+-- TOC entry 2839 (class 2606 OID 16782)
 -- Name: historical_data f_key_account_id_hist_data; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.historical_data
-    ADD CONSTRAINT f_key_account_id_hist_data FOREIGN KEY (account_id) REFERENCES public.user_accounts(user_id);
+    ADD CONSTRAINT f_key_account_id_hist_data FOREIGN KEY (account_id) REFERENCES public.user_accounts(user_id) ON DELETE CASCADE;
 
 
 --
@@ -477,7 +477,7 @@ ALTER TABLE ONLY public.holdings
     ADD CONSTRAINT holdings_account_id_fkey FOREIGN KEY (account_id) REFERENCES public.account_balance(account_id) ON DELETE CASCADE;
 
 
--- Completed on 2019-08-10 21:06:35
+-- Completed on 2019-08-18 15:08:18
 
 --
 -- PostgreSQL database dump complete
