@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     }
 
 
-  login() {
+  login(refresh) {
     if (this.email == null || this.password == null) {
       this.errorMessage = 'Email and password required';
     } else {
@@ -70,11 +70,10 @@ export class LoginComponent implements OnInit {
         }
       },
       ()=>{
-        // window.location.reload()
       });
     }
-
   }
+
 
   close() {
     this.ngbActiveModal.close();

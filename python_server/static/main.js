@@ -1384,7 +1384,7 @@ let LoginComponent = class LoginComponent {
             this.registerError = 'All inputs required';
         }
     }
-    login() {
+    login(refresh) {
         if (this.email == null || this.password == null) {
             this.errorMessage = 'Email and password required';
         }
@@ -1398,7 +1398,6 @@ let LoginComponent = class LoginComponent {
                     this.errorMessage = 'Incorrect email or password';
                 }
             }, () => {
-                // window.location.reload()
             });
         }
     }

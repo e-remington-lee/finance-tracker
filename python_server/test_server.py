@@ -265,13 +265,11 @@ class Test_sell_stock(unittest.TestCase):
 
 class Test_portfolio_data(unittest.TestCase):
     @patch("server.portfolio_holdings")
-    @patch("server.portfolio_symbols")
     @patch("server.jsonify")
     @patch("server.iex_latest_price")
     @patch("server.request")
-    def test_portfolio_data(self, mock_request, mock_iex, mock_jsonify, mock_symbols, mock_portfolio):
+    def test_portfolio_data(self, mock_request, mock_iex, mock_jsonify, mock_portfolio):
         mock_request.args.get.return_value = 1
-        mock_symbols = ['a', 'b', 'c']
         mock_iex.return_value = 210.00
         mock_portfolio.return_value = 'Text'
 
