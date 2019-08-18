@@ -1,12 +1,10 @@
 import datetime
 import os
 from functools import wraps
-import atexit
 
 from flask import Flask, render_template, request, jsonify, make_response
 import requests
 import jwt
-from apscheduler.schedulers.background import BackgroundScheduler
 
 from database import *
 from iex_connect import *
