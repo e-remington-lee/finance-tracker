@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     }
 
 
-  login(refresh) {
+  login() {
     if (this.email == null || this.password == null) {
       this.errorMessage = 'Email and password required';
     } else {

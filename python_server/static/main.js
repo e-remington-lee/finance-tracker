@@ -1384,7 +1384,7 @@ let LoginComponent = class LoginComponent {
             this.registerError = 'All inputs required';
         }
     }
-    login(refresh) {
+    login() {
         if (this.email == null || this.password == null) {
             this.errorMessage = 'Email and password required';
         }
