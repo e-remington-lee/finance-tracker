@@ -28,8 +28,8 @@ def token_required(f):
         token = None
         try:
             token = request.headers['Authorization']
-        except: 
-            return make_response('Token Error', 401, {'WWW-Authentication.route' : 'Valid Token Required'})
+        except:
+            return make_response('Token Error', 401, {'WWW-Authentication.route': 'Valid Token Required'})
         return f(*args, **kwargs)
     return decorated
 
@@ -42,7 +42,7 @@ def login_user():
     login_response = login_account(email, password)
 
     if login_response == None:
-        return make_response('Login failed', 401, {'WWW-Authentication.route' : 'Login required!'})
+        return make_response('Login failed', 401, {'WWW-Authentication.route': 'Login required!'})
 
     user = {'user_id': login_response['user_id'],
             'account_id': login_response['account_id'],
@@ -77,9 +77,9 @@ def stock_info():
     symbol = request.args.get('symbol')
     r = iex_stock_data(symbol)
     if r:
-        change_percent = round(float(r.json()['changePercent'])*100,3)
-        latest_price = money(round(float(r.json()['latestPrice']),2))
-        change = money(round(float(r.json()['change']),2))
+        change_percent = round(float(r.json()['changePercent'])*100, 3)
+        latest_price = money(round(float(r.json()['latestPrice']), 2))
+        change = money(round(float(r.json()['change']), 2))
 
         stock_data = [{
                         'price': latest_price,
@@ -100,12 +100,13 @@ def historical_info():
     historical_data = []
     count = 0
     for x in r.json():
-        x = {'date': r.json()[count]['date'],
+        x = {
+            'date': r.json()[count]['date'],
             'average': r.json()[count]['average'],
             'label': r.json()[count]['label']
             }
         historical_data.append(x)
-        count +=1
+        count += 1
     return jsonify(historical_data), 200
 
 
@@ -115,9 +116,9 @@ def balance_change_buy():
     response = request.get_json()
 
     symbol = response[0]['symbol']
-    account_id  = response[0]['accountId']
+    account_id = response[0]['accountId']
     shares = int(response[0]['shares'])
-        
+
     latest_price = iex_latest_price(symbol)
     balance_change = calculate_price(latest_price, shares)
     update_balance_buy(account_id, balance_change)
@@ -137,9 +138,9 @@ def balance_change_sell():
     balance_change = calculate_price(latest_price, shares)
     update_balance_sell(account_id, balance_change)
     return jsonify(balance_change), 201
- 
 
-@app.route('/api/transactions', methods=[ 'POST'])
+
+@app.route('/api/transactions', methods=['POST'])
 @token_required
 def transactions():
     response = request.get_json()
@@ -150,7 +151,7 @@ def transactions():
     transaction_type = response[0]['type']
 
     stock_price = iex_latest_price(symbol)
-        
+
     transaction_list(account_id, symbol, transaction_type, stock_price, shares)
     return jsonify(stock_price), 201
 
@@ -179,7 +180,6 @@ def check_stock():
     symbol = request.args.get('symbol')
     account_id = request.args.get('accountId')
     shares = request.args.get('shares')
-            
     holdings = check_stock_holdings(account_id, symbol)
     current_holdings = holdings['shares']
 
@@ -194,7 +194,7 @@ def buy_stock_endpoint():
     response = request.get_json()
 
     symbol = response[0]['symbol']
-    account_id  = response[0]['accountId']
+    account_id = response[0]['accountId']
     shares = response[0]['shares']
     company_name = response[0]['company']
 
@@ -210,7 +210,7 @@ def sell_stock_endpoint():
     response = request.get_json()
 
     symbol = response[0]['symbol']
-    account_id  = response[0]['accountId']
+    account_id = response[0]['accountId']
     shares = response[0]['shares']
 
     sell_stock(symbol, shares, account_id)
@@ -220,17 +220,17 @@ def sell_stock_endpoint():
 @app.route('/api/portfolioData', methods=['GET'])
 @token_required
 def portfolio_data():
-    account_id  = request.args.get('accountId')
+    account_id = request.args.get('accountId')
 
     portfolio_information = portfolio_holdings(account_id)
-    
+
     return jsonify(portfolio_information), 200
 
 
 @app.route('/api/dailyData', methods=['GET'])
 @token_required
 def daily_data():
-    account_id  = request.args.get('accountId')
+    account_id = request.args.get('accountId')
     daily_info = get_daily_data(account_id)
     return jsonify(daily_info), 200
 
