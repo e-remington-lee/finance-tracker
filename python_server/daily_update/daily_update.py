@@ -64,7 +64,7 @@ def historical_data(account_id):
 
      return total_asset
 
-def lambda_handler(event, context):   
+def daily_update(event, context):   
     all_users = get_all_users()
     asset_list = []
     for user_id in all_users:
