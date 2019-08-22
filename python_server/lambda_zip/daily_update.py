@@ -2,20 +2,6 @@ import requests
 import psycopg2
 
 
-# def create_connection():
-#     return psycopg2.connect(
-#             host = db_host,
-#             database = db_database_stocks,
-#             user = db_username,
-#             password = db_password
-#             )
-
-
-# def iex_latest_price(symbol):
-#     payload = {'token': str(iex_public_key)}
-#     r = requests.get(f'https://cloud.iexapis.com/v1/stock/{symbol}/quote/latestPrice', params=payload)
-#     return float(r.text)
-
 import os
 def iex_latest_price(symbol):
     payload = {'token': str(os.environ['iex_public_key'])}
@@ -31,15 +17,6 @@ def create_connection():
             user = os.environ['db_username'],
             password = os.environ['db_password'])
 
-
-def portfolio_data():
-    all_users = get_all_users()
-    asset_list = []
-    for user_id in all_users:
-        price_history = historical_data(user_id)
-        asset_list.append(price_history)
-
-    return asset_list
 
 
 def get_all_users():
@@ -87,5 +64,11 @@ def historical_data(account_id):
 
      return total_asset
 
-if __name__ == '__main__':
-    print(portfolio_data())
+def lambda_handler(event, context):   
+    all_users = get_all_users()
+    asset_list = []
+    for user_id in all_users:
+        price_history = historical_data(user_id)
+        asset_list.append(price_history)
+
+    return asset_list
