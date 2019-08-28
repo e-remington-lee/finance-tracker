@@ -1,9 +1,5 @@
 /venv
 
 /python_server/scratch
-<<<<<<< HEAD
-/python_server/daily_update
-=======
 /python_server/daily_update.zip
 /python_server/daily_update
->>>>>>> erl-graph
