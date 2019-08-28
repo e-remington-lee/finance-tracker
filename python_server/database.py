@@ -225,27 +225,8 @@ def historical_data(account_id):
      connection.commit()
      cur.close()
      connection.close()
-     return None
+     return total_asset
 
-
-# def portfolio_symbols(account_id):
-#      connection = create_connection()
-#      cur = connection.cursor()
-
-#      cur.execute('''SELECT * FROM holdings 
-#                     WHERE account_id = %(account_id)s 
-#                     ORDER BY holding_id ASC''', 
-#                     {'account_id': account_id})
-
-#      rows = cur.fetchall()
-
-#      stock_symbol = []
-#      for row in rows:
-#           stock_symbol.append(row[2])
-
-#      cur.close()
-#      connection.close()
-#      return stock_symbol
 
 def login_account(email, password):
      connection = create_connection()
@@ -292,7 +273,6 @@ def register_user_database(first_name, last_name, email, password):
 def get_all_users():
      connection = create_connection()
      cur = connection.cursor()
-
    
      cur.execute('''SELECT user_id FROM user_accounts ORDER BY user_id ASC''')
     
@@ -314,7 +294,6 @@ def get_daily_data(account_id):
                     account_id = %(account_id)s ORDER BY history_id DESC LIMIT 30) AS foo
                     ORDER BY history_id asc''',
                     {'account_id': account_id})
-    
      rows = cur.fetchall()
 
      daily_info = []

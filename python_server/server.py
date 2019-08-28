@@ -236,5 +236,10 @@ def daily_data():
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     # app.run(debug=True, port=7000)
     app.run()
+=======
+    app.run(debug=True, port=7000)
+    # app.run()
+>>>>>>> erl-graph
