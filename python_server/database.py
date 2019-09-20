@@ -298,7 +298,6 @@ def get_daily_data(account_id):
 
      daily_info = []
      i = 0
-     print(len(rows))
      while i < len(rows):
           for row in rows:
                daily_info.append({'date_price': float(row[2]),

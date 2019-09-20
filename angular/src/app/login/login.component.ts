@@ -10,8 +10,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class LoginComponent implements OnInit {
 
-  email: string;
-  password: string;
+  email: string = 'testAccount@public.com';
+  password: string = 'password';
   password2: string;
   firstName: string;
   lastName:string;
